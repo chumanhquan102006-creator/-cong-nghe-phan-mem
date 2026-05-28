@@ -1,0 +1,73 @@
+@model AcademicAIAssistant.Models.SimilarityCheck
+
+@{
+    ViewData["Title"] = "Similarity Result";
+}
+
+<section class="py-4">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Similarity Result</h1>
+            <p class="page-subtitle">@Model.Essay?.Title - Checked at @Model.CheckedAt.ToString("yyyy-MM-dd HH:mm")</p>
+        </div>
+        <a class="btn btn-outline-secondary" asp-controller="Writing" asp-action="Details" asp-route-id="@Model.EssayId">Back to Essay</a>
+    </div>
+
+    <div class="row g-3 mb-3">
+        <div class="col-md-3">
+                <div class="stat-card">
+                <h2 class="h6">Overall Score</h2>
+                <p class="display-6 mb-0">@Model.OverallSimilarityScore.ToString("0.00")%</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+                <div class="stat-card">
+                <h2 class="h6">Status</h2>
+                <p class="display-6 mb-0">@Model.Status</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+                <div class="stat-card">
+                <h2 class="h6">Documents Compared</h2>
+                <p class="display-6 mb-0">@Model.TotalDocumentsCompared</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+                <div class="stat-card">
+                <h2 class="h6">Matches</h2>
+                <p class="display-6 mb-0">@Model.TotalMatches</p>
+            </div>
+        </div>
+    </div>
+
+    @if (!Model.Matches.Any())
+    {
+        <div class="empty-state">No significant similarity found.</div>
+    }
+    else
+    {
+        <div class="row g-3">
+            @foreach (var match in Model.Matches.OrderByDescending(item => item.SimilarityScore))
+            {
+                <div class="col-12">
+                    <div class="section-card">
+                        <div class="d-flex justify-content-between gap-3 mb-2">
+                            <h2 class="h6 mb-0">@(match.Document?.Title ?? "Unknown document")</h2>
+                            <span class="badge text-bg-danger status-badge">@match.SimilarityScore.ToString("0.00")%</span>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <strong>Essay Segment</strong>
+                                <blockquote class="text-preview mt-2 mb-0">@match.EssaySegment</blockquote>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Matched Text</strong>
+                                <blockquote class="text-preview mt-2 mb-0">@match.MatchedText</blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</section>

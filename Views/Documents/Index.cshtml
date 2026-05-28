@@ -1,0 +1,73 @@
+@model IEnumerable<AcademicAIAssistant.Models.Document>
+
+@{
+    ViewData["Title"] = "Documents";
+}
+
+<section class="py-4">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Document Library</h1>
+            <p class="page-subtitle">Manage your uploaded PDF research documents.</p>
+        </div>
+        <a class="btn btn-primary" asp-controller="Documents" asp-action="Upload">Upload New PDF</a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="empty-state">
+            You have not uploaded any PDF documents yet.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover align-middle section-card">
+                <thead class="table-light">
+                    <tr>
+                        <th>Title</th>
+                        <th>Original File</th>
+                        <th>File Size</th>
+                        <th>Uploaded At</th>
+                        <th>Status</th>
+                        <th>Summary</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var document in Model)
+                    {
+                        <tr>
+                            <td>@document.Title</td>
+                            <td>@document.OriginalFileName</td>
+                            <td>@((document.FileSize / 1024.0 / 1024.0).ToString("0.00")) MB</td>
+                            <td>@document.UploadedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                            <td>
+                                @if (document.SummaryGeneratedAt.HasValue)
+                                {
+                                    <span class="badge text-bg-success status-badge">Summarized</span>
+                                }
+                                else if (document.ExtractedAt.HasValue)
+                                {
+                                    <span class="badge text-bg-primary status-badge">Extracted</span>
+                                }
+                                else
+                                {
+                                    <span class="badge text-bg-secondary status-badge">Uploaded</span>
+                                }
+                            </td>
+                            <td>@(string.IsNullOrWhiteSpace(document.Summary) ? "No summary yet." : document.Summary)</td>
+                            <td class="text-end">
+                                <a class="btn btn-sm btn-outline-primary" asp-action="Details" asp-route-id="@document.Id">View Details</a>
+                                <form asp-action="Delete" asp-route-id="@document.Id" method="post" class="d-inline"
+                                      onsubmit="return confirm('Delete this document?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>

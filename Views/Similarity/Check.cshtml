@@ -1,0 +1,43 @@
+@model AcademicAIAssistant.Models.ViewModels.SimilarityCheckViewModel
+
+@{
+    ViewData["Title"] = "Check Similarity";
+}
+
+<section class="py-4">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Check Similarity</h1>
+            <p class="page-subtitle">@Model.Essay.Title</p>
+            <p class="page-subtitle">@Model.Essay.EssayType - @Model.Essay.WordCount words</p>
+        </div>
+        <a class="btn btn-outline-secondary" asp-controller="Writing" asp-action="Details" asp-route-id="@Model.Essay.Id">Back to Essay</a>
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger">@Model.ErrorMessage</div>
+    }
+
+    <div class="row g-3 mb-3">
+        <div class="col-md-4">
+            <div class="stat-card">
+                <h2 class="h6">Extracted Documents</h2>
+                <p class="display-6 mb-0">@Model.ExtractedDocumentCount</p>
+                <small class="text-muted">Documents with extracted text owned by you</small>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="section-card h-100">
+                <h2 class="h6">Scope</h2>
+                <p class="mb-0">
+                    This internal checker compares the essay only with your uploaded documents that already have extracted text.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <form asp-controller="Similarity" asp-action="CheckPost" asp-route-essayId="@Model.Essay.Id" method="post">
+        <button type="submit" class="btn btn-primary">Check Similarity</button>
+    </form>
+</section>

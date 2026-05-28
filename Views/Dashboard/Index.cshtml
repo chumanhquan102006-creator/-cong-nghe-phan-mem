@@ -1,0 +1,215 @@
+@model AcademicAIAssistant.Models.ViewModels.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<section class="py-4">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Welcome back, @Model.FullName</h1>
+            <p class="page-subtitle">Here is your academic reading and writing workspace.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2 align-items-start">
+            <a class="btn btn-primary" asp-controller="Documents" asp-action="Upload">Upload PDF</a>
+            <a class="btn btn-outline-primary" asp-controller="Writing" asp-action="Index">New Writing Analysis</a>
+        </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+        <div class="col-6 col-lg-3">
+            <div class="stat-card">
+                    <div class="stat-label">Documents</div>
+                    <div class="stat-value">@Model.TotalDocuments</div>
+                    <div class="small text-muted">Uploaded PDFs</div>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3">
+            <div class="stat-card">
+                    <div class="stat-label">Extracted PDFs</div>
+                    <div class="stat-value">@Model.ExtractedDocuments</div>
+                    <div class="small text-muted">Ready for summary/chat</div>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3">
+            <div class="stat-card">
+                    <div class="stat-label">Summaries</div>
+                    <div class="stat-value">@Model.SummarizedDocuments</div>
+                    <div class="small text-muted">Generated summaries</div>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3">
+            <div class="stat-card">
+                    <div class="stat-label">Essays</div>
+                    <div class="stat-value">@Model.TotalEssays</div>
+                    <div class="small text-muted">Written or analyzed</div>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3">
+            <div class="stat-card">
+                    <div class="stat-label">Feedback Reports</div>
+                    <div class="stat-value">@Model.TotalFeedbackReports</div>
+                    <div class="small text-muted">Writing feedback</div>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3">
+            <div class="stat-card">
+                    <div class="stat-label">Citation Checks</div>
+                    <div class="stat-value">@Model.TotalCitationChecks</div>
+                    <div class="small text-muted">APA checks</div>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3">
+            <div class="stat-card">
+                    <div class="stat-label">Similarity Checks</div>
+                    <div class="stat-value">@Model.TotalSimilarityChecks</div>
+                    <div class="small text-muted">Internal comparison</div>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3">
+            <div class="stat-card">
+                    <div class="stat-label">Knowledge Graph</div>
+                    <div class="stat-value">@Model.TotalGraphNodes/@Model.TotalGraphEdges</div>
+                    <div class="small text-muted">Nodes / edges</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-card mb-4">
+            <h2 class="h5 mb-3">Quick Actions</h2>
+            <div class="d-flex flex-wrap gap-2">
+                <a class="btn btn-primary" asp-controller="Documents" asp-action="Upload">Upload PDF</a>
+                <a class="btn btn-outline-primary" asp-controller="Documents" asp-action="Index">View Documents</a>
+                <a class="btn btn-outline-success" asp-controller="Writing" asp-action="Index">New Writing Analysis</a>
+                <a class="btn btn-outline-success" asp-controller="Writing" asp-action="History">Writing History</a>
+                <a class="btn btn-outline-secondary" asp-controller="Graph" asp-action="Index">Knowledge Graph</a>
+            </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-7">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="h5 mb-3">Recent Activities</h2>
+
+                    @if (Model.RecentActivities.Any())
+                    {
+                        <div class="list-group list-group-flush">
+                            @foreach (var activity in Model.RecentActivities)
+                            {
+                                <a class="list-group-item list-group-item-action px-0" href="@activity.LinkUrl">
+                                    <div class="d-flex justify-content-between gap-3">
+                                        <div>
+                                            <span class="badge @activity.BadgeClass me-2">@activity.ActivityType</span>
+                                            <strong>@activity.Title</strong>
+                                            <div class="small text-muted mt-1">@activity.Description</div>
+                                        </div>
+                                        <small class="text-muted text-nowrap">@activity.CreatedAt.ToString("dd/MM/yyyy HH:mm")</small>
+                                    </div>
+                                </a>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-light border mb-0">
+                            No recent activities yet. Start by uploading a PDF or analyzing an essay.
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="h5 mb-3">Recent Documents</h2>
+
+                    @if (Model.RecentDocuments.Any())
+                    {
+                        <div class="list-group list-group-flush">
+                            @foreach (var document in Model.RecentDocuments.Take(5))
+                            {
+                                <div class="list-group-item px-0">
+                                    <div class="d-flex justify-content-between gap-3">
+                                        <div>
+                                            <strong>@document.Title</strong>
+                                            <div class="small text-muted">@document.UploadedAt.ToString("dd/MM/yyyy HH:mm")</div>
+                                            <div class="mt-1">
+                                                @if (document.ExtractedAt != null || !string.IsNullOrWhiteSpace(document.ExtractedText))
+                                                {
+                                                    <span class="badge text-bg-success">Extracted</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge text-bg-secondary">Not extracted</span>
+                                                }
+
+                                                @if (document.SummaryGeneratedAt != null || !string.IsNullOrWhiteSpace(document.Summary))
+                                                {
+                                                    <span class="badge text-bg-info">Summarized</span>
+                                                }
+                                            </div>
+                                        </div>
+                                        <a class="btn btn-sm btn-outline-primary align-self-start" asp-controller="Documents" asp-action="Details" asp-route-id="@document.Id">View</a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-light border mb-0">
+                            Upload your first research PDF.
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="h5 mb-3">Recent Essays</h2>
+
+                    @if (Model.RecentEssays.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Type</th>
+                                        <th>Words</th>
+                                        <th>Created</th>
+                                        <th class="text-end">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var essay in Model.RecentEssays.Take(5))
+                                    {
+                                        <tr>
+                                            <td>@essay.Title</td>
+                                            <td>@essay.EssayType</td>
+                                            <td>@essay.WordCount</td>
+                                            <td>@essay.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                                            <td class="text-end">
+                                                <a class="btn btn-sm btn-outline-primary" asp-controller="Writing" asp-action="Details" asp-route-id="@essay.Id">View</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-light border mb-0">
+                            Analyze your first academic essay.
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

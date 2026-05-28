@@ -1,0 +1,51 @@
+@model AcademicAIAssistant.Models.ViewModels.EssayAnalyzeViewModel
+
+@{
+    ViewData["Title"] = "Writing Studio";
+}
+
+<section class="py-4">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Writing Studio</h1>
+            <p class="page-subtitle">Analyze an essay, literature review, thesis proposal, or research report.</p>
+        </div>
+        <a class="btn btn-outline-secondary" asp-action="History">Writing History</a>
+    </div>
+
+    <form asp-action="Analyze" method="post" class="section-card">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="row g-3">
+            <div class="col-md-8">
+                <label asp-for="Title" class="form-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="EssayType" class="form-label"></label>
+                <select asp-for="EssayType" class="form-select">
+                    @foreach (var option in AcademicAIAssistant.Models.ViewModels.EssayAnalyzeViewModel.EssayTypeOptions)
+                    {
+                        <option value="@option">@option</option>
+                    }
+                </select>
+                <span asp-validation-for="EssayType" class="text-danger"></span>
+            </div>
+
+            <div class="col-12">
+                <label asp-for="Content" class="form-label"></label>
+                <textarea asp-for="Content" class="form-control" rows="16"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+                <div class="form-text">Paste your draft here. Feedback uses AI when enabled, otherwise it falls back to rule-based analysis.</div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Analyze Essay</button>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

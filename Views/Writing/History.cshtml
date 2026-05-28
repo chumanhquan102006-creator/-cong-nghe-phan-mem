@@ -1,0 +1,50 @@
+@model IEnumerable<AcademicAIAssistant.Models.Essay>
+
+@{
+    ViewData["Title"] = "Writing History";
+}
+
+<section class="py-4">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Writing History</h1>
+            <p class="page-subtitle">Review essays you have analyzed.</p>
+        </div>
+        <a class="btn btn-primary" asp-action="Index">Analyze New Essay</a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="empty-state">No essays analyzed yet.</div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover align-middle section-card">
+                <thead class="table-light">
+                    <tr>
+                        <th>Title</th>
+                        <th>Essay Type</th>
+                        <th>Word Count</th>
+                        <th>Created At</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var essay in Model)
+                    {
+                        <tr>
+                            <td>@essay.Title</td>
+                            <td>@essay.EssayType</td>
+                            <td>@essay.WordCount</td>
+                            <td>@essay.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                            <td class="text-end">
+                                <a class="btn btn-sm btn-outline-primary" asp-action="Details" asp-route-id="@essay.Id">View Details</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>

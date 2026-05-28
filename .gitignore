@@ -1,0 +1,25 @@
+bin/
+obj/
+.vs/
+.vscode/
+
+# Uploaded user files
+wwwroot/uploads/**
+!wwwroot/uploads/
+!wwwroot/uploads/.gitkeep
+
+# Local database files
+*.db
+*.sqlite
+*.mdf
+*.ldf
+
+# Secrets and local settings
+secrets.json
+appsettings.Development.json
+*.user
+
+# Logs and temporary files
+*.log
+*.tmp
+TestResults/

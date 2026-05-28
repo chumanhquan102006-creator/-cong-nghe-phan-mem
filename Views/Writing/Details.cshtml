@@ -1,0 +1,87 @@
+@model AcademicAIAssistant.Models.ViewModels.EssayDetailsViewModel
+
+@{
+    ViewData["Title"] = "Writing Details";
+    var report = Model.LatestFeedbackReport;
+}
+
+<section class="py-4">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">@Model.Essay.Title</h1>
+            <p class="page-subtitle">@Model.Essay.EssayType - @Model.Essay.WordCount words</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a class="btn btn-primary" asp-controller="Citation" asp-action="Check" asp-route-essayId="@Model.Essay.Id">Check Citation</a>
+            <a class="btn btn-success" asp-controller="Similarity" asp-action="Check" asp-route-essayId="@Model.Essay.Id">Check Similarity</a>
+            <a class="btn btn-outline-secondary" asp-action="History">Back to History</a>
+        </div>
+    </div>
+
+    @if (report == null)
+    {
+        <div class="alert alert-warning">This essay does not have a feedback report yet.</div>
+    }
+    else
+    {
+        <div class="row g-3 mb-3">
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <h2 class="h6">Overall Score</h2>
+                    <p class="display-5 mb-0">@report.OverallScore</p>
+                    <small class="text-muted">Generated at @report.CreatedAt.ToString("yyyy-MM-dd HH:mm")</small>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="feedback-card h-100">
+                    <h2 class="h6">General Suggestions</h2>
+                    <p class="mb-0">@report.GeneralSuggestions</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="feedback-card h-100">
+                    <h2 class="h6">Grammar / Wording</h2>
+                    <p class="mb-0">@report.GrammarFeedback</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feedback-card h-100">
+                    <h2 class="h6">Academic Tone</h2>
+                    <p class="mb-0">@report.AcademicToneFeedback</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feedback-card h-100">
+                    <h2 class="h6">Thesis Statement</h2>
+                    <p class="mb-0">@report.ThesisFeedback</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feedback-card h-100">
+                    <h2 class="h6">Structure</h2>
+                    <p class="mb-0">@report.StructureFeedback</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feedback-card h-100">
+                    <h2 class="h6">Logic</h2>
+                    <p class="mb-0">@report.LogicFeedback</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feedback-card h-100">
+                    <h2 class="h6">Citation</h2>
+                    <p class="mb-0">@report.CitationFeedback</p>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="section-card mt-3">
+        <h2 class="h5">Essay Content</h2>
+        <div class="text-preview">@Model.Essay.Content</div>
+    </div>
+</section>

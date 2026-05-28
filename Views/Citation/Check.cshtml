@@ -1,0 +1,26 @@
+@model AcademicAIAssistant.Models.Essay
+
+@{
+    ViewData["Title"] = "Check Citation";
+    string preview = Model.Content.Length > 2000 ? Model.Content.Substring(0, 2000) + "..." : Model.Content;
+}
+
+<section class="py-4">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Check Citation</h1>
+            <p class="page-subtitle">@Model.Title</p>
+            <p class="page-subtitle">@Model.EssayType - @Model.WordCount words</p>
+        </div>
+        <a class="btn btn-outline-secondary" asp-controller="Writing" asp-action="Details" asp-route-id="@Model.Id">Back to Essay</a>
+    </div>
+
+    <div class="section-card mb-3">
+        <h2 class="h5">Essay Preview</h2>
+        <div class="text-preview">@preview</div>
+    </div>
+
+    <form asp-controller="Citation" asp-action="CheckPost" asp-route-essayId="@Model.Id" method="post">
+        <button type="submit" class="btn btn-primary">Check Citation</button>
+    </form>
+</section>

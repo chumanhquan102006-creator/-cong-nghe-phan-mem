@@ -1,0 +1,42 @@
+@model AcademicAIAssistant.Models.ViewModels.UploadDocumentViewModel
+
+@{
+    ViewData["Title"] = "Upload PDF";
+}
+
+<section class="row justify-content-center py-4">
+    <div class="col-md-7 col-lg-6">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Upload PDF</h1>
+                <p class="page-subtitle">Add a research document to your library.</p>
+            </div>
+        </div>
+
+        <form asp-action="Upload" method="post" enctype="multipart/form-data" class="section-card">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="File" class="form-label"></label>
+                <input asp-for="File" type="file" accept=".pdf,application/pdf" class="form-control" />
+                <span asp-validation-for="File" class="text-danger"></span>
+                <div class="form-text">Only PDF files up to 10MB are allowed.</div>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary">Upload</button>
+                <a class="btn btn-outline-secondary" asp-action="Index">Cancel</a>
+            </div>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

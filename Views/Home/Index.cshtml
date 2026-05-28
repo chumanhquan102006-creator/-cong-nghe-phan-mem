@@ -1,0 +1,57 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="py-4">
+    <div class="hero-section mb-4">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+                <h1 class="display-5 fw-bold mb-3">Academic AI Assistant</h1>
+                <p class="lead text-muted mb-4">
+                    A student-focused workspace for reading research PDFs, writing academic drafts,
+                    checking citations, comparing similarity, and exploring knowledge links.
+                </p>
+                <div class="d-flex flex-wrap gap-2">
+                    <a class="btn btn-primary btn-lg" asp-controller="Dashboard" asp-action="Index">Get Started</a>
+                    <a class="btn btn-outline-primary btn-lg" asp-controller="Documents" asp-action="Index">View Documents</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="section-card">
+                    <h2 class="h5">Demo-ready modules</h2>
+                    <p class="text-muted mb-0">
+                        PDF library, rule-based analysis, citation checking, similarity checking,
+                        knowledge graph, and chat with PDF are organized in one MVC application.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-card h-100">
+                <h2 class="h5">PDF Reading Assistant</h2>
+                <p class="text-muted mb-0">Upload PDFs, extract text, generate summaries, and chat with document content.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-card h-100">
+                <h2 class="h5">Writing Feedback Studio</h2>
+                <p class="text-muted mb-0">Analyze essays for thesis, structure, tone, logic, citation, and overall score.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-card h-100">
+                <h2 class="h5">Citation & Similarity</h2>
+                <p class="text-muted mb-0">Check basic APA citation quality and compare essays with extracted documents.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-card h-100">
+                <h2 class="h5">Knowledge Graph</h2>
+                <p class="text-muted mb-0">Visualize relationships between documents, essays, and extracted keywords.</p>
+            </div>
+        </div>
+    </div>
+</section>

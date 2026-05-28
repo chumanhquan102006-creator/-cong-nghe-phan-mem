@@ -1,0 +1,106 @@
+@model AcademicAIAssistant.Models.Document
+
+@{
+    ViewData["Title"] = "Document Details";
+    bool fileExists = ViewData["FileExists"] as bool? ?? false;
+    string extractedPreview = Model.ExtractedText ?? string.Empty;
+    if (extractedPreview.Length > 1500)
+    {
+        extractedPreview = extractedPreview.Substring(0, 1500) + "...";
+    }
+}
+
+<section class="py-4">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">@Model.Title</h1>
+            <p class="page-subtitle">@Model.OriginalFileName</p>
+        </div>
+        <a class="btn btn-outline-secondary" asp-action="Index">Back to Documents</a>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-lg-7">
+            <div class="section-card h-100">
+                <h2 class="h5">File Information</h2>
+                <dl class="row mb-0">
+                    <dt class="col-sm-4">Original file</dt>
+                    <dd class="col-sm-8">@Model.OriginalFileName</dd>
+
+                    <dt class="col-sm-4">Stored file</dt>
+                    <dd class="col-sm-8">@Model.StoredFileName</dd>
+
+                    <dt class="col-sm-4">File size</dt>
+                    <dd class="col-sm-8">@((Model.FileSize / 1024.0 / 1024.0).ToString("0.00")) MB</dd>
+
+                    <dt class="col-sm-4">Content type</dt>
+                    <dd class="col-sm-8">@Model.ContentType</dd>
+
+                    <dt class="col-sm-4">Uploaded at</dt>
+                    <dd class="col-sm-8">@Model.UploadedAt.ToString("yyyy-MM-dd HH:mm")</dd>
+
+                    <dt class="col-sm-4">Page count</dt>
+                    <dd class="col-sm-8">@(Model.PageCount == 0 ? "Not extracted" : Model.PageCount)</dd>
+
+                    <dt class="col-sm-4">Word count</dt>
+                    <dd class="col-sm-8">@(Model.WordCount == 0 ? "Not extracted" : Model.WordCount)</dd>
+
+                    <dt class="col-sm-4">Extracted at</dt>
+                    <dd class="col-sm-8">@(Model.ExtractedAt.HasValue ? Model.ExtractedAt.Value.ToString("yyyy-MM-dd HH:mm") : "Not extracted")</dd>
+
+                    <dt class="col-sm-4">Summary generated at</dt>
+                    <dd class="col-sm-8">@(Model.SummaryGeneratedAt.HasValue ? Model.SummaryGeneratedAt.Value.ToString("yyyy-MM-dd HH:mm") : "Not generated")</dd>
+                </dl>
+
+                @if (fileExists)
+                {
+                    <a class="btn btn-primary mt-3" href="@Model.FilePath" target="_blank" rel="noopener">Open PDF</a>
+                }
+                else
+                {
+                    <div class="alert alert-warning mt-3 mb-0">
+                        The PDF file no longer exists on the server.
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="section-card h-100">
+                <h2 class="h5">Summary</h2>
+                <p class="mb-0">
+                    @(string.IsNullOrWhiteSpace(Model.Summary) ? "Summary has not been generated yet." : Model.Summary)
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-card mt-3">
+        <h2 class="h5">Extracted Text Preview</h2>
+        @if (string.IsNullOrWhiteSpace(Model.ExtractedText))
+        {
+            <div class="empty-state">No extracted text yet.</div>
+        }
+        else
+        {
+            <div class="text-preview">@extractedPreview</div>
+        }
+    </div>
+
+    <div class="d-flex flex-wrap gap-2 mt-3">
+        <a class="btn btn-outline-primary" asp-controller="DocumentChat" asp-action="Index" asp-route-documentId="@Model.Id">Chat with PDF</a>
+
+        <form asp-action="ExtractText" asp-route-id="@Model.Id" method="post">
+            <button type="submit" class="btn btn-primary" @(fileExists ? "" : "disabled")>Extract Text</button>
+        </form>
+
+        <form asp-action="GenerateSummary" asp-route-id="@Model.Id" method="post">
+            <button type="submit" class="btn btn-success">Generate Summary</button>
+        </form>
+
+        <form asp-action="Delete" asp-route-id="@Model.Id" method="post"
+              onsubmit="return confirm('Delete this document?');">
+            <button type="submit" class="btn btn-outline-danger">Delete Document</button>
+        </form>
+    </div>
+</section>

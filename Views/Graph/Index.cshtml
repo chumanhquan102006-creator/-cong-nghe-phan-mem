@@ -1,0 +1,98 @@
+@{
+    ViewData["Title"] = "Knowledge Graph";
+    bool hasSourceData = ViewData["HasSourceData"] as bool? ?? false;
+    bool hasGraph = ViewData["HasGraph"] as bool? ?? false;
+}
+
+<section class="py-4">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Knowledge Graph</h1>
+            <p class="page-subtitle">Visualize links between documents, essays, and extracted keywords.</p>
+        </div>
+        <form asp-action="Build" method="post">
+            <button type="submit" class="btn btn-primary">Build / Refresh Graph</button>
+        </form>
+    </div>
+
+    @if (!hasSourceData)
+    {
+        <div class="empty-state mb-3">Build your graph after uploading documents and analyzing essays.</div>
+    }
+    else if (!hasGraph)
+    {
+        <div class="empty-state mb-3">Click Build / Refresh Graph to generate your graph.</div>
+    }
+
+    <div class="row g-3">
+        <div class="col-lg-9">
+            <div class="section-card">
+                <div id="graphContainer"></div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="section-card mb-3">
+                <h2 class="h6">Legend</h2>
+                <div class="mb-2"><span class="badge bg-primary">Document</span></div>
+                <div class="mb-2"><span class="badge bg-success">Essay</span></div>
+                <div><span class="badge bg-warning text-dark">Keyword</span></div>
+            </div>
+            <div class="section-card">
+                <h2 class="h6">Selected Node</h2>
+                <p id="nodeInfo" class="mb-0 text-muted">Click a node to view details.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <script>
+        const colorByType = {
+            Document: { background: "#0d6efd", border: "#084298" },
+            Essay: { background: "#198754", border: "#0f5132" },
+            Keyword: { background: "#ffc107", border: "#997404" }
+        };
+
+        fetch("/Graph/Data")
+            .then(response => response.json())
+            .then(data => {
+                const nodes = new vis.DataSet(data.nodes.map(node => ({
+                    id: node.id,
+                    label: node.label,
+                    group: node.type,
+                    title: node.metadata || node.type,
+                    color: colorByType[node.type] || undefined,
+                    font: node.type === "Keyword" ? { color: "#111" } : { color: "#fff" }
+                })));
+
+                const edges = new vis.DataSet(data.edges.map(edge => ({
+                    from: edge.from,
+                    to: edge.to,
+                    label: edge.label,
+                    value: edge.weight,
+                    arrows: "to",
+                    font: { align: "middle", size: 10 }
+                })));
+
+                const container = document.getElementById("graphContainer");
+                const network = new vis.Network(container, { nodes, edges }, {
+                    physics: { stabilization: true },
+                    interaction: { hover: true },
+                    nodes: { shape: "dot", size: 18 },
+                    edges: { smooth: true }
+                });
+
+                network.on("click", params => {
+                    if (params.nodes.length === 0) {
+                        document.getElementById("nodeInfo").textContent = "Click a node to view details.";
+                        return;
+                    }
+
+                    const node = nodes.get(params.nodes[0]);
+                    document.getElementById("nodeInfo").innerHTML =
+                        `<strong>${node.label}</strong><br />Type: ${node.group}<br />${node.title || ""}`;
+                });
+            });
+    </script>
+}

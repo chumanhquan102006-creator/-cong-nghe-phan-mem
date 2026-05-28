@@ -1,0 +1,99 @@
+@model AcademicAIAssistant.Models.ViewModels.DocumentChatViewModel
+
+@{
+    ViewData["Title"] = "Chat with PDF";
+    string extractedPreview = Model.Document.ExtractedText ?? string.Empty;
+    if (extractedPreview.Length > 1200)
+    {
+        extractedPreview = extractedPreview.Substring(0, 1200) + "...";
+    }
+}
+
+<section class="py-4">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Chat with PDF</h1>
+            <p class="page-subtitle">@Model.Document.Title</p>
+        </div>
+        <a class="btn btn-outline-secondary" asp-controller="Documents" asp-action="Details" asp-route-id="@Model.Document.Id">Back to Document</a>
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger">@Model.ErrorMessage</div>
+    }
+
+    @if (string.IsNullOrWhiteSpace(Model.Document.ExtractedText))
+    {
+        <div class="alert alert-warning">Please extract text first before chatting with this PDF.</div>
+    }
+
+    <div class="row g-3">
+        <div class="col-lg-4">
+            <div class="section-card mb-3">
+                <h2 class="h5">Document Info</h2>
+                <dl class="mb-0">
+                    <dt>Original file</dt>
+                    <dd>@Model.Document.OriginalFileName</dd>
+                    <dt>Pages</dt>
+                    <dd>@(Model.Document.PageCount == 0 ? "Not extracted" : Model.Document.PageCount)</dd>
+                    <dt>Words</dt>
+                    <dd>@(Model.Document.WordCount == 0 ? "Not extracted" : Model.Document.WordCount)</dd>
+                </dl>
+            </div>
+
+            <div class="section-card mb-3">
+                <h2 class="h5">Summary</h2>
+                <p class="mb-0">
+                    @(string.IsNullOrWhiteSpace(Model.Document.Summary) ? "No summary generated yet." : Model.Document.Summary)
+                </p>
+            </div>
+
+            <div class="section-card">
+                <h2 class="h5">Extracted Text Preview</h2>
+                <div class="text-preview">@(string.IsNullOrWhiteSpace(extractedPreview) ? "No extracted text yet." : extractedPreview)</div>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="section-card mb-3">
+                <h2 class="h5">Chat History</h2>
+
+                @if (!Model.Messages.Any())
+                {
+                    <div class="empty-state">No questions asked yet.</div>
+                }
+                else
+                {
+                    @foreach (var message in Model.Messages)
+                    {
+                        <div class="mb-3">
+                            <div class="chat-question rounded p-3 mb-2">
+                                <strong>You:</strong>
+                                <p class="mb-1">@message.Question</p>
+                            </div>
+                            <div class="chat-answer rounded p-3 mb-2">
+                                <strong>System:</strong>
+                                <p class="mb-1">@message.Answer</p>
+                            </div>
+                            @if (!string.IsNullOrWhiteSpace(message.SourceSnippet))
+                            {
+                                <div class="source-snippet">
+                                    <small class="text-muted">Source snippet</small>
+                                    <p class="mb-0">@message.SourceSnippet</p>
+                                </div>
+                            }
+                            <small class="text-muted">@message.CreatedAt.ToString("yyyy-MM-dd HH:mm")</small>
+                        </div>
+                    }
+                }
+            </div>
+
+            <form asp-controller="DocumentChat" asp-action="Ask" asp-route-documentId="@Model.Document.Id" method="post" class="section-card">
+                <label for="question" class="form-label">Ask a question</label>
+                <textarea id="question" name="question" class="form-control" rows="3" placeholder="Example: What is the methodology of this paper?"></textarea>
+                <button type="submit" class="btn btn-primary mt-3" @(string.IsNullOrWhiteSpace(Model.Document.ExtractedText) ? "disabled" : "")>Ask</button>
+            </form>
+        </div>
+    </div>
+</section>

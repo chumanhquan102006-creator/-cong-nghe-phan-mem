@@ -1,0 +1,70 @@
+@model AcademicAIAssistant.Models.CitationCheck
+
+@{
+    ViewData["Title"] = "Citation Result";
+    bool hasIssues = Model.OverallStatus != "Passed"
+        || !string.IsNullOrWhiteSpace(Model.MissingReferences)
+        || !string.IsNullOrWhiteSpace(Model.UnusedReferences)
+        || !string.IsNullOrWhiteSpace(Model.FormatIssues);
+}
+
+<section class="py-4">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Citation Result</h1>
+            <p class="page-subtitle">@Model.Essay?.Title - Checked at @Model.CheckedAt.ToString("yyyy-MM-dd HH:mm")</p>
+        </div>
+        <a class="btn btn-outline-secondary" asp-controller="Writing" asp-action="Details" asp-route-id="@Model.EssayId">Back to Essay</a>
+    </div>
+
+    @if (!hasIssues)
+    {
+        <div class="alert alert-success">Citation check passed. No major citation issues found.</div>
+    }
+    else
+    {
+        <div class="alert alert-warning">@Model.OverallStatus</div>
+    }
+
+    <div class="row g-3 mb-3">
+        <div class="col-md-4">
+                <div class="stat-card">
+                <h2 class="h6">Total In-text Citations</h2>
+                <p class="display-6 mb-0">@Model.TotalInTextCitations</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+                <div class="stat-card">
+                <h2 class="h6">Total References</h2>
+                <p class="display-6 mb-0">@Model.TotalReferences</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+                <div class="stat-card">
+                    <h2 class="h6">Overall Status</h2>
+                <span class="badge text-bg-primary status-badge">@Model.OverallStatus</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-md-4">
+                <div class="feedback-card h-100">
+                <h2 class="h6">Missing References</h2>
+                <div class="text-preview">@(string.IsNullOrWhiteSpace(Model.MissingReferences) ? "None" : Model.MissingReferences)</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+                <div class="feedback-card h-100">
+                <h2 class="h6">Unused References</h2>
+                <div class="text-preview">@(string.IsNullOrWhiteSpace(Model.UnusedReferences) ? "None" : Model.UnusedReferences)</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+                <div class="feedback-card h-100">
+                <h2 class="h6">Format Issues</h2>
+                <div class="text-preview">@(string.IsNullOrWhiteSpace(Model.FormatIssues) ? "None" : Model.FormatIssues)</div>
+            </div>
+        </div>
+    </div>
+</section>
