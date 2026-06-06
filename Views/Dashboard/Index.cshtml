@@ -1,4 +1,5 @@
 @model AcademicAIAssistant.Models.ViewModels.DashboardViewModel
+@inject IStringLocalizer<SharedResource> Localizer
 
 @{
     ViewData["Title"] = "Dashboard";
@@ -7,91 +8,42 @@
 <section class="py-4">
     <div class="page-header">
         <div>
-            <h1 class="page-title">Welcome back, @Model.FullName</h1>
-            <p class="page-subtitle">Here is your academic reading and writing workspace.</p>
+            <h1 class="page-title">@Localizer["Welcome back"], @Model.FullName</h1>
+            <p class="page-subtitle">@Localizer["Dashboard subtitle"]</p>
         </div>
         <div class="d-flex flex-wrap gap-2 align-items-start">
-            <a class="btn btn-primary" asp-controller="Documents" asp-action="Upload">Upload PDF</a>
-            <a class="btn btn-outline-primary" asp-controller="Writing" asp-action="Index">New Writing Analysis</a>
+            <a class="btn btn-primary" asp-controller="Documents" asp-action="Upload">@Localizer["Upload PDF"]</a>
+            <a class="btn btn-outline-primary" asp-controller="Writing" asp-action="Index">@Localizer["New Writing Analysis"]</a>
         </div>
     </div>
 
     <div class="row g-3 mb-4">
-        <div class="col-6 col-lg-3">
-            <div class="stat-card">
-                    <div class="stat-label">Documents</div>
-                    <div class="stat-value">@Model.TotalDocuments</div>
-                    <div class="small text-muted">Uploaded PDFs</div>
-            </div>
-        </div>
-        <div class="col-6 col-lg-3">
-            <div class="stat-card">
-                    <div class="stat-label">Extracted PDFs</div>
-                    <div class="stat-value">@Model.ExtractedDocuments</div>
-                    <div class="small text-muted">Ready for summary/chat</div>
-            </div>
-        </div>
-        <div class="col-6 col-lg-3">
-            <div class="stat-card">
-                    <div class="stat-label">Summaries</div>
-                    <div class="stat-value">@Model.SummarizedDocuments</div>
-                    <div class="small text-muted">Generated summaries</div>
-            </div>
-        </div>
-        <div class="col-6 col-lg-3">
-            <div class="stat-card">
-                    <div class="stat-label">Essays</div>
-                    <div class="stat-value">@Model.TotalEssays</div>
-                    <div class="small text-muted">Written or analyzed</div>
-            </div>
-        </div>
-        <div class="col-6 col-lg-3">
-            <div class="stat-card">
-                    <div class="stat-label">Feedback Reports</div>
-                    <div class="stat-value">@Model.TotalFeedbackReports</div>
-                    <div class="small text-muted">Writing feedback</div>
-            </div>
-        </div>
-        <div class="col-6 col-lg-3">
-            <div class="stat-card">
-                    <div class="stat-label">Citation Checks</div>
-                    <div class="stat-value">@Model.TotalCitationChecks</div>
-                    <div class="small text-muted">APA checks</div>
-            </div>
-        </div>
-        <div class="col-6 col-lg-3">
-            <div class="stat-card">
-                    <div class="stat-label">Similarity Checks</div>
-                    <div class="stat-value">@Model.TotalSimilarityChecks</div>
-                    <div class="small text-muted">Internal comparison</div>
-            </div>
-        </div>
-        <div class="col-6 col-lg-3">
-            <div class="stat-card">
-                    <div class="stat-label">Knowledge Graph</div>
-                    <div class="stat-value">@Model.TotalGraphNodes/@Model.TotalGraphEdges</div>
-                    <div class="small text-muted">Nodes / edges</div>
-            </div>
-        </div>
+        <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-label">@Localizer["Documents"]</div><div class="stat-value">@Model.TotalDocuments</div><div class="small text-muted">@Localizer["Uploaded PDFs"]</div></div></div>
+        <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-label">@Localizer["Extracted PDFs"]</div><div class="stat-value">@Model.ExtractedDocuments</div><div class="small text-muted">Ready for summary/chat</div></div></div>
+        <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-label">@Localizer["Summaries"]</div><div class="stat-value">@Model.SummarizedDocuments</div><div class="small text-muted">Generated summaries</div></div></div>
+        <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-label">@Localizer["Essays"]</div><div class="stat-value">@Model.TotalEssays</div><div class="small text-muted">Written or analyzed</div></div></div>
+        <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-label">@Localizer["Feedback Reports"]</div><div class="stat-value">@Model.TotalFeedbackReports</div><div class="small text-muted">Writing feedback</div></div></div>
+        <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-label">@Localizer["Citation Checks"]</div><div class="stat-value">@Model.TotalCitationChecks</div><div class="small text-muted">APA checks</div></div></div>
+        <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-label">@Localizer["Similarity Checks"]</div><div class="stat-value">@Model.TotalSimilarityChecks</div><div class="small text-muted">Internal comparison</div></div></div>
+        <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-label">@Localizer["Knowledge Graph"]</div><div class="stat-value">@Model.TotalGraphNodes/@Model.TotalGraphEdges</div><div class="small text-muted">Nodes / edges</div></div></div>
     </div>
 
     <div class="section-card mb-4">
-            <h2 class="h5 mb-3">Quick Actions</h2>
-            <div class="d-flex flex-wrap gap-2">
-                <a class="btn btn-primary" asp-controller="Documents" asp-action="Upload">Upload PDF</a>
-                <a class="btn btn-outline-primary" asp-controller="Documents" asp-action="Index">View Documents</a>
-                <a class="btn btn-outline-success" asp-controller="Writing" asp-action="Index">New Writing Analysis</a>
-                <a class="btn btn-outline-success" asp-controller="Writing" asp-action="History">Writing History</a>
-                <a class="btn btn-outline-secondary" asp-controller="Graph" asp-action="Index">Knowledge Graph</a>
-            </div>
+        <h2 class="h5 mb-3">@Localizer["Quick Actions"]</h2>
+        <div class="d-flex flex-wrap gap-2">
+            <a class="btn btn-primary" asp-controller="Documents" asp-action="Upload">@Localizer["Upload PDF"]</a>
+            <a class="btn btn-outline-primary" asp-controller="Documents" asp-action="Index">@Localizer["View Documents"]</a>
+            <a class="btn btn-outline-success" asp-controller="Writing" asp-action="Index">@Localizer["New Writing Analysis"]</a>
+            <a class="btn btn-outline-success" asp-controller="Writing" asp-action="History">@Localizer["Writing History"]</a>
+            <a class="btn btn-outline-secondary" asp-controller="Graph" asp-action="Index">@Localizer["Knowledge Graph"]</a>
+        </div>
     </div>
 
     <div class="row g-4">
         <div class="col-lg-7">
             <div class="card h-100">
                 <div class="card-body">
-                    <h2 class="h5 mb-3">Recent Activities</h2>
-
+                    <h2 class="h5 mb-3">@Localizer["Recent Activities"]</h2>
                     @if (Model.RecentActivities.Any())
                     {
                         <div class="list-group list-group-flush">
@@ -112,9 +64,7 @@
                     }
                     else
                     {
-                        <div class="alert alert-light border mb-0">
-                            No recent activities yet. Start by uploading a PDF or analyzing an essay.
-                        </div>
+                        <div class="alert alert-light border mb-0">@Localizer["No recent activities yet. Start by uploading a PDF or analyzing an essay."]</div>
                     }
                 </div>
             </div>
@@ -123,8 +73,7 @@
         <div class="col-lg-5">
             <div class="card h-100">
                 <div class="card-body">
-                    <h2 class="h5 mb-3">Recent Documents</h2>
-
+                    <h2 class="h5 mb-3">@Localizer["Recent Documents"]</h2>
                     @if (Model.RecentDocuments.Any())
                     {
                         <div class="list-group list-group-flush">
@@ -138,20 +87,19 @@
                                             <div class="mt-1">
                                                 @if (document.ExtractedAt != null || !string.IsNullOrWhiteSpace(document.ExtractedText))
                                                 {
-                                                    <span class="badge text-bg-success">Extracted</span>
+                                                    <span class="badge text-bg-success">@Localizer["Extracted"]</span>
                                                 }
                                                 else
                                                 {
-                                                    <span class="badge text-bg-secondary">Not extracted</span>
+                                                    <span class="badge text-bg-secondary">@Localizer["Uploaded"]</span>
                                                 }
-
                                                 @if (document.SummaryGeneratedAt != null || !string.IsNullOrWhiteSpace(document.Summary))
                                                 {
-                                                    <span class="badge text-bg-info">Summarized</span>
+                                                    <span class="badge text-bg-info">@Localizer["Summarized"]</span>
                                                 }
                                             </div>
                                         </div>
-                                        <a class="btn btn-sm btn-outline-primary align-self-start" asp-controller="Documents" asp-action="Details" asp-route-id="@document.Id">View</a>
+                                        <a class="btn btn-sm btn-outline-primary align-self-start" asp-controller="Documents" asp-action="Details" asp-route-id="@document.Id">@Localizer["View Details"]</a>
                                     </div>
                                 </div>
                             }
@@ -159,9 +107,7 @@
                     }
                     else
                     {
-                        <div class="alert alert-light border mb-0">
-                            Upload your first research PDF.
-                        </div>
+                        <div class="alert alert-light border mb-0">@Localizer["Upload your first research PDF."]</div>
                     }
                 </div>
             </div>
@@ -170,19 +116,18 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="h5 mb-3">Recent Essays</h2>
-
+                    <h2 class="h5 mb-3">@Localizer["Recent Essays"]</h2>
                     @if (Model.RecentEssays.Any())
                     {
                         <div class="table-responsive">
                             <table class="table align-middle">
                                 <thead>
                                     <tr>
-                                        <th>Title</th>
+                                        <th>@Localizer["Title"]</th>
                                         <th>Type</th>
                                         <th>Words</th>
                                         <th>Created</th>
-                                        <th class="text-end">Action</th>
+                                        <th class="text-end">@Localizer["Actions"]</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -194,7 +139,7 @@
                                             <td>@essay.WordCount</td>
                                             <td>@essay.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
                                             <td class="text-end">
-                                                <a class="btn btn-sm btn-outline-primary" asp-controller="Writing" asp-action="Details" asp-route-id="@essay.Id">View</a>
+                                                <a class="btn btn-sm btn-outline-primary" asp-controller="Writing" asp-action="Details" asp-route-id="@essay.Id">@Localizer["View Details"]</a>
                                             </td>
                                         </tr>
                                     }
@@ -204,9 +149,7 @@
                     }
                     else
                     {
-                        <div class="alert alert-light border mb-0">
-                            Analyze your first academic essay.
-                        </div>
+                        <div class="alert alert-light border mb-0">@Localizer["Analyze your first academic essay."]</div>
                     }
                 </div>
             </div>

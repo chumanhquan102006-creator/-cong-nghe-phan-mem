@@ -1,4 +1,5 @@
 @model AcademicAIAssistant.Models.Essay
+@inject IStringLocalizer<SharedResource> Localizer
 
 @{
     ViewData["Title"] = "Check Citation";
@@ -8,7 +9,7 @@
 <section class="py-4">
     <div class="page-header">
         <div>
-            <h1 class="page-title">Check Citation</h1>
+            <h1 class="page-title">@Localizer["Check Citation"]</h1>
             <p class="page-subtitle">@Model.Title</p>
             <p class="page-subtitle">@Model.EssayType - @Model.WordCount words</p>
         </div>
@@ -21,6 +22,6 @@
     </div>
 
     <form asp-controller="Citation" asp-action="CheckPost" asp-route-essayId="@Model.Id" method="post">
-        <button type="submit" class="btn btn-primary">Check Citation</button>
+        <button type="submit" class="btn btn-primary">@Localizer["Check Citation"]</button>
     </form>
 </section>

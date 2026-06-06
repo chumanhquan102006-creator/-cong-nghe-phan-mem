@@ -1,0 +1,63 @@
+@model List<AcademicAIAssistant.Models.WritingCoachSession>
+@using System.Globalization
+
+@{
+    bool isVi = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "vi";
+    ViewData["Title"] = isVi ? "Lịch sử trợ lý viết luận" : "Writing Coach History";
+}
+
+<section class="py-4">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">@(isVi ? "Lịch sử trợ lý viết luận" : "Writing Coach History")</h1>
+            <p class="page-subtitle">@(isVi ? "Xem lại các lần tạo gợi ý viết luận." : "Review your writing coach sessions.")</p>
+        </div>
+        <a class="btn btn-primary" asp-action="Index">@(isVi ? "Tạo gợi ý mới" : "New Coach Session")</a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="empty-state">
+            <h2 class="h5">@(isVi ? "Chưa có phiên hỗ trợ viết nào." : "No writing coach sessions yet.")</h2>
+            <p>@(isVi ? "Hãy bắt đầu bằng cách nhập chủ đề đầu tiên." : "Start by brainstorming your first topic.")</p>
+            <a class="btn btn-primary" asp-action="Index">@(isVi ? "Bắt đầu" : "Start")</a>
+        </div>
+    }
+    else
+    {
+        <div class="section-card">
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th>Mode</th>
+                            <th>Topic</th>
+                            <th>Essay Type</th>
+                            <th>Language</th>
+                            <th>Created</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var session in Model)
+                        {
+                            <tr>
+                                <td><span class="badge text-bg-primary status-badge">@session.Mode</span></td>
+                                <td class="fw-semibold">@session.Topic</td>
+                                <td>@session.EssayType</td>
+                                <td>@(session.Language == "vi" ? "Vietnamese" : "English")</td>
+                                <td>@session.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                                <td class="text-end">
+                                    <a class="btn btn-sm btn-outline-primary" asp-action="Details" asp-route-id="@session.Id">View Details</a>
+                                    <form asp-action="Delete" asp-route-id="@session.Id" method="post" class="d-inline" onsubmit="return confirm('Delete this writing coach session?');">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</section>

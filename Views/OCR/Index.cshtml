@@ -1,0 +1,54 @@
+@model AcademicAIAssistant.Models.ViewModels.OCRUploadViewModel
+@inject IStringLocalizer<SharedResource> Localizer
+
+@{
+    ViewData["Title"] = "OCR Scanner";
+}
+
+<section class="py-4">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">OCR Scanner</h1>
+            <p class="page-subtitle">Upload an image or screenshot containing text. The system will extract readable text using OCR.</p>
+        </div>
+        <a class="btn btn-outline-secondary" asp-action="History">OCR History</a>
+    </div>
+
+    <div class="section-card">
+        <form asp-action="Upload" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row g-3">
+                <div class="col-md-7">
+                    <label asp-for="Title" class="form-label"></label>
+                    <input asp-for="Title" class="form-control" placeholder="Example: Screenshot of lecture notes" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-5">
+                    <label asp-for="Language" class="form-label"></label>
+                    <select asp-for="Language" class="form-select">
+                        @foreach (var option in OCRUploadViewModel.LanguageOptions)
+                        {
+                            <option value="@option.Key">@option.Value</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Language" class="text-danger"></span>
+                </div>
+
+                <div class="col-12">
+                    <label asp-for="ImageFile" class="form-label"></label>
+                    <input asp-for="ImageFile" class="form-control" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" />
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                    <div class="form-text">@Localizer["Upload_ImageHint"]</div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Scan Image</button>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

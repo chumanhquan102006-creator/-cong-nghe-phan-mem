@@ -27,4 +27,9 @@ public class User
     public List<Document> Documents { get; set; } = new();
     public List<Essay> Essays { get; set; } = new();
     public List<DocumentChatMessage> DocumentChatMessages { get; set; } = new();
+    public List<OCRScan> OCRScans { get; set; } = new();
+    public List<WritingCoachSession> WritingCoachSessions { get; set; } = new();
+    public List<TextScan> TextScans { get; set; } = new();
+    public List<ReferenceItem> ReferenceItems { get; set; } = new();
+    public UserAISetting? AISetting { get; set; }
 }

@@ -1,4 +1,5 @@
 @model AcademicAIAssistant.Models.ViewModels.DocumentChatViewModel
+@inject IStringLocalizer<SharedResource> Localizer
 
 @{
     ViewData["Title"] = "Chat with PDF";
@@ -12,7 +13,7 @@
 <section class="py-4">
     <div class="page-header">
         <div>
-            <h1 class="page-title">Chat with PDF</h1>
+            <h1 class="page-title">@Localizer["Chat with PDF"]</h1>
             <p class="page-subtitle">@Model.Document.Title</p>
         </div>
         <a class="btn btn-outline-secondary" asp-controller="Documents" asp-action="Details" asp-route-id="@Model.Document.Id">Back to Document</a>
@@ -20,18 +21,18 @@
 
     @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
     {
-        <div class="alert alert-danger">@Model.ErrorMessage</div>
+        <div class="alert alert-danger">@Localizer[Model.ErrorMessage]</div>
     }
 
     @if (string.IsNullOrWhiteSpace(Model.Document.ExtractedText))
     {
-        <div class="alert alert-warning">Please extract text first before chatting with this PDF.</div>
+        <div class="alert alert-warning">@Localizer["Please extract text first before chatting with this PDF."]</div>
     }
 
     <div class="row g-3">
         <div class="col-lg-4">
             <div class="section-card mb-3">
-                <h2 class="h5">Document Info</h2>
+                <h2 class="h5">@Localizer["Document Info"]</h2>
                 <dl class="mb-0">
                     <dt>Original file</dt>
                     <dd>@Model.Document.OriginalFileName</dd>
@@ -43,25 +44,25 @@
             </div>
 
             <div class="section-card mb-3">
-                <h2 class="h5">Summary</h2>
+                <h2 class="h5">@Localizer["Summary"]</h2>
                 <p class="mb-0">
                     @(string.IsNullOrWhiteSpace(Model.Document.Summary) ? "No summary generated yet." : Model.Document.Summary)
                 </p>
             </div>
 
             <div class="section-card">
-                <h2 class="h5">Extracted Text Preview</h2>
+                <h2 class="h5">@Localizer["Extracted Text Preview"]</h2>
                 <div class="text-preview">@(string.IsNullOrWhiteSpace(extractedPreview) ? "No extracted text yet." : extractedPreview)</div>
             </div>
         </div>
 
         <div class="col-lg-8">
             <div class="section-card mb-3">
-                <h2 class="h5">Chat History</h2>
+                <h2 class="h5">@Localizer["Chat History"]</h2>
 
                 @if (!Model.Messages.Any())
                 {
-                    <div class="empty-state">No questions asked yet.</div>
+                    <div class="empty-state">@Localizer["No questions asked yet."]</div>
                 }
                 else
                 {
@@ -90,9 +91,9 @@
             </div>
 
             <form asp-controller="DocumentChat" asp-action="Ask" asp-route-documentId="@Model.Document.Id" method="post" class="section-card">
-                <label for="question" class="form-label">Ask a question</label>
+                <label for="question" class="form-label">@Localizer["Ask a question"]</label>
                 <textarea id="question" name="question" class="form-control" rows="3" placeholder="Example: What is the methodology of this paper?"></textarea>
-                <button type="submit" class="btn btn-primary mt-3" @(string.IsNullOrWhiteSpace(Model.Document.ExtractedText) ? "disabled" : "")>Ask</button>
+                <button type="submit" class="btn btn-primary mt-3" @(string.IsNullOrWhiteSpace(Model.Document.ExtractedText) ? "disabled" : "")>@Localizer["Ask"]</button>
             </form>
         </div>
     </div>

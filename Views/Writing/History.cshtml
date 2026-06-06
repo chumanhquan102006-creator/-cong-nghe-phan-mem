@@ -1,4 +1,5 @@
 @model IEnumerable<AcademicAIAssistant.Models.Essay>
+@inject IStringLocalizer<SharedResource> Localizer
 
 @{
     ViewData["Title"] = "Writing History";
@@ -7,10 +8,10 @@
 <section class="py-4">
     <div class="page-header">
         <div>
-            <h1 class="page-title">Writing History</h1>
+            <h1 class="page-title">@Localizer["Writing History"]</h1>
             <p class="page-subtitle">Review essays you have analyzed.</p>
         </div>
-        <a class="btn btn-primary" asp-action="Index">Analyze New Essay</a>
+        <a class="btn btn-primary" asp-action="Index">@Localizer["Analyze Essay"]</a>
     </div>
 
     @if (!Model.Any())
@@ -23,11 +24,11 @@
             <table class="table table-hover align-middle section-card">
                 <thead class="table-light">
                     <tr>
-                        <th>Title</th>
+                        <th>@Localizer["Title"]</th>
                         <th>Essay Type</th>
                         <th>Word Count</th>
                         <th>Created At</th>
-                        <th class="text-end">Actions</th>
+                        <th class="text-end">@Localizer["Actions"]</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,7 +40,7 @@
                             <td>@essay.WordCount</td>
                             <td>@essay.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
                             <td class="text-end">
-                                <a class="btn btn-sm btn-outline-primary" asp-action="Details" asp-route-id="@essay.Id">View Details</a>
+                                <a class="btn btn-sm btn-outline-primary" asp-action="Details" asp-route-id="@essay.Id">@Localizer["View Details"]</a>
                             </td>
                         </tr>
                     }

@@ -1,3 +1,5 @@
+@inject IStringLocalizer<SharedResource> Localizer
+
 @{
     ViewData["Title"] = "Knowledge Graph";
     bool hasSourceData = ViewData["HasSourceData"] as bool? ?? false;
@@ -7,11 +9,11 @@
 <section class="py-4">
     <div class="page-header">
         <div>
-            <h1 class="page-title">Knowledge Graph</h1>
-            <p class="page-subtitle">Visualize links between documents, essays, and extracted keywords.</p>
+            <h1 class="page-title">@Localizer["Knowledge Graph"]</h1>
+            <p class="page-subtitle">@Localizer["Knowledge Graph description"]</p>
         </div>
         <form asp-action="Build" method="post">
-            <button type="submit" class="btn btn-primary">Build / Refresh Graph</button>
+            <button type="submit" class="btn btn-primary">@Localizer["Build / Refresh Graph"]</button>
         </form>
     </div>
 
@@ -32,13 +34,13 @@
         </div>
         <div class="col-lg-3">
             <div class="section-card mb-3">
-                <h2 class="h6">Legend</h2>
+                <h2 class="h6">@Localizer["Legend"]</h2>
                 <div class="mb-2"><span class="badge bg-primary">Document</span></div>
                 <div class="mb-2"><span class="badge bg-success">Essay</span></div>
                 <div><span class="badge bg-warning text-dark">Keyword</span></div>
             </div>
             <div class="section-card">
-                <h2 class="h6">Selected Node</h2>
+                <h2 class="h6">@Localizer["Selected Node"]</h2>
                 <p id="nodeInfo" class="mb-0 text-muted">Click a node to view details.</p>
             </div>
         </div>

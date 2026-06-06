@@ -1,0 +1,90 @@
+@model List<AcademicAIAssistant.Models.TextScan>
+@using System.Globalization
+
+@{
+    bool isVi = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "vi";
+    ViewData["Title"] = isVi ? "Lịch sử quét văn bản" : "Text Scan History";
+}
+
+<section class="py-4">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">@(isVi ? "Lịch sử quét văn bản" : "Text Scan History")</h1>
+            <p class="page-subtitle">@(isVi ? "Xem lại các lần kiểm tra độ tương đồng nội bộ." : "Review previous internal similarity scans.")</p>
+        </div>
+        <a class="btn btn-primary" asp-action="Index">@(isVi ? "Quét mới" : "New Scan")</a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="empty-state">
+            <h2 class="h5">@(isVi ? "Chưa có lần quét văn bản nào." : "No text scans yet.")</h2>
+            <p>@(isVi ? "Hãy dán văn bản để kiểm tra độ tương đồng nội bộ." : "Paste your text to check internal similarity.")</p>
+            <a class="btn btn-primary" asp-action="Index">@(isVi ? "Bắt đầu" : "Start")</a>
+        </div>
+    }
+    else
+    {
+        <div class="section-card">
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Words</th>
+                            <th>Score</th>
+                            <th>Risk</th>
+                            <th>Created</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var scan in Model)
+                        {
+                            <tr>
+                                <td class="fw-semibold">@scan.Title</td>
+                                <td>@scan.WordCount</td>
+                                <td>@scan.OverallSimilarityScore.ToString("0.##")%</td>
+                                <td><span class="badge @GetRiskBadge(scan.RiskLevel)">@GetRiskLabel(scan.RiskLevel, isVi)</span></td>
+                                <td>@scan.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                                <td class="text-end">
+                                    <a class="btn btn-sm btn-outline-primary" asp-action="Result" asp-route-id="@scan.Id">View Result</a>
+                                    <form asp-action="Delete" asp-route-id="@scan.Id" method="post" class="d-inline" onsubmit="return confirm('Delete this text scan?');">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</section>
+
+@functions {
+    private static string GetRiskBadge(string riskLevel)
+    {
+        return riskLevel switch
+        {
+            "High" => "text-bg-danger",
+            "Medium" => "text-bg-warning",
+            _ => "text-bg-success"
+        };
+    }
+
+    private static string GetRiskLabel(string riskLevel, bool isVi)
+    {
+        if (!isVi)
+        {
+            return riskLevel;
+        }
+
+        return riskLevel switch
+        {
+            "High" => "Cao",
+            "Medium" => "Trung bình",
+            _ => "Thấp"
+        };
+    }
+}

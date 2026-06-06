@@ -1,4 +1,5 @@
 @model AcademicAIAssistant.Models.SimilarityCheck
+@inject IStringLocalizer<SharedResource> Localizer
 
 @{
     ViewData["Title"] = "Similarity Result";
@@ -7,7 +8,7 @@
 <section class="py-4">
     <div class="page-header">
         <div>
-            <h1 class="page-title">Similarity Result</h1>
+            <h1 class="page-title">@Localizer["Similarity Result"]</h1>
             <p class="page-subtitle">@Model.Essay?.Title - Checked at @Model.CheckedAt.ToString("yyyy-MM-dd HH:mm")</p>
         </div>
         <a class="btn btn-outline-secondary" asp-controller="Writing" asp-action="Details" asp-route-id="@Model.EssayId">Back to Essay</a>
@@ -16,13 +17,13 @@
     <div class="row g-3 mb-3">
         <div class="col-md-3">
                 <div class="stat-card">
-                <h2 class="h6">Overall Score</h2>
+                <h2 class="h6">@Localizer["Overall Score"]</h2>
                 <p class="display-6 mb-0">@Model.OverallSimilarityScore.ToString("0.00")%</p>
             </div>
         </div>
         <div class="col-md-3">
                 <div class="stat-card">
-                <h2 class="h6">Status</h2>
+                <h2 class="h6">@Localizer["Status"]</h2>
                 <p class="display-6 mb-0">@Model.Status</p>
             </div>
         </div>

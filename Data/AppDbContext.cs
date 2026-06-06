@@ -19,6 +19,12 @@ public class AppDbContext : DbContext
     public DbSet<GraphNode> GraphNodes { get; set; }
     public DbSet<GraphEdge> GraphEdges { get; set; }
     public DbSet<DocumentChatMessage> DocumentChatMessages { get; set; }
+    public DbSet<UserAISetting> UserAISettings { get; set; }
+    public DbSet<OCRScan> OCRScans { get; set; }
+    public DbSet<WritingCoachSession> WritingCoachSessions { get; set; }
+    public DbSet<TextScan> TextScans { get; set; }
+    public DbSet<TextScanMatch> TextScanMatches { get; set; }
+    public DbSet<ReferenceItem> ReferenceItems { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -26,6 +32,16 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<User>()
             .HasIndex(user => user.Email)
+            .IsUnique();
+
+        modelBuilder.Entity<User>()
+            .HasOne(user => user.AISetting)
+            .WithOne(setting => setting.User)
+            .HasForeignKey<UserAISetting>(setting => setting.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<UserAISetting>()
+            .HasIndex(setting => setting.UserId)
             .IsUnique();
 
         modelBuilder.Entity<Essay>()
@@ -81,5 +97,35 @@ public class AppDbContext : DbContext
             .WithOne(message => message.User)
             .HasForeignKey(message => message.UserId)
             .OnDelete(DeleteBehavior.NoAction);
+
+        modelBuilder.Entity<User>()
+            .HasMany(user => user.OCRScans)
+            .WithOne(scan => scan.User)
+            .HasForeignKey(scan => scan.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<User>()
+            .HasMany(user => user.WritingCoachSessions)
+            .WithOne(session => session.User)
+            .HasForeignKey(session => session.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<User>()
+            .HasMany(user => user.TextScans)
+            .WithOne(scan => scan.User)
+            .HasForeignKey(scan => scan.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<TextScan>()
+            .HasMany(scan => scan.Matches)
+            .WithOne(match => match.TextScan)
+            .HasForeignKey(match => match.TextScanId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<User>()
+            .HasMany(user => user.ReferenceItems)
+            .WithOne(reference => reference.User)
+            .HasForeignKey(reference => reference.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

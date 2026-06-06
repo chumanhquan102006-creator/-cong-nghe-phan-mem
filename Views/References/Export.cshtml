@@ -1,0 +1,63 @@
+@model List<AcademicAIAssistant.Models.ReferenceItem>
+@using System.Globalization
+
+@{
+    bool isVi = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "vi";
+    ViewData["Title"] = isVi ? "Xuất tài liệu tham khảo" : "Export References";
+}
+
+<section class="py-4">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">@(isVi ? "Xuất tài liệu tham khảo" : "Export References")</h1>
+            <p class="page-subtitle">@(isVi ? "Sao chép danh sách APA hoặc MLA vào bài viết." : "Copy APA or MLA reference lists into your writing.")</p>
+        </div>
+        <a class="btn btn-outline-secondary" asp-action="Index">Back to References</a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="empty-state">
+            <p>@(isVi ? "Chưa có tài liệu tham khảo để xuất." : "No references available to export.")</p>
+            <a class="btn btn-primary" asp-action="Create">Create Reference</a>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="section-card">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h2 class="h5 mb-0">APA References</h2>
+                        <button type="button" class="btn btn-sm btn-outline-primary" data-copy-target="apaExport">Copy</button>
+                    </div>
+                    <textarea id="apaExport" class="form-control text-preview" rows="20" readonly>@string.Join(Environment.NewLine + Environment.NewLine, Model.Select(item => item.ApaReference))</textarea>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="section-card">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h2 class="h5 mb-0">MLA References</h2>
+                        <button type="button" class="btn btn-sm btn-outline-primary" data-copy-target="mlaExport">Copy</button>
+                    </div>
+                    <textarea id="mlaExport" class="form-control text-preview" rows="20" readonly>@string.Join(Environment.NewLine + Environment.NewLine, Model.Select(item => item.MlaReference))</textarea>
+                </div>
+            </div>
+        </div>
+    }
+</section>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('[data-copy-target]').forEach(button => {
+            button.addEventListener('click', async () => {
+                const target = document.getElementById(button.dataset.copyTarget);
+                if (!target) return;
+                await navigator.clipboard.writeText(target.value);
+                const original = button.textContent;
+                button.textContent = '@(isVi ? "Đã sao chép!" : "Copied!")';
+                setTimeout(() => button.textContent = original, 1400);
+            });
+        });
+    </script>
+}

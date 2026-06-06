@@ -1,4 +1,7 @@
 using System.Text.RegularExpressions;
+using AcademicAIAssistant.Data;
+using AcademicAIAssistant.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AcademicAIAssistant.Services;
 
@@ -6,6 +9,7 @@ public class DocumentChatService
 {
     private readonly KeywordExtractionService _keywordExtractionService;
     private readonly IAIService _aiService;
+    private readonly AppDbContext _context;
 
     private static readonly HashSet<string> StopWords = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -14,13 +18,14 @@ public class DocumentChatService
         "can", "could", "should", "please", "tell", "me"
     };
 
-    public DocumentChatService(KeywordExtractionService keywordExtractionService, IAIService aiService)
+    public DocumentChatService(KeywordExtractionService keywordExtractionService, IAIService aiService, AppDbContext context)
     {
         _keywordExtractionService = keywordExtractionService;
         _aiService = aiService;
+        _context = context;
     }
 
-    public async Task<DocumentChatResponse> AnswerQuestionAsync(string question, string documentText, string? summary = null)
+    public async Task<DocumentChatResponse> AnswerQuestionAsync(string question, string documentText, string? summary = null, int? userId = null)
     {
         if (string.IsNullOrWhiteSpace(question) || ExtractQuestionKeywords(question).Count < 2)
         {
@@ -42,11 +47,11 @@ public class DocumentChatService
                     SourceSnippet = summary
                 };
 
-                return await TryImproveWithAiAsync(question, response);
+                return await TryImproveWithAiAsync(question, response, userId);
             }
 
             return await TryImproveWithAiAsync(question, BuildAnswerFromSnippet(FindBestSection(documentText, new[] { "abstract", "introduction", "conclusion" })
-                ?? FindFirstSection(documentText)));
+                ?? FindFirstSection(documentText)), userId);
         }
 
         if (normalizedQuestion.Contains("keyword") || normalizedQuestion.Contains("keywords"))
@@ -61,40 +66,49 @@ public class DocumentChatService
 
         if (normalizedQuestion.Contains("methodology") || normalizedQuestion.Contains("method"))
         {
-            return await TryImproveWithAiAsync(question, BuildAnswerFromSnippet(FindBestSection(documentText, new[] { "method", "methodology", "approach" })));
+            return await TryImproveWithAiAsync(question, BuildAnswerFromSnippet(FindBestSection(documentText, new[] { "method", "methodology", "approach" })), userId);
         }
 
         if (normalizedQuestion.Contains("finding") || normalizedQuestion.Contains("result"))
         {
-            return await TryImproveWithAiAsync(question, BuildAnswerFromSnippet(FindBestSection(documentText, new[] { "finding", "findings", "result", "results", "conclusion" })));
+            return await TryImproveWithAiAsync(question, BuildAnswerFromSnippet(FindBestSection(documentText, new[] { "finding", "findings", "result", "results", "conclusion" })), userId);
         }
 
         if (normalizedQuestion.Contains("citation") || normalizedQuestion.Contains("reference"))
         {
-            return await TryImproveWithAiAsync(question, BuildAnswerFromSnippet(FindBestSection(documentText, new[] { "references", "bibliography" })));
+            return await TryImproveWithAiAsync(question, BuildAnswerFromSnippet(FindBestSection(documentText, new[] { "references", "bibliography" })), userId);
         }
 
         if (normalizedQuestion.Contains("abstract"))
         {
-            return await TryImproveWithAiAsync(question, BuildAnswerFromSnippet(FindBestSection(documentText, new[] { "abstract" })));
+            return await TryImproveWithAiAsync(question, BuildAnswerFromSnippet(FindBestSection(documentText, new[] { "abstract" })), userId);
         }
 
         List<string> questionKeywords = ExtractQuestionKeywords(question);
         string? snippet = FindBestKeywordMatch(documentText, questionKeywords);
 
-        return await TryImproveWithAiAsync(question, BuildAnswerFromSnippet(snippet));
+        return await TryImproveWithAiAsync(question, BuildAnswerFromSnippet(snippet), userId);
     }
 
-    private async Task<DocumentChatResponse> TryImproveWithAiAsync(string question, DocumentChatResponse fallbackResponse)
+    private async Task<DocumentChatResponse> TryImproveWithAiAsync(string question, DocumentChatResponse fallbackResponse, int? userId)
     {
-        if (!_aiService.IsEnabled || string.IsNullOrWhiteSpace(fallbackResponse.SourceSnippet))
+        if (!userId.HasValue || string.IsNullOrWhiteSpace(fallbackResponse.SourceSnippet))
+        {
+            return fallbackResponse;
+        }
+
+        UserAISetting? setting = await _context.UserAISettings
+            .AsNoTracking()
+            .FirstOrDefaultAsync(item => item.UserId == userId.Value);
+
+        if (setting == null || !setting.IsEnabled || string.IsNullOrWhiteSpace(setting.ApiKey))
         {
             return fallbackResponse;
         }
 
         try
         {
-            string aiAnswer = await _aiService.AnswerQuestionAboutDocumentAsync(question, fallbackResponse.SourceSnippet);
+            string aiAnswer = await _aiService.AnswerQuestionAboutDocumentAsync(question, fallbackResponse.SourceSnippet, setting);
             fallbackResponse.Answer = aiAnswer;
         }
         catch

@@ -1,0 +1,79 @@
+@model AcademicAIAssistant.Models.ViewModels.ReferenceItemFormViewModel
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <label asp-for="SourceType" class="form-label"></label>
+        <select asp-for="SourceType" class="form-select">
+            @foreach (string option in ReferenceItemFormViewModel.SourceTypeOptions)
+            {
+                <option value="@option">@option</option>
+            }
+        </select>
+        <span asp-validation-for="SourceType" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-8">
+        <label asp-for="Title" class="form-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-8">
+        <label asp-for="Author" class="form-label"></label>
+        <input asp-for="Author" class="form-control" placeholder="Nguyen, Tran or Smith" />
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="Year" class="form-label"></label>
+        <input asp-for="Year" class="form-control" placeholder="2026" />
+        <span asp-validation-for="Year" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="JournalOrPublisher" class="form-label"></label>
+        <input asp-for="JournalOrPublisher" class="form-control" />
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="WebsiteName" class="form-label"></label>
+        <input asp-for="WebsiteName" class="form-control" />
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="Url" class="form-label"></label>
+        <input asp-for="Url" class="form-control" />
+        <span asp-validation-for="Url" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="Doi" class="form-label"></label>
+        <input asp-for="Doi" class="form-control" />
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="Volume" class="form-label"></label>
+        <input asp-for="Volume" class="form-control" />
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="Issue" class="form-label"></label>
+        <input asp-for="Issue" class="form-control" />
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="Pages" class="form-label"></label>
+        <input asp-for="Pages" class="form-control" />
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="AccessDate" class="form-label"></label>
+        <input asp-for="AccessDate" class="form-control" type="date" />
+    </div>
+
+    <div class="col-12">
+        <label asp-for="Notes" class="form-label"></label>
+        <textarea asp-for="Notes" class="form-control" rows="4"></textarea>
+    </div>
+</div>

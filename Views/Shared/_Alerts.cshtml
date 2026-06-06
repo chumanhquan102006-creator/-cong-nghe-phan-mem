@@ -1,7 +1,9 @@
+@inject IStringLocalizer<SharedResource> Localizer
+
 @if (TempData["SuccessMessage"] != null)
 {
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @TempData["SuccessMessage"]
+        @Localizer[TempData["SuccessMessage"]?.ToString() ?? string.Empty]
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
@@ -9,7 +11,7 @@
 @if (TempData["ErrorMessage"] != null)
 {
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        @TempData["ErrorMessage"]
+        @Localizer[TempData["ErrorMessage"]?.ToString() ?? string.Empty]
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
@@ -17,7 +19,7 @@
 @if (TempData["WarningMessage"] != null)
 {
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        @TempData["WarningMessage"]
+        @Localizer[TempData["WarningMessage"]?.ToString() ?? string.Empty]
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
@@ -25,7 +27,7 @@
 @if (TempData["InfoMessage"] != null)
 {
     <div class="alert alert-info alert-dismissible fade show" role="alert">
-        @TempData["InfoMessage"]
+        @Localizer[TempData["InfoMessage"]?.ToString() ?? string.Empty]
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }

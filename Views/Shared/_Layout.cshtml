@@ -1,5 +1,9 @@
+@using System.Globalization
+@inject IStringLocalizer<SharedResource> Localizer
+@inject IWebHostEnvironment Environment
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="@CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,45 +25,93 @@
                 <div class="navbar-collapse collapse justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Home"]</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                            <a class="nav-link" asp-area="" asp-controller="Dashboard" asp-action="Index">@Localizer["Dashboard"]</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Documents" asp-action="Index">Documents</a>
+                            <a class="nav-link" asp-area="" asp-controller="Documents" asp-action="Index">@Localizer["Documents"]</a>
+                        </li>
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="OCR" asp-action="Index">OCR Scanner</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="TextScan" asp-action="Index">Text Scan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="References" asp-action="Index">References</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Writing" asp-action="Index">@Localizer["Writing Studio"]</a>
+                        </li>
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="WritingCoach" asp-action="Index">AI Writing Coach</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Writing" asp-action="History">@Localizer["Writing History"]</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Writing" asp-action="Index">Writing Studio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Writing" asp-action="History">Writing History</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Graph" asp-action="Index">Knowledge Graph</a>
+                            <a class="nav-link" asp-area="" asp-controller="Graph" asp-action="Index">@Localizer["Knowledge Graph"]</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
                         @if (User.Identity?.IsAuthenticated == true)
                         {
                             <li class="nav-item">
-                                <span class="nav-link text-muted">Hello, @User.Identity.Name</span>
+                                <span class="nav-link text-muted">@Localizer["Hello"], @User.Identity.Name</span>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" asp-controller="Settings" asp-action="Index">Settings</a>
+                            </li>
+                            @if (Environment.IsDevelopment())
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="DevTools" asp-action="Index">@Localizer["DevTools_Nav"]</a>
+                                </li>
+                            }
+                            <li class="nav-item">
                                 <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
-                                    <button type="submit" class="btn btn-link nav-link">Logout</button>
+                                    <button type="submit" class="btn btn-link nav-link">@Localizer["Logout"]</button>
                                 </form>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+                                <a class="nav-link" asp-controller="Account" asp-action="Login">@Localizer["Login"]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
+                                <a class="nav-link" asp-controller="Account" asp-action="Register">@Localizer["Register"]</a>
                             </li>
                         }
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                @Localizer["Language"]
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <form asp-controller="Localization" asp-action="SetLanguage" method="post">
+                                        <input type="hidden" name="culture" value="en" />
+                                        <input type="hidden" name="returnUrl" value="@Context.Request.Path@Context.Request.QueryString" />
+                                        <button type="submit" class="dropdown-item">English</button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <form asp-controller="Localization" asp-action="SetLanguage" method="post">
+                                        <input type="hidden" name="culture" value="vi" />
+                                        <input type="hidden" name="returnUrl" value="@Context.Request.Path@Context.Request.QueryString" />
+                                        <button type="submit" class="dropdown-item">Tiếng Việt</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>

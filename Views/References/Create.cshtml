@@ -1,0 +1,26 @@
+@model AcademicAIAssistant.Models.ViewModels.ReferenceItemFormViewModel
+@using System.Globalization
+
+@{
+    bool isVi = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "vi";
+    ViewData["Title"] = isVi ? "Thêm tài liệu tham khảo" : "Create Reference";
+}
+
+<section class="py-4">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">@(isVi ? "Thêm tài liệu tham khảo" : "Create Reference")</h1>
+            <p class="page-subtitle">@(isVi ? "Nhập thông tin nguồn để tạo APA/MLA." : "Enter source information to generate APA/MLA citations.")</p>
+        </div>
+        <a class="btn btn-outline-secondary" asp-action="Index">Back to References</a>
+    </div>
+
+    <form asp-action="Create" method="post" class="section-card">
+        <partial name="_ReferenceForm" model="Model" />
+        <button type="submit" class="btn btn-primary mt-3">@(isVi ? "Lưu và tạo citation" : "Save Reference")</button>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

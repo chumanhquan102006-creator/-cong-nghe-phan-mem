@@ -65,7 +65,11 @@ public class DocumentChatController : Controller
             return await ReturnChatWithError(document, "Question cannot be empty.");
         }
 
-        DocumentChatResponse response = await _documentChatService.AnswerQuestionAsync(question, document.ExtractedText, document.Summary);
+        DocumentChatResponse response = await _documentChatService.AnswerQuestionAsync(
+            question,
+            document.ExtractedText,
+            document.Summary,
+            GetCurrentUserId());
 
         var message = new DocumentChatMessage
         {

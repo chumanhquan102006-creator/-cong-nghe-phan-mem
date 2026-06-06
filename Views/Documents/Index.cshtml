@@ -1,4 +1,5 @@
 @model IEnumerable<AcademicAIAssistant.Models.Document>
+@inject IStringLocalizer<SharedResource> Localizer
 
 @{
     ViewData["Title"] = "Documents";
@@ -7,16 +8,16 @@
 <section class="py-4">
     <div class="page-header">
         <div>
-            <h1 class="page-title">Document Library</h1>
-            <p class="page-subtitle">Manage your uploaded PDF research documents.</p>
+            <h1 class="page-title">@Localizer["Document Library"]</h1>
+            <p class="page-subtitle">@Localizer["Document Library subtitle"]</p>
         </div>
-        <a class="btn btn-primary" asp-controller="Documents" asp-action="Upload">Upload New PDF</a>
+        <a class="btn btn-primary" asp-controller="Documents" asp-action="Upload">@Localizer["Upload New PDF"]</a>
     </div>
 
     @if (!Model.Any())
     {
         <div class="empty-state">
-            You have not uploaded any PDF documents yet.
+            @Localizer["You have not uploaded any PDF documents yet."]
         </div>
     }
     else
@@ -25,13 +26,13 @@
             <table class="table table-hover align-middle section-card">
                 <thead class="table-light">
                     <tr>
-                        <th>Title</th>
-                        <th>Original File</th>
-                        <th>File Size</th>
-                        <th>Uploaded At</th>
-                        <th>Status</th>
-                        <th>Summary</th>
-                        <th class="text-end">Actions</th>
+                        <th>@Localizer["Title"]</th>
+                        <th>@Localizer["Original File"]</th>
+                        <th>@Localizer["File Size"]</th>
+                        <th>@Localizer["Uploaded At"]</th>
+                        <th>@Localizer["Status"]</th>
+                        <th>@Localizer["Summary"]</th>
+                        <th class="text-end">@Localizer["Actions"]</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,23 +46,23 @@
                             <td>
                                 @if (document.SummaryGeneratedAt.HasValue)
                                 {
-                                    <span class="badge text-bg-success status-badge">Summarized</span>
+                                    <span class="badge text-bg-success status-badge">@Localizer["Summarized"]</span>
                                 }
                                 else if (document.ExtractedAt.HasValue)
                                 {
-                                    <span class="badge text-bg-primary status-badge">Extracted</span>
+                                    <span class="badge text-bg-primary status-badge">@Localizer["Extracted"]</span>
                                 }
                                 else
                                 {
-                                    <span class="badge text-bg-secondary status-badge">Uploaded</span>
+                                    <span class="badge text-bg-secondary status-badge">@Localizer["Uploaded"]</span>
                                 }
                             </td>
-                            <td>@(string.IsNullOrWhiteSpace(document.Summary) ? "No summary yet." : document.Summary)</td>
+                            <td>@(string.IsNullOrWhiteSpace(document.Summary) ? Localizer["No summary yet."].Value : document.Summary)</td>
                             <td class="text-end">
-                                <a class="btn btn-sm btn-outline-primary" asp-action="Details" asp-route-id="@document.Id">View Details</a>
+                                <a class="btn btn-sm btn-outline-primary" asp-action="Details" asp-route-id="@document.Id">@Localizer["View Details"]</a>
                                 <form asp-action="Delete" asp-route-id="@document.Id" method="post" class="d-inline"
                                       onsubmit="return confirm('Delete this document?');">
-                                    <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">@Localizer["Delete"]</button>
                                 </form>
                             </td>
                         </tr>

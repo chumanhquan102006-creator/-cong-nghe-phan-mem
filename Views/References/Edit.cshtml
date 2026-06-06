@@ -1,0 +1,26 @@
+@model AcademicAIAssistant.Models.ViewModels.ReferenceItemFormViewModel
+@using System.Globalization
+
+@{
+    bool isVi = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "vi";
+    ViewData["Title"] = isVi ? "Sửa tài liệu tham khảo" : "Edit Reference";
+}
+
+<section class="py-4">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">@(isVi ? "Sửa tài liệu tham khảo" : "Edit Reference")</h1>
+            <p class="page-subtitle">@(isVi ? "Cập nhật thông tin và tạo lại APA/MLA." : "Update source information and regenerate APA/MLA citations.")</p>
+        </div>
+        <a class="btn btn-outline-secondary" asp-action="Index">Back to References</a>
+    </div>
+
+    <form asp-action="Edit" method="post" class="section-card">
+        <partial name="_ReferenceForm" model="Model" />
+        <button type="submit" class="btn btn-primary mt-3">@(isVi ? "Cập nhật" : "Update Reference")</button>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

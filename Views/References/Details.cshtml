@@ -1,0 +1,90 @@
+@model AcademicAIAssistant.Models.ReferenceItem
+@using System.Globalization
+
+@{
+    bool isVi = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "vi";
+    ViewData["Title"] = isVi ? "Chi tiết tài liệu tham khảo" : "Reference Details";
+}
+
+<section class="py-4">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">@Model.Title</h1>
+            <p class="page-subtitle">@Model.SourceType - @Model.Author</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+            <a class="btn btn-outline-secondary" asp-action="Index">Back to References</a>
+            <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-4">
+            <div class="section-card">
+                <h2 class="h5">@(isVi ? "Thông tin nguồn" : "Source Information")</h2>
+                <dl class="row mb-0">
+                    <dt class="col-sm-5">Type</dt>
+                    <dd class="col-sm-7">@Model.SourceType</dd>
+                    <dt class="col-sm-5">Author</dt>
+                    <dd class="col-sm-7">@Model.Author</dd>
+                    <dt class="col-sm-5">Year</dt>
+                    <dd class="col-sm-7">@Model.Year</dd>
+                    <dt class="col-sm-5">Journal / Publisher</dt>
+                    <dd class="col-sm-7">@Model.JournalOrPublisher</dd>
+                    <dt class="col-sm-5">Website</dt>
+                    <dd class="col-sm-7">@Model.WebsiteName</dd>
+                    <dt class="col-sm-5">URL</dt>
+                    <dd class="col-sm-7 text-break">@Model.Url</dd>
+                    <dt class="col-sm-5">DOI</dt>
+                    <dd class="col-sm-7">@Model.Doi</dd>
+                    <dt class="col-sm-5">Pages</dt>
+                    <dd class="col-sm-7">@Model.Pages</dd>
+                </dl>
+            </div>
+
+            @if (!string.IsNullOrWhiteSpace(Model.Notes))
+            {
+                <div class="section-card mt-3">
+                    <h2 class="h5">Notes</h2>
+                    <p class="mb-0">@Model.Notes</p>
+                </div>
+            }
+        </div>
+
+        <div class="col-lg-8">
+            <div class="section-card">
+                <h2 class="h5">Citation Output</h2>
+                <div class="vstack gap-3">
+                    <partial name="_CopyBlock" model='new CopyBlockViewModel("APA In-text Citation", Model.ApaInTextCitation, "apaInText")' />
+                    <partial name="_CopyBlock" model='new CopyBlockViewModel("APA Reference", Model.ApaReference, "apaReference")' />
+                    <partial name="_CopyBlock" model='new CopyBlockViewModel("MLA In-text Citation", Model.MlaInTextCitation, "mlaInText")' />
+                    <partial name="_CopyBlock" model='new CopyBlockViewModel("MLA Reference", Model.MlaReference, "mlaReference")' />
+                </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mt-3">
+                <form asp-action="SendToWriting" asp-route-id="@Model.Id" method="post">
+                    <button type="submit" class="btn btn-primary">Send to Writing Studio</button>
+                </form>
+                <form asp-action="Delete" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('Delete this reference?');">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('[data-copy-target]').forEach(button => {
+            button.addEventListener('click', async () => {
+                const target = document.getElementById(button.dataset.copyTarget);
+                if (!target) return;
+                await navigator.clipboard.writeText(target.value);
+                const original = button.textContent;
+                button.textContent = '@(isVi ? "Đã sao chép!" : "Copied!")';
+                setTimeout(() => button.textContent = original, 1400);
+            });
+        });
+    </script>
+}

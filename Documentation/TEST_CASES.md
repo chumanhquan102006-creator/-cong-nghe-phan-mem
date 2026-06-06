@@ -2,6 +2,12 @@
 
 Status default: `Not Run`. Update `Actual Result` and `Status` after manual testing.
 
+Test type:
+
+- `Automated`: covered by xUnit tests in `AcademicAIAssistant.Tests`.
+- `Manual`: must be verified through the browser or with real files/API settings.
+- `Mixed`: partly covered by unit tests, but still needs browser workflow testing.
+
 | Test Case ID | Module | Scenario | Pre-condition | Test steps | Test data | Expected result | Actual result | Status |
 |---|---|---|---|---|---|---|---|---|
 | AUTH-001 | Authentication | Register successfully | User is not logged in | Open `/Account/Register`; enter valid data; submit | FullName: Demo Student; Email: demo@student.local; Password: Demo@123 | Account is created and user is redirected to Dashboard |  | Not Run |
@@ -56,3 +62,33 @@ Status default: `Not Run`. Update `Actual Result` and `Status` after manual test
 | SEC-003 | Security/Authorization | User cannot view another user's citation result | Two users exist | Login as User B; open User A citation result URL | User A citation id | NotFound or access denied result |  | Not Run |
 | SEC-004 | Security/Authorization | User cannot view another user's similarity result | Two users exist | Login as User B; open User A similarity result URL | User A similarity id | NotFound or access denied result |  | Not Run |
 | SEC-005 | Security/Authorization | User cannot access graph data of another user | Two users exist | Login as User B; open `/Graph/Data` | N/A | JSON only contains User B graph data |  | Not Run |
+
+## Automated Unit Test Coverage
+
+Run from the repository parent folder:
+
+```powershell
+dotnet test AcademicAIAssistant.Tests\AcademicAIAssistant.Tests.csproj
+```
+
+| Test File | Service | Test Type | Main scenarios covered |
+|---|---|---|---|
+| `Services/FileValidationServiceTests.cs` | FileValidationService | Automated | Valid PDF, fake PDF, wrong extension, oversized file, valid/fake image upload checks |
+| `Services/DocumentSummaryServiceTests.cs` | DocumentSummaryService | Automated | Empty text, short text, first-sentence summary generation |
+| `Services/WritingFeedbackServiceTests.cs` | WritingFeedbackService | Automated | Short essay warning, citation recognition, missing citation feedback, informal wording |
+| `Services/CitationCheckerServiceTests.cs` | CitationCheckerService | Automated | Passed APA citation, missing References, unused references, invalid citation year |
+| `Services/ReferenceGeneratorServiceTests.cs` | ReferenceGeneratorService | Automated | APA book reference, APA in-text citation, short-title fallback, MLA website reference |
+| `Services/LoginRateLimiterTests.cs` | LoginRateLimiter | Automated | Initial state, failed attempt count, lockout threshold, reset |
+| `Services/TextScanServiceTests.cs` | TextScanService | Automated | Similarity with documents, essays, OCR scans, and no available source data |
+
+## Manual Test Areas
+
+These cases are not fully covered by unit tests and should remain in the manual test table above:
+
+- Full register/login/logout flow through browser.
+- Uploading real PDFs and opening stored PDF files.
+- Extracting text from real text-based and scanned PDFs.
+- OCR with real JPG/PNG files and local Tesseract traineddata.
+- Razor UI display, TempData alerts, navbar, responsive layout, and JavaScript graph rendering.
+- Gemini/OpenAI connection testing with a real API key.
+- Cross-user authorization checks through real routes.

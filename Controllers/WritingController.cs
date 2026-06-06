@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using System.Text.Json;
 using AcademicAIAssistant.Data;
 using AcademicAIAssistant.Models;
 using AcademicAIAssistant.Models.ViewModels;
@@ -24,9 +25,96 @@ public class WritingController : Controller
     }
 
     [HttpGet]
-    public IActionResult Index()
+    public async Task<IActionResult> Index(int? prefillFromOcrId, int? prefillFromCoachId, int? insertReferenceId)
     {
+        if (insertReferenceId.HasValue)
+        {
+            int userId = GetCurrentUserId();
+            ReferenceItem? reference = await _context.ReferenceItems
+                .AsNoTracking()
+                .FirstOrDefaultAsync(item => item.Id == insertReferenceId.Value && item.UserId == userId);
+
+            if (reference == null)
+            {
+                TempData["ErrorMessage"] = "Reference not found or you do not have permission to access it.";
+                return View(new EssayAnalyzeViewModel());
+            }
+
+            return View(new EssayAnalyzeViewModel
+            {
+                Title = $"Essay with Reference - {reference.Title}",
+                EssayType = "Essay",
+                Content = $"""
+                    In-text citation: {reference.ApaInTextCitation}
+
+                    References
+                    {reference.ApaReference}
+                    """
+            });
+        }
+
+        if (prefillFromCoachId.HasValue)
+        {
+            int userId = GetCurrentUserId();
+            WritingCoachSession? session = await _context.WritingCoachSessions
+                .AsNoTracking()
+                .FirstOrDefaultAsync(item => item.Id == prefillFromCoachId.Value && item.UserId == userId);
+
+            if (session == null)
+            {
+                TempData["ErrorMessage"] = "Writing coach session not found or you do not have permission to access it.";
+                return View(new EssayAnalyzeViewModel());
+            }
+
+            if (string.IsNullOrWhiteSpace(session.AIResponse))
+            {
+                TempData["WarningMessage"] = "No writing coach response available to send to Writing Studio.";
+                return View(new EssayAnalyzeViewModel());
+            }
+
+            return View(new EssayAnalyzeViewModel
+            {
+                Title = $"Writing Coach - {session.Topic}",
+                EssayType = MapEssayType(session.EssayType),
+                Content = session.AIResponse
+            });
+        }
+
+        if (prefillFromOcrId.HasValue)
+        {
+            int userId = GetCurrentUserId();
+            OCRScan? scan = await _context.OCRScans
+                .AsNoTracking()
+                .FirstOrDefaultAsync(item => item.Id == prefillFromOcrId.Value && item.UserId == userId);
+
+            if (scan == null)
+            {
+                TempData["ErrorMessage"] = "OCR scan not found or you do not have permission to access it.";
+                return View(new EssayAnalyzeViewModel());
+            }
+
+            if (string.IsNullOrWhiteSpace(scan.ExtractedText))
+            {
+                TempData["WarningMessage"] = "No extracted text available to send to Writing Studio.";
+                return View(new EssayAnalyzeViewModel());
+            }
+
+            return View(new EssayAnalyzeViewModel
+            {
+                Title = $"OCR - {scan.Title}",
+                EssayType = "Essay",
+                Content = scan.ExtractedText
+            });
+        }
+
         return View(new EssayAnalyzeViewModel());
+    }
+
+    private static string MapEssayType(string essayType)
+    {
+        return EssayAnalyzeViewModel.EssayTypeOptions.Contains(essayType)
+            ? essayType
+            : "Essay";
     }
 
     [HttpPost]
@@ -55,7 +143,11 @@ public class WritingController : Controller
         _context.Essays.Add(essay);
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = "Essay analyzed successfully.";
+        if (!TempData.ContainsKey("SuccessMessage") && !TempData.ContainsKey("WarningMessage"))
+        {
+            TempData["SuccessMessage"] = "Essay analyzed successfully.";
+        }
+
         return RedirectToAction(nameof(Details), new { id = essay.Id });
     }
 
@@ -105,39 +197,110 @@ public class WritingController : Controller
 
     private async Task<FeedbackReport> AnalyzeWithAiOrFallbackAsync(EssayAnalyzeViewModel model)
     {
-        if (!_aiService.IsEnabled)
+        int userId = GetCurrentUserId();
+        UserAISetting? aiSetting = await _context.UserAISettings
+            .AsNoTracking()
+            .FirstOrDefaultAsync(setting => setting.UserId == userId);
+
+        if (aiSetting == null || !aiSetting.IsEnabled || string.IsNullOrWhiteSpace(aiSetting.ApiKey))
         {
             return _writingFeedbackService.AnalyzeEssay(model.Title, model.EssayType, model.Content);
         }
 
         try
         {
-            string aiFeedback = await _aiService.GenerateWritingFeedbackAsync(model.EssayType, model.Content);
-
-            return new FeedbackReport
-            {
-                OverallScore = TryExtractScore(aiFeedback),
-                GrammarFeedback = "See AI feedback in General Suggestions.",
-                AcademicToneFeedback = "See AI feedback in General Suggestions.",
-                ThesisFeedback = "See AI feedback in General Suggestions.",
-                StructureFeedback = "See AI feedback in General Suggestions.",
-                LogicFeedback = "See AI feedback in General Suggestions.",
-                CitationFeedback = "See AI feedback in General Suggestions.",
-                GeneralSuggestions = aiFeedback,
-                CreatedAt = DateTime.Now
-            };
+            string aiFeedback = await _aiService.GenerateWritingFeedbackAsync(model.EssayType, model.Content, aiSetting);
+            TempData["SuccessMessage"] = "Essay analyzed with AI feedback.";
+            return ParseAiFeedbackReport(aiFeedback);
         }
         catch
         {
+            TempData["WarningMessage"] = "AI feedback unavailable. Rule-based feedback generated.";
             return _writingFeedbackService.AnalyzeEssay(model.Title, model.EssayType, model.Content);
         }
     }
 
-    private static int TryExtractScore(string feedback)
+    private static FeedbackReport ParseAiFeedbackReport(string aiFeedback)
     {
-        var match = System.Text.RegularExpressions.Regex.Match(feedback, @"\b(\d{1,3})\s*/\s*100\b|\bscore\D+(\d{1,3})\b", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-        string value = match.Groups[1].Success ? match.Groups[1].Value : match.Groups[2].Value;
+        string json = StripJsonFence(aiFeedback);
+        using JsonDocument document = JsonDocument.Parse(json);
+        JsonElement root = document.RootElement;
 
-        return int.TryParse(value, out int score) ? Math.Clamp(score, 0, 100) : 0;
+        return new FeedbackReport
+        {
+            OverallScore = Math.Clamp(GetInt(root, "overallScore"), 0, 100),
+            GrammarFeedback = GetString(root, "grammarFeedback"),
+            AcademicToneFeedback = GetString(root, "academicToneFeedback"),
+            ThesisFeedback = GetString(root, "thesisFeedback"),
+            StructureFeedback = GetString(root, "structureFeedback"),
+            LogicFeedback = GetString(root, "logicFeedback"),
+            CitationFeedback = GetString(root, "citationFeedback"),
+            GeneralSuggestions = GetString(root, "generalSuggestions"),
+            CreatedAt = DateTime.Now
+        };
+    }
+
+    private static string StripJsonFence(string value)
+    {
+        string text = value.Trim();
+
+        if (text.StartsWith("```json", StringComparison.OrdinalIgnoreCase))
+        {
+            text = text[7..].Trim();
+        }
+        else if (text.StartsWith("```", StringComparison.OrdinalIgnoreCase))
+        {
+            text = text[3..].Trim();
+        }
+
+        if (text.EndsWith("```", StringComparison.OrdinalIgnoreCase))
+        {
+            text = text[..^3].Trim();
+        }
+
+        int start = text.IndexOf('{');
+        int end = text.LastIndexOf('}');
+        if (start >= 0 && end > start)
+        {
+            text = text[start..(end + 1)];
+        }
+
+        return text;
+    }
+
+    private static string GetString(JsonElement root, string propertyName)
+    {
+        if (!root.TryGetProperty(propertyName, out JsonElement property))
+        {
+            throw new JsonException($"Missing property: {propertyName}");
+        }
+
+        string? value = property.GetString();
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            throw new JsonException($"Empty property: {propertyName}");
+        }
+
+        return value.Trim();
+    }
+
+    private static int GetInt(JsonElement root, string propertyName)
+    {
+        if (!root.TryGetProperty(propertyName, out JsonElement property))
+        {
+            throw new JsonException($"Missing property: {propertyName}");
+        }
+
+        if (property.ValueKind == JsonValueKind.Number && property.TryGetInt32(out int value))
+        {
+            return value;
+        }
+
+        if (property.ValueKind == JsonValueKind.String && int.TryParse(property.GetString(), out value))
+        {
+            return value;
+        }
+
+        throw new JsonException($"Invalid integer property: {propertyName}");
     }
 }

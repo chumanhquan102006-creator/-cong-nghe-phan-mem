@@ -6,7 +6,12 @@ obj/
 # Uploaded user files
 wwwroot/uploads/**
 !wwwroot/uploads/
+!wwwroot/uploads/**/
 !wwwroot/uploads/.gitkeep
+!wwwroot/uploads/**/.gitkeep
+
+# Local OCR language data can be large
+tessdata/*.traineddata
 
 # Local database files
 *.db
@@ -18,8 +23,11 @@ wwwroot/uploads/**
 secrets.json
 appsettings.Development.json
 *.user
+*.suo
 
 # Logs and temporary files
+logs/
 *.log
 *.tmp
 TestResults/
+outputs/

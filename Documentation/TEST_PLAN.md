@@ -42,11 +42,47 @@ Out of scope:
 
 ## Testing Strategy
 
+- Automated unit testing for important rule-based service logic using xUnit.
 - Manual functional testing using browser workflows.
 - Negative testing with invalid inputs and unauthorized access.
 - Regression testing after UI or controller changes.
 - Database verification through expected screen output and dashboard counters.
 - Rule-based AI fallback testing with `AI:Enabled` set to `false`.
+
+## Automated Unit Testing
+
+Automated tests are stored in the separate xUnit project:
+
+```text
+AcademicAIAssistant.Tests
+```
+
+Run automated tests from the repository parent folder:
+
+```powershell
+dotnet test AcademicAIAssistant.Tests\AcademicAIAssistant.Tests.csproj
+```
+
+Automated unit tests currently cover:
+
+- `FileValidationService`: valid and invalid PDF/JPG/PNG upload validation.
+- `DocumentSummaryService`: short text handling and first-sentence summary generation.
+- `WritingFeedbackService`: word count, citation, and informal tone feedback.
+- `CitationCheckerService`: valid APA checks, missing references, unused references, and invalid years.
+- `ReferenceGeneratorService`: APA/MLA reference and in-text citation generation.
+- `LoginRateLimiter`: failed login counting, lockout, and reset behavior.
+- `TextScanService`: internal similarity scanning using EF Core InMemory instead of SQL Server.
+
+These tests do not call Gemini/OpenAI, do not use real SQL Server, and do not require uploaded files.
+
+The following areas still require manual or integration testing:
+
+- Razor views and browser navigation.
+- Authentication cookie/session behavior end to end.
+- Real PDF extraction with uploaded documents.
+- OCR with local Tesseract traineddata.
+- Real AI provider calls and quota/API key errors.
+- JavaScript graph rendering and responsive UI.
 
 ## Functional Testing
 

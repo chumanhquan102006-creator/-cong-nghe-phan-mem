@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Home" xml:space="preserve"><value>Home</value></data>
+  <data name="Dashboard" xml:space="preserve"><value>Dashboard</value></data>
+  <data name="Documents" xml:space="preserve"><value>Documents</value></data>
+  <data name="Writing Studio" xml:space="preserve"><value>Writing Studio</value></data>
+  <data name="Writing History" xml:space="preserve"><value>Writing History</value></data>
+  <data name="Knowledge Graph" xml:space="preserve"><value>Knowledge Graph</value></data>
+  <data name="Hello" xml:space="preserve"><value>Hello</value></data>
+  <data name="Logout" xml:space="preserve"><value>Logout</value></data>
+  <data name="Login" xml:space="preserve"><value>Login</value></data>
+  <data name="Register" xml:space="preserve"><value>Register</value></data>
+  <data name="Language" xml:space="preserve"><value>Language</value></data>
+  <data name="Get Started" xml:space="preserve"><value>Get Started</value></data>
+  <data name="View Documents" xml:space="preserve"><value>View Documents</value></data>
+  <data name="Academic AI Assistant Home Description" xml:space="preserve"><value>A student-focused workspace for reading research PDFs, writing academic drafts, checking citations, comparing similarity, and exploring knowledge links.</value></data>
+  <data name="Demo-ready modules" xml:space="preserve"><value>Demo-ready modules</value></data>
+  <data name="Demo-ready modules description" xml:space="preserve"><value>PDF library, rule-based analysis, citation checking, similarity checking, knowledge graph, and chat with PDF are organized in one MVC application.</value></data>
+  <data name="PDF Reading Assistant" xml:space="preserve"><value>PDF Reading Assistant</value></data>
+  <data name="PDF Reading Assistant description" xml:space="preserve"><value>Upload PDFs, extract text, generate summaries, and chat with document content.</value></data>
+  <data name="Writing Feedback Studio" xml:space="preserve"><value>Writing Feedback Studio</value></data>
+  <data name="Writing Feedback Studio description" xml:space="preserve"><value>Analyze essays for thesis, structure, tone, logic, citation, and overall score.</value></data>
+  <data name="Citation &amp; Similarity Checker" xml:space="preserve"><value>Citation &amp; Similarity Checker</value></data>
+  <data name="Citation &amp; Similarity Checker description" xml:space="preserve"><value>Check basic APA citation quality and compare essays with extracted documents.</value></data>
+  <data name="Knowledge Graph description" xml:space="preserve"><value>Visualize relationships between documents, essays, and extracted keywords.</value></data>
+  <data name="Welcome back" xml:space="preserve"><value>Welcome back</value></data>
+  <data name="Dashboard subtitle" xml:space="preserve"><value>Here is your academic reading and writing workspace.</value></data>
+  <data name="Upload PDF" xml:space="preserve"><value>Upload PDF</value></data>
+  <data name="New Writing Analysis" xml:space="preserve"><value>New Writing Analysis</value></data>
+  <data name="Uploaded PDFs" xml:space="preserve"><value>Uploaded PDFs</value></data>
+  <data name="Extracted PDFs" xml:space="preserve"><value>Extracted PDFs</value></data>
+  <data name="Summaries" xml:space="preserve"><value>Summaries</value></data>
+  <data name="Essays" xml:space="preserve"><value>Essays</value></data>
+  <data name="Feedback Reports" xml:space="preserve"><value>Feedback Reports</value></data>
+  <data name="Citation Checks" xml:space="preserve"><value>Citation Checks</value></data>
+  <data name="Similarity Checks" xml:space="preserve"><value>Similarity Checks</value></data>
+  <data name="Quick Actions" xml:space="preserve"><value>Quick Actions</value></data>
+  <data name="Recent Activities" xml:space="preserve"><value>Recent Activities</value></data>
+  <data name="Recent Documents" xml:space="preserve"><value>Recent Documents</value></data>
+  <data name="Recent Essays" xml:space="preserve"><value>Recent Essays</value></data>
+  <data name="No recent activities yet. Start by uploading a PDF or analyzing an essay." xml:space="preserve"><value>No recent activities yet. Start by uploading a PDF or analyzing an essay.</value></data>
+  <data name="Upload your first research PDF." xml:space="preserve"><value>Upload your first research PDF.</value></data>
+  <data name="Analyze your first academic essay." xml:space="preserve"><value>Analyze your first academic essay.</value></data>
+  <data name="Document Library" xml:space="preserve"><value>Document Library</value></data>
+  <data name="Document Library subtitle" xml:space="preserve"><value>Manage your uploaded PDF research documents.</value></data>
+  <data name="Upload New PDF" xml:space="preserve"><value>Upload New PDF</value></data>
+  <data name="You have not uploaded any PDF documents yet." xml:space="preserve"><value>You have not uploaded any PDF documents yet.</value></data>
+  <data name="Title" xml:space="preserve"><value>Title</value></data>
+  <data name="Original File" xml:space="preserve"><value>Original File</value></data>
+  <data name="File Size" xml:space="preserve"><value>File Size</value></data>
+  <data name="Uploaded At" xml:space="preserve"><value>Uploaded At</value></data>
+  <data name="Status" xml:space="preserve"><value>Status</value></data>
+  <data name="Summary" xml:space="preserve"><value>Summary</value></data>
+  <data name="Actions" xml:space="preserve"><value>Actions</value></data>
+  <data name="Uploaded" xml:space="preserve"><value>Uploaded</value></data>
+  <data name="Extracted" xml:space="preserve"><value>Extracted</value></data>
+  <data name="Summarized" xml:space="preserve"><value>Summarized</value></data>
+  <data name="No summary yet." xml:space="preserve"><value>No summary yet.</value></data>
+  <data name="View Details" xml:space="preserve"><value>View Details</value></data>
+  <data name="Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Back to Documents" xml:space="preserve"><value>Back to Documents</value></data>
+  <data name="File Information" xml:space="preserve"><value>File Information</value></data>
+  <data name="Open PDF" xml:space="preserve"><value>Open PDF</value></data>
+  <data name="Extract Text" xml:space="preserve"><value>Extract Text</value></data>
+  <data name="Generate Summary" xml:space="preserve"><value>Generate Summary</value></data>
+  <data name="Chat with PDF" xml:space="preserve"><value>Chat with PDF</value></data>
+  <data name="Extracted Text Preview" xml:space="preserve"><value>Extracted Text Preview</value></data>
+  <data name="Writing Studio subtitle" xml:space="preserve"><value>Analyze an essay, literature review, thesis proposal, or research report.</value></data>
+  <data name="Analyze Essay" xml:space="preserve"><value>Analyze Essay</value></data>
+  <data name="Overall Score" xml:space="preserve"><value>Overall Score</value></data>
+  <data name="General Suggestions" xml:space="preserve"><value>General Suggestions</value></data>
+  <data name="Grammar / Wording" xml:space="preserve"><value>Grammar / Wording</value></data>
+  <data name="Academic Tone" xml:space="preserve"><value>Academic Tone</value></data>
+  <data name="Thesis Statement" xml:space="preserve"><value>Thesis Statement</value></data>
+  <data name="Structure" xml:space="preserve"><value>Structure</value></data>
+  <data name="Logic" xml:space="preserve"><value>Logic</value></data>
+  <data name="Citation" xml:space="preserve"><value>Citation</value></data>
+  <data name="Check Citation" xml:space="preserve"><value>Check Citation</value></data>
+  <data name="Check Similarity" xml:space="preserve"><value>Check Similarity</value></data>
+  <data name="Back to History" xml:space="preserve"><value>Back to History</value></data>
+  <data name="Citation Result" xml:space="preserve"><value>Citation Result</value></data>
+  <data name="Similarity Result" xml:space="preserve"><value>Similarity Result</value></data>
+  <data name="Build / Refresh Graph" xml:space="preserve"><value>Build / Refresh Graph</value></data>
+  <data name="Legend" xml:space="preserve"><value>Legend</value></data>
+  <data name="Selected Node" xml:space="preserve"><value>Selected Node</value></data>
+  <data name="Document Info" xml:space="preserve"><value>Document Info</value></data>
+  <data name="Chat History" xml:space="preserve"><value>Chat History</value></data>
+  <data name="Ask a question" xml:space="preserve"><value>Ask a question</value></data>
+  <data name="Ask" xml:space="preserve"><value>Ask</value></data>
+  <data name="No questions asked yet." xml:space="preserve"><value>No questions asked yet.</value></data>
+  <data name="PDF uploaded successfully." xml:space="preserve"><value>PDF uploaded successfully.</value></data>
+  <data name="Text extracted successfully." xml:space="preserve"><value>Text extracted successfully.</value></data>
+  <data name="Rule-based fallback summary generated successfully." xml:space="preserve"><value>Rule-based fallback summary generated successfully.</value></data>
+  <data name="AI summary generated successfully." xml:space="preserve"><value>AI summary generated successfully.</value></data>
+  <data name="Document deleted successfully." xml:space="preserve"><value>Document deleted successfully.</value></data>
+  <data name="Essay analyzed successfully." xml:space="preserve"><value>Essay analyzed successfully.</value></data>
+  <data name="Citation check completed." xml:space="preserve"><value>Citation check completed.</value></data>
+  <data name="Similarity check completed." xml:space="preserve"><value>Similarity check completed.</value></data>
+  <data name="Knowledge graph built successfully." xml:space="preserve"><value>Knowledge graph built successfully.</value></data>
+  <data name="Question answered." xml:space="preserve"><value>Question answered.</value></data>
+  <data name="Please extract text first before chatting with this PDF." xml:space="preserve"><value>Please extract text first before chatting with this PDF.</value></data>
+  <data name="Question cannot be empty." xml:space="preserve"><value>Question cannot be empty.</value></data>
+  <data name="Upload_SelectPdf" xml:space="preserve"><value>Please select a PDF file to upload.</value></data>
+  <data name="Upload_OnlyPdfAllowed" xml:space="preserve"><value>Only PDF files are allowed.</value></data>
+  <data name="Upload_PdfTooLarge" xml:space="preserve"><value>PDF file size must be less than 10MB.</value></data>
+  <data name="Upload_InvalidPdfFile" xml:space="preserve"><value>Invalid PDF file. The uploaded file does not appear to be a real PDF.</value></data>
+  <data name="Upload_SelectImage" xml:space="preserve"><value>Please select an image file to upload.</value></data>
+  <data name="Upload_OnlyImagesAllowed" xml:space="preserve"><value>Only JPG, JPEG, and PNG images are allowed.</value></data>
+  <data name="Upload_ImageTooLarge" xml:space="preserve"><value>Image file size must be less than 5MB.</value></data>
+  <data name="Upload_InvalidImageFile" xml:space="preserve"><value>Invalid image file. The uploaded file does not appear to be a real image.</value></data>
+  <data name="Upload_PdfHint" xml:space="preserve"><value>Allowed file type: PDF. Maximum size: 10MB.</value></data>
+  <data name="Upload_ImageHint" xml:space="preserve"><value>Allowed file types: JPG, JPEG, PNG. Maximum size: 5MB.</value></data>
+  <data name="Login_InvalidCredentials" xml:space="preserve"><value>Invalid email or password.</value></data>
+  <data name="Login_TooManyAttempts" xml:space="preserve"><value>Too many failed login attempts. Please try again in {0} minutes.</value></data>
+  <data name="Login_SecurityNotice" xml:space="preserve"><value>For security reasons, repeated failed login attempts may temporarily lock sign-in.</value></data>
+  <data name="Back to Dashboard" xml:space="preserve"><value>Back to Dashboard</value></data>
+  <data name="DevTools_Nav" xml:space="preserve"><value>Dev Tools</value></data>
+  <data name="DevTools_Title" xml:space="preserve"><value>Development Tools</value></data>
+  <data name="DevTools_Description" xml:space="preserve"><value>This page is only available in Development. Reset Demo Data will delete and recreate demo records for demo accounts only.</value></data>
+  <data name="DevTools_Warning" xml:space="preserve"><value>Reset Demo Data only affects demo records for demo@student.com. It does not delete real user data.</value></data>
+  <data name="DevTools_Environment" xml:space="preserve"><value>Environment</value></data>
+  <data name="DevTools_SeedEnabled" xml:space="preserve"><value>SeedData.Enabled</value></data>
+  <data name="DevTools_AllowReset" xml:space="preserve"><value>SeedData.AllowReset</value></data>
+  <data name="DevTools_DemoAccount" xml:space="preserve"><value>Demo account</value></data>
+  <data name="DevTools_ResetDemoData" xml:space="preserve"><value>Reset Demo Data</value></data>
+  <data name="DevTools_ResetConfirm" xml:space="preserve"><value>Are you sure you want to reset demo data?</value></data>
+  <data name="DevTools_ResetSuccess" xml:space="preserve"><value>Demo data has been reset successfully.</value></data>
+  <data name="DevTools_ResetDisabled" xml:space="preserve"><value>Demo data reset is disabled.</value></data>
+  <data name="DevTools_ResetError" xml:space="preserve"><value>Could not reset demo data. Please check the application logs.</value></data>
+</root>

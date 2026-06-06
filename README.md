@@ -20,6 +20,7 @@ Students often need to read many research papers and write academic essays, but 
 - Internal Similarity Checker against uploaded extracted PDFs
 - Knowledge Graph for documents, essays, and keywords
 - Chat with PDF using extracted document text
+- OCR Scanner for image-to-text extraction
 - AIService structure with rule-based fallback mode
 
 ## Tech Stack
@@ -30,6 +31,7 @@ Students often need to read many research papers and write academic essays, but 
 - HTML, CSS, JavaScript
 - Bootstrap
 - PdfPig for PDF text extraction
+- Tesseract for local OCR image-to-text extraction
 
 ## System Modules
 
@@ -42,6 +44,7 @@ Students often need to read many research papers and write academic essays, but 
 - Similarity: internal text overlap comparison
 - Knowledge Graph: document, essay, and keyword relationships
 - Document Chat: rule-based retrieval and optional AI fallback answer
+- OCR Scanner: upload JPG/PNG images and extract readable text
 - AIService: OpenAI-compatible service structure, disabled by default
 
 ## How to Run Project
@@ -80,24 +83,76 @@ dotnet ef database update
 3. Upload a PDF in Documents.
 4. Extract text and generate summary.
 5. Chat with the PDF.
-6. Analyze an essay in Writing Studio.
-7. Run Citation Checker.
-8. Run Similarity Checker.
-9. Build Knowledge Graph.
-10. Return to Dashboard and check recent activities.
+6. Upload an image in OCR Scanner and send extracted text to Writing Studio.
+7. Analyze an essay in Writing Studio.
+8. Run Citation Checker.
+9. Run Similarity Checker.
+10. Build Knowledge Graph.
+11. Return to Dashboard and check recent activities.
+
+## How to Run Unit Tests
+
+The solution includes an xUnit test project for important rule-based services. These tests do not require SQL Server, uploaded files, or a real AI API key.
+
+```powershell
+cd "D:\viết luận"
+dotnet test AcademicAIAssistant.Tests\AcademicAIAssistant.Tests.csproj
+```
+
+Current automated coverage includes:
+
+- File validation for PDF/JPG/PNG upload rules
+- Rule-based document summary generation
+- Rule-based writing feedback
+- APA citation checking
+- Reference generation
+- Login rate limiter behavior
+- Internal text similarity scanning with EF Core InMemory
+
+Browser workflows, real PDF files, OCR traineddata, and real AI provider calls should still be tested manually.
+
+## OCR Setup
+
+OCR uses local Tesseract language data from the project `tessdata` folder.
+
+Required files:
+
+```text
+tessdata/eng.traineddata
+tessdata/vie.traineddata
+```
+
+These traineddata files are not committed because they can be large. Download them from the official Tesseract language data repository, place them in `tessdata`, then restart the app.
 
 ## Demo Account
 
-No default demo account is seeded. Create one from:
+In Development, demo seed data is enabled by default. After applying migrations and running the app, you can login with:
 
-```text
-/Account/Register
+- Email: `demo@student.com`
+- Password: `Demo@123456`
+
+The demo account is for classroom demo/development only. Do not use demo credentials in production.
+
+Seed data includes a sample document, essay, feedback report, citation result, similarity result, OCR scan, writing coach sessions, references, chat history, and knowledge graph nodes/edges.
+
+You can turn seed data on or off in `appsettings.json`:
+
+```json
+"SeedData": {
+  "Enabled": true,
+  "AllowReset": true
+}
 ```
 
-Suggested demo account:
+Set `Enabled` to `false` if you do not want the app to create demo data on startup.
 
-- Email: `demo@student.local`
-- Password: `Demo@123`
+In Development, logged-in users can open:
+
+```text
+/DevTools
+```
+
+Use **Reset Demo Data** to delete and recreate only the demo records for `demo@student.com`. This route is not available outside the Development environment. Set `SeedData.AllowReset` to `false` to disable the reset button.
 
 ## AI Mode Note
 

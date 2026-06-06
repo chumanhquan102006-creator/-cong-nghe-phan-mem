@@ -2,12 +2,14 @@ using System.Security.Claims;
 using AcademicAIAssistant.Data;
 using AcademicAIAssistant.Models;
 using AcademicAIAssistant.Models.ViewModels;
+using AcademicAIAssistant.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace AcademicAIAssistant.Controllers;
 
@@ -15,10 +17,14 @@ public class AccountController : Controller
 {
     private readonly AppDbContext _context;
     private readonly PasswordHasher<User> _passwordHasher;
+    private readonly ILoginRateLimiter _loginRateLimiter;
+    private readonly IStringLocalizer<SharedResource> _localizer;
 
-    public AccountController(AppDbContext context)
+    public AccountController(AppDbContext context, ILoginRateLimiter loginRateLimiter, IStringLocalizer<SharedResource> localizer)
     {
         _context = context;
+        _loginRateLimiter = loginRateLimiter;
+        _localizer = localizer;
         _passwordHasher = new PasswordHasher<User>();
     }
 
@@ -72,26 +78,38 @@ public class AccountController : Controller
     public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl = null)
     {
         ViewData["ReturnUrl"] = returnUrl;
+        string normalizedEmail = NormalizeEmail(model.Email);
+        string ipAddress = GetClientIpAddress();
+
+        LoginRateLimitResult lockoutStatus = _loginRateLimiter.GetLockoutStatus(normalizedEmail, ipAddress);
+        if (lockoutStatus.IsLockedOut)
+        {
+            ModelState.AddModelError(string.Empty, _localizer["Login_TooManyAttempts", lockoutStatus.RemainingMinutes]);
+            return View(model);
+        }
 
         if (!ModelState.IsValid)
         {
             return View(model);
         }
 
-        var user = await _context.Users.FirstOrDefaultAsync(item => item.Email == model.Email);
+        var user = await _context.Users.FirstOrDefaultAsync(item => item.Email.ToLower() == normalizedEmail);
         if (user == null)
         {
-            ModelState.AddModelError(string.Empty, "Invalid email or password.");
+            _loginRateLimiter.RecordFailedAttempt(normalizedEmail, ipAddress);
+            ModelState.AddModelError(string.Empty, _localizer["Login_InvalidCredentials"]);
             return View(model);
         }
 
         var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, model.Password);
         if (result == PasswordVerificationResult.Failed)
         {
-            ModelState.AddModelError(string.Empty, "Invalid email or password.");
+            _loginRateLimiter.RecordFailedAttempt(normalizedEmail, ipAddress);
+            ModelState.AddModelError(string.Empty, _localizer["Login_InvalidCredentials"]);
             return View(model);
         }
 
+        _loginRateLimiter.ResetAttempts(normalizedEmail, ipAddress);
         await SignInUserAsync(user, model.RememberMe);
 
         if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
@@ -138,5 +156,15 @@ public class AccountController : Controller
         HttpContext.Session.SetString("UserFullName", user.FullName);
         HttpContext.Session.SetString("UserEmail", user.Email);
         HttpContext.Session.SetString("UserRole", user.Role);
+    }
+
+    private string GetClientIpAddress()
+    {
+        return HttpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+    }
+
+    private static string NormalizeEmail(string email)
+    {
+        return string.IsNullOrWhiteSpace(email) ? string.Empty : email.Trim().ToLowerInvariant();
     }
 }

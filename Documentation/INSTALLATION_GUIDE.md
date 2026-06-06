@@ -59,6 +59,67 @@ Open:
 http://localhost:5010
 ```
 
+## Demo Seed Data
+
+In Development, the app can create demo data automatically when it starts. The seed process is controlled by `appsettings.json`:
+
+```json
+"SeedData": {
+  "Enabled": true,
+  "AllowReset": true
+}
+```
+
+Set `Enabled` to `false` if you want to disable demo seed data.
+Set `AllowReset` to `false` if you want to disable reset from the development tools page.
+
+Seed data is only for classroom demo/development. It does not include a real AI API key and the demo password is stored as a hash in the database.
+
+Demo account:
+
+- Email: `demo@student.com`
+- Password: `Demo@123456`
+
+The seeded demo workspace includes:
+
+- Sample extracted PDF metadata and summary
+- Sample essay and writing feedback
+- Sample citation check
+- Sample internal similarity check
+- Sample OCR scan
+- Sample writing coach sessions
+- Sample reference manager items
+- Sample chat history
+- Sample knowledge graph nodes and edges
+
+To test seed data from an empty database:
+
+```powershell
+dotnet ef database update
+dotnet run --launch-profile http
+```
+
+Then login using the demo account above. Run the app a second time and confirm the demo rows are not duplicated.
+
+## Reset Demo Data
+
+Reset is available only in the Development environment.
+
+1. Login to the app.
+2. Open `/DevTools`.
+3. Check that `SeedData.Enabled` and `SeedData.AllowReset` are both `true`.
+4. Click **Reset Demo Data**.
+5. Confirm the browser prompt.
+6. Return to Dashboard, Documents, Writing History, Text Scan, OCR, References, and Knowledge Graph to verify the demo records were recreated.
+
+The reset action only deletes and recreates data for the demo account:
+
+```text
+demo@student.com
+```
+
+It does not delete real user accounts or their data. Do not expose or enable this feature in Production.
+
 ## Register Account
 
 1. Open `/Account/Register`.
@@ -66,10 +127,11 @@ http://localhost:5010
 3. Submit the form.
 4. The system redirects to Dashboard after successful registration.
 
-Suggested demo account:
+You can also create your own account manually:
 
-- Email: `demo@student.local`
-- Password: `Demo@123`
+- Open `/Account/Register`
+- Enter a new email and password
+- Submit the form
 
 ## Test Main Features
 

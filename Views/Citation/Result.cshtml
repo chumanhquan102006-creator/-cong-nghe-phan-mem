@@ -1,4 +1,5 @@
 @model AcademicAIAssistant.Models.CitationCheck
+@inject IStringLocalizer<SharedResource> Localizer
 
 @{
     ViewData["Title"] = "Citation Result";
@@ -11,7 +12,7 @@
 <section class="py-4">
     <div class="page-header">
         <div>
-            <h1 class="page-title">Citation Result</h1>
+            <h1 class="page-title">@Localizer["Citation Result"]</h1>
             <p class="page-subtitle">@Model.Essay?.Title - Checked at @Model.CheckedAt.ToString("yyyy-MM-dd HH:mm")</p>
         </div>
         <a class="btn btn-outline-secondary" asp-controller="Writing" asp-action="Details" asp-route-id="@Model.EssayId">Back to Essay</a>
@@ -41,7 +42,7 @@
         </div>
         <div class="col-md-4">
                 <div class="stat-card">
-                    <h2 class="h6">Overall Status</h2>
+                <h2 class="h6">@Localizer["Status"]</h2>
                 <span class="badge text-bg-primary status-badge">@Model.OverallStatus</span>
             </div>
         </div>

@@ -1,4 +1,5 @@
 @model AcademicAIAssistant.Models.ViewModels.LoginViewModel
+@inject IStringLocalizer<SharedResource> Localizer
 
 @{
     ViewData["Title"] = "Login";
@@ -7,7 +8,11 @@
 
 <section class="row justify-content-center py-4">
     <div class="col-md-6 col-lg-5">
-        <h1 class="h3 mb-3">Login</h1>
+        <h1 class="h3 mb-3">@Localizer["Login"]</h1>
+
+        <div class="alert alert-info">
+            @Localizer["Login_SecurityNotice"]
+        </div>
 
         <form asp-action="Login" asp-route-returnUrl="@returnUrl" method="post" class="border rounded p-4 bg-light">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -29,7 +34,7 @@
                 <label asp-for="RememberMe" class="form-check-label"></label>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">Login</button>
+            <button type="submit" class="btn btn-primary w-100">@Localizer["Login"]</button>
         </form>
 
         <p class="mt-3">

@@ -1,4 +1,5 @@
 @model AcademicAIAssistant.Models.ViewModels.EssayAnalyzeViewModel
+@inject IStringLocalizer<SharedResource> Localizer
 
 @{
     ViewData["Title"] = "Writing Studio";
@@ -7,10 +8,10 @@
 <section class="py-4">
     <div class="page-header">
         <div>
-            <h1 class="page-title">Writing Studio</h1>
-            <p class="page-subtitle">Analyze an essay, literature review, thesis proposal, or research report.</p>
+            <h1 class="page-title">@Localizer["Writing Studio"]</h1>
+            <p class="page-subtitle">@Localizer["Writing Studio subtitle"]</p>
         </div>
-        <a class="btn btn-outline-secondary" asp-action="History">Writing History</a>
+        <a class="btn btn-outline-secondary" asp-action="History">@Localizer["Writing History"]</a>
     </div>
 
     <form asp-action="Analyze" method="post" class="section-card">
@@ -42,7 +43,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary mt-3">Analyze Essay</button>
+        <button type="submit" class="btn btn-primary mt-3">@Localizer["Analyze Essay"]</button>
     </form>
 </section>
 

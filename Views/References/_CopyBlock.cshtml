@@ -1,0 +1,9 @@
+@model AcademicAIAssistant.Models.ViewModels.CopyBlockViewModel
+
+<div>
+    <div class="d-flex justify-content-between align-items-center gap-2 mb-1">
+        <h3 class="h6 mb-0">@Model.Label</h3>
+        <button type="button" class="btn btn-sm btn-outline-primary" data-copy-target="@Model.Id">Copy</button>
+    </div>
+    <textarea id="@Model.Id" class="form-control text-preview" rows="3" readonly>@Model.Value</textarea>
+</div>

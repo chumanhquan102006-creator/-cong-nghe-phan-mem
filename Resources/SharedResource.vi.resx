@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Home" xml:space="preserve"><value>Trang chủ</value></data>
+  <data name="Dashboard" xml:space="preserve"><value>Bảng điều khiển</value></data>
+  <data name="Documents" xml:space="preserve"><value>Tài liệu</value></data>
+  <data name="Writing Studio" xml:space="preserve"><value>Không gian viết</value></data>
+  <data name="Writing History" xml:space="preserve"><value>Lịch sử bài viết</value></data>
+  <data name="Knowledge Graph" xml:space="preserve"><value>Đồ thị tri thức</value></data>
+  <data name="Hello" xml:space="preserve"><value>Xin chào</value></data>
+  <data name="Logout" xml:space="preserve"><value>Đăng xuất</value></data>
+  <data name="Login" xml:space="preserve"><value>Đăng nhập</value></data>
+  <data name="Register" xml:space="preserve"><value>Đăng ký</value></data>
+  <data name="Language" xml:space="preserve"><value>Ngôn ngữ</value></data>
+  <data name="Get Started" xml:space="preserve"><value>Bắt đầu</value></data>
+  <data name="View Documents" xml:space="preserve"><value>Xem tài liệu</value></data>
+  <data name="Academic AI Assistant Home Description" xml:space="preserve"><value>Không gian hỗ trợ sinh viên đọc PDF nghiên cứu, viết học thuật, kiểm tra trích dẫn, so sánh similarity và khám phá liên kết tri thức.</value></data>
+  <data name="Demo-ready modules" xml:space="preserve"><value>Các module sẵn sàng demo</value></data>
+  <data name="Demo-ready modules description" xml:space="preserve"><value>Thư viện PDF, phân tích rule-based, kiểm tra trích dẫn, kiểm tra similarity, đồ thị tri thức và chat với PDF được tổ chức trong một ứng dụng MVC.</value></data>
+  <data name="PDF Reading Assistant" xml:space="preserve"><value>Trợ lý đọc PDF</value></data>
+  <data name="PDF Reading Assistant description" xml:space="preserve"><value>Upload PDF, trích xuất văn bản, tạo tóm tắt và chat với nội dung tài liệu.</value></data>
+  <data name="Writing Feedback Studio" xml:space="preserve"><value>Không gian góp ý bài viết</value></data>
+  <data name="Writing Feedback Studio description" xml:space="preserve"><value>Phân tích thesis, cấu trúc, giọng văn học thuật, logic, citation và điểm tổng quan.</value></data>
+  <data name="Citation &amp; Similarity Checker" xml:space="preserve"><value>Kiểm tra trích dẫn &amp; similarity</value></data>
+  <data name="Citation &amp; Similarity Checker description" xml:space="preserve"><value>Kiểm tra APA cơ bản và so sánh bài viết với tài liệu đã trích xuất.</value></data>
+  <data name="Knowledge Graph description" xml:space="preserve"><value>Trực quan hóa liên kết giữa tài liệu, bài viết và keyword.</value></data>
+  <data name="Welcome back" xml:space="preserve"><value>Chào mừng trở lại</value></data>
+  <data name="Dashboard subtitle" xml:space="preserve"><value>Đây là không gian đọc hiểu và viết học thuật của bạn.</value></data>
+  <data name="Upload PDF" xml:space="preserve"><value>Upload PDF</value></data>
+  <data name="New Writing Analysis" xml:space="preserve"><value>Phân tích bài viết mới</value></data>
+  <data name="Uploaded PDFs" xml:space="preserve"><value>PDF đã upload</value></data>
+  <data name="Extracted PDFs" xml:space="preserve"><value>PDF đã trích xuất</value></data>
+  <data name="Summaries" xml:space="preserve"><value>Tóm tắt</value></data>
+  <data name="Essays" xml:space="preserve"><value>Bài viết</value></data>
+  <data name="Feedback Reports" xml:space="preserve"><value>Báo cáo góp ý</value></data>
+  <data name="Citation Checks" xml:space="preserve"><value>Lần kiểm tra citation</value></data>
+  <data name="Similarity Checks" xml:space="preserve"><value>Lần kiểm tra similarity</value></data>
+  <data name="Quick Actions" xml:space="preserve"><value>Thao tác nhanh</value></data>
+  <data name="Recent Activities" xml:space="preserve"><value>Hoạt động gần đây</value></data>
+  <data name="Recent Documents" xml:space="preserve"><value>Tài liệu gần đây</value></data>
+  <data name="Recent Essays" xml:space="preserve"><value>Bài viết gần đây</value></data>
+  <data name="No recent activities yet. Start by uploading a PDF or analyzing an essay." xml:space="preserve"><value>Chưa có hoạt động gần đây. Hãy bắt đầu bằng cách upload PDF hoặc phân tích bài viết.</value></data>
+  <data name="Upload your first research PDF." xml:space="preserve"><value>Hãy upload PDF nghiên cứu đầu tiên.</value></data>
+  <data name="Analyze your first academic essay." xml:space="preserve"><value>Hãy phân tích bài viết học thuật đầu tiên.</value></data>
+  <data name="Document Library" xml:space="preserve"><value>Thư viện tài liệu</value></data>
+  <data name="Document Library subtitle" xml:space="preserve"><value>Quản lý các PDF nghiên cứu đã upload.</value></data>
+  <data name="Upload New PDF" xml:space="preserve"><value>Upload PDF mới</value></data>
+  <data name="You have not uploaded any PDF documents yet." xml:space="preserve"><value>Bạn chưa upload tài liệu PDF nào.</value></data>
+  <data name="Title" xml:space="preserve"><value>Tiêu đề</value></data>
+  <data name="Original File" xml:space="preserve"><value>File gốc</value></data>
+  <data name="File Size" xml:space="preserve"><value>Dung lượng</value></data>
+  <data name="Uploaded At" xml:space="preserve"><value>Thời gian upload</value></data>
+  <data name="Status" xml:space="preserve"><value>Trạng thái</value></data>
+  <data name="Summary" xml:space="preserve"><value>Tóm tắt</value></data>
+  <data name="Actions" xml:space="preserve"><value>Thao tác</value></data>
+  <data name="Uploaded" xml:space="preserve"><value>Đã upload</value></data>
+  <data name="Extracted" xml:space="preserve"><value>Đã trích xuất</value></data>
+  <data name="Summarized" xml:space="preserve"><value>Đã tóm tắt</value></data>
+  <data name="No summary yet." xml:space="preserve"><value>Chưa có tóm tắt.</value></data>
+  <data name="View Details" xml:space="preserve"><value>Xem chi tiết</value></data>
+  <data name="Delete" xml:space="preserve"><value>Xóa</value></data>
+  <data name="Back to Documents" xml:space="preserve"><value>Quay lại tài liệu</value></data>
+  <data name="File Information" xml:space="preserve"><value>Thông tin file</value></data>
+  <data name="Open PDF" xml:space="preserve"><value>Mở PDF</value></data>
+  <data name="Extract Text" xml:space="preserve"><value>Trích xuất văn bản</value></data>
+  <data name="Generate Summary" xml:space="preserve"><value>Tạo tóm tắt</value></data>
+  <data name="Chat with PDF" xml:space="preserve"><value>Chat với PDF</value></data>
+  <data name="Extracted Text Preview" xml:space="preserve"><value>Xem trước văn bản trích xuất</value></data>
+  <data name="Writing Studio subtitle" xml:space="preserve"><value>Phân tích essay, literature review, thesis proposal hoặc research report.</value></data>
+  <data name="Analyze Essay" xml:space="preserve"><value>Phân tích bài viết</value></data>
+  <data name="Overall Score" xml:space="preserve"><value>Điểm tổng quan</value></data>
+  <data name="General Suggestions" xml:space="preserve"><value>Gợi ý chung</value></data>
+  <data name="Grammar / Wording" xml:space="preserve"><value>Ngữ pháp / diễn đạt</value></data>
+  <data name="Academic Tone" xml:space="preserve"><value>Giọng văn học thuật</value></data>
+  <data name="Thesis Statement" xml:space="preserve"><value>Luận điểm chính</value></data>
+  <data name="Structure" xml:space="preserve"><value>Cấu trúc</value></data>
+  <data name="Logic" xml:space="preserve"><value>Logic</value></data>
+  <data name="Citation" xml:space="preserve"><value>Trích dẫn</value></data>
+  <data name="Check Citation" xml:space="preserve"><value>Kiểm tra citation</value></data>
+  <data name="Check Similarity" xml:space="preserve"><value>Kiểm tra similarity</value></data>
+  <data name="Back to History" xml:space="preserve"><value>Quay lại lịch sử</value></data>
+  <data name="Citation Result" xml:space="preserve"><value>Kết quả citation</value></data>
+  <data name="Similarity Result" xml:space="preserve"><value>Kết quả similarity</value></data>
+  <data name="Build / Refresh Graph" xml:space="preserve"><value>Tạo / làm mới graph</value></data>
+  <data name="Legend" xml:space="preserve"><value>Chú thích</value></data>
+  <data name="Selected Node" xml:space="preserve"><value>Node đang chọn</value></data>
+  <data name="Document Info" xml:space="preserve"><value>Thông tin tài liệu</value></data>
+  <data name="Chat History" xml:space="preserve"><value>Lịch sử chat</value></data>
+  <data name="Ask a question" xml:space="preserve"><value>Đặt câu hỏi</value></data>
+  <data name="Ask" xml:space="preserve"><value>Hỏi</value></data>
+  <data name="No questions asked yet." xml:space="preserve"><value>Chưa có câu hỏi nào.</value></data>
+  <data name="PDF uploaded successfully." xml:space="preserve"><value>Upload PDF thành công.</value></data>
+  <data name="Text extracted successfully." xml:space="preserve"><value>Trích xuất văn bản thành công.</value></data>
+  <data name="Rule-based fallback summary generated successfully." xml:space="preserve"><value>Đã tạo tóm tắt bằng fallback rule-based.</value></data>
+  <data name="AI summary generated successfully." xml:space="preserve"><value>Đã tạo tóm tắt bằng AI.</value></data>
+  <data name="Document deleted successfully." xml:space="preserve"><value>Xóa tài liệu thành công.</value></data>
+  <data name="Essay analyzed successfully." xml:space="preserve"><value>Phân tích bài viết thành công.</value></data>
+  <data name="Citation check completed." xml:space="preserve"><value>Kiểm tra citation hoàn tất.</value></data>
+  <data name="Similarity check completed." xml:space="preserve"><value>Kiểm tra similarity hoàn tất.</value></data>
+  <data name="Knowledge graph built successfully." xml:space="preserve"><value>Tạo knowledge graph thành công.</value></data>
+  <data name="Question answered." xml:space="preserve"><value>Đã trả lời câu hỏi.</value></data>
+  <data name="Please extract text first before chatting with this PDF." xml:space="preserve"><value>Vui lòng trích xuất văn bản trước khi chat với PDF.</value></data>
+  <data name="Question cannot be empty." xml:space="preserve"><value>Câu hỏi không được để trống.</value></data>
+  <data name="Upload_SelectPdf" xml:space="preserve"><value>Vui lòng chọn file PDF để tải lên.</value></data>
+  <data name="Upload_OnlyPdfAllowed" xml:space="preserve"><value>Chỉ cho phép tải lên file PDF.</value></data>
+  <data name="Upload_PdfTooLarge" xml:space="preserve"><value>Dung lượng file PDF phải nhỏ hơn 10MB.</value></data>
+  <data name="Upload_InvalidPdfFile" xml:space="preserve"><value>File PDF không hợp lệ. Tệp tải lên không phải là PDF thật.</value></data>
+  <data name="Upload_SelectImage" xml:space="preserve"><value>Vui lòng chọn file ảnh để tải lên.</value></data>
+  <data name="Upload_OnlyImagesAllowed" xml:space="preserve"><value>Chỉ cho phép tải lên ảnh JPG, JPEG và PNG.</value></data>
+  <data name="Upload_ImageTooLarge" xml:space="preserve"><value>Dung lượng ảnh phải nhỏ hơn 5MB.</value></data>
+  <data name="Upload_InvalidImageFile" xml:space="preserve"><value>File ảnh không hợp lệ. Tệp tải lên không phải là ảnh thật.</value></data>
+  <data name="Upload_PdfHint" xml:space="preserve"><value>Định dạng cho phép: PDF. Dung lượng tối đa: 10MB.</value></data>
+  <data name="Upload_ImageHint" xml:space="preserve"><value>Định dạng cho phép: JPG, JPEG, PNG. Dung lượng tối đa: 5MB.</value></data>
+  <data name="Login_InvalidCredentials" xml:space="preserve"><value>Email hoặc mật khẩu không hợp lệ.</value></data>
+  <data name="Login_TooManyAttempts" xml:space="preserve"><value>Bạn đã đăng nhập sai quá nhiều lần. Vui lòng thử lại sau {0} phút.</value></data>
+  <data name="Login_SecurityNotice" xml:space="preserve"><value>Vì lý do bảo mật, đăng nhập sai nhiều lần có thể khiến tài khoản bị tạm khóa.</value></data>
+  <data name="Back to Dashboard" xml:space="preserve"><value>Quay lại Dashboard</value></data>
+  <data name="DevTools_Nav" xml:space="preserve"><value>Công cụ dev</value></data>
+  <data name="DevTools_Title" xml:space="preserve"><value>Development Tools</value></data>
+  <data name="DevTools_Description" xml:space="preserve"><value>Trang này chỉ khả dụng trong môi trường Development. Reset Demo Data sẽ xóa và tạo lại dữ liệu mẫu của tài khoản demo.</value></data>
+  <data name="DevTools_Warning" xml:space="preserve"><value>Reset Demo Data chỉ ảnh hưởng tới dữ liệu mẫu của demo@student.com. Chức năng này không xóa dữ liệu thật của user khác.</value></data>
+  <data name="DevTools_Environment" xml:space="preserve"><value>Môi trường</value></data>
+  <data name="DevTools_SeedEnabled" xml:space="preserve"><value>SeedData.Enabled</value></data>
+  <data name="DevTools_AllowReset" xml:space="preserve"><value>SeedData.AllowReset</value></data>
+  <data name="DevTools_DemoAccount" xml:space="preserve"><value>Tài khoản demo</value></data>
+  <data name="DevTools_ResetDemoData" xml:space="preserve"><value>Reset dữ liệu demo</value></data>
+  <data name="DevTools_ResetConfirm" xml:space="preserve"><value>Bạn có chắc muốn reset dữ liệu demo không?</value></data>
+  <data name="DevTools_ResetSuccess" xml:space="preserve"><value>Đã reset dữ liệu demo thành công.</value></data>
+  <data name="DevTools_ResetDisabled" xml:space="preserve"><value>Chức năng reset dữ liệu demo đang bị tắt.</value></data>
+  <data name="DevTools_ResetError" xml:space="preserve"><value>Không thể reset dữ liệu demo. Vui lòng kiểm tra log ứng dụng.</value></data>
+</root>
