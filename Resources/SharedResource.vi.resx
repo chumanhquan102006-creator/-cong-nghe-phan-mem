@@ -131,4 +131,15 @@
   <data name="DevTools_ResetSuccess" xml:space="preserve"><value>Đã reset dữ liệu demo thành công.</value></data>
   <data name="DevTools_ResetDisabled" xml:space="preserve"><value>Chức năng reset dữ liệu demo đang bị tắt.</value></data>
   <data name="DevTools_ResetError" xml:space="preserve"><value>Không thể reset dữ liệu demo. Vui lòng kiểm tra log ứng dụng.</value></data>
+  <data name="Change Password" xml:space="preserve"><value>Đổi mật khẩu</value></data>
+  <data name="Current Password" xml:space="preserve"><value>Mật khẩu hiện tại</value></data>
+  <data name="New Password" xml:space="preserve"><value>Mật khẩu mới</value></data>
+  <data name="Confirm Password" xml:space="preserve"><value>Xác nhận mật khẩu</value></data>
+  <data name="ChangePassword_Success" xml:space="preserve"><value>Đổi mật khẩu thành công.</value></data>
+  <data name="ChangePassword_CurrentPasswordIncorrect" xml:space="preserve"><value>Mật khẩu hiện tại không đúng.</value></data>
+  <data name="ChangePassword_PasswordsDoNotMatch" xml:space="preserve"><value>Mật khẩu xác nhận không khớp.</value></data>
+  <data name="CurrentPasswordRequired" xml:space="preserve"><value>Vui lòng nhập mật khẩu hiện tại.</value></data>
+  <data name="NewPasswordRequired" xml:space="preserve"><value>Vui lòng nhập mật khẩu mới.</value></data>
+  <data name="ConfirmPasswordRequired" xml:space="preserve"><value>Vui lòng xác nhận mật khẩu mới.</value></data>
+  <data name="NewPasswordMinLength" xml:space="preserve"><value>Mật khẩu mới phải có ít nhất 8 ký tự.</value></data>
 </root>
