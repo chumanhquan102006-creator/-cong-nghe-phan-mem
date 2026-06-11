@@ -121,6 +121,50 @@ public class AccountController : Controller
     }
 
     [Authorize]
+    [HttpGet]
+    public IActionResult ChangePassword()
+    {
+        return View(new ChangePasswordViewModel());
+    }
+
+    [Authorize]
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            ReplaceLocalizedValidationMessages();
+            return View(model);
+        }
+
+        int userId = GetCurrentUserId();
+        if (userId <= 0)
+        {
+            return RedirectToAction(nameof(Login));
+        }
+
+        var user = await _context.Users.FirstOrDefaultAsync(item => item.Id == userId);
+        if (user == null)
+        {
+            return RedirectToAction(nameof(Login));
+        }
+
+        var verifyResult = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, model.CurrentPassword);
+        if (verifyResult == PasswordVerificationResult.Failed)
+        {
+            ModelState.AddModelError(nameof(model.CurrentPassword), _localizer["ChangePassword_CurrentPasswordIncorrect"]);
+            return View(model);
+        }
+
+        user.PasswordHash = _passwordHasher.HashPassword(user, model.NewPassword);
+        await _context.SaveChangesAsync();
+
+        TempData["SuccessMessage"] = _localizer["ChangePassword_Success"].Value;
+        return RedirectToAction(nameof(ChangePassword));
+    }
+
+    [Authorize]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Logout()
@@ -161,6 +205,42 @@ public class AccountController : Controller
     private string GetClientIpAddress()
     {
         return HttpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+    }
+
+    private int GetCurrentUserId()
+    {
+        string? claimValue = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (int.TryParse(claimValue, out int userId))
+        {
+            return userId;
+        }
+
+        return HttpContext.Session.GetInt32("UserId") ?? 0;
+    }
+
+    private void ReplaceLocalizedValidationMessages()
+    {
+        ReplaceValidationMessage(nameof(ChangePasswordViewModel.CurrentPassword), "CurrentPasswordRequired");
+        ReplaceValidationMessage(nameof(ChangePasswordViewModel.NewPassword), "NewPasswordRequired");
+        ReplaceValidationMessage(nameof(ChangePasswordViewModel.ConfirmPassword), "ConfirmPasswordRequired");
+        ReplaceValidationMessage(nameof(ChangePasswordViewModel.NewPassword), "NewPasswordMinLength");
+        ReplaceValidationMessage(nameof(ChangePasswordViewModel.ConfirmPassword), "ChangePassword_PasswordsDoNotMatch");
+    }
+
+    private void ReplaceValidationMessage(string key, string localizedKey)
+    {
+        if (!ModelState.TryGetValue(key, out var entry))
+        {
+            return;
+        }
+
+        for (int i = 0; i < entry.Errors.Count; i++)
+        {
+            if (entry.Errors[i].ErrorMessage == localizedKey)
+            {
+                entry.Errors[i] = new Microsoft.AspNetCore.Mvc.ModelBinding.ModelError(_localizer[localizedKey]);
+            }
+        }
     }
 
     private static string NormalizeEmail(string email)

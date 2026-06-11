@@ -131,4 +131,15 @@
   <data name="DevTools_ResetSuccess" xml:space="preserve"><value>Demo data has been reset successfully.</value></data>
   <data name="DevTools_ResetDisabled" xml:space="preserve"><value>Demo data reset is disabled.</value></data>
   <data name="DevTools_ResetError" xml:space="preserve"><value>Could not reset demo data. Please check the application logs.</value></data>
+  <data name="Change Password" xml:space="preserve"><value>Change Password</value></data>
+  <data name="Current Password" xml:space="preserve"><value>Current Password</value></data>
+  <data name="New Password" xml:space="preserve"><value>New Password</value></data>
+  <data name="Confirm Password" xml:space="preserve"><value>Confirm Password</value></data>
+  <data name="ChangePassword_Success" xml:space="preserve"><value>Password changed successfully.</value></data>
+  <data name="ChangePassword_CurrentPasswordIncorrect" xml:space="preserve"><value>Current password is incorrect.</value></data>
+  <data name="ChangePassword_PasswordsDoNotMatch" xml:space="preserve"><value>Passwords do not match.</value></data>
+  <data name="CurrentPasswordRequired" xml:space="preserve"><value>Current password is required.</value></data>
+  <data name="NewPasswordRequired" xml:space="preserve"><value>New password is required.</value></data>
+  <data name="ConfirmPasswordRequired" xml:space="preserve"><value>Confirm password is required.</value></data>
+  <data name="NewPasswordMinLength" xml:space="preserve"><value>New password must be at least 8 characters.</value></data>
 </root>
