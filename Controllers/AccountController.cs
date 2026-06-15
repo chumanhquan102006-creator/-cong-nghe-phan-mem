@@ -122,6 +122,42 @@ public class AccountController : Controller
 
     [Authorize]
     [HttpGet]
+    public async Task<IActionResult> Profile()
+    {
+        int userId = GetCurrentUserId();
+        if (userId <= 0)
+        {
+            return RedirectToAction(nameof(Login));
+        }
+
+        var model = await _context.Users
+            .AsNoTracking()
+            .Where(user => user.Id == userId)
+            .Select(user => new ProfileViewModel
+            {
+                FullName = user.FullName,
+                Email = user.Email,
+                Role = user.Role,
+                CreatedAt = user.CreatedAt,
+                TotalDocuments = _context.Documents.Count(document => document.UserId == user.Id),
+                TotalEssays = _context.Essays.Count(essay => essay.UserId == user.Id),
+                TotalOcrScans = _context.OCRScans.Count(scan => scan.UserId == user.Id),
+                TotalTextScans = _context.TextScans.Count(scan => scan.UserId == user.Id),
+                TotalWritingCoachSessions = _context.WritingCoachSessions.Count(session => session.UserId == user.Id),
+                TotalReferences = _context.ReferenceItems.Count(reference => reference.UserId == user.Id)
+            })
+            .FirstOrDefaultAsync();
+
+        if (model == null)
+        {
+            return RedirectToAction(nameof(Login));
+        }
+
+        return View(model);
+    }
+
+    [Authorize]
+    [HttpGet]
     public IActionResult ChangePassword()
     {
         return View(new ChangePasswordViewModel());

@@ -1,0 +1,92 @@
+@model AcademicAIAssistant.Models.ViewModels.ProfileViewModel
+@inject IStringLocalizer<SharedResource> Localizer
+
+@{
+    ViewData["Title"] = Localizer["Profile"];
+}
+
+<section class="row justify-content-center py-4">
+    <div class="col-lg-8">
+        <div class="page-header mb-4">
+            <h1 class="page-title">@Localizer["Profile"]</h1>
+            <p class="page-subtitle">@Localizer["Profile_Subtitle"]</p>
+        </div>
+
+        <div class="section-card mb-4">
+            <h2 class="h5 mb-3">@Localizer["Account Information"]</h2>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="feature-card h-100">
+                        <div class="text-muted small mb-1">@Localizer["Full Name"]</div>
+                        <div class="fw-semibold">@Model.FullName</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card h-100">
+                        <div class="text-muted small mb-1">@Localizer["Email"]</div>
+                        <div class="fw-semibold">@Model.Email</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card h-100">
+                        <div class="text-muted small mb-1">@Localizer["Role"]</div>
+                        <div class="fw-semibold">@Model.Role</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card h-100">
+                        <div class="text-muted small mb-1">@Localizer["Created Date"]</div>
+                        <div class="fw-semibold">@Model.CreatedAt.ToDisplayDateTime()</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card mb-4">
+            <h2 class="h5 mb-3">@Localizer["Account Summary"]</h2>
+            <div class="row g-3">
+                <div class="col-md-6 col-xl-4">
+                    <div class="stat-card">
+                        <span>@Localizer["Documents"]</span>
+                        <strong>@Model.TotalDocuments</strong>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-4">
+                    <div class="stat-card">
+                        <span>@Localizer["Essays"]</span>
+                        <strong>@Model.TotalEssays</strong>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-4">
+                    <div class="stat-card">
+                        <span>@Localizer["OCR Scans"]</span>
+                        <strong>@Model.TotalOcrScans</strong>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-4">
+                    <div class="stat-card">
+                        <span>@Localizer["Text Scans"]</span>
+                        <strong>@Model.TotalTextScans</strong>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-4">
+                    <div class="stat-card">
+                        <span>@Localizer["Writing Coach Sessions"]</span>
+                        <strong>@Model.TotalWritingCoachSessions</strong>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-4">
+                    <div class="stat-card">
+                        <span>@Localizer["References"]</span>
+                        <strong>@Model.TotalReferences</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex gap-2">
+            <a class="btn btn-primary" asp-controller="Account" asp-action="ChangePassword">@Localizer["Change Password"]</a>
+            <a class="btn btn-outline-secondary" asp-controller="Dashboard" asp-action="Index">@Localizer["Back to Dashboard"]</a>
+        </div>
+    </div>
+</section>
