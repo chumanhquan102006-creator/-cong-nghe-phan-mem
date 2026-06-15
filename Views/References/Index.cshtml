@@ -1,36 +1,35 @@
 @model List<AcademicAIAssistant.Models.ReferenceItem>
 @using AcademicAIAssistant.Models.ViewModels
-@using System.Globalization
+@inject IStringLocalizer<SharedResource> Localizer
 
 @{
-    bool isVi = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "vi";
     string search = ViewData["Search"] as string ?? string.Empty;
     string sourceType = ViewData["SourceType"] as string ?? string.Empty;
-    ViewData["Title"] = isVi ? "Tài liệu tham khảo" : "References";
+    ViewData["Title"] = Localizer["References"];
 }
 
 <section class="py-4">
     <div class="page-header">
         <div>
-            <h1 class="page-title">@(isVi ? "Tài liệu tham khảo" : "References")</h1>
-            <p class="page-subtitle">@(isVi ? "Quản lý nguồn và tạo citation APA/MLA cơ bản." : "Manage sources and generate basic APA/MLA citations.")</p>
+            <h1 class="page-title">@Localizer["References"]</h1>
+            <p class="page-subtitle">@Localizer["References subtitle"]</p>
         </div>
         <div class="d-flex flex-wrap gap-2">
-            <a class="btn btn-outline-secondary" asp-action="Export">Export</a>
-            <a class="btn btn-primary" asp-action="Create">@(isVi ? "Thêm nguồn" : "Create Reference")</a>
+            <a class="btn btn-outline-secondary" asp-action="Export">@Localizer["Export"]</a>
+            <a class="btn btn-primary" asp-action="Create">@Localizer["AddReference"]</a>
         </div>
     </div>
 
     <form method="get" class="section-card mb-3">
         <div class="row g-2 align-items-end">
             <div class="col-md-6">
-                <label class="form-label">Search</label>
-                <input name="search" value="@search" class="form-control" placeholder="Title or author" />
+                <label class="form-label">@Localizer["Search"]</label>
+                <input name="search" value="@search" class="form-control" placeholder="@Localizer["Title or author"]" />
             </div>
             <div class="col-md-4">
-                <label class="form-label">Source Type</label>
+                <label class="form-label">@Localizer["Source Type"]</label>
                 <select name="sourceType" class="form-select">
-                    <option value="">All</option>
+                    <option value="">@Localizer["All"]</option>
                     @foreach (string option in ReferenceItemFormViewModel.SourceTypeOptions)
                     {
                         <option value="@option" selected="@(sourceType == option)">@option</option>
@@ -38,18 +37,22 @@
                 </select>
             </div>
             <div class="col-md-2">
-                <button type="submit" class="btn btn-outline-primary w-100">Filter</button>
+                <button type="submit" class="btn btn-outline-primary w-100">@Localizer["Filter"]</button>
             </div>
         </div>
     </form>
 
     @if (!Model.Any())
     {
-        <div class="empty-state">
-            <h2 class="h5">@(isVi ? "Chưa có tài liệu tham khảo nào." : "No references saved yet.")</h2>
-            <p>@(isVi ? "Hãy thêm nguồn đầu tiên." : "Add your first source.")</p>
-            <a class="btn btn-primary" asp-action="Create">@(isVi ? "Thêm nguồn" : "Create Reference")</a>
-        </div>
+        <partial name="_EmptyState" view-data='new ViewDataDictionary(ViewData)
+        {
+            ["IconClass"] = "bi bi-bookmark-plus",
+            ["Title"] = Localizer["EmptyReferencesTitle"],
+            ["Description"] = Localizer["EmptyReferencesDescription"],
+            ["ActionText"] = Localizer["AddReference"],
+            ["ActionController"] = "References",
+            ["ActionAction"] = "Create"
+        }' />
     }
     else
     {
@@ -58,12 +61,12 @@
                 <table class="table align-middle">
                     <thead>
                         <tr>
-                            <th>Title</th>
-                            <th>Author</th>
-                            <th>Year</th>
-                            <th>Type</th>
-                            <th>APA Preview</th>
-                            <th class="text-end">Actions</th>
+                            <th>@Localizer["Title"]</th>
+                            <th>@Localizer["Author"]</th>
+                            <th>@Localizer["Year"]</th>
+                            <th>@Localizer["Type"]</th>
+                            <th>@Localizer["APA Preview"]</th>
+                            <th class="text-end">@Localizer["Actions"]</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,10 +79,10 @@
                                 <td><span class="badge text-bg-secondary">@item.SourceType</span></td>
                                 <td class="small">@TrimPreview(item.ApaReference)</td>
                                 <td class="text-end">
-                                    <a class="btn btn-sm btn-outline-primary" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                                    <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                                    <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline" onsubmit="return confirm('Delete this reference?');">
-                                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                    <a class="btn btn-sm btn-outline-primary" asp-action="Details" asp-route-id="@item.Id">@Localizer["Details"]</a>
+                                    <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">@Localizer["Edit"]</a>
+                                    <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline" onsubmit="return confirm('@Localizer["Delete Reference Confirm"]');">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">@Localizer["Delete"]</button>
                                     </form>
                                 </td>
                             </tr>

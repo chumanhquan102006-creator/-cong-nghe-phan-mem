@@ -1,23 +1,23 @@
 @model AcademicAIAssistant.Models.ViewModels.ReferenceItemFormViewModel
-@using System.Globalization
+@inject IStringLocalizer<SharedResource> Localizer
 
 @{
-    bool isVi = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "vi";
-    ViewData["Title"] = isVi ? "Thêm tài liệu tham khảo" : "Create Reference";
+    bool isVi = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "vi";
+    ViewData["Title"] = Localizer["Create Reference"];
 }
 
 <section class="py-4">
     <div class="page-header">
         <div>
-            <h1 class="page-title">@(isVi ? "Thêm tài liệu tham khảo" : "Create Reference")</h1>
-            <p class="page-subtitle">@(isVi ? "Nhập thông tin nguồn để tạo APA/MLA." : "Enter source information to generate APA/MLA citations.")</p>
+            <h1 class="page-title">@Localizer["Create Reference"]</h1>
+            <p class="page-subtitle">@Localizer["Create Reference subtitle"]</p>
         </div>
-        <a class="btn btn-outline-secondary" asp-action="Index">Back to References</a>
+        <a class="btn btn-outline-secondary" asp-action="Index">@Localizer["Back to References"]</a>
     </div>
 
-    <form asp-action="Create" method="post" class="section-card">
+    <form asp-action="Create" method="post" class="section-card js-loading-form">
         <partial name="_ReferenceForm" model="Model" />
-        <button type="submit" class="btn btn-primary mt-3">@(isVi ? "Lưu và tạo citation" : "Save Reference")</button>
+        <button type="submit" class="btn btn-primary mt-3" data-loading-text="@Localizer["Generating"]">@(isVi ? "Lưu và tạo citation" : Localizer["Save Reference"].Value)</button>
     </form>
 </section>
 

@@ -1,27 +1,30 @@
 @model List<AcademicAIAssistant.Models.TextScan>
-@using System.Globalization
+@inject IStringLocalizer<SharedResource> Localizer
 
 @{
-    bool isVi = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "vi";
-    ViewData["Title"] = isVi ? "Lịch sử quét văn bản" : "Text Scan History";
+    ViewData["Title"] = Localizer["Text Scan History"];
 }
 
 <section class="py-4">
     <div class="page-header">
         <div>
-            <h1 class="page-title">@(isVi ? "Lịch sử quét văn bản" : "Text Scan History")</h1>
-            <p class="page-subtitle">@(isVi ? "Xem lại các lần kiểm tra độ tương đồng nội bộ." : "Review previous internal similarity scans.")</p>
+            <h1 class="page-title">@Localizer["Text Scan History"]</h1>
+            <p class="page-subtitle">@Localizer["Text Scan History subtitle"]</p>
         </div>
-        <a class="btn btn-primary" asp-action="Index">@(isVi ? "Quét mới" : "New Scan")</a>
+        <a class="btn btn-primary" asp-action="Index">@Localizer["StartTextScan"]</a>
     </div>
 
     @if (!Model.Any())
     {
-        <div class="empty-state">
-            <h2 class="h5">@(isVi ? "Chưa có lần quét văn bản nào." : "No text scans yet.")</h2>
-            <p>@(isVi ? "Hãy dán văn bản để kiểm tra độ tương đồng nội bộ." : "Paste your text to check internal similarity.")</p>
-            <a class="btn btn-primary" asp-action="Index">@(isVi ? "Bắt đầu" : "Start")</a>
-        </div>
+        <partial name="_EmptyState" view-data='new ViewDataDictionary(ViewData)
+        {
+            ["IconClass"] = "bi bi-file-earmark-text",
+            ["Title"] = Localizer["EmptyTextScansTitle"],
+            ["Description"] = Localizer["EmptyTextScansDescription"],
+            ["ActionText"] = Localizer["StartTextScan"],
+            ["ActionController"] = "TextScan",
+            ["ActionAction"] = "Index"
+        }' />
     }
     else
     {
@@ -30,12 +33,12 @@
                 <table class="table align-middle">
                     <thead>
                         <tr>
-                            <th>Title</th>
-                            <th>Words</th>
-                            <th>Score</th>
-                            <th>Risk</th>
-                            <th>Created</th>
-                            <th class="text-end">Actions</th>
+                            <th>@Localizer["Title"]</th>
+                            <th>@Localizer["Words"]</th>
+                            <th>@Localizer["Score"]</th>
+                            <th>@Localizer["Risk"]</th>
+                            <th>@Localizer["Created"]</th>
+                            <th class="text-end">@Localizer["Actions"]</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,12 +48,12 @@
                                 <td class="fw-semibold">@scan.Title</td>
                                 <td>@scan.WordCount</td>
                                 <td>@scan.OverallSimilarityScore.ToString("0.##")%</td>
-                                <td><span class="badge @GetRiskBadge(scan.RiskLevel)">@GetRiskLabel(scan.RiskLevel, isVi)</span></td>
-                                <td>@scan.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                                <td><span class="badge @GetRiskBadge(scan.RiskLevel)">@GetRiskLabel(scan.RiskLevel)</span></td>
+                                <td>@scan.CreatedAt.ToDisplayDateTime()</td>
                                 <td class="text-end">
-                                    <a class="btn btn-sm btn-outline-primary" asp-action="Result" asp-route-id="@scan.Id">View Result</a>
-                                    <form asp-action="Delete" asp-route-id="@scan.Id" method="post" class="d-inline" onsubmit="return confirm('Delete this text scan?');">
-                                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                    <a class="btn btn-sm btn-outline-primary" asp-action="Result" asp-route-id="@scan.Id">@Localizer["View Result"]</a>
+                                    <form asp-action="Delete" asp-route-id="@scan.Id" method="post" class="d-inline" onsubmit="return confirm('@Localizer["Delete Text Scan Confirm"]');">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">@Localizer["Delete"]</button>
                                     </form>
                                 </td>
                             </tr>
@@ -73,18 +76,13 @@
         };
     }
 
-    private static string GetRiskLabel(string riskLevel, bool isVi)
+    private string GetRiskLabel(string riskLevel)
     {
-        if (!isVi)
-        {
-            return riskLevel;
-        }
-
         return riskLevel switch
         {
-            "High" => "Cao",
-            "Medium" => "Trung bình",
-            _ => "Thấp"
+            "High" => Localizer["High"],
+            "Medium" => Localizer["Medium"],
+            _ => Localizer["Low"]
         };
     }
 }

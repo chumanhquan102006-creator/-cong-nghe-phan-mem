@@ -14,7 +14,7 @@
         <a class="btn btn-outline-secondary" asp-action="History">@Localizer["Writing History"]</a>
     </div>
 
-    <form asp-action="Analyze" method="post" class="section-card">
+    <form asp-action="Analyze" method="post" class="section-card js-loading-form">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="row g-3">
@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary mt-3">@Localizer["Analyze Essay"]</button>
+        <button type="submit" class="btn btn-primary mt-3" data-loading-text="@Localizer["Analyzing"]">@Localizer["Analyze Essay"]</button>
     </form>
 </section>
 

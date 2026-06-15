@@ -1,47 +1,41 @@
 @model AcademicAIAssistant.Models.ViewModels.TextScanInputViewModel
-@using System.Globalization
+@inject IStringLocalizer<SharedResource> Localizer
 
 @{
-    bool isVi = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "vi";
-    ViewData["Title"] = isVi ? "Quét văn bản" : "Text Similarity Scan";
+    bool isVi = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "vi";
+    ViewData["Title"] = Localizer["Text Similarity Scan"];
 }
 
 <section class="py-4">
     <div class="page-header">
         <div>
-            <h1 class="page-title">@(isVi ? "Quét văn bản" : "Text Similarity Scan")</h1>
-            <p class="page-subtitle">
-                @(isVi
-                    ? "Kiểm tra độ tương đồng nội bộ với tài liệu, bài viết và OCR scan của chính bạn."
-                    : "Check internal similarity against your uploaded documents, previous essays, and OCR scans.")
-            </p>
+            <h1 class="page-title">@Localizer["Text Similarity Scan"]</h1>
+            <p class="page-subtitle">@Localizer["Text Similarity Scan subtitle"]</p>
         </div>
-        <a class="btn btn-outline-secondary" asp-action="History">@(isVi ? "Lịch sử" : "History")</a>
+        <a class="btn btn-outline-secondary" asp-action="History">@Localizer["History"]</a>
     </div>
 
     <div class="alert alert-info">
-        @(isVi
-            ? "Tính năng này chỉ kiểm tra độ tương đồng với tài liệu, bài viết và văn bản OCR trong hệ thống của bạn. Hệ thống không quét Internet."
-            : "This feature checks similarity against your uploaded documents, previous essays, and OCR scans only. It does not scan the Internet.")
+        @Localizer["Text Scan Info Notice"]
     </div>
 
-    <form asp-action="Scan" method="post" class="section-card">
+    <form asp-action="Scan" method="post" class="section-card js-loading-form">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="mb-3">
-            <label asp-for="Title" class="form-label">@(isVi ? "Tiêu đề" : "Title")</label>
-            <input asp-for="Title" class="form-control" placeholder="Draft similarity scan" />
+            <label asp-for="Title" class="form-label">@Localizer["Title"]</label>
+            <input asp-for="Title" class="form-control" placeholder="@Localizer["Text Scan Title Placeholder"]" />
             <span asp-validation-for="Title" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
-            <label asp-for="InputText" class="form-label">@(isVi ? "Văn bản cần kiểm tra" : "Text to scan")</label>
+            <label asp-for="InputText" class="form-label">@Localizer["Text to scan"]</label>
             <textarea asp-for="InputText" class="form-control" rows="16"></textarea>
             <span asp-validation-for="InputText" class="text-danger"></span>
-            <div class="form-text">@(isVi ? "Nhập tối thiểu 50 từ để có kết quả có ý nghĩa." : "Enter at least 50 words for a meaningful scan.")</div>
+            <div class="form-text">@Localizer["Text Scan Minimum Words Help"]</div>
         </div>
 
-        <button type="submit" class="btn btn-primary">@(isVi ? "Quét văn bản" : "Scan Text")</button>
+        <button type="submit" class="btn btn-primary" data-loading-text="@Localizer["Scanning"]">@Localizer["Scan Text"]</button>
     </form>
 </section>
 

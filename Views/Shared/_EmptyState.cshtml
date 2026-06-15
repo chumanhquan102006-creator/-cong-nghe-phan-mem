@@ -1,0 +1,25 @@
+@{
+    string iconClass = ViewData["IconClass"] as string ?? "bi bi-inbox";
+    string title = ViewData["Title"] as string ?? string.Empty;
+    string description = ViewData["Description"] as string ?? string.Empty;
+    string? actionText = ViewData["ActionText"] as string;
+    string? actionController = ViewData["ActionController"] as string;
+    string? actionAction = ViewData["ActionAction"] as string;
+}
+
+<div class="empty-state">
+    <div class="empty-state-icon mb-3">
+        <i class="@iconClass"></i>
+    </div>
+    <h2 class="h5 mb-2">@title</h2>
+    <p class="mb-0 text-muted">@description</p>
+
+    @if (!string.IsNullOrWhiteSpace(actionText) &&
+         !string.IsNullOrWhiteSpace(actionController) &&
+         !string.IsNullOrWhiteSpace(actionAction))
+    {
+        <div class="mt-3">
+            <a class="btn btn-primary" asp-controller="@actionController" asp-action="@actionAction">@actionText</a>
+        </div>
+    }
+</div>

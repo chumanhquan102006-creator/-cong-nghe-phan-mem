@@ -9,14 +9,22 @@
     <div class="page-header">
         <div>
             <h1 class="page-title">@Localizer["Writing History"]</h1>
-            <p class="page-subtitle">Review essays you have analyzed.</p>
+            <p class="page-subtitle">@Localizer["Writing History subtitle"]</p>
         </div>
         <a class="btn btn-primary" asp-action="Index">@Localizer["Analyze Essay"]</a>
     </div>
 
     @if (!Model.Any())
     {
-        <div class="empty-state">No essays analyzed yet.</div>
+        <partial name="_EmptyState" view-data='new ViewDataDictionary(ViewData)
+        {
+            ["IconClass"] = "bi bi-journal-text",
+            ["Title"] = Localizer["EmptyEssaysTitle"],
+            ["Description"] = Localizer["EmptyEssaysDescription"],
+            ["ActionText"] = Localizer["StartWriting"],
+            ["ActionController"] = "Writing",
+            ["ActionAction"] = "Index"
+        }' />
     }
     else
     {
@@ -25,9 +33,9 @@
                 <thead class="table-light">
                     <tr>
                         <th>@Localizer["Title"]</th>
-                        <th>Essay Type</th>
-                        <th>Word Count</th>
-                        <th>Created At</th>
+                        <th>@Localizer["Essay Type"]</th>
+                        <th>@Localizer["Word Count"]</th>
+                        <th>@Localizer["Created At"]</th>
                         <th class="text-end">@Localizer["Actions"]</th>
                     </tr>
                 </thead>
@@ -38,7 +46,7 @@
                             <td>@essay.Title</td>
                             <td>@essay.EssayType</td>
                             <td>@essay.WordCount</td>
-                            <td>@essay.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                            <td>@essay.CreatedAt.ToDisplayDateTime()</td>
                             <td class="text-end">
                                 <a class="btn btn-sm btn-outline-primary" asp-action="Details" asp-route-id="@essay.Id">@Localizer["View Details"]</a>
                             </td>
