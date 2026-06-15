@@ -84,7 +84,7 @@
                                     <p class="mb-0">@message.SourceSnippet</p>
                                 </div>
                             }
-                            <small class="text-muted">@message.CreatedAt.ToString("yyyy-MM-dd HH:mm")</small>
+                            <small class="text-muted">@message.CreatedAt.ToDisplayDateTime()</small>
                         </div>
                     }
                 }

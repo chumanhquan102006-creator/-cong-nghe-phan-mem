@@ -1,55 +1,54 @@
 @model AcademicAIAssistant.Models.WritingCoachSession
-@using System.Globalization
+@inject IStringLocalizer<SharedResource> Localizer
 
 @{
-    bool isVi = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "vi";
     bool hasResponse = !string.IsNullOrWhiteSpace(Model.AIResponse);
-    ViewData["Title"] = isVi ? "Chi tiết trợ lý viết luận" : "Writing Coach Details";
+    ViewData["Title"] = Localizer["Writing Coach Details"];
 }
 
 <section class="py-4">
     <div class="page-header">
         <div>
-            <h1 class="page-title">@(isVi ? "Chi tiết trợ lý viết luận" : "Writing Coach Details")</h1>
+            <h1 class="page-title">@Localizer["Writing Coach Details"]</h1>
             <p class="page-subtitle">@Model.Topic</p>
         </div>
-        <a class="btn btn-outline-secondary" asp-action="History">@(isVi ? "Về lịch sử" : "Back to History")</a>
+        <a class="btn btn-outline-secondary" asp-action="History">@Localizer["Back to History"]</a>
     </div>
 
     <div class="row g-4">
         <div class="col-lg-4">
             <div class="section-card">
-                <h2 class="h5">@(isVi ? "Thông tin phiên" : "Session Info")</h2>
+                <h2 class="h5">@Localizer["Session Info"]</h2>
                 <dl class="row mb-0">
-                    <dt class="col-sm-5">Mode</dt>
+                    <dt class="col-sm-5">@Localizer["Mode"]</dt>
                     <dd class="col-sm-7"><span class="badge text-bg-primary status-badge">@Model.Mode</span></dd>
 
-                    <dt class="col-sm-5">Topic</dt>
+                    <dt class="col-sm-5">@Localizer["Topic"]</dt>
                     <dd class="col-sm-7">@Model.Topic</dd>
 
-                    <dt class="col-sm-5">Essay Type</dt>
+                    <dt class="col-sm-5">@Localizer["Essay Type"]</dt>
                     <dd class="col-sm-7">@Model.EssayType</dd>
 
-                    <dt class="col-sm-5">Language</dt>
-                    <dd class="col-sm-7">@(Model.Language == "vi" ? "Vietnamese" : "English")</dd>
+                    <dt class="col-sm-5">@Localizer["Language"]</dt>
+                    <dd class="col-sm-7">@(Model.Language == "vi" ? Localizer["Vietnamese"] : Localizer["English"])</dd>
 
-                    <dt class="col-sm-5">Created</dt>
-                    <dd class="col-sm-7">@Model.CreatedAt.ToString("yyyy-MM-dd HH:mm")</dd>
+                    <dt class="col-sm-5">@Localizer["Created"]</dt>
+                    <dd class="col-sm-7">@Model.CreatedAt.ToDisplayDateTime()</dd>
                 </dl>
             </div>
 
             @if (!string.IsNullOrWhiteSpace(Model.ThesisStatement) || !string.IsNullOrWhiteSpace(Model.UserInput))
             {
                 <div class="section-card mt-3">
-                    <h2 class="h5">@(isVi ? "Input của bạn" : "Your Input")</h2>
+                    <h2 class="h5">@Localizer["Your Input"]</h2>
                     @if (!string.IsNullOrWhiteSpace(Model.ThesisStatement))
                     {
-                        <p class="fw-semibold mb-1">Thesis</p>
+                        <p class="fw-semibold mb-1">@Localizer["Thesis"]</p>
                         <p class="text-muted">@Model.ThesisStatement</p>
                     }
                     @if (!string.IsNullOrWhiteSpace(Model.UserInput))
                     {
-                        <p class="fw-semibold mb-1">Instructions</p>
+                        <p class="fw-semibold mb-1">@Localizer["Instructions"]</p>
                         <p class="text-muted">@Model.UserInput</p>
                     }
                 </div>
@@ -59,14 +58,14 @@
         <div class="col-lg-8">
             <div class="section-card">
                 <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
-                    <h2 class="h5 mb-0">@(isVi ? "Kết quả" : "Response")</h2>
+                    <h2 class="h5 mb-0">@Localizer["Response"]</h2>
                     <div class="d-flex flex-wrap gap-2">
                         <button id="copyResponseButton" type="button" class="btn btn-outline-primary btn-sm" @(hasResponse ? "" : "disabled")>
-                            @(isVi ? "Copy" : "Copy Response")
+                            @Localizer["Copy Response"]
                         </button>
                         <form asp-action="SendToWriting" asp-route-id="@Model.Id" method="post">
                             <button type="submit" class="btn btn-primary btn-sm" @(hasResponse ? "" : "disabled")>
-                                @(isVi ? "Gửi sang Writing Studio" : "Send to Writing Studio")
+                                @Localizer["Send to Writing Studio"]
                             </button>
                         </form>
                     </div>
@@ -79,17 +78,17 @@
                 else
                 {
                     <div class="empty-state">
-                        <p>@(isVi ? "Chưa có nội dung phản hồi." : "No response content available.")</p>
+                        <p>@Localizer["No response content available."]</p>
                     </div>
                     <textarea id="coachResponse" class="d-none"></textarea>
                 }
             </div>
 
             <div class="d-flex flex-wrap gap-2 mt-3">
-                <a class="btn btn-outline-secondary" asp-action="Index">@(isVi ? "Tạo mới" : "Back to Writing Coach")</a>
-                <a class="btn btn-outline-secondary" asp-action="History">@(isVi ? "Lịch sử" : "Back to History")</a>
-                <form asp-action="Delete" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('Delete this writing coach session?');">
-                    <button type="submit" class="btn btn-danger">@(isVi ? "Xóa" : "Delete")</button>
+                <a class="btn btn-outline-secondary" asp-action="Index">@Localizer["Back to Writing Coach"]</a>
+                <a class="btn btn-outline-secondary" asp-action="History">@Localizer["Back to History"]</a>
+                <form asp-action="Delete" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('@Localizer["Delete Writing Coach Session Confirm"]');">
+                    <button type="submit" class="btn btn-danger">@Localizer["Delete"]</button>
                 </form>
             </div>
         </div>
@@ -105,13 +104,13 @@
             copyButton.addEventListener('click', async () => {
                 const text = responseText.value;
                 if (!text.trim()) {
-                    alert('No response available to copy.');
+                    alert('@Localizer["No response available to copy."]');
                     return;
                 }
 
                 await navigator.clipboard.writeText(text);
-                copyButton.textContent = 'Copied';
-                setTimeout(() => copyButton.textContent = '@(isVi ? "Copy" : "Copy Response")', 1500);
+                copyButton.textContent = '@Localizer["Copied"]';
+                setTimeout(() => copyButton.textContent = '@Localizer["Copy Response"]', 1500);
             });
         }
     </script>

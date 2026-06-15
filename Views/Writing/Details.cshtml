@@ -31,7 +31,7 @@
                 <div class="stat-card">
                     <h2 class="h6">@Localizer["Overall Score"]</h2>
                     <p class="display-5 mb-0">@report.OverallScore</p>
-                    <small class="text-muted">Generated at @report.CreatedAt.ToString("yyyy-MM-dd HH:mm")</small>
+                    <small class="text-muted">Generated at @report.CreatedAt.ToDisplayDateTime()</small>
                 </div>
             </div>
             <div class="col-md-8">

@@ -9,7 +9,7 @@
     <div class="page-header">
         <div>
             <h1 class="page-title">@Localizer["Similarity Result"]</h1>
-            <p class="page-subtitle">@Model.Essay?.Title - Checked at @Model.CheckedAt.ToString("yyyy-MM-dd HH:mm")</p>
+            <p class="page-subtitle">@Model.Essay?.Title - Checked at @Model.CheckedAt.ToDisplayDateTime()</p>
         </div>
         <a class="btn btn-outline-secondary" asp-controller="Writing" asp-action="Details" asp-route-id="@Model.EssayId">Back to Essay</a>
     </div>

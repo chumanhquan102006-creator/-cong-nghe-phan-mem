@@ -142,4 +142,163 @@
   <data name="NewPasswordRequired" xml:space="preserve"><value>Vui lòng nhập mật khẩu mới.</value></data>
   <data name="ConfirmPasswordRequired" xml:space="preserve"><value>Vui lòng xác nhận mật khẩu mới.</value></data>
   <data name="NewPasswordMinLength" xml:space="preserve"><value>Mật khẩu mới phải có ít nhất 8 ký tự.</value></data>
+  <data name="Profile" xml:space="preserve"><value>Hồ sơ</value></data>
+  <data name="Profile_Subtitle" xml:space="preserve"><value>Xem thông tin tài khoản và tóm tắt hoạt động của bạn.</value></data>
+  <data name="Account Information" xml:space="preserve"><value>Thông tin tài khoản</value></data>
+  <data name="Full Name" xml:space="preserve"><value>Họ và tên</value></data>
+  <data name="Role" xml:space="preserve"><value>Vai trò</value></data>
+  <data name="Created Date" xml:space="preserve"><value>Ngày tạo</value></data>
+  <data name="Account Summary" xml:space="preserve"><value>Tóm tắt tài khoản</value></data>
+  <data name="OCR Scans" xml:space="preserve"><value>OCR Scans</value></data>
+  <data name="Text Scans" xml:space="preserve"><value>Text Scans</value></data>
+  <data name="Writing Coach Sessions" xml:space="preserve"><value>Phiên Writing Coach</value></data>
+  <data name="References" xml:space="preserve"><value>Tài liệu tham khảo</value></data>
+  <data name="EmptyDocumentsTitle" xml:space="preserve"><value>Bạn chưa có tài liệu nào.</value></data>
+  <data name="EmptyDocumentsDescription" xml:space="preserve"><value>Tải lên PDF đầu tiên để bắt đầu.</value></data>
+  <data name="UploadFirstPdf" xml:space="preserve"><value>Tải lên PDF</value></data>
+  <data name="Writing History subtitle" xml:space="preserve"><value>Xem lại các bài viết bạn đã phân tích.</value></data>
+  <data name="EmptyEssaysTitle" xml:space="preserve"><value>Bạn chưa có bài viết nào.</value></data>
+  <data name="EmptyEssaysDescription" xml:space="preserve"><value>Bắt đầu viết bài luận đầu tiên để nhận phản hồi học thuật.</value></data>
+  <data name="StartWriting" xml:space="preserve"><value>Bắt đầu viết</value></data>
+  <data name="Essay Type" xml:space="preserve"><value>Loại bài viết</value></data>
+  <data name="Word Count" xml:space="preserve"><value>Số từ</value></data>
+  <data name="Created At" xml:space="preserve"><value>Ngày tạo</value></data>
+  <data name="OCR History" xml:space="preserve"><value>Lịch sử OCR</value></data>
+  <data name="OCR History subtitle" xml:space="preserve"><value>Xem lại các ảnh đã quét và tái sử dụng văn bản trích xuất.</value></data>
+  <data name="EmptyOcrTitle" xml:space="preserve"><value>Bạn chưa có bản quét OCR nào.</value></data>
+  <data name="EmptyOcrDescription" xml:space="preserve"><value>Tải lên ảnh có chữ để trích xuất nội dung.</value></data>
+  <data name="StartOcrScan" xml:space="preserve"><value>Quét OCR</value></data>
+  <data name="File" xml:space="preserve"><value>File</value></data>
+  <data name="Text Length" xml:space="preserve"><value>Độ dài văn bản</value></data>
+  <data name="Created" xml:space="preserve"><value>Ngày tạo</value></data>
+  <data name="English" xml:space="preserve"><value>Tiếng Anh</value></data>
+  <data name="Vietnamese" xml:space="preserve"><value>Tiếng Việt</value></data>
+  <data name="Characters" xml:space="preserve"><value>ký tự</value></data>
+  <data name="Delete OCR Scan Confirm" xml:space="preserve"><value>Xóa bản quét OCR này?</value></data>
+  <data name="Text Scan History" xml:space="preserve"><value>Lịch sử quét văn bản</value></data>
+  <data name="Text Scan History subtitle" xml:space="preserve"><value>Xem lại các lần kiểm tra độ tương đồng nội bộ.</value></data>
+  <data name="EmptyTextScansTitle" xml:space="preserve"><value>Bạn chưa có lần quét văn bản nào.</value></data>
+  <data name="EmptyTextScansDescription" xml:space="preserve"><value>Dán văn bản để kiểm tra độ tương đồng nội bộ.</value></data>
+  <data name="StartTextScan" xml:space="preserve"><value>Quét văn bản</value></data>
+  <data name="Words" xml:space="preserve"><value>Từ</value></data>
+  <data name="Score" xml:space="preserve"><value>Điểm</value></data>
+  <data name="Risk" xml:space="preserve"><value>Mức rủi ro</value></data>
+  <data name="Low" xml:space="preserve"><value>Thấp</value></data>
+  <data name="Medium" xml:space="preserve"><value>Trung bình</value></data>
+  <data name="High" xml:space="preserve"><value>Cao</value></data>
+  <data name="View Result" xml:space="preserve"><value>Xem kết quả</value></data>
+  <data name="Delete Text Scan Confirm" xml:space="preserve"><value>Xóa lần quét văn bản này?</value></data>
+  <data name="Writing Coach History" xml:space="preserve"><value>Lịch sử Writing Coach</value></data>
+  <data name="Writing Coach History subtitle" xml:space="preserve"><value>Xem lại các phiên hỗ trợ viết luận.</value></data>
+  <data name="EmptyWritingCoachTitle" xml:space="preserve"><value>Bạn chưa có phiên Writing Coach nào.</value></data>
+  <data name="EmptyWritingCoachDescription" xml:space="preserve"><value>Dùng AI Writing Coach để lên ý tưởng, tạo dàn ý hoặc cải thiện thesis.</value></data>
+  <data name="OpenWritingCoach" xml:space="preserve"><value>Mở Writing Coach</value></data>
+  <data name="Mode" xml:space="preserve"><value>Chế độ</value></data>
+  <data name="Topic" xml:space="preserve"><value>Chủ đề</value></data>
+  <data name="Delete Writing Coach Session Confirm" xml:space="preserve"><value>Xóa phiên Writing Coach này?</value></data>
+  <data name="References subtitle" xml:space="preserve"><value>Quản lý nguồn và tạo citation APA/MLA cơ bản.</value></data>
+  <data name="EmptyReferencesTitle" xml:space="preserve"><value>Bạn chưa có tài liệu tham khảo nào.</value></data>
+  <data name="EmptyReferencesDescription" xml:space="preserve"><value>Thêm nguồn tham khảo đầu tiên để tạo citation.</value></data>
+  <data name="AddReference" xml:space="preserve"><value>Thêm reference</value></data>
+  <data name="Export" xml:space="preserve"><value>Xuất</value></data>
+  <data name="Search" xml:space="preserve"><value>Tìm kiếm</value></data>
+  <data name="Title or author" xml:space="preserve"><value>Tiêu đề hoặc tác giả</value></data>
+  <data name="Source Type" xml:space="preserve"><value>Loại nguồn</value></data>
+  <data name="All" xml:space="preserve"><value>Tất cả</value></data>
+  <data name="Filter" xml:space="preserve"><value>Lọc</value></data>
+  <data name="Author" xml:space="preserve"><value>Tác giả</value></data>
+  <data name="Year" xml:space="preserve"><value>Năm</value></data>
+  <data name="Type" xml:space="preserve"><value>Loại</value></data>
+  <data name="APA Preview" xml:space="preserve"><value>Xem trước APA</value></data>
+  <data name="Details" xml:space="preserve"><value>Chi tiết</value></data>
+  <data name="Edit" xml:space="preserve"><value>Sửa</value></data>
+  <data name="Delete Reference Confirm" xml:space="preserve"><value>Xóa reference này?</value></data>
+  <data name="NoRecentActivitiesTitle" xml:space="preserve"><value>Chưa có hoạt động gần đây.</value></data>
+  <data name="NoRecentActivitiesDescription" xml:space="preserve"><value>Hãy bắt đầu bằng cách tải lên PDF hoặc phân tích bài viết.</value></data>
+  <data name="Document Uploaded" xml:space="preserve"><value>Đã tải lên tài liệu</value></data>
+  <data name="Essay Created" xml:space="preserve"><value>Đã tạo bài viết</value></data>
+  <data name="OCR Scan Created" xml:space="preserve"><value>Đã tạo bản quét OCR</value></data>
+  <data name="Text Scan Created" xml:space="preserve"><value>Đã tạo lần quét văn bản</value></data>
+  <data name="Writing Coach Session Created" xml:space="preserve"><value>Đã tạo phiên Writing Coach</value></data>
+  <data name="Reference Created" xml:space="preserve"><value>Đã tạo reference</value></data>
+  <data name="Processing" xml:space="preserve"><value>Đang xử lý...</value></data>
+  <data name="PleaseWait" xml:space="preserve"><value>Vui lòng chờ...</value></data>
+  <data name="Uploading" xml:space="preserve"><value>Đang tải lên...</value></data>
+  <data name="Analyzing" xml:space="preserve"><value>Đang phân tích...</value></data>
+  <data name="Scanning" xml:space="preserve"><value>Đang quét...</value></data>
+  <data name="Generating" xml:space="preserve"><value>Đang tạo...</value></data>
+  <data name="NotAvailable" xml:space="preserve"><value>Chưa có</value></data>
+  <data name="OCR Scanner" xml:space="preserve"><value>OCR Scanner</value></data>
+  <data name="OCR Scanner subtitle" xml:space="preserve"><value>Tải lên ảnh hoặc ảnh chụp màn hình có chứa chữ. Hệ thống sẽ trích xuất văn bản bằng OCR.</value></data>
+  <data name="OCR Title Placeholder" xml:space="preserve"><value>Ví dụ: Ảnh chụp ghi chú bài giảng</value></data>
+  <data name="Scan Image" xml:space="preserve"><value>Quét ảnh</value></data>
+  <data name="OCR Details" xml:space="preserve"><value>Chi tiết OCR</value></data>
+  <data name="OCR Details subtitle" xml:space="preserve"><value>Chi tiết bản quét OCR và văn bản đã trích xuất.</value></data>
+  <data name="Back to OCR History" xml:space="preserve"><value>Quay lại lịch sử OCR</value></data>
+  <data name="Image Information" xml:space="preserve"><value>Thông tin ảnh</value></data>
+  <data name="OCR Missing Image" xml:space="preserve"><value>Ảnh gốc không còn tồn tại trên server.</value></data>
+  <data name="Extracted Text" xml:space="preserve"><value>Văn bản trích xuất</value></data>
+  <data name="Copy Text" xml:space="preserve"><value>Sao chép văn bản</value></data>
+  <data name="Send to Writing Studio" xml:space="preserve"><value>Gửi sang Writing Studio</value></data>
+  <data name="Run Text Scan" xml:space="preserve"><value>Chạy Text Scan</value></data>
+  <data name="No readable text was detected." xml:space="preserve"><value>Không phát hiện được văn bản có thể đọc.</value></data>
+  <data name="No text available to copy." xml:space="preserve"><value>Không có văn bản để sao chép.</value></data>
+  <data name="Copied" xml:space="preserve"><value>Đã sao chép</value></data>
+  <data name="Text Similarity Scan" xml:space="preserve"><value>Quét độ tương đồng văn bản</value></data>
+  <data name="Text Similarity Scan subtitle" xml:space="preserve"><value>Kiểm tra độ tương đồng nội bộ với tài liệu, bài viết và OCR scan của chính bạn.</value></data>
+  <data name="Text Scan Info Notice" xml:space="preserve"><value>Tính năng này chỉ kiểm tra độ tương đồng với tài liệu, bài viết và văn bản OCR trong hệ thống của bạn. Hệ thống không quét Internet.</value></data>
+  <data name="Text Scan Title Placeholder" xml:space="preserve"><value>Bản nháp kiểm tra similarity</value></data>
+  <data name="Text to scan" xml:space="preserve"><value>Văn bản cần kiểm tra</value></data>
+  <data name="Text Scan Minimum Words Help" xml:space="preserve"><value>Nhập tối thiểu 50 từ để có kết quả có ý nghĩa.</value></data>
+  <data name="Scan Text" xml:space="preserve"><value>Quét văn bản</value></data>
+  <data name="History" xml:space="preserve"><value>Lịch sử</value></data>
+  <data name="Text Scan Result" xml:space="preserve"><value>Kết quả quét văn bản</value></data>
+  <data name="Text Scan Result subtitle" xml:space="preserve"><value>Kết quả kiểm tra độ tương đồng nội bộ.</value></data>
+  <data name="New Scan" xml:space="preserve"><value>Quét mới</value></data>
+  <data name="Text Scan Result Notice" xml:space="preserve"><value>Độ tương đồng không đồng nghĩa chắc chắn với đạo văn. Công cụ này chỉ phát hiện mức độ trùng lặp với dữ liệu nội bộ trong hệ thống.</value></data>
+  <data name="Similarity Score" xml:space="preserve"><value>Điểm tương đồng</value></data>
+  <data name="Risk Level" xml:space="preserve"><value>Mức rủi ro</value></data>
+  <data name="Suggestions" xml:space="preserve"><value>Gợi ý xử lý</value></data>
+  <data name="Input Text Preview" xml:space="preserve"><value>Xem trước văn bản đầu vào</value></data>
+  <data name="Matches" xml:space="preserve"><value>Đoạn tương đồng</value></data>
+  <data name="Input Segment" xml:space="preserve"><value>Đoạn đầu vào</value></data>
+  <data name="Matched Source Segment" xml:space="preserve"><value>Đoạn nguồn tương đồng</value></data>
+  <data name="No significant internal similarity found." xml:space="preserve"><value>Không phát hiện độ tương đồng nội bộ đáng kể.</value></data>
+  <data name="AI Writing Coach" xml:space="preserve"><value>AI Writing Coach</value></data>
+  <data name="AI Writing Coach subtitle" xml:space="preserve"><value>Nhận hỗ trợ lên ý tưởng, lập dàn ý, cải thiện thesis và xây dựng phản biện.</value></data>
+  <data name="Response Language" xml:space="preserve"><value>Ngôn ngữ phản hồi</value></data>
+  <data name="Thesis Statement / Main Claim" xml:space="preserve"><value>Thesis statement / luận điểm chính</value></data>
+  <data name="Additional Instructions" xml:space="preserve"><value>Yêu cầu bổ sung</value></data>
+  <data name="Additional Instructions Placeholder" xml:space="preserve"><value>Thêm bối cảnh, yêu cầu hoặc ý tưởng bạn đã có.</value></data>
+  <data name="Writing Coach Notice" xml:space="preserve"><value>Module này hướng dẫn tư duy và cấu trúc bài viết, không viết thay toàn bộ bài luận.</value></data>
+  <data name="Generate" xml:space="preserve"><value>Tạo gợi ý</value></data>
+  <data name="Writing Coach Details" xml:space="preserve"><value>Chi tiết Writing Coach</value></data>
+  <data name="Session Info" xml:space="preserve"><value>Thông tin phiên</value></data>
+  <data name="Your Input" xml:space="preserve"><value>Input của bạn</value></data>
+  <data name="Thesis" xml:space="preserve"><value>Thesis</value></data>
+  <data name="Instructions" xml:space="preserve"><value>Instructions</value></data>
+  <data name="Response" xml:space="preserve"><value>Kết quả</value></data>
+  <data name="Copy Response" xml:space="preserve"><value>Sao chép phản hồi</value></data>
+  <data name="No response content available." xml:space="preserve"><value>Chưa có nội dung phản hồi.</value></data>
+  <data name="No response available to copy." xml:space="preserve"><value>Không có phản hồi để sao chép.</value></data>
+  <data name="Back to Writing Coach" xml:space="preserve"><value>Quay lại Writing Coach</value></data>
+  <data name="Create Reference" xml:space="preserve"><value>Thêm tài liệu tham khảo</value></data>
+  <data name="Create Reference subtitle" xml:space="preserve"><value>Nhập thông tin nguồn để tạo APA/MLA citations.</value></data>
+  <data name="Back to References" xml:space="preserve"><value>Quay lại References</value></data>
+  <data name="Save Reference" xml:space="preserve"><value>Lưu reference</value></data>
+  <data name="Edit Reference" xml:space="preserve"><value>Sửa tài liệu tham khảo</value></data>
+  <data name="Edit Reference subtitle" xml:space="preserve"><value>Cập nhật thông tin và tạo lại APA/MLA citations.</value></data>
+  <data name="Update Reference" xml:space="preserve"><value>Cập nhật reference</value></data>
+  <data name="Reference Details" xml:space="preserve"><value>Chi tiết tài liệu tham khảo</value></data>
+  <data name="Source Information" xml:space="preserve"><value>Thông tin nguồn</value></data>
+  <data name="Journal / Publisher" xml:space="preserve"><value>Tạp chí / Nhà xuất bản</value></data>
+  <data name="Website" xml:space="preserve"><value>Website</value></data>
+  <data name="Pages" xml:space="preserve"><value>Trang</value></data>
+  <data name="Notes" xml:space="preserve"><value>Ghi chú</value></data>
+  <data name="Citation Output" xml:space="preserve"><value>Kết quả citation</value></data>
+  <data name="APA In-text Citation" xml:space="preserve"><value>APA In-text Citation</value></data>
+  <data name="APA Reference" xml:space="preserve"><value>APA Reference</value></data>
+  <data name="MLA In-text Citation" xml:space="preserve"><value>MLA In-text Citation</value></data>
+  <data name="MLA Reference" xml:space="preserve"><value>MLA Reference</value></data>
+  <data name="Copy" xml:space="preserve"><value>Sao chép</value></data>
 </root>
