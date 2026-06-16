@@ -4,11 +4,11 @@ namespace AcademicAIAssistant.Models.ViewModels;
 
 public class LoginViewModel
 {
-    [Required]
-    [EmailAddress]
+    [Required(ErrorMessage = "EmailRequired")]
+    [EmailAddress(ErrorMessage = "EmailInvalid")]
     public string Email { get; set; } = string.Empty;
 
-    [Required]
+    [Required(ErrorMessage = "PasswordRequired")]
     [DataType(DataType.Password)]
     public string Password { get; set; } = string.Empty;
 

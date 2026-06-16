@@ -14,6 +14,7 @@ namespace AcademicAIAssistant.Controllers;
 public class WritingController : Controller
 {
     private readonly AppDbContext _context;
+    private readonly IStringLocalizer<SharedResource> _localizer;
     private readonly WritingFeedbackService _writingFeedbackService;
     private readonly IAIService _aiService;
 
@@ -22,6 +23,7 @@ public class WritingController : Controller
         _context = context;
         _writingFeedbackService = writingFeedbackService;
         _aiService = aiService;
+        _localizer = localizer;
     }
 
     [HttpGet]
@@ -36,7 +38,7 @@ public class WritingController : Controller
 
             if (reference == null)
             {
-                TempData["ErrorMessage"] = "Reference not found or you do not have permission to access it.";
+                TempData["ErrorMessage"] = _localizer["ReferenceNotFound"].Value;
                 return View(new EssayAnalyzeViewModel());
             }
 
@@ -62,13 +64,13 @@ public class WritingController : Controller
 
             if (session == null)
             {
-                TempData["ErrorMessage"] = "Writing coach session not found or you do not have permission to access it.";
+                TempData["ErrorMessage"] = _localizer["WritingCoachSessionNotFound"].Value;
                 return View(new EssayAnalyzeViewModel());
             }
 
             if (string.IsNullOrWhiteSpace(session.AIResponse))
             {
-                TempData["WarningMessage"] = "No writing coach response available to send to Writing Studio.";
+                TempData["WarningMessage"] = _localizer["WritingCoachNoResponse"].Value;
                 return View(new EssayAnalyzeViewModel());
             }
 
@@ -89,13 +91,13 @@ public class WritingController : Controller
 
             if (scan == null)
             {
-                TempData["ErrorMessage"] = "OCR scan not found or you do not have permission to access it.";
+                TempData["ErrorMessage"] = _localizer["OcrScanNotFound"].Value;
                 return View(new EssayAnalyzeViewModel());
             }
 
             if (string.IsNullOrWhiteSpace(scan.ExtractedText))
             {
-                TempData["WarningMessage"] = "No extracted text available to send to Writing Studio.";
+                TempData["WarningMessage"] = _localizer["OcrNoExtractedText"].Value;
                 return View(new EssayAnalyzeViewModel());
             }
 
@@ -123,7 +125,7 @@ public class WritingController : Controller
     {
         if (!ModelState.IsValid)
         {
-            TempData["ErrorMessage"] = "Please complete the essay title, type, and content before analyzing.";
+            TempData["ErrorMessage"] = _localizer["EssayFieldsRequired"].Value;
             return View("Index", model);
         }
 
@@ -145,7 +147,7 @@ public class WritingController : Controller
 
         if (!TempData.ContainsKey("SuccessMessage") && !TempData.ContainsKey("WarningMessage"))
         {
-            TempData["SuccessMessage"] = "Essay analyzed successfully.";
+            TempData["SuccessMessage"] = _localizer["EssayAnalyzeSuccess"].Value;
         }
 
         return RedirectToAction(nameof(Details), new { id = essay.Id });
@@ -210,12 +212,12 @@ public class WritingController : Controller
         try
         {
             string aiFeedback = await _aiService.GenerateWritingFeedbackAsync(model.EssayType, model.Content, aiSetting);
-            TempData["SuccessMessage"] = "Essay analyzed with AI feedback.";
+            TempData["SuccessMessage"] = _localizer["EssayAnalyzeAiSuccess"].Value;
             return ParseAiFeedbackReport(aiFeedback);
         }
         catch
         {
-            TempData["WarningMessage"] = "AI feedback unavailable. Rule-based feedback generated.";
+            TempData["WarningMessage"] = _localizer["EssayAnalyzeFallback"].Value;
             return _writingFeedbackService.AnalyzeEssay(model.Title, model.EssayType, model.Content);
         }
     }
