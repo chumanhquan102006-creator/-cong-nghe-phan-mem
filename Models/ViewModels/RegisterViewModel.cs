@@ -4,24 +4,24 @@ namespace AcademicAIAssistant.Models.ViewModels;
 
 public class RegisterViewModel
 {
-    [Required]
-    [StringLength(100)]
+    [Required(ErrorMessage = "FullNameRequired")]
+    [StringLength(100, ErrorMessage = "FullNameMaxLength")]
     [Display(Name = "Full name")]
     public string FullName { get; set; } = string.Empty;
 
-    [Required]
-    [EmailAddress]
-    [StringLength(150)]
+    [Required(ErrorMessage = "EmailRequired")]
+    [EmailAddress(ErrorMessage = "EmailInvalid")]
+    [StringLength(150, ErrorMessage = "EmailMaxLength")]
     public string Email { get; set; } = string.Empty;
 
-    [Required]
-    [MinLength(6)]
+    [Required(ErrorMessage = "PasswordRequired")]
+    [MinLength(6, ErrorMessage = "PasswordMinLength")]
     [DataType(DataType.Password)]
     public string Password { get; set; } = string.Empty;
 
-    [Required]
+    [Required(ErrorMessage = "ConfirmPasswordRequired")]
     [DataType(DataType.Password)]
-    [Compare("Password", ErrorMessage = "Password and confirmation password do not match.")]
+    [Compare("Password", ErrorMessage = "Register_PasswordsDoNotMatch")]
     [Display(Name = "Confirm password")]
     public string ConfirmPassword { get; set; } = string.Empty;
 }

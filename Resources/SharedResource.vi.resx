@@ -142,4 +142,33 @@
   <data name="NewPasswordRequired" xml:space="preserve"><value>Vui lòng nhập mật khẩu mới.</value></data>
   <data name="ConfirmPasswordRequired" xml:space="preserve"><value>Vui lòng xác nhận mật khẩu mới.</value></data>
   <data name="NewPasswordMinLength" xml:space="preserve"><value>Mật khẩu mới phải có ít nhất 8 ký tự.</value></data>
+  
+  <data name="FullNameRequired" xml:space="preserve"><value>Vui lòng nhập họ và tên.</value></data>
+  <data name="FullNameMaxLength" xml:space="preserve"><value>Họ và tên không được vượt quá 100 ký tự.</value></data>
+  <data name="EmailRequired" xml:space="preserve"><value>Vui lòng nhập địa chỉ email.</value></data>
+  <data name="EmailInvalid" xml:space="preserve"><value>Địa chỉ email không hợp lệ.</value></data>
+  <data name="EmailMaxLength" xml:space="preserve"><value>Email không được vượt quá 150 ký tự.</value></data>
+  <data name="PasswordRequired" xml:space="preserve"><value>Vui lòng nhập mật khẩu.</value></data>
+  <data name="PasswordMinLength" xml:space="preserve"><value>Mật khẩu phải có ít nhất 6 ký tự.</value></data>
+  <data name="Register_PasswordsDoNotMatch" xml:space="preserve"><value>Mật khẩu xác nhận không khớp.</value></data>
+
+  <data name="PdfUploadSuccess" xml:space="preserve"><value>Tải lên tài liệu PDF thành công.</value></data>
+  <data name="PdfNotExists" xml:space="preserve"><value>Tập tin PDF không còn tồn tại trên hệ thống.</value></data>
+  <data name="TextExtractSuccess" xml:space="preserve"><value>Trích xuất văn bản thành công.</value></data>
+  <data name="ExtractTextBeforeSummary" xml:space="preserve"><value>Vui lòng trích xuất văn bản trước khi tạo bản tóm tắt.</value></data>
+  <data name="SummaryGeneratedAi" xml:space="preserve"><value>Bản tóm tắt đã được tạo bởi AI.</value></data>
+  <data name="SummaryGeneratedFallback" xml:space="preserve"><value>AI hiện không khả dụng. Đã tạo bản tóm tắt dựa trên quy tắc mặc định.</value></data>
+  <data name="DocumentDeleteSuccess" xml:space="preserve"><value>Xóa tài liệu thành công.</value></data>
+  <data name="OcrNoTextDetected" xml:space="preserve"><value>Không phát hiện thấy văn bản nào có thể đọc được trong ảnh.</value></data>
+  <data name="OcrScanSuccess" xml:space="preserve"><value>Quét ảnh OCR thành công.</value></data>
+  <data name="OcrDeleteSuccess" xml:space="preserve"><value>Xóa bản quét OCR thành công.</value></data>
+  <data name="ReferenceNotFound" xml:space="preserve"><value>Không tìm thấy tài liệu tham khảo hoặc bạn không có quyền truy cập.</value></data>
+  <data name="WritingCoachSessionNotFound" xml:space="preserve"><value>Không tìm thấy phiên hướng dẫn viết hoặc bạn không có quyền truy cập.</value></data>
+  <data name="WritingCoachNoResponse" xml:space="preserve"><value>Không có phản hồi nào từ trợ lý viết để chuyển sang Writing Studio.</value></data>
+  <data name="OcrScanNotFound" xml:space="preserve"><value>Không tìm thấy bản quét OCR hoặc bạn không có quyền truy cập.</value></data>
+  <data name="OcrNoExtractedText" xml:space="preserve"><value>Không có văn bản trích xuất nào khả dụng để chuyển sang Writing Studio.</value></data>
+  <data name="EssayFieldsRequired" xml:space="preserve"><value>Vui lòng điền đầy đủ tiêu đề, thể loại và nội dung bài luận trước khi phân tích.</value></data>
+  <data name="EssayAnalyzeSuccess" xml:space="preserve"><value>Phân tích bài luận thành công.</value></data>
+  <data name="EssayAnalyzeAiSuccess" xml:space="preserve"><value>Bài luận đã được phân tích với phản hồi từ AI.</value></data>
+  <data name="EssayAnalyzeFallback" xml:space="preserve"><value>Phản hồi từ AI hiện không khả dụng. Đã tạo phản hồi dựa trên quy tắc mặc định.</value></data>
 </root>
