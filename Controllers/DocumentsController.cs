@@ -72,7 +72,7 @@ public class DocumentsController : Controller
         if (!validationResult.IsValid)
         {
             string message = _localizer[validationResult.ErrorMessageKey];
-            TempData["ErrorMessage"] = message;
+            TempData["SuccessMessage"] = _localizer["PdfUploadSuccess"].Value;
             ModelState.AddModelError(nameof(model.File), message);
             return View(model);
         }
@@ -210,7 +210,7 @@ public class DocumentsController : Controller
 
         if (summary == "Not enough text to summarize.")
         {
-            TempData["ErrorMessage"] = summary;
+            TempData["ErrorMessage"] = _localizer["ExtractTextBeforeSummary"].Value;
         }
         else
         {

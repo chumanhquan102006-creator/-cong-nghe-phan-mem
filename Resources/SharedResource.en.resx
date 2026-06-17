@@ -4,373 +4,1192 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
-  <data name="Home" xml:space="preserve"><value>Home</value></data>
-  <data name="Dashboard" xml:space="preserve"><value>Dashboard</value></data>
-  <data name="Documents" xml:space="preserve"><value>Documents</value></data>
-  <data name="Writing Studio" xml:space="preserve"><value>Writing Studio</value></data>
-  <data name="Writing History" xml:space="preserve"><value>Writing History</value></data>
-  <data name="Knowledge Graph" xml:space="preserve"><value>Knowledge Graph</value></data>
-  <data name="Hello" xml:space="preserve"><value>Hello</value></data>
-  <data name="Logout" xml:space="preserve"><value>Logout</value></data>
-  <data name="Login" xml:space="preserve"><value>Login</value></data>
-  <data name="Register" xml:space="preserve"><value>Register</value></data>
-  <data name="Language" xml:space="preserve"><value>Language</value></data>
-  <data name="Get Started" xml:space="preserve"><value>Get Started</value></data>
-  <data name="View Documents" xml:space="preserve"><value>View Documents</value></data>
-  <data name="Academic AI Assistant Home Description" xml:space="preserve"><value>A student-focused workspace for reading research PDFs, writing academic drafts, checking citations, comparing similarity, and exploring knowledge links.</value></data>
-  <data name="Demo-ready modules" xml:space="preserve"><value>Demo-ready modules</value></data>
-  <data name="Demo-ready modules description" xml:space="preserve"><value>PDF library, rule-based analysis, citation checking, similarity checking, knowledge graph, and chat with PDF are organized in one MVC application.</value></data>
-  <data name="PDF Reading Assistant" xml:space="preserve"><value>PDF Reading Assistant</value></data>
-  <data name="PDF Reading Assistant description" xml:space="preserve"><value>Upload PDFs, extract text, generate summaries, and chat with document content.</value></data>
-  <data name="Writing Feedback Studio" xml:space="preserve"><value>Writing Feedback Studio</value></data>
-  <data name="Writing Feedback Studio description" xml:space="preserve"><value>Analyze essays for thesis, structure, tone, logic, citation, and overall score.</value></data>
-  <data name="Citation &amp; Similarity Checker" xml:space="preserve"><value>Citation &amp; Similarity Checker</value></data>
-  <data name="Citation &amp; Similarity Checker description" xml:space="preserve"><value>Check basic APA citation quality and compare essays with extracted documents.</value></data>
-  <data name="Knowledge Graph description" xml:space="preserve"><value>Visualize relationships between documents, essays, and extracted keywords.</value></data>
-  <data name="Welcome back" xml:space="preserve"><value>Welcome back</value></data>
-  <data name="Dashboard subtitle" xml:space="preserve"><value>Here is your academic reading and writing workspace.</value></data>
-  <data name="Upload PDF" xml:space="preserve"><value>Upload PDF</value></data>
-  <data name="New Writing Analysis" xml:space="preserve"><value>New Writing Analysis</value></data>
-  <data name="Uploaded PDFs" xml:space="preserve"><value>Uploaded PDFs</value></data>
-  <data name="Extracted PDFs" xml:space="preserve"><value>Extracted PDFs</value></data>
-  <data name="Summaries" xml:space="preserve"><value>Summaries</value></data>
-  <data name="Essays" xml:space="preserve"><value>Essays</value></data>
-  <data name="Feedback Reports" xml:space="preserve"><value>Feedback Reports</value></data>
-  <data name="Citation Checks" xml:space="preserve"><value>Citation Checks</value></data>
-  <data name="Similarity Checks" xml:space="preserve"><value>Similarity Checks</value></data>
-  <data name="Quick Actions" xml:space="preserve"><value>Quick Actions</value></data>
-  <data name="Recent Activities" xml:space="preserve"><value>Recent Activities</value></data>
-  <data name="Recent Documents" xml:space="preserve"><value>Recent Documents</value></data>
-  <data name="Recent Essays" xml:space="preserve"><value>Recent Essays</value></data>
-  <data name="No recent activities yet. Start by uploading a PDF or analyzing an essay." xml:space="preserve"><value>No recent activities yet. Start by uploading a PDF or analyzing an essay.</value></data>
-  <data name="Upload your first research PDF." xml:space="preserve"><value>Upload your first research PDF.</value></data>
-  <data name="Analyze your first academic essay." xml:space="preserve"><value>Analyze your first academic essay.</value></data>
-  <data name="Document Library" xml:space="preserve"><value>Document Library</value></data>
-  <data name="Document Library subtitle" xml:space="preserve"><value>Manage your uploaded PDF research documents.</value></data>
-  <data name="Upload New PDF" xml:space="preserve"><value>Upload New PDF</value></data>
-  <data name="You have not uploaded any PDF documents yet." xml:space="preserve"><value>You have not uploaded any PDF documents yet.</value></data>
-  <data name="Title" xml:space="preserve"><value>Title</value></data>
-  <data name="Original File" xml:space="preserve"><value>Original File</value></data>
-  <data name="File Size" xml:space="preserve"><value>File Size</value></data>
-  <data name="Uploaded At" xml:space="preserve"><value>Uploaded At</value></data>
-  <data name="Status" xml:space="preserve"><value>Status</value></data>
-  <data name="Summary" xml:space="preserve"><value>Summary</value></data>
-  <data name="Actions" xml:space="preserve"><value>Actions</value></data>
-  <data name="Uploaded" xml:space="preserve"><value>Uploaded</value></data>
-  <data name="Extracted" xml:space="preserve"><value>Extracted</value></data>
-  <data name="Summarized" xml:space="preserve"><value>Summarized</value></data>
-  <data name="No summary yet." xml:space="preserve"><value>No summary yet.</value></data>
-  <data name="View Details" xml:space="preserve"><value>View Details</value></data>
-  <data name="Delete" xml:space="preserve"><value>Delete</value></data>
-  <data name="Back to Documents" xml:space="preserve"><value>Back to Documents</value></data>
-  <data name="File Information" xml:space="preserve"><value>File Information</value></data>
-  <data name="Open PDF" xml:space="preserve"><value>Open PDF</value></data>
-  <data name="Extract Text" xml:space="preserve"><value>Extract Text</value></data>
-  <data name="Generate Summary" xml:space="preserve"><value>Generate Summary</value></data>
-  <data name="Chat with PDF" xml:space="preserve"><value>Chat with PDF</value></data>
-  <data name="Extracted Text Preview" xml:space="preserve"><value>Extracted Text Preview</value></data>
-  <data name="Writing Studio subtitle" xml:space="preserve"><value>Analyze an essay, literature review, thesis proposal, or research report.</value></data>
-  <data name="Analyze Essay" xml:space="preserve"><value>Analyze Essay</value></data>
-  <data name="Overall Score" xml:space="preserve"><value>Overall Score</value></data>
-  <data name="General Suggestions" xml:space="preserve"><value>General Suggestions</value></data>
-  <data name="Grammar / Wording" xml:space="preserve"><value>Grammar / Wording</value></data>
-  <data name="Academic Tone" xml:space="preserve"><value>Academic Tone</value></data>
-  <data name="Thesis Statement" xml:space="preserve"><value>Thesis Statement</value></data>
-  <data name="Structure" xml:space="preserve"><value>Structure</value></data>
-  <data name="Logic" xml:space="preserve"><value>Logic</value></data>
-  <data name="Citation" xml:space="preserve"><value>Citation</value></data>
-  <data name="Check Citation" xml:space="preserve"><value>Check Citation</value></data>
-  <data name="Check Similarity" xml:space="preserve"><value>Check Similarity</value></data>
-  <data name="Back to History" xml:space="preserve"><value>Back to History</value></data>
-  <data name="Citation Result" xml:space="preserve"><value>Citation Result</value></data>
-  <data name="Similarity Result" xml:space="preserve"><value>Similarity Result</value></data>
-  <data name="Build / Refresh Graph" xml:space="preserve"><value>Build / Refresh Graph</value></data>
-  <data name="Legend" xml:space="preserve"><value>Legend</value></data>
-  <data name="Selected Node" xml:space="preserve"><value>Selected Node</value></data>
-  <data name="Document Info" xml:space="preserve"><value>Document Info</value></data>
-  <data name="Chat History" xml:space="preserve"><value>Chat History</value></data>
-  <data name="Ask a question" xml:space="preserve"><value>Ask a question</value></data>
-  <data name="Ask" xml:space="preserve"><value>Ask</value></data>
-  <data name="No questions asked yet." xml:space="preserve"><value>No questions asked yet.</value></data>
-  <data name="PDF uploaded successfully." xml:space="preserve"><value>PDF uploaded successfully.</value></data>
-  <data name="Text extracted successfully." xml:space="preserve"><value>Text extracted successfully.</value></data>
-  <data name="Rule-based fallback summary generated successfully." xml:space="preserve"><value>Rule-based fallback summary generated successfully.</value></data>
-  <data name="AI summary generated successfully." xml:space="preserve"><value>AI summary generated successfully.</value></data>
-  <data name="Document deleted successfully." xml:space="preserve"><value>Document deleted successfully.</value></data>
-  <data name="Essay analyzed successfully." xml:space="preserve"><value>Essay analyzed successfully.</value></data>
-  <data name="Citation check completed." xml:space="preserve"><value>Citation check completed.</value></data>
-  <data name="Similarity check completed." xml:space="preserve"><value>Similarity check completed.</value></data>
-  <data name="Knowledge graph built successfully." xml:space="preserve"><value>Knowledge graph built successfully.</value></data>
-  <data name="Question answered." xml:space="preserve"><value>Question answered.</value></data>
-  <data name="Please extract text first before chatting with this PDF." xml:space="preserve"><value>Please extract text first before chatting with this PDF.</value></data>
-  <data name="Question cannot be empty." xml:space="preserve"><value>Question cannot be empty.</value></data>
-  <data name="Upload_SelectPdf" xml:space="preserve"><value>Please select a PDF file to upload.</value></data>
-  <data name="Upload_OnlyPdfAllowed" xml:space="preserve"><value>Only PDF files are allowed.</value></data>
-  <data name="Upload_PdfTooLarge" xml:space="preserve"><value>PDF file size must be less than 10MB.</value></data>
-  <data name="Upload_InvalidPdfFile" xml:space="preserve"><value>Invalid PDF file. The uploaded file does not appear to be a real PDF.</value></data>
-  <data name="Upload_SelectImage" xml:space="preserve"><value>Please select an image file to upload.</value></data>
-  <data name="Upload_OnlyImagesAllowed" xml:space="preserve"><value>Only JPG, JPEG, and PNG images are allowed.</value></data>
-  <data name="Upload_ImageTooLarge" xml:space="preserve"><value>Image file size must be less than 5MB.</value></data>
-  <data name="Upload_InvalidImageFile" xml:space="preserve"><value>Invalid image file. The uploaded file does not appear to be a real image.</value></data>
-  <data name="Upload_PdfHint" xml:space="preserve"><value>Allowed file type: PDF. Maximum size: 10MB.</value></data>
-  <data name="Upload_ImageHint" xml:space="preserve"><value>Allowed file types: JPG, JPEG, PNG. Maximum size: 5MB.</value></data>
-  <data name="Login_InvalidCredentials" xml:space="preserve"><value>Invalid email or password.</value></data>
-  <data name="Login_TooManyAttempts" xml:space="preserve"><value>Too many failed login attempts. Please try again in {0} minutes.</value></data>
-  <data name="Login_SecurityNotice" xml:space="preserve"><value>For security reasons, repeated failed login attempts may temporarily lock sign-in.</value></data>
-  <data name="Back to Dashboard" xml:space="preserve"><value>Back to Dashboard</value></data>
-  <data name="DevTools_Nav" xml:space="preserve"><value>Dev Tools</value></data>
-  <data name="DevTools_Title" xml:space="preserve"><value>Development Tools</value></data>
-  <data name="DevTools_Description" xml:space="preserve"><value>This page is only available in Development. Reset Demo Data will delete and recreate demo records for demo accounts only.</value></data>
-  <data name="DevTools_Warning" xml:space="preserve"><value>Reset Demo Data only affects demo records for demo@student.com. It does not delete real user data.</value></data>
-  <data name="DevTools_Environment" xml:space="preserve"><value>Environment</value></data>
-  <data name="DevTools_SeedEnabled" xml:space="preserve"><value>SeedData.Enabled</value></data>
-  <data name="DevTools_AllowReset" xml:space="preserve"><value>SeedData.AllowReset</value></data>
-  <data name="DevTools_DemoAccount" xml:space="preserve"><value>Demo account</value></data>
-  <data name="DevTools_ResetDemoData" xml:space="preserve"><value>Reset Demo Data</value></data>
-  <data name="DevTools_ResetConfirm" xml:space="preserve"><value>Are you sure you want to reset demo data?</value></data>
-  <data name="DevTools_ResetSuccess" xml:space="preserve"><value>Demo data has been reset successfully.</value></data>
-  <data name="DevTools_ResetDisabled" xml:space="preserve"><value>Demo data reset is disabled.</value></data>
-  <data name="DevTools_ResetError" xml:space="preserve"><value>Could not reset demo data. Please check the application logs.</value></data>
-  <data name="Change Password" xml:space="preserve"><value>Change Password</value></data>
-  <data name="Current Password" xml:space="preserve"><value>Current Password</value></data>
-  <data name="New Password" xml:space="preserve"><value>New Password</value></data>
-  <data name="Confirm Password" xml:space="preserve"><value>Confirm Password</value></data>
-  <data name="ChangePassword_Success" xml:space="preserve"><value>Password changed successfully.</value></data>
-  <data name="ChangePassword_CurrentPasswordIncorrect" xml:space="preserve"><value>Current password is incorrect.</value></data>
-  <data name="ChangePassword_PasswordsDoNotMatch" xml:space="preserve"><value>Passwords do not match.</value></data>
-  <data name="CurrentPasswordRequired" xml:space="preserve"><value>Current password is required.</value></data>
-  <data name="NewPasswordRequired" xml:space="preserve"><value>New password is required.</value></data>
-  <data name="ConfirmPasswordRequired" xml:space="preserve"><value>Confirm password is required.</value></data>
-  <data name="NewPasswordMinLength" xml:space="preserve"><value>New password must be at least 8 characters.</value></data>
-  <data name="Profile" xml:space="preserve"><value>Profile</value></data>
-  <data name="Profile_Subtitle" xml:space="preserve"><value>View your account information and activity summary.</value></data>
-  <data name="Account Information" xml:space="preserve"><value>Account Information</value></data>
-  <data name="Full Name" xml:space="preserve"><value>Full Name</value></data>
-  <data name="Role" xml:space="preserve"><value>Role</value></data>
-  <data name="Created Date" xml:space="preserve"><value>Created Date</value></data>
-  <data name="Account Summary" xml:space="preserve"><value>Account Summary</value></data>
-  <data name="OCR Scans" xml:space="preserve"><value>OCR Scans</value></data>
-  <data name="Text Scans" xml:space="preserve"><value>Text Scans</value></data>
-  <data name="Writing Coach Sessions" xml:space="preserve"><value>Writing Coach Sessions</value></data>
-  <data name="References" xml:space="preserve"><value>References</value></data>
-  <data name="EmptyDocumentsTitle" xml:space="preserve"><value>You do not have any documents yet.</value></data>
-  <data name="EmptyDocumentsDescription" xml:space="preserve"><value>Upload your first PDF to get started.</value></data>
-  <data name="UploadFirstPdf" xml:space="preserve"><value>Upload PDF</value></data>
-  <data name="Writing History subtitle" xml:space="preserve"><value>Review essays you have analyzed.</value></data>
-  <data name="EmptyEssaysTitle" xml:space="preserve"><value>You do not have any essays yet.</value></data>
-  <data name="EmptyEssaysDescription" xml:space="preserve"><value>Start your first essay to receive academic feedback.</value></data>
-  <data name="StartWriting" xml:space="preserve"><value>Start Writing</value></data>
-  <data name="Essay Type" xml:space="preserve"><value>Essay Type</value></data>
-  <data name="Word Count" xml:space="preserve"><value>Word Count</value></data>
-  <data name="Created At" xml:space="preserve"><value>Created At</value></data>
-  <data name="OCR History" xml:space="preserve"><value>OCR History</value></data>
-  <data name="OCR History subtitle" xml:space="preserve"><value>Review images you scanned and reuse extracted text.</value></data>
-  <data name="EmptyOcrTitle" xml:space="preserve"><value>You do not have any OCR scans yet.</value></data>
-  <data name="EmptyOcrDescription" xml:space="preserve"><value>Upload an image with text to extract content.</value></data>
-  <data name="StartOcrScan" xml:space="preserve"><value>Start OCR Scan</value></data>
-  <data name="File" xml:space="preserve"><value>File</value></data>
-  <data name="Text Length" xml:space="preserve"><value>Text Length</value></data>
-  <data name="Created" xml:space="preserve"><value>Created</value></data>
-  <data name="English" xml:space="preserve"><value>English</value></data>
-  <data name="Vietnamese" xml:space="preserve"><value>Vietnamese</value></data>
-  <data name="Characters" xml:space="preserve"><value>characters</value></data>
-  <data name="Delete OCR Scan Confirm" xml:space="preserve"><value>Delete this OCR scan?</value></data>
-  <data name="Text Scan History" xml:space="preserve"><value>Text Scan History</value></data>
-  <data name="Text Scan History subtitle" xml:space="preserve"><value>Review previous internal similarity scans.</value></data>
-  <data name="EmptyTextScansTitle" xml:space="preserve"><value>You do not have any text scans yet.</value></data>
-  <data name="EmptyTextScansDescription" xml:space="preserve"><value>Paste text to check internal similarity.</value></data>
-  <data name="StartTextScan" xml:space="preserve"><value>Start Text Scan</value></data>
-  <data name="Words" xml:space="preserve"><value>Words</value></data>
-  <data name="Score" xml:space="preserve"><value>Score</value></data>
-  <data name="Risk" xml:space="preserve"><value>Risk</value></data>
-  <data name="Low" xml:space="preserve"><value>Low</value></data>
-  <data name="Medium" xml:space="preserve"><value>Medium</value></data>
-  <data name="High" xml:space="preserve"><value>High</value></data>
-  <data name="View Result" xml:space="preserve"><value>View Result</value></data>
-  <data name="Delete Text Scan Confirm" xml:space="preserve"><value>Delete this text scan?</value></data>
-  <data name="Writing Coach History" xml:space="preserve"><value>Writing Coach History</value></data>
-  <data name="Writing Coach History subtitle" xml:space="preserve"><value>Review your writing coach sessions.</value></data>
-  <data name="EmptyWritingCoachTitle" xml:space="preserve"><value>You do not have any writing coach sessions yet.</value></data>
-  <data name="EmptyWritingCoachDescription" xml:space="preserve"><value>Use AI Writing Coach to brainstorm ideas, build outlines, or improve your thesis.</value></data>
-  <data name="OpenWritingCoach" xml:space="preserve"><value>Open Writing Coach</value></data>
-  <data name="Mode" xml:space="preserve"><value>Mode</value></data>
-  <data name="Topic" xml:space="preserve"><value>Topic</value></data>
-  <data name="Delete Writing Coach Session Confirm" xml:space="preserve"><value>Delete this writing coach session?</value></data>
-  <data name="References subtitle" xml:space="preserve"><value>Manage sources and generate basic APA/MLA citations.</value></data>
-  <data name="EmptyReferencesTitle" xml:space="preserve"><value>You do not have any references yet.</value></data>
-  <data name="EmptyReferencesDescription" xml:space="preserve"><value>Add your first source to generate citations.</value></data>
-  <data name="AddReference" xml:space="preserve"><value>Add Reference</value></data>
-  <data name="Export" xml:space="preserve"><value>Export</value></data>
-  <data name="Search" xml:space="preserve"><value>Search</value></data>
-  <data name="Title or author" xml:space="preserve"><value>Title or author</value></data>
-  <data name="Source Type" xml:space="preserve"><value>Source Type</value></data>
-  <data name="All" xml:space="preserve"><value>All</value></data>
-  <data name="Filter" xml:space="preserve"><value>Filter</value></data>
-  <data name="Author" xml:space="preserve"><value>Author</value></data>
-  <data name="Year" xml:space="preserve"><value>Year</value></data>
-  <data name="Type" xml:space="preserve"><value>Type</value></data>
-  <data name="APA Preview" xml:space="preserve"><value>APA Preview</value></data>
-  <data name="Details" xml:space="preserve"><value>Details</value></data>
-  <data name="Edit" xml:space="preserve"><value>Edit</value></data>
-  <data name="Delete Reference Confirm" xml:space="preserve"><value>Delete this reference?</value></data>
-  <data name="NoRecentActivitiesTitle" xml:space="preserve"><value>No recent activities yet.</value></data>
-  <data name="NoRecentActivitiesDescription" xml:space="preserve"><value>Start by uploading a PDF or analyzing an essay.</value></data>
-  <data name="Document Uploaded" xml:space="preserve"><value>Document Uploaded</value></data>
-  <data name="Essay Created" xml:space="preserve"><value>Essay Created</value></data>
-  <data name="OCR Scan Created" xml:space="preserve"><value>OCR Scan Created</value></data>
-  <data name="Text Scan Created" xml:space="preserve"><value>Text Scan Created</value></data>
-  <data name="Writing Coach Session Created" xml:space="preserve"><value>Writing Coach Session Created</value></data>
-  <data name="Reference Created" xml:space="preserve"><value>Reference Created</value></data>
-  <data name="Processing" xml:space="preserve"><value>Processing...</value></data>
-  <data name="PleaseWait" xml:space="preserve"><value>Please wait...</value></data>
-  <data name="Uploading" xml:space="preserve"><value>Uploading...</value></data>
-  <data name="Analyzing" xml:space="preserve"><value>Analyzing...</value></data>
-  <data name="Scanning" xml:space="preserve"><value>Scanning...</value></data>
-  <data name="Generating" xml:space="preserve"><value>Generating...</value></data>
-  <data name="NotAvailable" xml:space="preserve"><value>N/A</value></data>
-  <data name="OCR Scanner" xml:space="preserve"><value>OCR Scanner</value></data>
-  <data name="OCR Scanner subtitle" xml:space="preserve"><value>Upload an image or screenshot containing text. The system will extract readable text using OCR.</value></data>
-  <data name="OCR Title Placeholder" xml:space="preserve"><value>Example: Screenshot of lecture notes</value></data>
-  <data name="Scan Image" xml:space="preserve"><value>Scan Image</value></data>
-  <data name="OCR Details" xml:space="preserve"><value>OCR Details</value></data>
-  <data name="OCR Details subtitle" xml:space="preserve"><value>OCR scan details and extracted text.</value></data>
-  <data name="Back to OCR History" xml:space="preserve"><value>Back to OCR History</value></data>
-  <data name="Image Information" xml:space="preserve"><value>Image Information</value></data>
-  <data name="OCR Missing Image" xml:space="preserve"><value>The image file is missing from the server.</value></data>
-  <data name="Extracted Text" xml:space="preserve"><value>Extracted Text</value></data>
-  <data name="Copy Text" xml:space="preserve"><value>Copy Text</value></data>
-  <data name="Send to Writing Studio" xml:space="preserve"><value>Send to Writing Studio</value></data>
-  <data name="Run Text Scan" xml:space="preserve"><value>Run Text Scan</value></data>
-  <data name="No readable text was detected." xml:space="preserve"><value>No readable text was detected.</value></data>
-  <data name="No text available to copy." xml:space="preserve"><value>No text available to copy.</value></data>
-  <data name="Copied" xml:space="preserve"><value>Copied</value></data>
-  <data name="Text Similarity Scan" xml:space="preserve"><value>Text Similarity Scan</value></data>
-  <data name="Text Similarity Scan subtitle" xml:space="preserve"><value>Check internal similarity against your uploaded documents, previous essays, and OCR scans.</value></data>
-  <data name="Text Scan Info Notice" xml:space="preserve"><value>This feature checks similarity against your uploaded documents, previous essays, and OCR scans only. It does not scan the Internet.</value></data>
-  <data name="Text Scan Title Placeholder" xml:space="preserve"><value>Draft similarity scan</value></data>
-  <data name="Text to scan" xml:space="preserve"><value>Text to scan</value></data>
-  <data name="Text Scan Minimum Words Help" xml:space="preserve"><value>Enter at least 50 words for a meaningful scan.</value></data>
-  <data name="Scan Text" xml:space="preserve"><value>Scan Text</value></data>
-  <data name="History" xml:space="preserve"><value>History</value></data>
-  <data name="Text Scan Result" xml:space="preserve"><value>Text Scan Result</value></data>
-  <data name="Text Scan Result subtitle" xml:space="preserve"><value>Internal similarity scan result.</value></data>
-  <data name="New Scan" xml:space="preserve"><value>New Scan</value></data>
-  <data name="Text Scan Result Notice" xml:space="preserve"><value>Similarity does not always mean plagiarism. This tool only detects text overlap with your internal database.</value></data>
-  <data name="Similarity Score" xml:space="preserve"><value>Similarity Score</value></data>
-  <data name="Risk Level" xml:space="preserve"><value>Risk Level</value></data>
-  <data name="Suggestions" xml:space="preserve"><value>Suggestions</value></data>
-  <data name="Input Text Preview" xml:space="preserve"><value>Input Text Preview</value></data>
-  <data name="Matches" xml:space="preserve"><value>Matches</value></data>
-  <data name="Input Segment" xml:space="preserve"><value>Input Segment</value></data>
-  <data name="Matched Source Segment" xml:space="preserve"><value>Matched Source Segment</value></data>
-  <data name="No significant internal similarity found." xml:space="preserve"><value>No significant internal similarity found.</value></data>
-  <data name="AI Writing Coach" xml:space="preserve"><value>AI Writing Coach</value></data>
-  <data name="AI Writing Coach subtitle" xml:space="preserve"><value>Get help with brainstorming, outlining, thesis improvement, and counter-arguments.</value></data>
-  <data name="Response Language" xml:space="preserve"><value>Response language</value></data>
-  <data name="Thesis Statement / Main Claim" xml:space="preserve"><value>Thesis Statement / Main Claim</value></data>
-  <data name="Additional Instructions" xml:space="preserve"><value>Additional Instructions</value></data>
-  <data name="Additional Instructions Placeholder" xml:space="preserve"><value>Add context, requirements, or ideas you already have.</value></data>
-  <data name="Writing Coach Notice" xml:space="preserve"><value>This module guides your thinking and structure. It does not write the entire essay for you.</value></data>
-  <data name="Generate" xml:space="preserve"><value>Generate</value></data>
-  <data name="Writing Coach Details" xml:space="preserve"><value>Writing Coach Details</value></data>
-  <data name="Session Info" xml:space="preserve"><value>Session Info</value></data>
-  <data name="Your Input" xml:space="preserve"><value>Your Input</value></data>
-  <data name="Thesis" xml:space="preserve"><value>Thesis</value></data>
-  <data name="Instructions" xml:space="preserve"><value>Instructions</value></data>
-  <data name="Response" xml:space="preserve"><value>Response</value></data>
-  <data name="Copy Response" xml:space="preserve"><value>Copy Response</value></data>
-  <data name="No response content available." xml:space="preserve"><value>No response content available.</value></data>
-  <data name="No response available to copy." xml:space="preserve"><value>No response available to copy.</value></data>
-  <data name="Back to Writing Coach" xml:space="preserve"><value>Back to Writing Coach</value></data>
-  <data name="Create Reference" xml:space="preserve"><value>Create Reference</value></data>
-  <data name="Create Reference subtitle" xml:space="preserve"><value>Enter source information to generate APA/MLA citations.</value></data>
-  <data name="Back to References" xml:space="preserve"><value>Back to References</value></data>
-  <data name="Save Reference" xml:space="preserve"><value>Save Reference</value></data>
-  <data name="Edit Reference" xml:space="preserve"><value>Edit Reference</value></data>
-  <data name="Edit Reference subtitle" xml:space="preserve"><value>Update source information and regenerate APA/MLA citations.</value></data>
-  <data name="Update Reference" xml:space="preserve"><value>Update Reference</value></data>
-  <data name="Reference Details" xml:space="preserve"><value>Reference Details</value></data>
-  <data name="Source Information" xml:space="preserve"><value>Source Information</value></data>
-  <data name="Journal / Publisher" xml:space="preserve"><value>Journal / Publisher</value></data>
-  <data name="Website" xml:space="preserve"><value>Website</value></data>
-  <data name="Pages" xml:space="preserve"><value>Pages</value></data>
-  <data name="Notes" xml:space="preserve"><value>Notes</value></data>
-  <data name="Citation Output" xml:space="preserve"><value>Citation Output</value></data>
-  <data name="APA In-text Citation" xml:space="preserve"><value>APA In-text Citation</value></data>
-  <data name="APA Reference" xml:space="preserve"><value>APA Reference</value></data>
-  <data name="MLA In-text Citation" xml:space="preserve"><value>MLA In-text Citation</value></data>
-  <data name="MLA Reference" xml:space="preserve"><value>MLA Reference</value></data>
-  <data name="Copy" xml:space="preserve"><value>Copy</value></data>
-  <data name="Email" xml:space="preserve"><value>Email</value></data>
-  <data name="Password" xml:space="preserve"><value>Password</value></data>
-  <data name="Remember me" xml:space="preserve"><value>Remember me</value></data>
-  <data name="PDF file" xml:space="preserve"><value>PDF file</value></data>
-  <data name="Image file" xml:space="preserve"><value>Image file</value></data>
-  <data name="Content" xml:space="preserve"><value>Content</value></data>
-  <data name="Url" xml:space="preserve"><value>URL</value></data>
-  <data name="Create Account" xml:space="preserve"><value>Create account</value></data>
-  <data name="Already Have An Account" xml:space="preserve"><value>Already have an account?</value></data>
-  <data name="Do Not Have An Account" xml:space="preserve"><value>Do not have an account?</value></data>
-  <data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
-  <data name="UploadDocument_Subtitle" xml:space="preserve"><value>Add a research document to your library.</value></data>
-  <data name="Writing_ContentHelp" xml:space="preserve"><value>Paste your draft here. Feedback uses AI when enabled, otherwise it falls back to rule-based analysis.</value></data>
-  <data name="WritingCoach_TopicPlaceholder" xml:space="preserve"><value>AI in academic writing</value></data>
-  <data name="Save And Generate Citation" xml:space="preserve"><value>Save and generate citation</value></data>
-  <data name="ReferenceAuthor_Placeholder" xml:space="preserve"><value>Nguyen, Tran or Smith</value></data>
-  <data name="Account_EmailAlreadyRegistered" xml:space="preserve"><value>This email is already registered.</value></data>
-  <data name="Documents_PdfMissingOnServer" xml:space="preserve"><value>The PDF file no longer exists on the server.</value></data>
-  <data name="Documents_ExtractBeforeSummary" xml:space="preserve"><value>Please extract text before generating a summary.</value></data>
-  <data name="Documents_SummaryGeneratedByAi" xml:space="preserve"><value>Summary generated by AI.</value></data>
-  <data name="Documents_SummaryGeneratedFallback" xml:space="preserve"><value>AI unavailable. Rule-based summary generated.</value></data>
-  <data name="OCR_ImageScannedSuccessfully" xml:space="preserve"><value>Image scanned successfully.</value></data>
-  <data name="OCR_DeleteSuccess" xml:space="preserve"><value>OCR scan deleted successfully.</value></data>
-  <data name="TextScan_OcrNotFoundOrForbidden" xml:space="preserve"><value>OCR scan not found or you do not have permission to access it.</value></data>
-  <data name="TextScan_EssayNotFoundOrForbidden" xml:space="preserve"><value>Essay not found or you do not have permission to access it.</value></data>
-  <data name="TextScan_NoOcrTextAvailable" xml:space="preserve"><value>No OCR text available to scan.</value></data>
-  <data name="TextScan_MinimumWordsValidation" xml:space="preserve"><value>Please enter at least 50 words for a meaningful scan.</value></data>
-  <data name="TextScan_Success" xml:space="preserve"><value>Text scan completed successfully.</value></data>
-  <data name="TextScan_DeleteSuccess" xml:space="preserve"><value>Text scan deleted successfully.</value></data>
-  <data name="Writing_ReferenceNotFoundOrForbidden" xml:space="preserve"><value>Reference not found or you do not have permission to access it.</value></data>
-  <data name="Writing_CoachSessionNotFoundOrForbidden" xml:space="preserve"><value>Writing coach session not found or you do not have permission to access it.</value></data>
-  <data name="Writing_NoCoachResponseAvailable" xml:space="preserve"><value>No writing coach response available to send to Writing Studio.</value></data>
-  <data name="Writing_OcrNotFoundOrForbidden" xml:space="preserve"><value>OCR scan not found or you do not have permission to access it.</value></data>
-  <data name="Writing_NoExtractedTextAvailable" xml:space="preserve"><value>No extracted text available to send to Writing Studio.</value></data>
-  <data name="Writing_CompleteRequiredFields" xml:space="preserve"><value>Please complete the essay title, type, and content before analyzing.</value></data>
-  <data name="Writing_AiFeedbackSuccess" xml:space="preserve"><value>Essay analyzed with AI feedback.</value></data>
-  <data name="Writing_AiFeedbackFallback" xml:space="preserve"><value>AI feedback unavailable. Rule-based feedback generated.</value></data>
-  <data name="WritingCoach_AiResponseSuccess" xml:space="preserve"><value>Writing coach response generated by AI.</value></data>
-  <data name="WritingCoach_AiResponseFallback" xml:space="preserve"><value>AI unavailable. A rule-based writing guide was generated.</value></data>
-  <data name="WritingCoach_DeleteSuccess" xml:space="preserve"><value>Writing coach session deleted successfully.</value></data>
-  <data name="References_CreateSuccess" xml:space="preserve"><value>Reference created successfully.</value></data>
-  <data name="References_UpdateSuccess" xml:space="preserve"><value>Reference updated successfully.</value></data>
-  <data name="References_DeleteSuccess" xml:space="preserve"><value>Reference deleted successfully.</value></data>
-  <data name="Validation_FullNameRequired" xml:space="preserve"><value>Please enter your full name.</value></data>
-  <data name="Validation_FullNameMaxLength" xml:space="preserve"><value>Your full name must be 100 characters or fewer.</value></data>
-  <data name="Validation_EmailRequired" xml:space="preserve"><value>Please enter your email.</value></data>
-  <data name="Validation_EmailInvalid" xml:space="preserve"><value>Please enter a valid email address.</value></data>
-  <data name="Validation_EmailMaxLength" xml:space="preserve"><value>Your email must be 150 characters or fewer.</value></data>
-  <data name="Validation_PasswordRequired" xml:space="preserve"><value>Please enter your password.</value></data>
-  <data name="Validation_PasswordMinLength" xml:space="preserve"><value>The password must be at least 8 characters.</value></data>
-  <data name="Validation_ConfirmPasswordRequired" xml:space="preserve"><value>Please confirm your password.</value></data>
-  <data name="Validation_PasswordsDoNotMatch" xml:space="preserve"><value>The confirmation password does not match.</value></data>
-  <data name="Validation_TitleRequired" xml:space="preserve"><value>Please enter a title.</value></data>
-  <data name="Validation_TitleMaxLength200" xml:space="preserve"><value>The title must be 200 characters or fewer.</value></data>
-  <data name="Validation_PdfFileRequired" xml:space="preserve"><value>Please select a PDF file.</value></data>
-  <data name="Validation_ImageFileRequired" xml:space="preserve"><value>Please select an image file.</value></data>
-  <data name="Validation_OcrLanguageRequired" xml:space="preserve"><value>Please select an OCR language.</value></data>
-  <data name="Validation_EssayTypeRequired" xml:space="preserve"><value>Please select an essay type.</value></data>
-  <data name="Validation_EssayContentRequired" xml:space="preserve"><value>Please enter your essay content.</value></data>
-  <data name="Validation_EssayContentMinLength" xml:space="preserve"><value>The content is too short to analyze.</value></data>
-  <data name="Validation_TextScanInputRequired" xml:space="preserve"><value>Please enter text to scan.</value></data>
-  <data name="Validation_WritingCoachModeRequired" xml:space="preserve"><value>Please select a writing coach mode.</value></data>
-  <data name="Validation_TopicMaxLength" xml:space="preserve"><value>The topic must be 300 characters or fewer.</value></data>
-  <data name="Validation_WritingCoachTopicOrInstructionsRequired" xml:space="preserve"><value>Please enter a topic or additional instructions.</value></data>
-  <data name="Validation_WritingCoachThesisRequired" xml:space="preserve"><value>Please enter a thesis statement to improve.</value></data>
-  <data name="Validation_WritingCoachThesisOrArgumentRequired" xml:space="preserve"><value>Please enter a thesis statement or main argument.</value></data>
-  <data name="Validation_ReferenceSourceTypeRequired" xml:space="preserve"><value>Please select a source type.</value></data>
-  <data name="Validation_ReferenceTitleRequired" xml:space="preserve"><value>Please enter the reference title.</value></data>
-  <data name="Validation_ReferenceTitleMaxLength" xml:space="preserve"><value>The reference title must be 300 characters or fewer.</value></data>
-  <data name="Validation_ReferenceAuthorMaxLength" xml:space="preserve"><value>The author field must be 300 characters or fewer.</value></data>
-  <data name="Validation_ReferenceYearInvalid" xml:space="preserve"><value>Year should be a 4-digit number.</value></data>
-  <data name="Validation_ReferenceUrlInvalid" xml:space="preserve"><value>Please enter a valid URL.</value></data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+  <data name="Writing Studio" xml:space="preserve">
+    <value>Writing Studio</value>
+  </data>
+  <data name="Writing History" xml:space="preserve">
+    <value>Writing History</value>
+  </data>
+  <data name="Knowledge Graph" xml:space="preserve">
+    <value>Knowledge Graph</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hello</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Get Started" xml:space="preserve">
+    <value>Get Started</value>
+  </data>
+  <data name="View Documents" xml:space="preserve">
+    <value>View Documents</value>
+  </data>
+  <data name="Academic AI Assistant Home Description" xml:space="preserve">
+    <value>A student-focused workspace for reading research PDFs, writing academic drafts, checking citations, comparing similarity, and exploring knowledge links.</value>
+  </data>
+  <data name="Demo-ready modules" xml:space="preserve">
+    <value>Demo-ready modules</value>
+  </data>
+  <data name="Demo-ready modules description" xml:space="preserve">
+    <value>PDF library, rule-based analysis, citation checking, similarity checking, knowledge graph, and chat with PDF are organized in one MVC application.</value>
+  </data>
+  <data name="PDF Reading Assistant" xml:space="preserve">
+    <value>PDF Reading Assistant</value>
+  </data>
+  <data name="PDF Reading Assistant description" xml:space="preserve">
+    <value>Upload PDFs, extract text, generate summaries, and chat with document content.</value>
+  </data>
+  <data name="Writing Feedback Studio" xml:space="preserve">
+    <value>Writing Feedback Studio</value>
+  </data>
+  <data name="Writing Feedback Studio description" xml:space="preserve">
+    <value>Analyze essays for thesis, structure, tone, logic, citation, and overall score.</value>
+  </data>
+  <data name="Citation &amp;amp; Similarity Checker" xml:space="preserve">
+    <value>Citation &amp; Similarity Checker</value>
+  </data>
+  <data name="Citation &amp;amp; Similarity Checker description" xml:space="preserve">
+    <value>Check basic APA citation quality and compare essays with extracted documents.</value>
+  </data>
+  <data name="Knowledge Graph description" xml:space="preserve">
+    <value>Visualize relationships between documents, essays, and extracted keywords.</value>
+  </data>
+  <data name="Welcome back" xml:space="preserve">
+    <value>Welcome back</value>
+  </data>
+  <data name="Dashboard subtitle" xml:space="preserve">
+    <value>Here is your academic reading and writing workspace.</value>
+  </data>
+  <data name="Upload PDF" xml:space="preserve">
+    <value>Upload PDF</value>
+  </data>
+  <data name="New Writing Analysis" xml:space="preserve">
+    <value>New Writing Analysis</value>
+  </data>
+  <data name="Uploaded PDFs" xml:space="preserve">
+    <value>Uploaded PDFs</value>
+  </data>
+  <data name="Extracted PDFs" xml:space="preserve">
+    <value>Extracted PDFs</value>
+  </data>
+  <data name="Summaries" xml:space="preserve">
+    <value>Summaries</value>
+  </data>
+  <data name="Essays" xml:space="preserve">
+    <value>Essays</value>
+  </data>
+  <data name="Feedback Reports" xml:space="preserve">
+    <value>Feedback Reports</value>
+  </data>
+  <data name="Citation Checks" xml:space="preserve">
+    <value>Citation Checks</value>
+  </data>
+  <data name="Similarity Checks" xml:space="preserve">
+    <value>Similarity Checks</value>
+  </data>
+  <data name="Quick Actions" xml:space="preserve">
+    <value>Quick Actions</value>
+  </data>
+  <data name="Recent Activities" xml:space="preserve">
+    <value>Recent Activities</value>
+  </data>
+  <data name="Recent Documents" xml:space="preserve">
+    <value>Recent Documents</value>
+  </data>
+  <data name="Recent Essays" xml:space="preserve">
+    <value>Recent Essays</value>
+  </data>
+  <data name="No recent activities yet. Start by uploading a PDF or analyzing an essay." xml:space="preserve">
+    <value>No recent activities yet. Start by uploading a PDF or analyzing an essay.</value>
+  </data>
+  <data name="Upload your first research PDF." xml:space="preserve">
+    <value>Upload your first research PDF.</value>
+  </data>
+  <data name="Analyze your first academic essay." xml:space="preserve">
+    <value>Analyze your first academic essay.</value>
+  </data>
+  <data name="Document Library" xml:space="preserve">
+    <value>Document Library</value>
+  </data>
+  <data name="Document Library subtitle" xml:space="preserve">
+    <value>Manage your uploaded PDF research documents.</value>
+  </data>
+  <data name="Upload New PDF" xml:space="preserve">
+    <value>Upload New PDF</value>
+  </data>
+  <data name="You have not uploaded any PDF documents yet." xml:space="preserve">
+    <value>You have not uploaded any PDF documents yet.</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Original File" xml:space="preserve">
+    <value>Original File</value>
+  </data>
+  <data name="File Size" xml:space="preserve">
+    <value>File Size</value>
+  </data>
+  <data name="Uploaded At" xml:space="preserve">
+    <value>Uploaded At</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="Uploaded" xml:space="preserve">
+    <value>Uploaded</value>
+  </data>
+  <data name="Extracted" xml:space="preserve">
+    <value>Extracted</value>
+  </data>
+  <data name="Summarized" xml:space="preserve">
+    <value>Summarized</value>
+  </data>
+  <data name="No summary yet." xml:space="preserve">
+    <value>No summary yet.</value>
+  </data>
+  <data name="View Details" xml:space="preserve">
+    <value>View Details</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Back to Documents" xml:space="preserve">
+    <value>Back to Documents</value>
+  </data>
+  <data name="File Information" xml:space="preserve">
+    <value>File Information</value>
+  </data>
+  <data name="Open PDF" xml:space="preserve">
+    <value>Open PDF</value>
+  </data>
+  <data name="Extract Text" xml:space="preserve">
+    <value>Extract Text</value>
+  </data>
+  <data name="Generate Summary" xml:space="preserve">
+    <value>Generate Summary</value>
+  </data>
+  <data name="Chat with PDF" xml:space="preserve">
+    <value>Chat with PDF</value>
+  </data>
+  <data name="Extracted Text Preview" xml:space="preserve">
+    <value>Extracted Text Preview</value>
+  </data>
+  <data name="Writing Studio subtitle" xml:space="preserve">
+    <value>Analyze an essay, literature review, thesis proposal, or research report.</value>
+  </data>
+  <data name="Analyze Essay" xml:space="preserve">
+    <value>Analyze Essay</value>
+  </data>
+  <data name="Overall Score" xml:space="preserve">
+    <value>Overall Score</value>
+  </data>
+  <data name="General Suggestions" xml:space="preserve">
+    <value>General Suggestions</value>
+  </data>
+  <data name="Grammar / Wording" xml:space="preserve">
+    <value>Grammar / Wording</value>
+  </data>
+  <data name="Academic Tone" xml:space="preserve">
+    <value>Academic Tone</value>
+  </data>
+  <data name="Thesis Statement" xml:space="preserve">
+    <value>Thesis Statement</value>
+  </data>
+  <data name="Structure" xml:space="preserve">
+    <value>Structure</value>
+  </data>
+  <data name="Logic" xml:space="preserve">
+    <value>Logic</value>
+  </data>
+  <data name="Citation" xml:space="preserve">
+    <value>Citation</value>
+  </data>
+  <data name="Check Citation" xml:space="preserve">
+    <value>Check Citation</value>
+  </data>
+  <data name="Check Similarity" xml:space="preserve">
+    <value>Check Similarity</value>
+  </data>
+  <data name="Back to History" xml:space="preserve">
+    <value>Back to History</value>
+  </data>
+  <data name="Citation Result" xml:space="preserve">
+    <value>Citation Result</value>
+  </data>
+  <data name="Similarity Result" xml:space="preserve">
+    <value>Similarity Result</value>
+  </data>
+  <data name="Build / Refresh Graph" xml:space="preserve">
+    <value>Build / Refresh Graph</value>
+  </data>
+  <data name="Legend" xml:space="preserve">
+    <value>Legend</value>
+  </data>
+  <data name="Selected Node" xml:space="preserve">
+    <value>Selected Node</value>
+  </data>
+  <data name="Document Info" xml:space="preserve">
+    <value>Document Info</value>
+  </data>
+  <data name="Chat History" xml:space="preserve">
+    <value>Chat History</value>
+  </data>
+  <data name="Ask a question" xml:space="preserve">
+    <value>Ask a question</value>
+  </data>
+  <data name="Ask" xml:space="preserve">
+    <value>Ask</value>
+  </data>
+  <data name="No questions asked yet." xml:space="preserve">
+    <value>No questions asked yet.</value>
+  </data>
+  <data name="PDF uploaded successfully." xml:space="preserve">
+    <value>PDF uploaded successfully.</value>
+  </data>
+  <data name="Text extracted successfully." xml:space="preserve">
+    <value>Text extracted successfully.</value>
+  </data>
+  <data name="Rule-based fallback summary generated successfully." xml:space="preserve">
+    <value>Rule-based fallback summary generated successfully.</value>
+  </data>
+  <data name="AI summary generated successfully." xml:space="preserve">
+    <value>AI summary generated successfully.</value>
+  </data>
+  <data name="Document deleted successfully." xml:space="preserve">
+    <value>Document deleted successfully.</value>
+  </data>
+  <data name="Essay analyzed successfully." xml:space="preserve">
+    <value>Essay analyzed successfully.</value>
+  </data>
+  <data name="Citation check completed." xml:space="preserve">
+    <value>Citation check completed.</value>
+  </data>
+  <data name="Similarity check completed." xml:space="preserve">
+    <value>Similarity check completed.</value>
+  </data>
+  <data name="Knowledge graph built successfully." xml:space="preserve">
+    <value>Knowledge graph built successfully.</value>
+  </data>
+  <data name="Question answered." xml:space="preserve">
+    <value>Question answered.</value>
+  </data>
+  <data name="Please extract text first before chatting with this PDF." xml:space="preserve">
+    <value>Please extract text first before chatting with this PDF.</value>
+  </data>
+  <data name="Question cannot be empty." xml:space="preserve">
+    <value>Question cannot be empty.</value>
+  </data>
+  <data name="Upload_SelectPdf" xml:space="preserve">
+    <value>Please select a PDF file to upload.</value>
+  </data>
+  <data name="Upload_OnlyPdfAllowed" xml:space="preserve">
+    <value>Only PDF files are allowed.</value>
+  </data>
+  <data name="Upload_PdfTooLarge" xml:space="preserve">
+    <value>PDF file size must be less than 10MB.</value>
+  </data>
+  <data name="Upload_InvalidPdfFile" xml:space="preserve">
+    <value>Invalid PDF file. The uploaded file does not appear to be a real PDF.</value>
+  </data>
+  <data name="Upload_SelectImage" xml:space="preserve">
+    <value>Please select an image file to upload.</value>
+  </data>
+  <data name="Upload_OnlyImagesAllowed" xml:space="preserve">
+    <value>Only JPG, JPEG, and PNG images are allowed.</value>
+  </data>
+  <data name="Upload_ImageTooLarge" xml:space="preserve">
+    <value>Image file size must be less than 5MB.</value>
+  </data>
+  <data name="Upload_InvalidImageFile" xml:space="preserve">
+    <value>Invalid image file. The uploaded file does not appear to be a real image.</value>
+  </data>
+  <data name="Upload_PdfHint" xml:space="preserve">
+    <value>Allowed file type: PDF. Maximum size: 10MB.</value>
+  </data>
+  <data name="Upload_ImageHint" xml:space="preserve">
+    <value>Allowed file types: JPG, JPEG, PNG. Maximum size: 5MB.</value>
+  </data>
+  <data name="Login_InvalidCredentials" xml:space="preserve">
+    <value>Invalid email or password.</value>
+  </data>
+  <data name="Login_TooManyAttempts" xml:space="preserve">
+    <value>Too many failed login attempts. Please try again in {0} minutes.</value>
+  </data>
+  <data name="Login_SecurityNotice" xml:space="preserve">
+    <value>For security reasons, repeated failed login attempts may temporarily lock sign-in.</value>
+  </data>
+  <data name="Back to Dashboard" xml:space="preserve">
+    <value>Back to Dashboard</value>
+  </data>
+  <data name="DevTools_Nav" xml:space="preserve">
+    <value>Dev Tools</value>
+  </data>
+  <data name="DevTools_Title" xml:space="preserve">
+    <value>Development Tools</value>
+  </data>
+  <data name="DevTools_Description" xml:space="preserve">
+    <value>This page is only available in Development. Reset Demo Data will delete and recreate demo records for demo accounts only.</value>
+  </data>
+  <data name="DevTools_Warning" xml:space="preserve">
+    <value>Reset Demo Data only affects demo records for demo@student.com. It does not delete real user data.</value>
+  </data>
+  <data name="DevTools_Environment" xml:space="preserve">
+    <value>Environment</value>
+  </data>
+  <data name="DevTools_SeedEnabled" xml:space="preserve">
+    <value>SeedData.Enabled</value>
+  </data>
+  <data name="DevTools_AllowReset" xml:space="preserve">
+    <value>SeedData.AllowReset</value>
+  </data>
+  <data name="DevTools_DemoAccount" xml:space="preserve">
+    <value>Demo account</value>
+  </data>
+  <data name="DevTools_ResetDemoData" xml:space="preserve">
+    <value>Reset Demo Data</value>
+  </data>
+  <data name="DevTools_ResetConfirm" xml:space="preserve">
+    <value>Are you sure you want to reset demo data?</value>
+  </data>
+  <data name="DevTools_ResetSuccess" xml:space="preserve">
+    <value>Demo data has been reset successfully.</value>
+  </data>
+  <data name="DevTools_ResetDisabled" xml:space="preserve">
+    <value>Demo data reset is disabled.</value>
+  </data>
+  <data name="DevTools_ResetError" xml:space="preserve">
+    <value>Could not reset demo data. Please check the application logs.</value>
+  </data>
+  <data name="Change Password" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="Current Password" xml:space="preserve">
+    <value>Current Password</value>
+  </data>
+  <data name="New Password" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="Confirm Password" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="ChangePassword_Success" xml:space="preserve">
+    <value>Password changed successfully.</value>
+  </data>
+  <data name="ChangePassword_CurrentPasswordIncorrect" xml:space="preserve">
+    <value>Current password is incorrect.</value>
+  </data>
+  <data name="ChangePassword_PasswordsDoNotMatch" xml:space="preserve">
+    <value>Passwords do not match.</value>
+  </data>
+  <data name="CurrentPasswordRequired" xml:space="preserve">
+    <value>Current password is required.</value>
+  </data>
+  <data name="NewPasswordRequired" xml:space="preserve">
+    <value>New password is required.</value>
+  </data>
+  <data name="ConfirmPasswordRequired" xml:space="preserve">
+    <value>Confirm password is required.</value>
+  </data>
+  <data name="NewPasswordMinLength" xml:space="preserve">
+    <value>New password must be at least 8 characters.</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Profile_Subtitle" xml:space="preserve">
+    <value>View your account information and activity summary.</value>
+  </data>
+  <data name="Account Information" xml:space="preserve">
+    <value>Account Information</value>
+  </data>
+  <data name="Full Name" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="Created Date" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="Account Summary" xml:space="preserve">
+    <value>Account Summary</value>
+  </data>
+  <data name="OCR Scans" xml:space="preserve">
+    <value>OCR Scans</value>
+  </data>
+  <data name="Text Scans" xml:space="preserve">
+    <value>Text Scans</value>
+  </data>
+  <data name="Writing Coach Sessions" xml:space="preserve">
+    <value>Writing Coach Sessions</value>
+  </data>
+  <data name="References" xml:space="preserve">
+    <value>References</value>
+  </data>
+  <data name="EmptyDocumentsTitle" xml:space="preserve">
+    <value>You do not have any documents yet.</value>
+  </data>
+  <data name="EmptyDocumentsDescription" xml:space="preserve">
+    <value>Upload your first PDF to get started.</value>
+  </data>
+  <data name="UploadFirstPdf" xml:space="preserve">
+    <value>Upload PDF</value>
+  </data>
+  <data name="Writing History subtitle" xml:space="preserve">
+    <value>Review essays you have analyzed.</value>
+  </data>
+  <data name="EmptyEssaysTitle" xml:space="preserve">
+    <value>You do not have any essays yet.</value>
+  </data>
+  <data name="EmptyEssaysDescription" xml:space="preserve">
+    <value>Start your first essay to receive academic feedback.</value>
+  </data>
+  <data name="StartWriting" xml:space="preserve">
+    <value>Start Writing</value>
+  </data>
+  <data name="Essay Type" xml:space="preserve">
+    <value>Essay Type</value>
+  </data>
+  <data name="Word Count" xml:space="preserve">
+    <value>Word Count</value>
+  </data>
+  <data name="Created At" xml:space="preserve">
+    <value>Created At</value>
+  </data>
+  <data name="OCR History" xml:space="preserve">
+    <value>OCR History</value>
+  </data>
+  <data name="OCR History subtitle" xml:space="preserve">
+    <value>Review images you scanned and reuse extracted text.</value>
+  </data>
+  <data name="EmptyOcrTitle" xml:space="preserve">
+    <value>You do not have any OCR scans yet.</value>
+  </data>
+  <data name="EmptyOcrDescription" xml:space="preserve">
+    <value>Upload an image with text to extract content.</value>
+  </data>
+  <data name="StartOcrScan" xml:space="preserve">
+    <value>Start OCR Scan</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Text Length" xml:space="preserve">
+    <value>Text Length</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Vietnamese" xml:space="preserve">
+    <value>Vietnamese</value>
+  </data>
+  <data name="Characters" xml:space="preserve">
+    <value>characters</value>
+  </data>
+  <data name="Delete OCR Scan Confirm" xml:space="preserve">
+    <value>Delete this OCR scan?</value>
+  </data>
+  <data name="Text Scan History" xml:space="preserve">
+    <value>Text Scan History</value>
+  </data>
+  <data name="Text Scan History subtitle" xml:space="preserve">
+    <value>Review previous internal similarity scans.</value>
+  </data>
+  <data name="EmptyTextScansTitle" xml:space="preserve">
+    <value>You do not have any text scans yet.</value>
+  </data>
+  <data name="EmptyTextScansDescription" xml:space="preserve">
+    <value>Paste text to check internal similarity.</value>
+  </data>
+  <data name="StartTextScan" xml:space="preserve">
+    <value>Start Text Scan</value>
+  </data>
+  <data name="Words" xml:space="preserve">
+    <value>Words</value>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>Score</value>
+  </data>
+  <data name="Risk" xml:space="preserve">
+    <value>Risk</value>
+  </data>
+  <data name="Low" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="High" xml:space="preserve">
+    <value>High</value>
+  </data>
+  <data name="View Result" xml:space="preserve">
+    <value>View Result</value>
+  </data>
+  <data name="Delete Text Scan Confirm" xml:space="preserve">
+    <value>Delete this text scan?</value>
+  </data>
+  <data name="Writing Coach History" xml:space="preserve">
+    <value>Writing Coach History</value>
+  </data>
+  <data name="Writing Coach History subtitle" xml:space="preserve">
+    <value>Review your writing coach sessions.</value>
+  </data>
+  <data name="EmptyWritingCoachTitle" xml:space="preserve">
+    <value>You do not have any writing coach sessions yet.</value>
+  </data>
+  <data name="EmptyWritingCoachDescription" xml:space="preserve">
+    <value>Use AI Writing Coach to brainstorm ideas, build outlines, or improve your thesis.</value>
+  </data>
+  <data name="OpenWritingCoach" xml:space="preserve">
+    <value>Open Writing Coach</value>
+  </data>
+  <data name="Mode" xml:space="preserve">
+    <value>Mode</value>
+  </data>
+  <data name="Topic" xml:space="preserve">
+    <value>Topic</value>
+  </data>
+  <data name="Delete Writing Coach Session Confirm" xml:space="preserve">
+    <value>Delete this writing coach session?</value>
+  </data>
+  <data name="References subtitle" xml:space="preserve">
+    <value>Manage sources and generate basic APA/MLA citations.</value>
+  </data>
+  <data name="EmptyReferencesTitle" xml:space="preserve">
+    <value>You do not have any references yet.</value>
+  </data>
+  <data name="EmptyReferencesDescription" xml:space="preserve">
+    <value>Add your first source to generate citations.</value>
+  </data>
+  <data name="AddReference" xml:space="preserve">
+    <value>Add Reference</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Title or author" xml:space="preserve">
+    <value>Title or author</value>
+  </data>
+  <data name="Source Type" xml:space="preserve">
+    <value>Source Type</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="APA Preview" xml:space="preserve">
+    <value>APA Preview</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Delete Reference Confirm" xml:space="preserve">
+    <value>Delete this reference?</value>
+  </data>
+  <data name="NoRecentActivitiesTitle" xml:space="preserve">
+    <value>No recent activities yet.</value>
+  </data>
+  <data name="NoRecentActivitiesDescription" xml:space="preserve">
+    <value>Start by uploading a PDF or analyzing an essay.</value>
+  </data>
+  <data name="Document Uploaded" xml:space="preserve">
+    <value>Document Uploaded</value>
+  </data>
+  <data name="Essay Created" xml:space="preserve">
+    <value>Essay Created</value>
+  </data>
+  <data name="OCR Scan Created" xml:space="preserve">
+    <value>OCR Scan Created</value>
+  </data>
+  <data name="Text Scan Created" xml:space="preserve">
+    <value>Text Scan Created</value>
+  </data>
+  <data name="Writing Coach Session Created" xml:space="preserve">
+    <value>Writing Coach Session Created</value>
+  </data>
+  <data name="Reference Created" xml:space="preserve">
+    <value>Reference Created</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>Processing...</value>
+  </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>Please wait...</value>
+  </data>
+  <data name="Uploading" xml:space="preserve">
+    <value>Uploading...</value>
+  </data>
+  <data name="Analyzing" xml:space="preserve">
+    <value>Analyzing...</value>
+  </data>
+  <data name="Scanning" xml:space="preserve">
+    <value>Scanning...</value>
+  </data>
+  <data name="Generating" xml:space="preserve">
+    <value>Generating...</value>
+  </data>
+  <data name="NotAvailable" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="OCR Scanner" xml:space="preserve">
+    <value>OCR Scanner</value>
+  </data>
+  <data name="OCR Scanner subtitle" xml:space="preserve">
+    <value>Upload an image or screenshot containing text. The system will extract readable text using OCR.</value>
+  </data>
+  <data name="OCR Title Placeholder" xml:space="preserve">
+    <value>Example: Screenshot of lecture notes</value>
+  </data>
+  <data name="Scan Image" xml:space="preserve">
+    <value>Scan Image</value>
+  </data>
+  <data name="OCR Details" xml:space="preserve">
+    <value>OCR Details</value>
+  </data>
+  <data name="OCR Details subtitle" xml:space="preserve">
+    <value>OCR scan details and extracted text.</value>
+  </data>
+  <data name="Back to OCR History" xml:space="preserve">
+    <value>Back to OCR History</value>
+  </data>
+  <data name="Image Information" xml:space="preserve">
+    <value>Image Information</value>
+  </data>
+  <data name="OCR Missing Image" xml:space="preserve">
+    <value>The image file is missing from the server.</value>
+  </data>
+  <data name="Extracted Text" xml:space="preserve">
+    <value>Extracted Text</value>
+  </data>
+  <data name="Copy Text" xml:space="preserve">
+    <value>Copy Text</value>
+  </data>
+  <data name="Send to Writing Studio" xml:space="preserve">
+    <value>Send to Writing Studio</value>
+  </data>
+  <data name="Run Text Scan" xml:space="preserve">
+    <value>Run Text Scan</value>
+  </data>
+  <data name="No readable text was detected." xml:space="preserve">
+    <value>No readable text was detected.</value>
+  </data>
+  <data name="No text available to copy." xml:space="preserve">
+    <value>No text available to copy.</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>Copied</value>
+  </data>
+  <data name="Text Similarity Scan" xml:space="preserve">
+    <value>Text Similarity Scan</value>
+  </data>
+  <data name="Text Similarity Scan subtitle" xml:space="preserve">
+    <value>Check internal similarity against your uploaded documents, previous essays, and OCR scans.</value>
+  </data>
+  <data name="Text Scan Info Notice" xml:space="preserve">
+    <value>This feature checks similarity against your uploaded documents, previous essays, and OCR scans only. It does not scan the Internet.</value>
+  </data>
+  <data name="Text Scan Title Placeholder" xml:space="preserve">
+    <value>Draft similarity scan</value>
+  </data>
+  <data name="Text to scan" xml:space="preserve">
+    <value>Text to scan</value>
+  </data>
+  <data name="Text Scan Minimum Words Help" xml:space="preserve">
+    <value>Enter at least 50 words for a meaningful scan.</value>
+  </data>
+  <data name="Scan Text" xml:space="preserve">
+    <value>Scan Text</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Text Scan Result" xml:space="preserve">
+    <value>Text Scan Result</value>
+  </data>
+  <data name="Text Scan Result subtitle" xml:space="preserve">
+    <value>Internal similarity scan result.</value>
+  </data>
+  <data name="New Scan" xml:space="preserve">
+    <value>New Scan</value>
+  </data>
+  <data name="Text Scan Result Notice" xml:space="preserve">
+    <value>Similarity does not always mean plagiarism. This tool only detects text overlap with your internal database.</value>
+  </data>
+  <data name="Similarity Score" xml:space="preserve">
+    <value>Similarity Score</value>
+  </data>
+  <data name="Risk Level" xml:space="preserve">
+    <value>Risk Level</value>
+  </data>
+  <data name="Suggestions" xml:space="preserve">
+    <value>Suggestions</value>
+  </data>
+  <data name="Input Text Preview" xml:space="preserve">
+    <value>Input Text Preview</value>
+  </data>
+  <data name="Matches" xml:space="preserve">
+    <value>Matches</value>
+  </data>
+  <data name="Input Segment" xml:space="preserve">
+    <value>Input Segment</value>
+  </data>
+  <data name="Matched Source Segment" xml:space="preserve">
+    <value>Matched Source Segment</value>
+  </data>
+  <data name="No significant internal similarity found." xml:space="preserve">
+    <value>No significant internal similarity found.</value>
+  </data>
+  <data name="AI Writing Coach" xml:space="preserve">
+    <value>AI Writing Coach</value>
+  </data>
+  <data name="AI Writing Coach subtitle" xml:space="preserve">
+    <value>Get help with brainstorming, outlining, thesis improvement, and counter-arguments.</value>
+  </data>
+  <data name="Response Language" xml:space="preserve">
+    <value>Response language</value>
+  </data>
+  <data name="Thesis Statement / Main Claim" xml:space="preserve">
+    <value>Thesis Statement / Main Claim</value>
+  </data>
+  <data name="Additional Instructions" xml:space="preserve">
+    <value>Additional Instructions</value>
+  </data>
+  <data name="Additional Instructions Placeholder" xml:space="preserve">
+    <value>Add context, requirements, or ideas you already have.</value>
+  </data>
+  <data name="Writing Coach Notice" xml:space="preserve">
+    <value>This module guides your thinking and structure. It does not write the entire essay for you.</value>
+  </data>
+  <data name="Generate" xml:space="preserve">
+    <value>Generate</value>
+  </data>
+  <data name="Writing Coach Details" xml:space="preserve">
+    <value>Writing Coach Details</value>
+  </data>
+  <data name="Session Info" xml:space="preserve">
+    <value>Session Info</value>
+  </data>
+  <data name="Your Input" xml:space="preserve">
+    <value>Your Input</value>
+  </data>
+  <data name="Thesis" xml:space="preserve">
+    <value>Thesis</value>
+  </data>
+  <data name="Instructions" xml:space="preserve">
+    <value>Instructions</value>
+  </data>
+  <data name="Response" xml:space="preserve">
+    <value>Response</value>
+  </data>
+  <data name="Copy Response" xml:space="preserve">
+    <value>Copy Response</value>
+  </data>
+  <data name="No response content available." xml:space="preserve">
+    <value>No response content available.</value>
+  </data>
+  <data name="No response available to copy." xml:space="preserve">
+    <value>No response available to copy.</value>
+  </data>
+  <data name="Back to Writing Coach" xml:space="preserve">
+    <value>Back to Writing Coach</value>
+  </data>
+  <data name="Create Reference" xml:space="preserve">
+    <value>Create Reference</value>
+  </data>
+  <data name="Create Reference subtitle" xml:space="preserve">
+    <value>Enter source information to generate APA/MLA citations.</value>
+  </data>
+  <data name="Back to References" xml:space="preserve">
+    <value>Back to References</value>
+  </data>
+  <data name="Save Reference" xml:space="preserve">
+    <value>Save Reference</value>
+  </data>
+  <data name="Edit Reference" xml:space="preserve">
+    <value>Edit Reference</value>
+  </data>
+  <data name="Edit Reference subtitle" xml:space="preserve">
+    <value>Update source information and regenerate APA/MLA citations.</value>
+  </data>
+  <data name="Update Reference" xml:space="preserve">
+    <value>Update Reference</value>
+  </data>
+  <data name="Reference Details" xml:space="preserve">
+    <value>Reference Details</value>
+  </data>
+  <data name="Source Information" xml:space="preserve">
+    <value>Source Information</value>
+  </data>
+  <data name="Journal / Publisher" xml:space="preserve">
+    <value>Journal / Publisher</value>
+  </data>
+  <data name="Website" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Pages</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="Citation Output" xml:space="preserve">
+    <value>Citation Output</value>
+  </data>
+  <data name="APA In-text Citation" xml:space="preserve">
+    <value>APA In-text Citation</value>
+  </data>
+  <data name="APA Reference" xml:space="preserve">
+    <value>APA Reference</value>
+  </data>
+  <data name="MLA In-text Citation" xml:space="preserve">
+    <value>MLA In-text Citation</value>
+  </data>
+  <data name="MLA Reference" xml:space="preserve">
+    <value>MLA Reference</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Remember me" xml:space="preserve">
+    <value>Remember me</value>
+  </data>
+  <data name="PDF file" xml:space="preserve">
+    <value>PDF file</value>
+  </data>
+  <data name="Image file" xml:space="preserve">
+    <value>Image file</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="Create Account" xml:space="preserve">
+    <value>Create account</value>
+  </data>
+  <data name="Already Have An Account" xml:space="preserve">
+    <value>Already have an account?</value>
+  </data>
+  <data name="Do Not Have An Account" xml:space="preserve">
+    <value>Do not have an account?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="UploadDocument_Subtitle" xml:space="preserve">
+    <value>Add a research document to your library.</value>
+  </data>
+  <data name="Writing_ContentHelp" xml:space="preserve">
+    <value>Paste your draft here. Feedback uses AI when enabled, otherwise it falls back to rule-based analysis.</value>
+  </data>
+  <data name="WritingCoach_TopicPlaceholder" xml:space="preserve">
+    <value>AI in academic writing</value>
+  </data>
+  <data name="Save And Generate Citation" xml:space="preserve">
+    <value>Save and generate citation</value>
+  </data>
+  <data name="ReferenceAuthor_Placeholder" xml:space="preserve">
+    <value>Nguyen, Tran or Smith</value>
+  </data>
+  <data name="Account_EmailAlreadyRegistered" xml:space="preserve">
+    <value>This email is already registered.</value>
+  </data>
+  <data name="Documents_PdfMissingOnServer" xml:space="preserve">
+    <value>The PDF file no longer exists on the server.</value>
+  </data>
+  <data name="Documents_ExtractBeforeSummary" xml:space="preserve">
+    <value>Please extract text before generating a summary.</value>
+  </data>
+  <data name="Documents_SummaryGeneratedByAi" xml:space="preserve">
+    <value>Summary generated by AI.</value>
+  </data>
+  <data name="Documents_SummaryGeneratedFallback" xml:space="preserve">
+    <value>AI unavailable. Rule-based summary generated.</value>
+  </data>
+  <data name="OCR_ImageScannedSuccessfully" xml:space="preserve">
+    <value>Image scanned successfully.</value>
+  </data>
+  <data name="OCR_DeleteSuccess" xml:space="preserve">
+    <value>OCR scan deleted successfully.</value>
+  </data>
+  <data name="TextScan_OcrNotFoundOrForbidden" xml:space="preserve">
+    <value>OCR scan not found or you do not have permission to access it.</value>
+  </data>
+  <data name="TextScan_EssayNotFoundOrForbidden" xml:space="preserve">
+    <value>Essay not found or you do not have permission to access it.</value>
+  </data>
+  <data name="TextScan_NoOcrTextAvailable" xml:space="preserve">
+    <value>No OCR text available to scan.</value>
+  </data>
+  <data name="TextScan_MinimumWordsValidation" xml:space="preserve">
+    <value>Please enter at least 50 words for a meaningful scan.</value>
+  </data>
+  <data name="TextScan_Success" xml:space="preserve">
+    <value>Text scan completed successfully.</value>
+  </data>
+  <data name="TextScan_DeleteSuccess" xml:space="preserve">
+    <value>Text scan deleted successfully.</value>
+  </data>
+  <data name="Writing_ReferenceNotFoundOrForbidden" xml:space="preserve">
+    <value>Reference not found or you do not have permission to access it.</value>
+  </data>
+  <data name="Writing_CoachSessionNotFoundOrForbidden" xml:space="preserve">
+    <value>Writing coach session not found or you do not have permission to access it.</value>
+  </data>
+  <data name="Writing_NoCoachResponseAvailable" xml:space="preserve">
+    <value>No writing coach response available to send to Writing Studio.</value>
+  </data>
+  <data name="Writing_OcrNotFoundOrForbidden" xml:space="preserve">
+    <value>OCR scan not found or you do not have permission to access it.</value>
+  </data>
+  <data name="Writing_NoExtractedTextAvailable" xml:space="preserve">
+    <value>No extracted text available to send to Writing Studio.</value>
+  </data>
+  <data name="Writing_CompleteRequiredFields" xml:space="preserve">
+    <value>Please complete the essay title, type, and content before analyzing.</value>
+  </data>
+  <data name="Writing_AiFeedbackSuccess" xml:space="preserve">
+    <value>Essay analyzed with AI feedback.</value>
+  </data>
+  <data name="Writing_AiFeedbackFallback" xml:space="preserve">
+    <value>AI feedback unavailable. Rule-based feedback generated.</value>
+  </data>
+  <data name="WritingCoach_AiResponseSuccess" xml:space="preserve">
+    <value>Writing coach response generated by AI.</value>
+  </data>
+  <data name="WritingCoach_AiResponseFallback" xml:space="preserve">
+    <value>AI unavailable. A rule-based writing guide was generated.</value>
+  </data>
+  <data name="WritingCoach_DeleteSuccess" xml:space="preserve">
+    <value>Writing coach session deleted successfully.</value>
+  </data>
+  <data name="References_CreateSuccess" xml:space="preserve">
+    <value>Reference created successfully.</value>
+  </data>
+  <data name="References_UpdateSuccess" xml:space="preserve">
+    <value>Reference updated successfully.</value>
+  </data>
+  <data name="References_DeleteSuccess" xml:space="preserve">
+    <value>Reference deleted successfully.</value>
+  </data>
+  <data name="Validation_FullNameRequired" xml:space="preserve">
+    <value>Please enter your full name.</value>
+  </data>
+  <data name="Validation_FullNameMaxLength" xml:space="preserve">
+    <value>Your full name must be 100 characters or fewer.</value>
+  </data>
+  <data name="Validation_EmailRequired" xml:space="preserve">
+    <value>Please enter your email.</value>
+  </data>
+  <data name="Validation_EmailInvalid" xml:space="preserve">
+    <value>Please enter a valid email address.</value>
+  </data>
+  <data name="Validation_EmailMaxLength" xml:space="preserve">
+    <value>Your email must be 150 characters or fewer.</value>
+  </data>
+  <data name="Validation_PasswordRequired" xml:space="preserve">
+    <value>Please enter your password.</value>
+  </data>
+  <data name="Validation_PasswordMinLength" xml:space="preserve">
+    <value>The password must be at least 8 characters.</value>
+  </data>
+  <data name="Validation_ConfirmPasswordRequired" xml:space="preserve">
+    <value>Please confirm your password.</value>
+  </data>
+  <data name="Validation_PasswordsDoNotMatch" xml:space="preserve">
+    <value>The confirmation password does not match.</value>
+  </data>
+  <data name="Validation_TitleRequired" xml:space="preserve">
+    <value>Please enter a title.</value>
+  </data>
+  <data name="Validation_TitleMaxLength200" xml:space="preserve">
+    <value>The title must be 200 characters or fewer.</value>
+  </data>
+  <data name="Validation_PdfFileRequired" xml:space="preserve">
+    <value>Please select a PDF file.</value>
+  </data>
+  <data name="Validation_ImageFileRequired" xml:space="preserve">
+    <value>Please select an image file.</value>
+  </data>
+  <data name="Validation_OcrLanguageRequired" xml:space="preserve">
+    <value>Please select an OCR language.</value>
+  </data>
+  <data name="Validation_EssayTypeRequired" xml:space="preserve">
+    <value>Please select an essay type.</value>
+  </data>
+  <data name="Validation_EssayContentRequired" xml:space="preserve">
+    <value>Please enter your essay content.</value>
+  </data>
+  <data name="Validation_EssayContentMinLength" xml:space="preserve">
+    <value>The content is too short to analyze.</value>
+  </data>
+  <data name="Validation_TextScanInputRequired" xml:space="preserve">
+    <value>Please enter text to scan.</value>
+  </data>
+  <data name="Validation_WritingCoachModeRequired" xml:space="preserve">
+    <value>Please select a writing coach mode.</value>
+  </data>
+  <data name="Validation_TopicMaxLength" xml:space="preserve">
+    <value>The topic must be 300 characters or fewer.</value>
+  </data>
+  <data name="Validation_WritingCoachTopicOrInstructionsRequired" xml:space="preserve">
+    <value>Please enter a topic or additional instructions.</value>
+  </data>
+  <data name="Validation_WritingCoachThesisRequired" xml:space="preserve">
+    <value>Please enter a thesis statement to improve.</value>
+  </data>
+  <data name="Validation_WritingCoachThesisOrArgumentRequired" xml:space="preserve">
+    <value>Please enter a thesis statement or main argument.</value>
+  </data>
+  <data name="Validation_ReferenceSourceTypeRequired" xml:space="preserve">
+    <value>Please select a source type.</value>
+  </data>
+  <data name="Validation_ReferenceTitleRequired" xml:space="preserve">
+    <value>Please enter the reference title.</value>
+  </data>
+  <data name="Validation_ReferenceTitleMaxLength" xml:space="preserve">
+    <value>The reference title must be 300 characters or fewer.</value>
+  </data>
+  <data name="Validation_ReferenceAuthorMaxLength" xml:space="preserve">
+    <value>The author field must be 300 characters or fewer.</value>
+  </data>
+  <data name="Validation_ReferenceYearInvalid" xml:space="preserve">
+    <value>Year should be a 4-digit number.</value>
+  </data>
+  <data name="Validation_ReferenceUrlInvalid" xml:space="preserve">
+    <value>Please enter a valid URL.</value>
+  </data>
+  <data name="FullNameRequired" xml:space="preserve">
+    <value>Please enter your full name.</value>
+  </data>
+  <data name="FullNameMaxLength" xml:space="preserve">
+    <value>Full name cannot exceed 100 characters.</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>Please enter your email address.</value>
+  </data>
+  <data name="EmailInvalid" xml:space="preserve">
+    <value>Invalid email address.</value>
+  </data>
+  <data name="EmailMaxLength" xml:space="preserve">
+    <value>Email cannot exceed 150 characters.</value>
+  </data>
+  <data name="PasswordRequired" xml:space="preserve">
+    <value>Please enter your password.</value>
+  </data>
+  <data name="PasswordMinLength" xml:space="preserve">
+    <value>Password must be at least 6 characters long.</value>
+  </data>
+  <data name="Register_PasswordsDoNotMatch" xml:space="preserve">
+    <value>Password and confirmation password do not match.</value>
+  </data>
+  <data name="PdfUploadSuccess" xml:space="preserve">
+    <value>PDF uploaded successfully.</value>
+  </data>
+  <data name="PdfNotExists" xml:space="preserve">
+    <value>The PDF file no longer exists on the server.</value>
+  </data>
+  <data name="TextExtractSuccess" xml:space="preserve">
+    <value>Text extracted successfully.</value>
+  </data>
+  <data name="ExtractTextBeforeSummary" xml:space="preserve">
+    <value>Please extract text before generating a summary.</value>
+  </data>
+  <data name="SummaryGeneratedAi" xml:space="preserve">
+    <value>Summary generated by AI.</value>
+  </data>
+  <data name="SummaryGeneratedFallback" xml:space="preserve">
+    <value>AI unavailable. Rule-based summary generated.</value>
+  </data>
+  <data name="DocumentDeleteSuccess" xml:space="preserve">
+    <value>Document deleted successfully.</value>
+  </data>
+  <data name="OcrNoTextDetected" xml:space="preserve">
+    <value>No readable text was detected.</value>
+  </data>
+  <data name="OcrScanSuccess" xml:space="preserve">
+    <value>Image scanned successfully.</value>
+  </data>
+  <data name="OcrDeleteSuccess" xml:space="preserve">
+    <value>OCR scan deleted successfully.</value>
+  </data>
+  <data name="ReferenceNotFound" xml:space="preserve">
+    <value>Reference not found or you do not have permission to access it.</value>
+  </data>
+  <data name="WritingCoachSessionNotFound" xml:space="preserve">
+    <value>Writing coach session not found or you do not have permission to access it.</value>
+  </data>
+  <data name="WritingCoachNoResponse" xml:space="preserve">
+    <value>No writing coach response available to send to Writing Studio.</value>
+  </data>
+  <data name="OcrScanNotFound" xml:space="preserve">
+    <value>OCR scan not found or you do not have permission to access it.</value>
+  </data>
+  <data name="OcrNoExtractedText" xml:space="preserve">
+    <value>No extracted text available to send to Writing Studio.</value>
+  </data>
+  <data name="EssayFieldsRequired" xml:space="preserve">
+    <value>Please complete the essay title, type, and content before analyzing.</value>
+  </data>
+  <data name="EssayAnalyzeSuccess" xml:space="preserve">
+    <value>Essay analyzed successfully.</value>
+  </data>
+  <data name="EssayAnalyzeAiSuccess" xml:space="preserve">
+    <value>Essay analyzed with AI feedback.</value>
+  </data>
+  <data name="EssayAnalyzeFallback" xml:space="preserve">
+    <value>AI feedback unavailable. Rule-based feedback generated.</value>
+  </data>
 </root>
