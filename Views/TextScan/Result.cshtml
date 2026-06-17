@@ -1,58 +1,56 @@
 @model AcademicAIAssistant.Models.TextScan
-@using System.Globalization
+@inject IStringLocalizer<SharedResource> Localizer
 
 @{
-    bool isVi = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "vi";
-    ViewData["Title"] = isVi ? "Kết quả quét văn bản" : "Text Scan Result";
+    ViewData["Title"] = Localizer["Text Scan Result"];
+    bool isVi = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "vi";
 }
 
 <section class="py-4">
     <div class="page-header">
         <div>
             <h1 class="page-title">@Model.Title</h1>
-            <p class="page-subtitle">@(isVi ? "Kết quả kiểm tra độ tương đồng nội bộ." : "Internal similarity scan result.")</p>
+            <p class="page-subtitle">@Localizer["Text Scan Result subtitle"]</p>
         </div>
         <div class="d-flex flex-wrap gap-2">
-            <a class="btn btn-primary" asp-action="Index">@(isVi ? "Quét mới" : "New Scan")</a>
-            <a class="btn btn-outline-secondary" asp-action="History">@(isVi ? "Lịch sử" : "History")</a>
+            <a class="btn btn-primary" asp-action="Index">@Localizer["New Scan"]</a>
+            <a class="btn btn-outline-secondary" asp-action="History">@Localizer["History"]</a>
         </div>
     </div>
 
     <div class="alert alert-info">
-        @(isVi
-            ? "Độ tương đồng không đồng nghĩa chắc chắn với đạo văn. Công cụ này chỉ phát hiện mức độ trùng lặp với dữ liệu nội bộ trong hệ thống."
-            : "Similarity does not always mean plagiarism. This tool only detects text overlap with your internal database.")
+        @Localizer["Text Scan Result Notice"]
     </div>
 
     <div class="row g-3 mb-3">
         <div class="col-md-3">
             <div class="stat-card">
-                <h2 class="h6">@(isVi ? "Số từ" : "Word Count")</h2>
+                <h2 class="h6">@Localizer["Word Count"]</h2>
                 <p class="display-6 mb-0">@Model.WordCount</p>
             </div>
         </div>
         <div class="col-md-3">
             <div class="stat-card">
-                <h2 class="h6">@(isVi ? "Điểm tương đồng" : "Similarity Score")</h2>
+                <h2 class="h6">@Localizer["Similarity Score"]</h2>
                 <p class="display-6 mb-0">@Model.OverallSimilarityScore.ToString("0.##")%</p>
             </div>
         </div>
         <div class="col-md-3">
             <div class="stat-card">
-                <h2 class="h6">@(isVi ? "Mức rủi ro" : "Risk Level")</h2>
-                <p class="mb-0"><span class="badge fs-6 @GetRiskBadge(Model.RiskLevel)">@GetRiskLabel(Model.RiskLevel, isVi)</span></p>
+                <h2 class="h6">@Localizer["Risk Level"]</h2>
+                <p class="mb-0"><span class="badge fs-6 @GetRiskBadge(Model.RiskLevel)">@GetRiskLabel(Model.RiskLevel)</span></p>
             </div>
         </div>
         <div class="col-md-3">
             <div class="stat-card">
-                <h2 class="h6">@(isVi ? "Thời gian" : "Created")</h2>
-                <p class="mb-0">@Model.CreatedAt.ToString("yyyy-MM-dd HH:mm")</p>
+                <h2 class="h6">@Localizer["Created"]</h2>
+                <p class="mb-0">@Model.CreatedAt.ToDisplayDateTime()</p>
             </div>
         </div>
     </div>
 
     <div class="section-card mb-3">
-        <h2 class="h5">@(isVi ? "Gợi ý xử lý" : "Suggestions")</h2>
+        <h2 class="h5">@Localizer["Suggestions"]</h2>
         <ul class="mb-0">
             @foreach (string suggestion in GetSuggestions(Model.RiskLevel, isVi))
             {
@@ -62,17 +60,17 @@
     </div>
 
     <div class="section-card mb-3">
-        <h2 class="h5">@(isVi ? "Preview văn bản đầu vào" : "Input Text Preview")</h2>
+        <h2 class="h5">@Localizer["Input Text Preview"]</h2>
         <div class="text-preview">@TrimForPreview(Model.InputText)</div>
     </div>
 
     <div class="section-card">
-        <h2 class="h5">@(isVi ? "Đoạn tương đồng" : "Matches")</h2>
+        <h2 class="h5">@Localizer["Matches"]</h2>
 
         @if (!Model.Matches.Any())
         {
             <div class="empty-state">
-                <p>@(isVi ? "Không phát hiện độ tương đồng nội bộ đáng kể." : "No significant internal similarity found.")</p>
+                <p>@Localizer["No significant internal similarity found."]</p>
             </div>
         }
         else
@@ -90,15 +88,15 @@
                         </div>
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <h3 class="h6">@(isVi ? "Đoạn đầu vào" : "Input Segment")</h3>
+                                <h3 class="h6">@Localizer["Input Segment"]</h3>
                                 <blockquote class="blockquote small text-preview">@match.InputSegment</blockquote>
                             </div>
                             <div class="col-md-6">
-                                <h3 class="h6">@(isVi ? "Đoạn nguồn tương đồng" : "Matched Source Segment")</h3>
+                                <h3 class="h6">@Localizer["Matched Source Segment"]</h3>
                                 <blockquote class="blockquote small text-preview">@match.MatchedSegment</blockquote>
                             </div>
                         </div>
-                        <small class="text-muted">@match.CreatedAt.ToString("yyyy-MM-dd HH:mm")</small>
+                        <small class="text-muted">@match.CreatedAt.ToDisplayDateTime()</small>
                     </div>
                 }
             </div>
@@ -117,18 +115,13 @@
         };
     }
 
-    private static string GetRiskLabel(string riskLevel, bool isVi)
+    private string GetRiskLabel(string riskLevel)
     {
-        if (!isVi)
-        {
-            return riskLevel;
-        }
-
         return riskLevel switch
         {
-            "High" => "Cao",
-            "Medium" => "Trung bình",
-            _ => "Thấp"
+            "High" => Localizer["High"],
+            "Medium" => Localizer["Medium"],
+            _ => Localizer["Low"]
         };
     }
 

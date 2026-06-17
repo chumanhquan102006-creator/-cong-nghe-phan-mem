@@ -52,11 +52,11 @@
                                 <a class="list-group-item list-group-item-action px-0" href="@activity.LinkUrl">
                                     <div class="d-flex justify-content-between gap-3">
                                         <div>
-                                            <span class="badge @activity.BadgeClass me-2">@activity.ActivityType</span>
+                                            <span class="badge @activity.BadgeClass me-2"><i class="@activity.Icon me-1"></i>@activity.ActivityType</span>
                                             <strong>@activity.Title</strong>
                                             <div class="small text-muted mt-1">@activity.Description</div>
                                         </div>
-                                        <small class="text-muted text-nowrap">@activity.CreatedAt.ToString("dd/MM/yyyy HH:mm")</small>
+                                        <small class="text-muted text-nowrap">@activity.CreatedAt.ToDisplayDateTime()</small>
                                     </div>
                                 </a>
                             }
@@ -64,7 +64,15 @@
                     }
                     else
                     {
-                        <div class="alert alert-light border mb-0">@Localizer["No recent activities yet. Start by uploading a PDF or analyzing an essay."]</div>
+                        <partial name="_EmptyState" view-data='new ViewDataDictionary(ViewData)
+                        {
+                            ["IconClass"] = "bi bi-activity",
+                            ["Title"] = Localizer["NoRecentActivitiesTitle"],
+                            ["Description"] = Localizer["NoRecentActivitiesDescription"],
+                            ["ActionText"] = Localizer["Upload PDF"],
+                            ["ActionController"] = "Documents",
+                            ["ActionAction"] = "Upload"
+                        }' />
                     }
                 </div>
             </div>
@@ -83,7 +91,7 @@
                                     <div class="d-flex justify-content-between gap-3">
                                         <div>
                                             <strong>@document.Title</strong>
-                                            <div class="small text-muted">@document.UploadedAt.ToString("dd/MM/yyyy HH:mm")</div>
+                                            <div class="small text-muted">@document.UploadedAt.ToDisplayDateTime()</div>
                                             <div class="mt-1">
                                                 @if (document.ExtractedAt != null || !string.IsNullOrWhiteSpace(document.ExtractedText))
                                                 {
@@ -137,7 +145,7 @@
                                             <td>@essay.Title</td>
                                             <td>@essay.EssayType</td>
                                             <td>@essay.WordCount</td>
-                                            <td>@essay.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                                            <td>@essay.CreatedAt.ToDisplayDateTime()</td>
                                             <td class="text-end">
                                                 <a class="btn btn-sm btn-outline-primary" asp-controller="Writing" asp-action="Details" asp-route-id="@essay.Id">@Localizer["View Details"]</a>
                                             </td>

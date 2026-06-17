@@ -5,6 +5,7 @@ using AcademicAIAssistant.Data;
 using AcademicAIAssistant.Models;
 using AcademicAIAssistant.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace AcademicAIAssistant.Controllers;
 
@@ -12,10 +13,12 @@ namespace AcademicAIAssistant.Controllers;
 public class DashboardController : Controller
 {
     private readonly AppDbContext _context;
+    private readonly IStringLocalizer<SharedResource> _localizer;
 
-    public DashboardController(AppDbContext context)
+    public DashboardController(AppDbContext context, IStringLocalizer<SharedResource> localizer)
     {
         _context = context;
+        _localizer = localizer;
     }
 
     public async Task<IActionResult> Index()
@@ -34,24 +37,27 @@ public class DashboardController : Controller
             .Take(5)
             .ToListAsync();
 
-        var recentCitationChecks = await _context.CitationChecks
-            .Include(check => check.Essay)
-            .Where(check => check.Essay != null && check.Essay.UserId == userId)
-            .OrderByDescending(check => check.CheckedAt)
+        var recentOcrScans = await _context.OCRScans
+            .Where(scan => scan.UserId == userId)
+            .OrderByDescending(scan => scan.CreatedAt)
             .Take(5)
             .ToListAsync();
 
-        var recentSimilarityChecks = await _context.SimilarityChecks
-            .Include(check => check.Essay)
-            .Where(check => check.Essay != null && check.Essay.UserId == userId)
-            .OrderByDescending(check => check.CheckedAt)
+        var recentTextScans = await _context.TextScans
+            .Where(scan => scan.UserId == userId)
+            .OrderByDescending(scan => scan.CreatedAt)
             .Take(5)
             .ToListAsync();
 
-        var recentChatMessages = await _context.DocumentChatMessages
-            .Include(message => message.Document)
-            .Where(message => message.UserId == userId)
-            .OrderByDescending(message => message.CreatedAt)
+        var recentWritingCoachSessions = await _context.WritingCoachSessions
+            .Where(session => session.UserId == userId)
+            .OrderByDescending(session => session.CreatedAt)
+            .Take(5)
+            .ToListAsync();
+
+        var recentReferences = await _context.ReferenceItems
+            .Where(reference => reference.UserId == userId)
+            .OrderByDescending(reference => reference.CreatedAt)
             .Take(5)
             .ToListAsync();
 
@@ -75,18 +81,16 @@ public class DashboardController : Controller
             TotalGraphNodes = await _context.GraphNodes.CountAsync(node => node.UserId == userId),
             TotalGraphEdges = await _context.GraphEdges.CountAsync(edge => edge.UserId == userId),
             RecentDocuments = recentDocuments,
-            RecentEssays = recentEssays,
-            RecentCitationChecks = recentCitationChecks,
-            RecentSimilarityChecks = recentSimilarityChecks,
-            RecentChatMessages = recentChatMessages
+            RecentEssays = recentEssays
         };
 
         viewModel.RecentActivities = BuildRecentActivities(
             recentDocuments,
             recentEssays,
-            recentCitationChecks,
-            recentSimilarityChecks,
-            recentChatMessages);
+            recentOcrScans,
+            recentTextScans,
+            recentWritingCoachSessions,
+            recentReferences);
 
         return View(viewModel);
     }
@@ -97,63 +101,80 @@ public class DashboardController : Controller
         return int.Parse(userIdValue!);
     }
 
-    private static List<RecentActivityViewModel> BuildRecentActivities(
+    private List<RecentActivityViewModel> BuildRecentActivities(
         List<Document> documents,
         List<Essay> essays,
-        List<CitationCheck> citationChecks,
-        List<SimilarityCheck> similarityChecks,
-        List<DocumentChatMessage> chatMessages)
+        List<OCRScan> ocrScans,
+        List<TextScan> textScans,
+        List<WritingCoachSession> writingCoachSessions,
+        List<ReferenceItem> references)
     {
         var activities = new List<RecentActivityViewModel>();
 
         activities.AddRange(documents.Select(document => new RecentActivityViewModel
         {
-            ActivityType = "Document",
+            ActivityType = _localizer["Document Uploaded"],
             Title = document.Title,
-            Description = $"Uploaded document: {document.OriginalFileName}",
+            Description = $"{_localizer["Document Uploaded"]}: {document.OriginalFileName}",
             CreatedAt = document.UploadedAt,
             LinkUrl = $"/Documents/Details/{document.Id}",
+            Icon = "bi bi-file-earmark-pdf",
             BadgeClass = "text-bg-primary"
         }));
 
         activities.AddRange(essays.Select(essay => new RecentActivityViewModel
         {
-            ActivityType = "Essay",
+            ActivityType = _localizer["Essay Created"],
             Title = essay.Title,
-            Description = $"Analyzed {essay.EssayType} with {essay.WordCount} words",
+            Description = $"{_localizer["Essay Created"]}: {essay.EssayType}",
             CreatedAt = essay.CreatedAt,
             LinkUrl = $"/Writing/Details/{essay.Id}",
+            Icon = "bi bi-journal-text",
             BadgeClass = "text-bg-success"
         }));
 
-        activities.AddRange(citationChecks.Select(check => new RecentActivityViewModel
+        activities.AddRange(ocrScans.Select(scan => new RecentActivityViewModel
         {
-            ActivityType = "Citation",
-            Title = check.Essay?.Title ?? "Citation check",
-            Description = $"Citation status: {check.OverallStatus}",
-            CreatedAt = check.CheckedAt,
-            LinkUrl = $"/Citation/Result/{check.Id}",
-            BadgeClass = "text-bg-warning"
+            ActivityType = _localizer["OCR Scan Created"],
+            Title = scan.Title,
+            Description = $"{_localizer["OCR Scan Created"]}: {scan.OriginalFileName}",
+            CreatedAt = scan.CreatedAt,
+            LinkUrl = $"/OCR/Details/{scan.Id}",
+            Icon = "bi bi-card-image",
+            BadgeClass = "text-bg-info"
         }));
 
-        activities.AddRange(similarityChecks.Select(check => new RecentActivityViewModel
+        activities.AddRange(textScans.Select(scan => new RecentActivityViewModel
         {
-            ActivityType = "Similarity",
-            Title = check.Essay?.Title ?? "Similarity check",
-            Description = $"Similarity status: {check.Status} ({check.OverallSimilarityScore:0.#}%)",
-            CreatedAt = check.CheckedAt,
-            LinkUrl = $"/Similarity/Result/{check.Id}",
+            ActivityType = _localizer["Text Scan Created"],
+            Title = scan.Title,
+            Description = $"{_localizer["Text Scan Created"]}: {scan.OverallSimilarityScore:0.#}%",
+            CreatedAt = scan.CreatedAt,
+            LinkUrl = $"/TextScan/Result/{scan.Id}",
+            Icon = "bi bi-file-earmark-text",
             BadgeClass = "text-bg-danger"
         }));
 
-        activities.AddRange(chatMessages.Select(message => new RecentActivityViewModel
+        activities.AddRange(writingCoachSessions.Select(session => new RecentActivityViewModel
         {
-            ActivityType = "Chat",
-            Title = message.Document?.Title ?? "Document chat",
-            Description = $"Asked: {Shorten(message.Question, 80)}",
-            CreatedAt = message.CreatedAt,
-            LinkUrl = $"/DocumentChat/{message.DocumentId}",
-            BadgeClass = "text-bg-info"
+            ActivityType = _localizer["Writing Coach Session Created"],
+            Title = session.Topic,
+            Description = $"{_localizer["Writing Coach Session Created"]}: {session.Mode}",
+            CreatedAt = session.CreatedAt,
+            LinkUrl = $"/WritingCoach/Details/{session.Id}",
+            Icon = "bi bi-lightbulb",
+            BadgeClass = "text-bg-warning"
+        }));
+
+        activities.AddRange(references.Select(reference => new RecentActivityViewModel
+        {
+            ActivityType = _localizer["Reference Created"],
+            Title = reference.Title,
+            Description = $"{_localizer["Reference Created"]}: {Shorten(reference.Author, 60)}",
+            CreatedAt = reference.CreatedAt,
+            LinkUrl = $"/References/Details/{reference.Id}",
+            Icon = "bi bi-bookmark-plus",
+            BadgeClass = "text-bg-secondary"
         }));
 
         return activities

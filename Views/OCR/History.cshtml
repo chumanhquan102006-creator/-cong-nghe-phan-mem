@@ -1,25 +1,30 @@
 @model List<AcademicAIAssistant.Models.OCRScan>
+@inject IStringLocalizer<SharedResource> Localizer
 
 @{
-    ViewData["Title"] = "OCR History";
+    ViewData["Title"] = Localizer["OCR History"];
 }
 
 <section class="py-4">
     <div class="page-header">
         <div>
-            <h1 class="page-title">OCR History</h1>
-            <p class="page-subtitle">Review images you scanned and reuse extracted text.</p>
+            <h1 class="page-title">@Localizer["OCR History"]</h1>
+            <p class="page-subtitle">@Localizer["OCR History subtitle"]</p>
         </div>
-        <a class="btn btn-primary" asp-action="Index">Scan New Image</a>
+        <a class="btn btn-primary" asp-action="Index">@Localizer["StartOcrScan"]</a>
     </div>
 
     @if (!Model.Any())
     {
-        <div class="empty-state">
-            <h2 class="h5">No OCR scans yet.</h2>
-            <p>Upload an image to extract text.</p>
-            <a class="btn btn-primary" asp-action="Index">Upload Image</a>
-        </div>
+        <partial name="_EmptyState" view-data='new ViewDataDictionary(ViewData)
+        {
+            ["IconClass"] = "bi bi-card-image",
+            ["Title"] = Localizer["EmptyOcrTitle"],
+            ["Description"] = Localizer["EmptyOcrDescription"],
+            ["ActionText"] = Localizer["StartOcrScan"],
+            ["ActionController"] = "OCR",
+            ["ActionAction"] = "Index"
+        }' />
     }
     else
     {
@@ -28,12 +33,12 @@
                 <table class="table align-middle">
                     <thead>
                         <tr>
-                            <th>Title</th>
-                            <th>File</th>
-                            <th>Language</th>
-                            <th>Text Length</th>
-                            <th>Created</th>
-                            <th class="text-end">Actions</th>
+                            <th>@Localizer["Title"]</th>
+                            <th>@Localizer["File"]</th>
+                            <th>@Localizer["Language"]</th>
+                            <th>@Localizer["Text Length"]</th>
+                            <th>@Localizer["Created"]</th>
+                            <th class="text-end">@Localizer["Actions"]</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,13 +47,13 @@
                             <tr>
                                 <td class="fw-semibold">@scan.Title</td>
                                 <td>@scan.OriginalFileName</td>
-                                <td>@(scan.Language == "vie" ? "Vietnamese" : "English")</td>
-                                <td>@scan.ExtractedText.Length chars</td>
-                                <td>@scan.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                                <td>@(scan.Language == "vie" ? Localizer["Vietnamese"] : Localizer["English"])</td>
+                                <td>@scan.ExtractedText.Length @Localizer["Characters"]</td>
+                                <td>@scan.CreatedAt.ToDisplayDateTime()</td>
                                 <td class="text-end">
-                                    <a class="btn btn-sm btn-outline-primary" asp-action="Details" asp-route-id="@scan.Id">View Details</a>
-                                    <form asp-action="Delete" asp-route-id="@scan.Id" method="post" class="d-inline" onsubmit="return confirm('Delete this OCR scan?');">
-                                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                    <a class="btn btn-sm btn-outline-primary" asp-action="Details" asp-route-id="@scan.Id">@Localizer["View Details"]</a>
+                                    <form asp-action="Delete" asp-route-id="@scan.Id" method="post" class="d-inline" onsubmit="return confirm('@Localizer["Delete OCR Scan Confirm"]');">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">@Localizer["Delete"]</button>
                                     </form>
                                 </td>
                             </tr>

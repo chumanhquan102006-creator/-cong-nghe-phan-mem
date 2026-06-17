@@ -6,6 +6,7 @@ using AcademicAIAssistant.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace AcademicAIAssistant.Controllers;
 
@@ -14,11 +15,16 @@ public class ReferencesController : Controller
 {
     private readonly AppDbContext _context;
     private readonly ReferenceGeneratorService _referenceGeneratorService;
+    private readonly IStringLocalizer<SharedResource> _localizer;
 
-    public ReferencesController(AppDbContext context, ReferenceGeneratorService referenceGeneratorService)
+    public ReferencesController(
+        AppDbContext context,
+        ReferenceGeneratorService referenceGeneratorService,
+        IStringLocalizer<SharedResource> localizer)
     {
         _context = context;
         _referenceGeneratorService = referenceGeneratorService;
+        _localizer = localizer;
     }
 
     [HttpGet("/References")]
@@ -73,7 +79,7 @@ public class ReferencesController : Controller
         _context.ReferenceItems.Add(reference);
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = "Reference created successfully.";
+        TempData["SuccessMessage"] = _localizer["References_CreateSuccess"];
         return RedirectToAction(nameof(Details), new { id = reference.Id });
     }
 
@@ -122,7 +128,7 @@ public class ReferencesController : Controller
 
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = "Reference updated successfully.";
+        TempData["SuccessMessage"] = _localizer["References_UpdateSuccess"];
         return RedirectToAction(nameof(Details), new { id = reference.Id });
     }
 
@@ -139,7 +145,7 @@ public class ReferencesController : Controller
         _context.ReferenceItems.Remove(reference);
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = "Reference deleted successfully.";
+        TempData["SuccessMessage"] = _localizer["References_DeleteSuccess"];
         return RedirectToAction(nameof(Index));
     }
 

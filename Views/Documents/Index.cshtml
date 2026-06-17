@@ -16,9 +16,15 @@
 
     @if (!Model.Any())
     {
-        <div class="empty-state">
-            @Localizer["You have not uploaded any PDF documents yet."]
-        </div>
+        <partial name="_EmptyState" view-data='new ViewDataDictionary(ViewData)
+        {
+            ["IconClass"] = "bi bi-file-earmark-pdf",
+            ["Title"] = Localizer["EmptyDocumentsTitle"],
+            ["Description"] = Localizer["EmptyDocumentsDescription"],
+            ["ActionText"] = Localizer["UploadFirstPdf"],
+            ["ActionController"] = "Documents",
+            ["ActionAction"] = "Upload"
+        }' />
     }
     else
     {
@@ -42,7 +48,7 @@
                             <td>@document.Title</td>
                             <td>@document.OriginalFileName</td>
                             <td>@((document.FileSize / 1024.0 / 1024.0).ToString("0.00")) MB</td>
-                            <td>@document.UploadedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                            <td>@document.UploadedAt.ToDisplayDateTime()</td>
                             <td>
                                 @if (document.SummaryGeneratedAt.HasValue)
                                 {

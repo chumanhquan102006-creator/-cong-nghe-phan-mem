@@ -2,26 +2,26 @@
 @inject IStringLocalizer<SharedResource> Localizer
 
 @{
-    ViewData["Title"] = "OCR Scanner";
+    ViewData["Title"] = Localizer["OCR Scanner"];
 }
 
 <section class="py-4">
     <div class="page-header">
         <div>
-            <h1 class="page-title">OCR Scanner</h1>
-            <p class="page-subtitle">Upload an image or screenshot containing text. The system will extract readable text using OCR.</p>
+            <h1 class="page-title">@Localizer["OCR Scanner"]</h1>
+            <p class="page-subtitle">@Localizer["OCR Scanner subtitle"]</p>
         </div>
-        <a class="btn btn-outline-secondary" asp-action="History">OCR History</a>
+        <a class="btn btn-outline-secondary" asp-action="History">@Localizer["OCR History"]</a>
     </div>
 
     <div class="section-card">
-        <form asp-action="Upload" method="post" enctype="multipart/form-data">
+        <form asp-action="Upload" method="post" enctype="multipart/form-data" class="js-loading-form">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="row g-3">
                 <div class="col-md-7">
                     <label asp-for="Title" class="form-label"></label>
-                    <input asp-for="Title" class="form-control" placeholder="Example: Screenshot of lecture notes" />
+                    <input asp-for="Title" class="form-control" placeholder="@Localizer["OCR Title Placeholder"]" />
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
 
@@ -44,7 +44,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary mt-3">Scan Image</button>
+            <button type="submit" class="btn btn-primary mt-3" data-loading-text="@Localizer["Scanning"]">@Localizer["Scan Image"]</button>
         </form>
     </div>
 </section>

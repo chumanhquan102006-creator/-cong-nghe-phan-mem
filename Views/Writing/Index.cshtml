@@ -14,7 +14,7 @@
         <a class="btn btn-outline-secondary" asp-action="History">@Localizer["Writing History"]</a>
     </div>
 
-    <form asp-action="Analyze" method="post" class="section-card">
+    <form asp-action="Analyze" method="post" class="section-card js-loading-form">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="row g-3">
@@ -39,11 +39,11 @@
                 <label asp-for="Content" class="form-label"></label>
                 <textarea asp-for="Content" class="form-control" rows="16"></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
-                <div class="form-text">Paste your draft here. Feedback uses AI when enabled, otherwise it falls back to rule-based analysis.</div>
+                <div class="form-text">@Localizer["Writing_ContentHelp"]</div>
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary mt-3">@Localizer["Analyze Essay"]</button>
+        <button type="submit" class="btn btn-primary mt-3" data-loading-text="@Localizer["Analyzing"]">@Localizer["Analyze Essay"]</button>
     </form>
 </section>
 

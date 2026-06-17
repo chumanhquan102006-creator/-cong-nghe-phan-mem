@@ -7,6 +7,7 @@ using AcademicAIAssistant.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace AcademicAIAssistant.Controllers;
 
@@ -14,11 +15,15 @@ namespace AcademicAIAssistant.Controllers;
 public class WritingController : Controller
 {
     private readonly AppDbContext _context;
-    private readonly IStringLocalizer<SharedResource> _localizer;
     private readonly WritingFeedbackService _writingFeedbackService;
     private readonly IAIService _aiService;
+    private readonly IStringLocalizer<SharedResource> _localizer;
 
-    public WritingController(AppDbContext context, WritingFeedbackService writingFeedbackService, IAIService aiService)
+    public WritingController(
+        AppDbContext context,
+        WritingFeedbackService writingFeedbackService,
+        IAIService aiService,
+        IStringLocalizer<SharedResource> localizer)
     {
         _context = context;
         _writingFeedbackService = writingFeedbackService;
@@ -38,7 +43,7 @@ public class WritingController : Controller
 
             if (reference == null)
             {
-                TempData["ErrorMessage"] = _localizer["ReferenceNotFound"].Value;
+                TempData["ErrorMessage"] = _localizer["Writing_ReferenceNotFoundOrForbidden"];
                 return View(new EssayAnalyzeViewModel());
             }
 
@@ -64,13 +69,13 @@ public class WritingController : Controller
 
             if (session == null)
             {
-                TempData["ErrorMessage"] = _localizer["WritingCoachSessionNotFound"].Value;
+                TempData["ErrorMessage"] = _localizer["Writing_CoachSessionNotFoundOrForbidden"];
                 return View(new EssayAnalyzeViewModel());
             }
 
             if (string.IsNullOrWhiteSpace(session.AIResponse))
             {
-                TempData["WarningMessage"] = _localizer["WritingCoachNoResponse"].Value;
+                TempData["WarningMessage"] = _localizer["Writing_NoCoachResponseAvailable"];
                 return View(new EssayAnalyzeViewModel());
             }
 
@@ -91,13 +96,13 @@ public class WritingController : Controller
 
             if (scan == null)
             {
-                TempData["ErrorMessage"] = _localizer["OcrScanNotFound"].Value;
+                TempData["ErrorMessage"] = _localizer["Writing_OcrNotFoundOrForbidden"];
                 return View(new EssayAnalyzeViewModel());
             }
 
             if (string.IsNullOrWhiteSpace(scan.ExtractedText))
             {
-                TempData["WarningMessage"] = _localizer["OcrNoExtractedText"].Value;
+                TempData["WarningMessage"] = _localizer["Writing_NoExtractedTextAvailable"];
                 return View(new EssayAnalyzeViewModel());
             }
 
@@ -125,7 +130,7 @@ public class WritingController : Controller
     {
         if (!ModelState.IsValid)
         {
-            TempData["ErrorMessage"] = _localizer["EssayFieldsRequired"].Value;
+            TempData["ErrorMessage"] = _localizer["Writing_CompleteRequiredFields"];
             return View("Index", model);
         }
 
@@ -147,7 +152,7 @@ public class WritingController : Controller
 
         if (!TempData.ContainsKey("SuccessMessage") && !TempData.ContainsKey("WarningMessage"))
         {
-            TempData["SuccessMessage"] = _localizer["EssayAnalyzeSuccess"].Value;
+            TempData["SuccessMessage"] = _localizer["Essay analyzed successfully."];
         }
 
         return RedirectToAction(nameof(Details), new { id = essay.Id });
@@ -212,12 +217,12 @@ public class WritingController : Controller
         try
         {
             string aiFeedback = await _aiService.GenerateWritingFeedbackAsync(model.EssayType, model.Content, aiSetting);
-            TempData["SuccessMessage"] = _localizer["EssayAnalyzeAiSuccess"].Value;
+            TempData["SuccessMessage"] = _localizer["Writing_AiFeedbackSuccess"];
             return ParseAiFeedbackReport(aiFeedback);
         }
         catch
         {
-            TempData["WarningMessage"] = _localizer["EssayAnalyzeFallback"].Value;
+            TempData["WarningMessage"] = _localizer["Writing_AiFeedbackFallback"];
             return _writingFeedbackService.AnalyzeEssay(model.Title, model.EssayType, model.Content);
         }
     }

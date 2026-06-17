@@ -103,7 +103,7 @@ public class DocumentsController : Controller
         _context.Documents.Add(document);
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = "PDF uploaded successfully.";
+        TempData["SuccessMessage"] = _localizer["PDF uploaded successfully."];
         return RedirectToAction(nameof(Index));
     }
 
@@ -137,7 +137,7 @@ public class DocumentsController : Controller
         string fullPath = GetPhysicalPath(document.StoredFileName);
         if (!System.IO.File.Exists(fullPath))
         {
-            TempData["ErrorMessage"] = _localizer["PdfNotExists"].Value;
+            TempData["ErrorMessage"] = _localizer["Documents_PdfMissingOnServer"];
             return RedirectToAction(nameof(Details), new { id });
         }
 
@@ -151,7 +151,7 @@ public class DocumentsController : Controller
             document.PageCount = result.PageCount;
 
             await _context.SaveChangesAsync();
-            TempData["SuccessMessage"] = _localizer["TextExtractSuccess"].Value;
+            TempData["SuccessMessage"] = _localizer["Text extracted successfully."];
         }
         catch (Exception ex)
         {
@@ -173,7 +173,7 @@ public class DocumentsController : Controller
 
         if (string.IsNullOrWhiteSpace(document.ExtractedText))
         {
-            TempData["ErrorMessage"] = "Please extract text before generating a summary.";
+            TempData["ErrorMessage"] = _localizer["Documents_ExtractBeforeSummary"];
             return RedirectToAction(nameof(Details), new { id });
         }
 
@@ -216,11 +216,11 @@ public class DocumentsController : Controller
         {
             if (usedAi)
             {
-                TempData["SuccessMessage"] = _localizer["SummaryGeneratedAi"].Value;
+                TempData["SuccessMessage"] = _localizer["Documents_SummaryGeneratedByAi"];
             }
             else
             {
-                TempData["WarningMessage"] = _localizer["SummaryGeneratedFallback"].Value;
+                TempData["WarningMessage"] = _localizer["Documents_SummaryGeneratedFallback"];
             }
         }
 
@@ -250,7 +250,7 @@ public class DocumentsController : Controller
         _context.Documents.Remove(document);
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = _localizer["DocumentDeleteSuccess"].Value;
+        TempData["SuccessMessage"] = _localizer["Document deleted successfully."];
         return RedirectToAction(nameof(Index));
     }
 

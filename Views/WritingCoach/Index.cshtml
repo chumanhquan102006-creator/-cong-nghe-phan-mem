@@ -1,31 +1,26 @@
 @model AcademicAIAssistant.Models.ViewModels.WritingCoachViewModel
-@using System.Globalization
+@inject IStringLocalizer<SharedResource> Localizer
 
 @{
-    bool isVi = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "vi";
-    ViewData["Title"] = isVi ? "Trợ lý viết luận AI" : "AI Writing Coach";
+    ViewData["Title"] = Localizer["AI Writing Coach"];
 }
 
 <section class="py-4">
     <div class="page-header">
         <div>
-            <h1 class="page-title">@(isVi ? "Trợ lý viết luận AI" : "AI Writing Coach")</h1>
-            <p class="page-subtitle">
-                @(isVi
-                    ? "Nhận hỗ trợ lên ý tưởng, lập dàn ý, cải thiện thesis và xây dựng phản biện."
-                    : "Get help with brainstorming, outlining, thesis improvement, and counter-arguments.")
-            </p>
+            <h1 class="page-title">@Localizer["AI Writing Coach"]</h1>
+            <p class="page-subtitle">@Localizer["AI Writing Coach subtitle"]</p>
         </div>
-        <a class="btn btn-outline-secondary" asp-action="History">@(isVi ? "Lịch sử" : "History")</a>
+        <a class="btn btn-outline-secondary" asp-action="History">@Localizer["History"]</a>
     </div>
 
     <div class="section-card">
-        <form asp-action="Generate" method="post">
+        <form asp-action="Generate" method="post" class="js-loading-form">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="row g-3">
                 <div class="col-md-6">
-                    <label asp-for="Mode" class="form-label">@(isVi ? "Chế độ" : "Mode")</label>
+                    <label asp-for="Mode" class="form-label">@Localizer["Mode"]</label>
                     <select asp-for="Mode" class="form-select">
                         @foreach (var option in WritingCoachViewModel.ModeOptions)
                         {
@@ -36,7 +31,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label asp-for="Language" class="form-label">@(isVi ? "Ngôn ngữ phản hồi" : "Response language")</label>
+                    <label asp-for="Language" class="form-label">@Localizer["Response Language"]</label>
                     <select asp-for="Language" class="form-select">
                         @foreach (var option in WritingCoachViewModel.LanguageOptions)
                         {
@@ -46,13 +41,13 @@
                 </div>
 
                 <div class="col-md-8">
-                    <label asp-for="Topic" class="form-label">@(isVi ? "Chủ đề" : "Topic")</label>
-                    <input asp-for="Topic" class="form-control" placeholder="AI in academic writing" />
+                    <label asp-for="Topic" class="form-label">@Localizer["Topic"]</label>
+                    <input asp-for="Topic" class="form-control" placeholder="@Localizer["WritingCoach_TopicPlaceholder"]" />
                     <span asp-validation-for="Topic" class="text-danger"></span>
                 </div>
 
                 <div class="col-md-4">
-                    <label asp-for="EssayType" class="form-label">@(isVi ? "Loại bài viết" : "Essay Type")</label>
+                    <label asp-for="EssayType" class="form-label">@Localizer["Essay Type"]</label>
                     <select asp-for="EssayType" class="form-select">
                         @foreach (string option in WritingCoachViewModel.EssayTypeOptions)
                         {
@@ -62,24 +57,22 @@
                 </div>
 
                 <div class="col-12">
-                    <label asp-for="ThesisStatement" class="form-label">@(isVi ? "Thesis statement / luận điểm chính" : "Thesis Statement / Main Claim")</label>
+                    <label asp-for="ThesisStatement" class="form-label">@Localizer["Thesis Statement / Main Claim"]</label>
                     <textarea asp-for="ThesisStatement" class="form-control" rows="3"></textarea>
                     <span asp-validation-for="ThesisStatement" class="text-danger"></span>
                 </div>
 
                 <div class="col-12">
-                    <label asp-for="UserInput" class="form-label">@(isVi ? "Yêu cầu bổ sung" : "Additional Instructions")</label>
-                    <textarea asp-for="UserInput" class="form-control" rows="5" placeholder="Add context, requirements, or ideas you already have."></textarea>
+                    <label asp-for="UserInput" class="form-label">@Localizer["Additional Instructions"]</label>
+                    <textarea asp-for="UserInput" class="form-control" rows="5" placeholder="@Localizer["Additional Instructions Placeholder"]"></textarea>
                 </div>
             </div>
 
             <div class="alert alert-info mt-3">
-                @(isVi
-                    ? "Module này hướng dẫn tư duy và cấu trúc bài viết, không viết thay toàn bộ bài luận."
-                    : "This module guides your thinking and structure. It does not write the entire essay for you.")
+                @Localizer["Writing Coach Notice"]
             </div>
 
-            <button type="submit" class="btn btn-primary">@(isVi ? "Tạo gợi ý" : "Generate")</button>
+            <button type="submit" class="btn btn-primary" data-loading-text="@Localizer["Generating"]">@Localizer["Generate"]</button>
         </form>
     </div>
 </section>

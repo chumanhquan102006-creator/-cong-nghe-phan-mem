@@ -1,3 +1,4 @@
+using AcademicAIAssistant;
 using AcademicAIAssistant.Data;
 using AcademicAIAssistant.Models;
 using AcademicAIAssistant.Services;
@@ -12,9 +13,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.AddControllersWithViews()
     .AddViewLocalization()
-    .AddDataAnnotationsLocalization(options => {
-        options.DataAnnotationLocalizerProvider = (type, factory) =>
-            factory.Create(typeof(SharedResource));
+    .AddDataAnnotationsLocalization(options =>
+    {
+        options.DataAnnotationLocalizerProvider = (type, factory) => factory.Create(typeof(SharedResource));
     });
 builder.Services.Configure<AISettings>(builder.Configuration.GetSection("AI"));
 builder.Services.AddMemoryCache();

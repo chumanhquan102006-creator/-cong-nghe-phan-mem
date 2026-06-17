@@ -4,11 +4,12 @@ namespace AcademicAIAssistant.Models.ViewModels;
 
 public class UploadDocumentViewModel
 {
-    [Required]
-    [StringLength(200)]
+    [Required(ErrorMessage = "Validation_TitleRequired")]
+    [StringLength(200, ErrorMessage = "Validation_TitleMaxLength200")]
+    [Display(Name = "Title")]
     public string Title { get; set; } = string.Empty;
 
-    [Required]
+    [Required(ErrorMessage = "Validation_PdfFileRequired")]
     [Display(Name = "PDF file")]
     public IFormFile? File { get; set; }
 }

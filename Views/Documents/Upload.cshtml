@@ -2,7 +2,7 @@
 @inject IStringLocalizer<SharedResource> Localizer
 
 @{
-    ViewData["Title"] = "Upload PDF";
+    ViewData["Title"] = Localizer["Upload PDF"];
 }
 
 <section class="row justify-content-center py-4">
@@ -10,7 +10,7 @@
         <div class="page-header">
             <div>
                 <h1 class="page-title">@Localizer["Upload PDF"]</h1>
-                <p class="page-subtitle">Add a research document to your library.</p>
+                <p class="page-subtitle">@Localizer["UploadDocument_Subtitle"]</p>
             </div>
         </div>
 
@@ -32,7 +32,7 @@
 
             <div class="d-flex gap-2">
                 <button type="submit" class="btn btn-primary">@Localizer["Upload PDF"]</button>
-                <a class="btn btn-outline-secondary" asp-action="Index">Cancel</a>
+                <a class="btn btn-outline-secondary" asp-action="Index">@Localizer["Cancel"]</a>
             </div>
         </form>
     </div>
