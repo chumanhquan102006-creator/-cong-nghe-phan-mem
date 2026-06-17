@@ -46,7 +46,7 @@ public class AccountController : Controller
         bool emailExists = await _context.Users.AnyAsync(user => user.Email == model.Email);
         if (emailExists)
         {
-            ModelState.AddModelError(nameof(model.Email), "This email is already registered.");
+            ModelState.AddModelError(nameof(model.Email), _localizer["Account_EmailAlreadyRegistered"]);
             return View(model);
         }
 

@@ -7,6 +7,7 @@ using AcademicAIAssistant.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace AcademicAIAssistant.Controllers;
 
@@ -16,12 +17,18 @@ public class WritingController : Controller
     private readonly AppDbContext _context;
     private readonly WritingFeedbackService _writingFeedbackService;
     private readonly IAIService _aiService;
+    private readonly IStringLocalizer<SharedResource> _localizer;
 
-    public WritingController(AppDbContext context, WritingFeedbackService writingFeedbackService, IAIService aiService)
+    public WritingController(
+        AppDbContext context,
+        WritingFeedbackService writingFeedbackService,
+        IAIService aiService,
+        IStringLocalizer<SharedResource> localizer)
     {
         _context = context;
         _writingFeedbackService = writingFeedbackService;
         _aiService = aiService;
+        _localizer = localizer;
     }
 
     [HttpGet]
@@ -36,7 +43,7 @@ public class WritingController : Controller
 
             if (reference == null)
             {
-                TempData["ErrorMessage"] = "Reference not found or you do not have permission to access it.";
+                TempData["ErrorMessage"] = _localizer["Writing_ReferenceNotFoundOrForbidden"];
                 return View(new EssayAnalyzeViewModel());
             }
 
@@ -62,13 +69,13 @@ public class WritingController : Controller
 
             if (session == null)
             {
-                TempData["ErrorMessage"] = "Writing coach session not found or you do not have permission to access it.";
+                TempData["ErrorMessage"] = _localizer["Writing_CoachSessionNotFoundOrForbidden"];
                 return View(new EssayAnalyzeViewModel());
             }
 
             if (string.IsNullOrWhiteSpace(session.AIResponse))
             {
-                TempData["WarningMessage"] = "No writing coach response available to send to Writing Studio.";
+                TempData["WarningMessage"] = _localizer["Writing_NoCoachResponseAvailable"];
                 return View(new EssayAnalyzeViewModel());
             }
 
@@ -89,13 +96,13 @@ public class WritingController : Controller
 
             if (scan == null)
             {
-                TempData["ErrorMessage"] = "OCR scan not found or you do not have permission to access it.";
+                TempData["ErrorMessage"] = _localizer["Writing_OcrNotFoundOrForbidden"];
                 return View(new EssayAnalyzeViewModel());
             }
 
             if (string.IsNullOrWhiteSpace(scan.ExtractedText))
             {
-                TempData["WarningMessage"] = "No extracted text available to send to Writing Studio.";
+                TempData["WarningMessage"] = _localizer["Writing_NoExtractedTextAvailable"];
                 return View(new EssayAnalyzeViewModel());
             }
 
@@ -123,7 +130,7 @@ public class WritingController : Controller
     {
         if (!ModelState.IsValid)
         {
-            TempData["ErrorMessage"] = "Please complete the essay title, type, and content before analyzing.";
+            TempData["ErrorMessage"] = _localizer["Writing_CompleteRequiredFields"];
             return View("Index", model);
         }
 
@@ -145,7 +152,7 @@ public class WritingController : Controller
 
         if (!TempData.ContainsKey("SuccessMessage") && !TempData.ContainsKey("WarningMessage"))
         {
-            TempData["SuccessMessage"] = "Essay analyzed successfully.";
+            TempData["SuccessMessage"] = _localizer["Essay analyzed successfully."];
         }
 
         return RedirectToAction(nameof(Details), new { id = essay.Id });
@@ -210,12 +217,12 @@ public class WritingController : Controller
         try
         {
             string aiFeedback = await _aiService.GenerateWritingFeedbackAsync(model.EssayType, model.Content, aiSetting);
-            TempData["SuccessMessage"] = "Essay analyzed with AI feedback.";
+            TempData["SuccessMessage"] = _localizer["Writing_AiFeedbackSuccess"];
             return ParseAiFeedbackReport(aiFeedback);
         }
         catch
         {
-            TempData["WarningMessage"] = "AI feedback unavailable. Rule-based feedback generated.";
+            TempData["WarningMessage"] = _localizer["Writing_AiFeedbackFallback"];
             return _writingFeedbackService.AnalyzeEssay(model.Title, model.EssayType, model.Content);
         }
     }

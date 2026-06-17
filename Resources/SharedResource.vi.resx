@@ -301,4 +301,76 @@
   <data name="MLA In-text Citation" xml:space="preserve"><value>MLA In-text Citation</value></data>
   <data name="MLA Reference" xml:space="preserve"><value>MLA Reference</value></data>
   <data name="Copy" xml:space="preserve"><value>Sao chép</value></data>
+  <data name="Email" xml:space="preserve"><value>Email</value></data>
+  <data name="Password" xml:space="preserve"><value>Mật khẩu</value></data>
+  <data name="Remember me" xml:space="preserve"><value>Ghi nhớ đăng nhập</value></data>
+  <data name="PDF file" xml:space="preserve"><value>File PDF</value></data>
+  <data name="Image file" xml:space="preserve"><value>File ảnh</value></data>
+  <data name="Content" xml:space="preserve"><value>Nội dung</value></data>
+  <data name="Url" xml:space="preserve"><value>URL</value></data>
+  <data name="Create Account" xml:space="preserve"><value>Tạo tài khoản</value></data>
+  <data name="Already Have An Account" xml:space="preserve"><value>Đã có tài khoản?</value></data>
+  <data name="Do Not Have An Account" xml:space="preserve"><value>Chưa có tài khoản?</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Hủy</value></data>
+  <data name="UploadDocument_Subtitle" xml:space="preserve"><value>Thêm tài liệu nghiên cứu vào thư viện của bạn.</value></data>
+  <data name="Writing_ContentHelp" xml:space="preserve"><value>Dán bản nháp của bạn tại đây. Hệ thống dùng AI khi được bật, nếu không sẽ dùng phân tích rule-based.</value></data>
+  <data name="WritingCoach_TopicPlaceholder" xml:space="preserve"><value>AI trong viết học thuật</value></data>
+  <data name="Save And Generate Citation" xml:space="preserve"><value>Lưu và tạo citation</value></data>
+  <data name="ReferenceAuthor_Placeholder" xml:space="preserve"><value>Nguyen, Tran hoặc Smith</value></data>
+  <data name="Account_EmailAlreadyRegistered" xml:space="preserve"><value>Email này đã được đăng ký.</value></data>
+  <data name="Documents_PdfMissingOnServer" xml:space="preserve"><value>File PDF không còn tồn tại trên máy chủ.</value></data>
+  <data name="Documents_ExtractBeforeSummary" xml:space="preserve"><value>Vui lòng trích xuất văn bản trước khi tạo tóm tắt.</value></data>
+  <data name="Documents_SummaryGeneratedByAi" xml:space="preserve"><value>Đã tạo tóm tắt bằng AI.</value></data>
+  <data name="Documents_SummaryGeneratedFallback" xml:space="preserve"><value>AI không khả dụng. Hệ thống đã tạo tóm tắt rule-based.</value></data>
+  <data name="OCR_ImageScannedSuccessfully" xml:space="preserve"><value>Quét ảnh thành công.</value></data>
+  <data name="OCR_DeleteSuccess" xml:space="preserve"><value>Xóa bản quét OCR thành công.</value></data>
+  <data name="TextScan_OcrNotFoundOrForbidden" xml:space="preserve"><value>Không tìm thấy bản quét OCR hoặc bạn không có quyền truy cập.</value></data>
+  <data name="TextScan_EssayNotFoundOrForbidden" xml:space="preserve"><value>Không tìm thấy bài viết hoặc bạn không có quyền truy cập.</value></data>
+  <data name="TextScan_NoOcrTextAvailable" xml:space="preserve"><value>Không có văn bản OCR để quét.</value></data>
+  <data name="TextScan_MinimumWordsValidation" xml:space="preserve"><value>Vui lòng nhập ít nhất 50 từ để có kết quả có ý nghĩa.</value></data>
+  <data name="TextScan_Success" xml:space="preserve"><value>Quét văn bản thành công.</value></data>
+  <data name="TextScan_DeleteSuccess" xml:space="preserve"><value>Xóa kết quả quét văn bản thành công.</value></data>
+  <data name="Writing_ReferenceNotFoundOrForbidden" xml:space="preserve"><value>Không tìm thấy reference hoặc bạn không có quyền truy cập.</value></data>
+  <data name="Writing_CoachSessionNotFoundOrForbidden" xml:space="preserve"><value>Không tìm thấy phiên Writing Coach hoặc bạn không có quyền truy cập.</value></data>
+  <data name="Writing_NoCoachResponseAvailable" xml:space="preserve"><value>Không có phản hồi Writing Coach để chuyển sang Writing Studio.</value></data>
+  <data name="Writing_OcrNotFoundOrForbidden" xml:space="preserve"><value>Không tìm thấy bản quét OCR hoặc bạn không có quyền truy cập.</value></data>
+  <data name="Writing_NoExtractedTextAvailable" xml:space="preserve"><value>Không có văn bản trích xuất để chuyển sang Writing Studio.</value></data>
+  <data name="Writing_CompleteRequiredFields" xml:space="preserve"><value>Vui lòng nhập đầy đủ tiêu đề, loại bài viết và nội dung trước khi phân tích.</value></data>
+  <data name="Writing_AiFeedbackSuccess" xml:space="preserve"><value>Đã phân tích bài viết bằng AI.</value></data>
+  <data name="Writing_AiFeedbackFallback" xml:space="preserve"><value>AI không khả dụng. Hệ thống đã tạo phản hồi rule-based.</value></data>
+  <data name="WritingCoach_AiResponseSuccess" xml:space="preserve"><value>Đã tạo phản hồi Writing Coach bằng AI.</value></data>
+  <data name="WritingCoach_AiResponseFallback" xml:space="preserve"><value>AI không khả dụng. Hệ thống đã tạo hướng dẫn viết rule-based.</value></data>
+  <data name="WritingCoach_DeleteSuccess" xml:space="preserve"><value>Xóa phiên Writing Coach thành công.</value></data>
+  <data name="References_CreateSuccess" xml:space="preserve"><value>Tạo reference thành công.</value></data>
+  <data name="References_UpdateSuccess" xml:space="preserve"><value>Cập nhật reference thành công.</value></data>
+  <data name="References_DeleteSuccess" xml:space="preserve"><value>Xóa reference thành công.</value></data>
+  <data name="Validation_FullNameRequired" xml:space="preserve"><value>Vui lòng nhập họ và tên.</value></data>
+  <data name="Validation_FullNameMaxLength" xml:space="preserve"><value>Họ và tên không được vượt quá 100 ký tự.</value></data>
+  <data name="Validation_EmailRequired" xml:space="preserve"><value>Vui lòng nhập email.</value></data>
+  <data name="Validation_EmailInvalid" xml:space="preserve"><value>Vui lòng nhập đúng định dạng email.</value></data>
+  <data name="Validation_EmailMaxLength" xml:space="preserve"><value>Email không được vượt quá 150 ký tự.</value></data>
+  <data name="Validation_PasswordRequired" xml:space="preserve"><value>Vui lòng nhập mật khẩu.</value></data>
+  <data name="Validation_PasswordMinLength" xml:space="preserve"><value>Mật khẩu phải có ít nhất 8 ký tự.</value></data>
+  <data name="Validation_ConfirmPasswordRequired" xml:space="preserve"><value>Vui lòng xác nhận mật khẩu.</value></data>
+  <data name="Validation_PasswordsDoNotMatch" xml:space="preserve"><value>Xác nhận mật khẩu không khớp.</value></data>
+  <data name="Validation_TitleRequired" xml:space="preserve"><value>Vui lòng nhập tiêu đề.</value></data>
+  <data name="Validation_TitleMaxLength200" xml:space="preserve"><value>Tiêu đề không được vượt quá 200 ký tự.</value></data>
+  <data name="Validation_PdfFileRequired" xml:space="preserve"><value>Vui lòng chọn file PDF.</value></data>
+  <data name="Validation_ImageFileRequired" xml:space="preserve"><value>Vui lòng chọn file ảnh.</value></data>
+  <data name="Validation_OcrLanguageRequired" xml:space="preserve"><value>Vui lòng chọn ngôn ngữ OCR.</value></data>
+  <data name="Validation_EssayTypeRequired" xml:space="preserve"><value>Vui lòng chọn loại bài viết.</value></data>
+  <data name="Validation_EssayContentRequired" xml:space="preserve"><value>Vui lòng nhập nội dung bài viết.</value></data>
+  <data name="Validation_EssayContentMinLength" xml:space="preserve"><value>Nội dung quá ngắn để phân tích.</value></data>
+  <data name="Validation_TextScanInputRequired" xml:space="preserve"><value>Vui lòng nhập văn bản cần quét.</value></data>
+  <data name="Validation_WritingCoachModeRequired" xml:space="preserve"><value>Vui lòng chọn chế độ Writing Coach.</value></data>
+  <data name="Validation_TopicMaxLength" xml:space="preserve"><value>Chủ đề không được vượt quá 300 ký tự.</value></data>
+  <data name="Validation_WritingCoachTopicOrInstructionsRequired" xml:space="preserve"><value>Vui lòng nhập chủ đề hoặc yêu cầu bổ sung.</value></data>
+  <data name="Validation_WritingCoachThesisRequired" xml:space="preserve"><value>Vui lòng nhập thesis statement để cải thiện.</value></data>
+  <data name="Validation_WritingCoachThesisOrArgumentRequired" xml:space="preserve"><value>Vui lòng nhập thesis statement hoặc luận điểm chính.</value></data>
+  <data name="Validation_ReferenceSourceTypeRequired" xml:space="preserve"><value>Vui lòng chọn loại nguồn.</value></data>
+  <data name="Validation_ReferenceTitleRequired" xml:space="preserve"><value>Vui lòng nhập tiêu đề nguồn tham khảo.</value></data>
+  <data name="Validation_ReferenceTitleMaxLength" xml:space="preserve"><value>Tiêu đề nguồn không được vượt quá 300 ký tự.</value></data>
+  <data name="Validation_ReferenceAuthorMaxLength" xml:space="preserve"><value>Tên tác giả không được vượt quá 300 ký tự.</value></data>
+  <data name="Validation_ReferenceYearInvalid" xml:space="preserve"><value>Năm phải là số gồm 4 chữ số.</value></data>
+  <data name="Validation_ReferenceUrlInvalid" xml:space="preserve"><value>Vui lòng nhập URL hợp lệ.</value></data>
 </root>

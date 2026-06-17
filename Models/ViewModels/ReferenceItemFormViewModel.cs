@@ -4,18 +4,21 @@ namespace AcademicAIAssistant.Models.ViewModels;
 
 public class ReferenceItemFormViewModel
 {
-    [Required]
+    [Required(ErrorMessage = "Validation_ReferenceSourceTypeRequired")]
     [Display(Name = "Source Type")]
     public string SourceType { get; set; } = "Book";
 
-    [Required]
-    [StringLength(300)]
+    [Required(ErrorMessage = "Validation_ReferenceTitleRequired")]
+    [StringLength(300, ErrorMessage = "Validation_ReferenceTitleMaxLength")]
+    [Display(Name = "Title")]
     public string Title { get; set; } = string.Empty;
 
-    [StringLength(300)]
+    [StringLength(300, ErrorMessage = "Validation_ReferenceAuthorMaxLength")]
+    [Display(Name = "Author")]
     public string Author { get; set; } = string.Empty;
 
-    [RegularExpression(@"^\d{4}$|^$", ErrorMessage = "Year should be a 4-digit number.")]
+    [RegularExpression(@"^\d{4}$|^$", ErrorMessage = "Validation_ReferenceYearInvalid")]
+    [Display(Name = "Year")]
     public string Year { get; set; } = string.Empty;
 
     [Display(Name = "Journal / Publisher")]
@@ -24,7 +27,8 @@ public class ReferenceItemFormViewModel
     [Display(Name = "Website Name")]
     public string WebsiteName { get; set; } = string.Empty;
 
-    [Url]
+    [Url(ErrorMessage = "Validation_ReferenceUrlInvalid")]
+    [Display(Name = "Url")]
     public string Url { get; set; } = string.Empty;
 
     public string Doi { get; set; } = string.Empty;

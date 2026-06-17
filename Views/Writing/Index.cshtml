@@ -39,7 +39,7 @@
                 <label asp-for="Content" class="form-label"></label>
                 <textarea asp-for="Content" class="form-control" rows="16"></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
-                <div class="form-text">Paste your draft here. Feedback uses AI when enabled, otherwise it falls back to rule-based analysis.</div>
+                <div class="form-text">@Localizer["Writing_ContentHelp"]</div>
             </div>
         </div>
 

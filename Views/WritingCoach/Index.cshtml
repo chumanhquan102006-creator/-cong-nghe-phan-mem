@@ -42,7 +42,7 @@
 
                 <div class="col-md-8">
                     <label asp-for="Topic" class="form-label">@Localizer["Topic"]</label>
-                    <input asp-for="Topic" class="form-control" placeholder="AI in academic writing" />
+                    <input asp-for="Topic" class="form-control" placeholder="@Localizer["WritingCoach_TopicPlaceholder"]" />
                     <span asp-validation-for="Topic" class="text-danger"></span>
                 </div>
 

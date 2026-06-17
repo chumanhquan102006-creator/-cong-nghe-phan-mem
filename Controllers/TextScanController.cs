@@ -7,6 +7,7 @@ using AcademicAIAssistant.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace AcademicAIAssistant.Controllers;
 
@@ -15,11 +16,16 @@ public class TextScanController : Controller
 {
     private readonly AppDbContext _context;
     private readonly TextScanService _textScanService;
+    private readonly IStringLocalizer<SharedResource> _localizer;
 
-    public TextScanController(AppDbContext context, TextScanService textScanService)
+    public TextScanController(
+        AppDbContext context,
+        TextScanService textScanService,
+        IStringLocalizer<SharedResource> localizer)
     {
         _context = context;
         _textScanService = textScanService;
+        _localizer = localizer;
     }
 
     [HttpGet]
@@ -35,13 +41,13 @@ public class TextScanController : Controller
 
             if (scan == null)
             {
-                TempData["ErrorMessage"] = "OCR scan not found or you do not have permission to access it.";
+                TempData["ErrorMessage"] = _localizer["TextScan_OcrNotFoundOrForbidden"];
                 return View(new TextScanInputViewModel());
             }
 
             if (string.IsNullOrWhiteSpace(scan.ExtractedText))
             {
-                TempData["WarningMessage"] = "No OCR text available to scan.";
+                TempData["WarningMessage"] = _localizer["TextScan_NoOcrTextAvailable"];
                 return View(new TextScanInputViewModel());
             }
 
@@ -60,7 +66,7 @@ public class TextScanController : Controller
 
             if (essay == null)
             {
-                TempData["ErrorMessage"] = "Essay not found or you do not have permission to access it.";
+                TempData["ErrorMessage"] = _localizer["TextScan_EssayNotFoundOrForbidden"];
                 return View(new TextScanInputViewModel());
             }
 
@@ -85,15 +91,16 @@ public class TextScanController : Controller
 
         if (CountWords(model.InputText) < 50)
         {
-            TempData["ErrorMessage"] = "Please enter at least 50 words for a meaningful scan.";
-            ModelState.AddModelError(nameof(model.InputText), "Please enter at least 50 words for a meaningful scan.");
+            string message = _localizer["TextScan_MinimumWordsValidation"];
+            TempData["ErrorMessage"] = message;
+            ModelState.AddModelError(nameof(model.InputText), message);
             return View("Index", model);
         }
 
         try
         {
             TextScan scan = await _textScanService.ScanTextAsync(GetCurrentUserId(), model.Title, model.InputText);
-            TempData["SuccessMessage"] = "Text scan completed successfully.";
+            TempData["SuccessMessage"] = _localizer["TextScan_Success"];
             return RedirectToAction(nameof(Result), new { id = scan.Id });
         }
         catch (Exception ex)
@@ -146,7 +153,7 @@ public class TextScanController : Controller
         _context.TextScans.Remove(scan);
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = "Text scan deleted successfully.";
+        TempData["SuccessMessage"] = _localizer["TextScan_DeleteSuccess"];
         return RedirectToAction(nameof(History));
     }
 
