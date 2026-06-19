@@ -1,5 +1,12 @@
 # Academic AI Assistant
 
+## Release v0.1.0
+
+This is the initial academic demo release of Academic AI Assistant.  
+It includes the main reading, writing, OCR, citation, similarity, knowledge graph, reference, and UI/UX polish features.
+
+This release is intended for course demonstration and is not production-ready.
+
 ## Short Description
 
 Academic AI Assistant is an ASP.NET Core MVC web application that helps students manage research PDFs, extract text, generate summaries, analyze academic writing, check citations, compare internal similarity, view a knowledge graph, and chat with uploaded PDFs.
