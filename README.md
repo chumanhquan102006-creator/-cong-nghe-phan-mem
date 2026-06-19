@@ -1,5 +1,7 @@
 # Academic AI Assistant
 
+[![.NET CI](https://github.com/chumanhquan102006-creator/-cong-nghe-phan-mem/actions/workflows/dotnet-ci.yml/badge.svg)](https://github.com/chumanhquan102006-creator/-cong-nghe-phan-mem/actions/workflows/dotnet-ci.yml)
+
 ## Release v0.1.0
 
 This is the initial academic demo release of Academic AI Assistant.  
@@ -56,11 +58,13 @@ Students often need to read many research papers and write academic essays, but 
 
 ## How to Run Project
 
-```powershell
-cd "D:\viết luận\AcademicAIAssistant"
-dotnet restore
-dotnet build
-dotnet run --launch-profile http
+```bash
+git clone https://github.com/chumanhquan102006-creator/-cong-nghe-phan-mem.git AcademicAIAssistant
+cd AcademicAIAssistant
+dotnet restore AcademicAIAssistant.sln
+dotnet ef database update --project AcademicAIAssistant.csproj
+dotnet build AcademicAIAssistant.sln
+dotnet run --project AcademicAIAssistant.csproj --launch-profile http
 ```
 
 Open the app:
@@ -79,8 +83,8 @@ dotnet tool install --global dotnet-ef
 
 Apply database migrations:
 
-```powershell
-dotnet ef database update
+```bash
+dotnet ef database update --project AcademicAIAssistant.csproj
 ```
 
 ## How to Test Main Flow
@@ -97,16 +101,20 @@ dotnet ef database update
 10. Build Knowledge Graph.
 11. Return to Dashboard and check recent activities.
 
-## How to Run Unit Tests
+## Testing
 
-The solution includes an xUnit test project for important rule-based services. These tests do not require SQL Server, uploaded files, or a real AI API key.
+The repository includes an xUnit test project for important rule-based services. These tests do not require SQL Server, uploaded files, Internet access, or a real AI API key.
 
-```powershell
-cd "D:\viết luận"
-dotnet test AcademicAIAssistant.Tests\AcademicAIAssistant.Tests.csproj
+```bash
+dotnet test AcademicAIAssistant.sln
 ```
 
-Current automated coverage includes:
+Current verified local result:
+
+- Release build: passed
+- Automated tests: 30/30 passed
+
+Automated coverage includes:
 
 - File validation for PDF/JPG/PNG upload rules
 - Rule-based document summary generation
@@ -117,6 +125,20 @@ Current automated coverage includes:
 - Internal text similarity scanning with EF Core InMemory
 
 Browser workflows, real PDF files, OCR traineddata, and real AI provider calls should still be tested manually.
+
+## Continuous Integration
+
+The repository includes a GitHub Actions workflow that runs on pull requests and pushes to `main`.
+
+The workflow verifies:
+
+- `dotnet restore AcademicAIAssistant.sln`
+- Release build of `AcademicAIAssistant.sln`
+- Automated xUnit tests from `AcademicAIAssistant.Tests`
+- Publish of `AcademicAIAssistant.csproj`
+- Upload of the published application as a workflow artifact
+
+CI configuration: [`.github/workflows/dotnet-ci.yml`](.github/workflows/dotnet-ci.yml)
 
 ## OCR Setup
 
@@ -195,3 +217,7 @@ Project documents are in the `Documentation` folder:
 - `PROJECT_SUMMARY.md`
 - `FEATURES.md`
 - `INSTALLATION_GUIDE.md`
+- `PRODUCT_ENGINEERING.md`
+- `RELEASE_NOTES_v0.1.0.md`
+
+Release history is documented in [`CHANGELOG.md`](CHANGELOG.md). The project is distributed under the [MIT License](LICENSE).

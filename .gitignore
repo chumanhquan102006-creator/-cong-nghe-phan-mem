@@ -31,3 +31,4 @@ logs/
 *.tmp
 TestResults/
 outputs/
+publish/
