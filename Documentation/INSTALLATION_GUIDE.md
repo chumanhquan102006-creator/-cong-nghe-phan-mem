@@ -10,21 +10,15 @@
 
 ## Clone Repo
 
-```powershell
-git clone <repository-url>
+```bash
+git clone https://github.com/chumanhquan102006-creator/-cong-nghe-phan-mem.git AcademicAIAssistant
 cd AcademicAIAssistant
-```
-
-If the project is already on your computer, open the project folder directly:
-
-```powershell
-cd "D:\viết luận\AcademicAIAssistant"
 ```
 
 ## Restore Packages
 
-```powershell
-dotnet restore
+```bash
+dotnet restore AcademicAIAssistant.sln
 ```
 
 ## Install EF Tool If Needed
@@ -41,16 +35,16 @@ dotnet tool update --global dotnet-ef
 
 ## Apply Migrations
 
-```powershell
-dotnet ef database update
+```bash
+dotnet ef database update --project AcademicAIAssistant.csproj
 ```
 
 This creates or updates the SQL Server LocalDB database configured in `appsettings.json`.
 
 ## Run Project
 
-```powershell
-dotnet run --launch-profile http
+```bash
+dotnet run --project AcademicAIAssistant.csproj --launch-profile http
 ```
 
 Open:
@@ -95,8 +89,8 @@ The seeded demo workspace includes:
 To test seed data from an empty database:
 
 ```powershell
-dotnet ef database update
-dotnet run --launch-profile http
+dotnet ef database update --project AcademicAIAssistant.csproj
+dotnet run --project AcademicAIAssistant.csproj --launch-profile http
 ```
 
 Then login using the demo account above. Run the app a second time and confirm the demo rows are not duplicated.
@@ -146,6 +140,29 @@ You can also create your own account manually:
 9. Check similarity.
 10. Build Knowledge Graph.
 11. Return to Dashboard to view recent activities.
+
+## Run Automated Tests
+
+The xUnit test project is included in the repository and does not require a real AI API key or external API calls.
+
+```bash
+dotnet test AcademicAIAssistant.sln
+```
+
+Current verified local result:
+
+- Build: passed
+- Tests: 30/30 passed
+
+## Continuous Integration
+
+GitHub Actions runs restore, Release build, automated tests, publish, and artifact upload for pull requests and pushes to `main`.
+
+Workflow file:
+
+```text
+.github/workflows/dotnet-ci.yml
+```
 
 ## AI Configuration
 

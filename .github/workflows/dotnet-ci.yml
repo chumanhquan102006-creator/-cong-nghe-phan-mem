@@ -1,0 +1,50 @@
+name: .NET CI
+
+on:
+  push:
+    branches: [ "main" ]
+    tags: [ "v*" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build-test-publish:
+    name: Build, test, and publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.x"
+
+      - name: Restore
+        run: dotnet restore AcademicAIAssistant.sln
+
+      - name: Build
+        run: dotnet build AcademicAIAssistant.sln --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test AcademicAIAssistant.Tests/AcademicAIAssistant.Tests.csproj --configuration Release --no-build --verbosity normal
+
+      - name: Publish
+        run: dotnet publish AcademicAIAssistant.csproj --configuration Release --no-build --output ./publish
+
+      - name: Upload publish artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: academic-ai-assistant-v0.1.0
+          path: ./publish
+          if-no-files-found: error
+          retention-days: 14

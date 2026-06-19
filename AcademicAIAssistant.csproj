@@ -20,4 +20,12 @@
     <PackageReference Include="UglyToad.PdfPig" Version="1.7.0-custom-5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- The test project lives under the repository root; exclude its sources from the web app. -->
+    <Compile Remove="AcademicAIAssistant.Tests\**\*.cs" />
+    <Content Remove="AcademicAIAssistant.Tests\**\*" />
+    <EmbeddedResource Remove="AcademicAIAssistant.Tests\**\*" />
+    <None Remove="AcademicAIAssistant.Tests\**\*" />
+  </ItemGroup>
+
 </Project>
