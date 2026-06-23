@@ -1,33 +1,88 @@
 @inject IStringLocalizer<SharedResource> Localizer
 
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @Localizer[TempData["SuccessMessage"]?.ToString() ?? string.Empty]
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+@{
+    string? successMessage = TempData["SuccessMessage"]?.ToString()
+        ?? TempData["Success"]?.ToString()
+        ?? ViewData["SuccessMessage"]?.ToString()
+        ?? ViewData["Success"]?.ToString();
+    string? errorMessage = TempData["ErrorMessage"]?.ToString()
+        ?? TempData["Error"]?.ToString()
+        ?? ViewData["ErrorMessage"]?.ToString()
+        ?? ViewData["Error"]?.ToString();
+    string? warningMessage = TempData["WarningMessage"]?.ToString()
+        ?? TempData["Warning"]?.ToString()
+        ?? ViewData["WarningMessage"]?.ToString()
+        ?? ViewData["Warning"]?.ToString();
+    string? infoMessage = TempData["InfoMessage"]?.ToString()
+        ?? TempData["Info"]?.ToString()
+        ?? TempData["Message"]?.ToString()
+        ?? ViewData["InfoMessage"]?.ToString()
+        ?? ViewData["Info"]?.ToString()
+        ?? ViewData["Message"]?.ToString();
+
+    var notifications = new[]
+    {
+        new
+        {
+            Type = "success",
+            Title = Localizer["Toast_Success"].Value,
+            Message = successMessage,
+            Icon = "bi-check-circle-fill",
+            AriaLive = "polite"
+        },
+        new
+        {
+            Type = "error",
+            Title = Localizer["Toast_Error"].Value,
+            Message = errorMessage,
+            Icon = "bi-x-circle-fill",
+            AriaLive = "assertive"
+        },
+        new
+        {
+            Type = "warning",
+            Title = Localizer["Toast_Warning"].Value,
+            Message = warningMessage,
+            Icon = "bi-exclamation-triangle-fill",
+            AriaLive = "polite"
+        },
+        new
+        {
+            Type = "info",
+            Title = Localizer["Toast_Info"].Value,
+            Message = infoMessage,
+            Icon = "bi-info-circle-fill",
+            AriaLive = "polite"
+        }
+    };
 }
 
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        @Localizer[TempData["ErrorMessage"]?.ToString() ?? string.Empty]
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-}
-
-@if (TempData["WarningMessage"] != null)
-{
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        @Localizer[TempData["WarningMessage"]?.ToString() ?? string.Empty]
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-}
-
-@if (TempData["InfoMessage"] != null)
-{
-    <div class="alert alert-info alert-dismissible fade show" role="alert">
-        @Localizer[TempData["InfoMessage"]?.ToString() ?? string.Empty]
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-}
+<div id="appToastContainer"
+     class="toast-container position-fixed top-0 end-0 p-3"
+     aria-label="@Localizer["Toast_Notifications"]"
+     data-success-title="@Localizer["Toast_Success"]"
+     data-error-title="@Localizer["Toast_Error"]"
+     data-warning-title="@Localizer["Toast_Warning"]"
+     data-info-title="@Localizer["Toast_Info"]"
+     data-close-label="@Localizer["Toast_Close"]">
+    @foreach (var notification in notifications.Where(item => !string.IsNullOrWhiteSpace(item.Message)))
+    {
+        <div class="toast app-toast app-toast-@notification.Type"
+             role="alert"
+             aria-live="@notification.AriaLive"
+             aria-atomic="true"
+             data-app-toast
+             data-bs-autohide="true"
+             data-bs-delay="5000">
+            <div class="toast-header">
+                <i class="bi @notification.Icon app-toast-icon me-2" aria-hidden="true"></i>
+                <strong class="me-auto">@notification.Title</strong>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="toast"
+                        aria-label="@Localizer["Toast_Close"]"></button>
+            </div>
+            <div class="toast-body">@Localizer[notification.Message!]</div>
+        </div>
+    }
+</div>

@@ -1,9 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".alert-dismissible").forEach(alertElement => {
-        window.setTimeout(() => {
-            const alert = bootstrap.Alert.getOrCreateInstance(alertElement);
-            alert.close();
-        }, 5000);
+    document.querySelectorAll("[data-app-toast]").forEach(toastElement => {
+        bootstrap.Toast.getOrCreateInstance(toastElement).show();
     });
 
     document.querySelectorAll(".js-confirm-form").forEach(form => {
@@ -93,6 +90,67 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+window.showToast = function showToast(message, type = "info", options = {}) {
+    const container = document.getElementById("appToastContainer");
+    if (!container || !message) {
+        return null;
+    }
+
+    const normalizedType = ["success", "error", "warning", "info"].includes(type)
+        ? type
+        : "info";
+    const title = options.title
+        || container.dataset[`${normalizedType}Title`]
+        || normalizedType;
+    const closeLabel = container.dataset.closeLabel || "Close";
+    const iconClasses = {
+        success: "bi-check-circle-fill",
+        error: "bi-x-circle-fill",
+        warning: "bi-exclamation-triangle-fill",
+        info: "bi-info-circle-fill"
+    };
+
+    const toastElement = document.createElement("div");
+    toastElement.className = `toast app-toast app-toast-${normalizedType}`;
+    toastElement.setAttribute("role", "alert");
+    toastElement.setAttribute("aria-live", normalizedType === "error" ? "assertive" : "polite");
+    toastElement.setAttribute("aria-atomic", "true");
+
+    const header = document.createElement("div");
+    header.className = "toast-header";
+
+    const icon = document.createElement("i");
+    icon.className = `bi ${iconClasses[normalizedType]} app-toast-icon me-2`;
+    icon.setAttribute("aria-hidden", "true");
+
+    const titleElement = document.createElement("strong");
+    titleElement.className = "me-auto";
+    titleElement.textContent = title;
+
+    const closeButton = document.createElement("button");
+    closeButton.type = "button";
+    closeButton.className = "btn-close";
+    closeButton.dataset.bsDismiss = "toast";
+    closeButton.setAttribute("aria-label", closeLabel);
+
+    const body = document.createElement("div");
+    body.className = "toast-body";
+    body.textContent = message;
+
+    header.append(icon, titleElement, closeButton);
+    toastElement.append(header, body);
+    container.appendChild(toastElement);
+
+    const toast = bootstrap.Toast.getOrCreateInstance(toastElement, {
+        autohide: options.autohide !== false,
+        delay: options.delay || 5000
+    });
+
+    toastElement.addEventListener("hidden.bs.toast", () => toastElement.remove(), { once: true });
+    toast.show();
+    return toast;
+};
 
 function isFormSubmittable(form) {
     if (typeof form.checkValidity === "function" && !form.checkValidity()) {

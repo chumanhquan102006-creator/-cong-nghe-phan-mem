@@ -1240,4 +1240,22 @@
   <data name="MLA References" xml:space="preserve">
     <value>Tài liệu tham khảo MLA</value>
   </data>
+  <data name="Toast_Success" xml:space="preserve">
+    <value>Thành công</value>
+  </data>
+  <data name="Toast_Error" xml:space="preserve">
+    <value>Lỗi</value>
+  </data>
+  <data name="Toast_Warning" xml:space="preserve">
+    <value>Cảnh báo</value>
+  </data>
+  <data name="Toast_Info" xml:space="preserve">
+    <value>Thông tin</value>
+  </data>
+  <data name="Toast_Close" xml:space="preserve">
+    <value>Đóng</value>
+  </data>
+  <data name="Toast_Notifications" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
 </root>
