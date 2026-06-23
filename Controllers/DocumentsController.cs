@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using AcademicAIAssistant.Data;
+using AcademicAIAssistant.Helpers;
 using AcademicAIAssistant.Models;
 using AcademicAIAssistant.Models.ViewModels;
 using AcademicAIAssistant.Services;
@@ -122,6 +123,24 @@ public class DocumentsController : Controller
 
         ViewData["FileExists"] = System.IO.File.Exists(GetPhysicalPath(document.StoredFileName));
         return View(document);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ExportSummary(int id)
+    {
+        Document? document = await FindOwnedDocumentAsync(id);
+        if (document == null)
+        {
+            return NotFound();
+        }
+
+        if (string.IsNullOrWhiteSpace(document.Summary))
+        {
+            return NotFound();
+        }
+
+        DateTime createdAt = document.SummaryGeneratedAt ?? document.UploadedAt;
+        return this.TxtFile("document-summary", document.Summary, createdAt);
     }
 
     [HttpPost]

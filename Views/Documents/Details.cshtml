@@ -68,8 +68,21 @@
 
         <div class="col-lg-5">
             <div class="section-card h-100">
-                <h2 class="h5">@Localizer["Summary"]</h2>
-                <p class="mb-0">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                    <h2 class="h5 mb-0">@Localizer["Summary"]</h2>
+                    @if (!string.IsNullOrWhiteSpace(Model.Summary))
+                    {
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-sm btn-outline-primary"
+                                    data-copy-target="documentSummary"
+                                    data-copied-text="@Localizer["Copied"]"
+                                    data-copy-error-text="@Localizer["CopyFailed"]">@Localizer["Copy"]</button>
+                            <a class="btn btn-sm btn-outline-secondary"
+                               asp-action="ExportSummary" asp-route-id="@Model.Id">@Localizer["ExportTxt"]</a>
+                        </div>
+                    }
+                </div>
+                <p id="documentSummary" class="mb-0">
                     @(string.IsNullOrWhiteSpace(Model.Summary) ? "Summary has not been generated yet." : Model.Summary)
                 </p>
             </div>
@@ -100,7 +113,7 @@
         </form>
 
         <form asp-action="Delete" asp-route-id="@Model.Id" method="post"
-              onsubmit="return confirm('Delete this document?');">
+              class="js-confirm-form" data-confirm-message="@Localizer["ConfirmDeleteMessage"]">
             <button type="submit" class="btn btn-outline-danger">@Localizer["Delete"]</button>
         </form>
     </div>

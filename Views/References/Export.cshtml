@@ -1,25 +1,24 @@
 @model List<AcademicAIAssistant.Models.ReferenceItem>
-@using System.Globalization
+@inject IStringLocalizer<SharedResource> Localizer
 
 @{
-    bool isVi = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "vi";
-    ViewData["Title"] = isVi ? "Xuất tài liệu tham khảo" : "Export References";
+    ViewData["Title"] = Localizer["References_ExportTitle"];
 }
 
 <section class="py-4">
     <div class="page-header">
         <div>
-            <h1 class="page-title">@(isVi ? "Xuất tài liệu tham khảo" : "Export References")</h1>
-            <p class="page-subtitle">@(isVi ? "Sao chép danh sách APA hoặc MLA vào bài viết." : "Copy APA or MLA reference lists into your writing.")</p>
+            <h1 class="page-title">@Localizer["References_ExportTitle"]</h1>
+            <p class="page-subtitle">@Localizer["References_ExportSubtitle"]</p>
         </div>
-        <a class="btn btn-outline-secondary" asp-action="Index">Back to References</a>
+        <a class="btn btn-outline-secondary" asp-action="Index">@Localizer["Back to References"]</a>
     </div>
 
     @if (!Model.Any())
     {
         <div class="empty-state">
-            <p>@(isVi ? "Chưa có tài liệu tham khảo để xuất." : "No references available to export.")</p>
-            <a class="btn btn-primary" asp-action="Create">Create Reference</a>
+            <p>@Localizer["References_ExportEmpty"]</p>
+            <a class="btn btn-primary" asp-action="Create">@Localizer["Create Reference"]</a>
         </div>
     }
     else
@@ -28,8 +27,11 @@
             <div class="col-lg-6">
                 <div class="section-card">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h2 class="h5 mb-0">APA References</h2>
-                        <button type="button" class="btn btn-sm btn-outline-primary" data-copy-target="apaExport">Copy</button>
+                        <h2 class="h5 mb-0">@Localizer["APA References"]</h2>
+                        <button type="button" class="btn btn-sm btn-outline-primary"
+                                data-copy-target="apaExport"
+                                data-copied-text="@Localizer["Copied"]"
+                                data-copy-error-text="@Localizer["CopyFailed"]">@Localizer["Copy"]</button>
                     </div>
                     <textarea id="apaExport" class="form-control text-preview" rows="20" readonly>@string.Join(Environment.NewLine + Environment.NewLine, Model.Select(item => item.ApaReference))</textarea>
                 </div>
@@ -37,8 +39,11 @@
             <div class="col-lg-6">
                 <div class="section-card">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h2 class="h5 mb-0">MLA References</h2>
-                        <button type="button" class="btn btn-sm btn-outline-primary" data-copy-target="mlaExport">Copy</button>
+                        <h2 class="h5 mb-0">@Localizer["MLA References"]</h2>
+                        <button type="button" class="btn btn-sm btn-outline-primary"
+                                data-copy-target="mlaExport"
+                                data-copied-text="@Localizer["Copied"]"
+                                data-copy-error-text="@Localizer["CopyFailed"]">@Localizer["Copy"]</button>
                     </div>
                     <textarea id="mlaExport" class="form-control text-preview" rows="20" readonly>@string.Join(Environment.NewLine + Environment.NewLine, Model.Select(item => item.MlaReference))</textarea>
                 </div>
@@ -46,18 +51,3 @@
         </div>
     }
 </section>
-
-@section Scripts {
-    <script>
-        document.querySelectorAll('[data-copy-target]').forEach(button => {
-            button.addEventListener('click', async () => {
-                const target = document.getElementById(button.dataset.copyTarget);
-                if (!target) return;
-                await navigator.clipboard.writeText(target.value);
-                const original = button.textContent;
-                button.textContent = '@(isVi ? "Đã sao chép!" : "Copied!")';
-                setTimeout(() => button.textContent = original, 1400);
-            });
-        });
-    </script>
-}

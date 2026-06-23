@@ -512,7 +512,7 @@
     <value>Vietnamese</value>
   </data>
   <data name="Characters" xml:space="preserve">
-    <value>characters</value>
+    <value>Characters</value>
   </data>
   <data name="Delete OCR Scan Confirm" xml:space="preserve">
     <value>Delete this OCR scan?</value>
@@ -722,7 +722,7 @@
     <value>No text available to copy.</value>
   </data>
   <data name="Copied" xml:space="preserve">
-    <value>Copied</value>
+    <value>Copied!</value>
   </data>
   <data name="Text Similarity Scan" xml:space="preserve">
     <value>Text Similarity Scan</value>
@@ -1191,5 +1191,53 @@
   </data>
   <data name="EssayAnalyzeFallback" xml:space="preserve">
     <value>AI feedback unavailable. Rule-based feedback generated.</value>
+  </data>
+  <data name="CopyFailed" xml:space="preserve">
+    <value>Copy failed</value>
+  </data>
+  <data name="ExportTxt" xml:space="preserve">
+    <value>Export TXT</value>
+  </data>
+  <data name="ConfirmDeleteMessage" xml:space="preserve">
+    <value>Are you sure you want to delete this item? This action cannot be undone.</value>
+  </data>
+  <data name="Error404Title" xml:space="preserve">
+    <value>Page not found</value>
+  </data>
+  <data name="Error404Message" xml:space="preserve">
+    <value>The page you requested does not exist or may have been moved.</value>
+  </data>
+  <data name="Error500Title" xml:space="preserve">
+    <value>Something went wrong</value>
+  </data>
+  <data name="Error500Message" xml:space="preserve">
+    <value>We could not process your request. Please try again later.</value>
+  </data>
+  <data name="AccessDeniedTitle" xml:space="preserve">
+    <value>Access denied</value>
+  </data>
+  <data name="AccessDeniedMessage" xml:space="preserve">
+    <value>You do not have permission to access this page.</value>
+  </data>
+  <data name="BackToDashboard" xml:space="preserve">
+    <value>Back to Dashboard</value>
+  </data>
+  <data name="BackToHome" xml:space="preserve">
+    <value>Back to Home</value>
+  </data>
+  <data name="References_ExportTitle" xml:space="preserve">
+    <value>Export References</value>
+  </data>
+  <data name="References_ExportSubtitle" xml:space="preserve">
+    <value>Copy APA or MLA reference lists into your writing.</value>
+  </data>
+  <data name="References_ExportEmpty" xml:space="preserve">
+    <value>No references available to export.</value>
+  </data>
+  <data name="APA References" xml:space="preserve">
+    <value>APA References</value>
+  </data>
+  <data name="MLA References" xml:space="preserve">
+    <value>MLA References</value>
   </data>
 </root>

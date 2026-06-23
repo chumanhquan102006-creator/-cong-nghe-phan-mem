@@ -15,9 +15,17 @@
             <h1 class="page-title">@Localizer["Citation Result"]</h1>
             <p class="page-subtitle">@Model.Essay?.Title - Checked at @Model.CheckedAt.ToDisplayDateTime()</p>
         </div>
-        <a class="btn btn-outline-secondary" asp-controller="Writing" asp-action="Details" asp-route-id="@Model.EssayId">Back to Essay</a>
+        <div class="d-flex flex-wrap gap-2">
+            <button type="button" class="btn btn-outline-primary"
+                    data-copy-target="citationResultContent"
+                    data-copied-text="@Localizer["Copied"]"
+                    data-copy-error-text="@Localizer["CopyFailed"]">@Localizer["Copy"]</button>
+            <a class="btn btn-outline-secondary" asp-action="Export" asp-route-id="@Model.Id">@Localizer["ExportTxt"]</a>
+            <a class="btn btn-outline-secondary" asp-controller="Writing" asp-action="Details" asp-route-id="@Model.EssayId">Back to Essay</a>
+        </div>
     </div>
 
+    <div id="citationResultContent">
     @if (!hasIssues)
     {
         <div class="alert alert-success">Citation check passed. No major citation issues found.</div>
@@ -67,5 +75,6 @@
                 <div class="text-preview">@(string.IsNullOrWhiteSpace(Model.FormatIssues) ? "None" : Model.FormatIssues)</div>
             </div>
         </div>
+    </div>
     </div>
 </section>

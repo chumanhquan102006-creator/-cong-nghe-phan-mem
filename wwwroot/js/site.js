@@ -6,8 +6,75 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 5000);
     });
 
+    document.querySelectorAll(".js-confirm-form").forEach(form => {
+        form.addEventListener("submit", event => {
+            const message = form.dataset.confirmMessage || "Are you sure?";
+            if (!window.confirm(message)) {
+                event.preventDefault();
+            }
+        });
+    });
+
+    document.querySelectorAll("[data-copy-target]").forEach(button => {
+        button.addEventListener("click", async () => {
+            const targetId = button.dataset.copyTarget;
+            const target = targetId ? document.getElementById(targetId) : null;
+            if (!target) {
+                return;
+            }
+
+            const text = "value" in target ? target.value : target.innerText;
+            if (!text || !text.trim()) {
+                return;
+            }
+
+            const originalHtml = button.innerHTML;
+            try {
+                await navigator.clipboard.writeText(text);
+                button.textContent = button.dataset.copiedText || "Copied!";
+            } catch {
+                button.textContent = button.dataset.copyErrorText || "Copy failed";
+            }
+
+            window.setTimeout(() => {
+                button.innerHTML = originalHtml;
+            }, 1500);
+        });
+    });
+
+    document.querySelectorAll("[data-text-counter]").forEach(textArea => {
+        const targetId = textArea.dataset.counterTarget;
+        const counter = targetId ? document.getElementById(targetId) : null;
+        if (!counter) {
+            return;
+        }
+
+        const wordCount = counter.querySelector("[data-word-count]");
+        const characterCount = counter.querySelector("[data-character-count]");
+
+        const updateCounter = () => {
+            const text = textArea.value || "";
+            const words = text.trim() ? text.trim().split(/\s+/u).length : 0;
+
+            if (wordCount) {
+                wordCount.textContent = words.toString();
+            }
+
+            if (characterCount) {
+                characterCount.textContent = text.length.toString();
+            }
+        };
+
+        textArea.addEventListener("input", updateCounter);
+        updateCounter();
+    });
+
     document.querySelectorAll(".js-loading-form").forEach(form => {
         form.addEventListener("submit", event => {
+            if (event.defaultPrevented) {
+                return;
+            }
+
             if (!isFormSubmittable(form)) {
                 return;
             }

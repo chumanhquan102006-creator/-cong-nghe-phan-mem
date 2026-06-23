@@ -81,7 +81,9 @@
                                 <td class="text-end">
                                     <a class="btn btn-sm btn-outline-primary" asp-action="Details" asp-route-id="@item.Id">@Localizer["Details"]</a>
                                     <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">@Localizer["Edit"]</a>
-                                    <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline" onsubmit="return confirm('@Localizer["Delete Reference Confirm"]');">
+                                    <form asp-action="Delete" asp-route-id="@item.Id" method="post"
+                                          class="d-inline js-confirm-form"
+                                          data-confirm-message="@Localizer["ConfirmDeleteMessage"]">
                                         <button type="submit" class="btn btn-sm btn-outline-danger">@Localizer["Delete"]</button>
                                     </form>
                                 </td>

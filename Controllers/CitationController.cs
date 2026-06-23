@@ -1,5 +1,7 @@
 using System.Security.Claims;
+using System.Text;
 using AcademicAIAssistant.Data;
+using AcademicAIAssistant.Helpers;
 using AcademicAIAssistant.Models;
 using AcademicAIAssistant.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -70,6 +72,41 @@ public class CitationController : Controller
         }
 
         return View(check);
+    }
+
+    [HttpGet("Citation/Export/{id:int}")]
+    public async Task<IActionResult> Export(int id)
+    {
+        int userId = GetCurrentUserId();
+        CitationCheck? check = await _context.CitationChecks
+            .Include(item => item.Essay)
+            .FirstOrDefaultAsync(item =>
+                item.Id == id
+                && item.Essay != null
+                && item.Essay.UserId == userId);
+
+        if (check == null)
+        {
+            return NotFound();
+        }
+
+        var content = new StringBuilder()
+            .AppendLine($"Essay: {check.Essay?.Title}")
+            .AppendLine($"Status: {check.OverallStatus}")
+            .AppendLine($"Total in-text citations: {check.TotalInTextCitations}")
+            .AppendLine($"Total references: {check.TotalReferences}")
+            .AppendLine()
+            .AppendLine("Missing References")
+            .AppendLine(string.IsNullOrWhiteSpace(check.MissingReferences) ? "None" : check.MissingReferences)
+            .AppendLine()
+            .AppendLine("Unused References")
+            .AppendLine(string.IsNullOrWhiteSpace(check.UnusedReferences) ? "None" : check.UnusedReferences)
+            .AppendLine()
+            .AppendLine("Format Issues")
+            .AppendLine(string.IsNullOrWhiteSpace(check.FormatIssues) ? "None" : check.FormatIssues)
+            .ToString();
+
+        return this.TxtFile("citation-result", content, check.CheckedAt);
     }
 
     private async Task<Essay?> FindOwnedEssayAsync(int essayId)

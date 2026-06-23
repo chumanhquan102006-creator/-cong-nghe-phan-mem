@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using AcademicAIAssistant.Data;
+using AcademicAIAssistant.Helpers;
 using AcademicAIAssistant.Models;
 using AcademicAIAssistant.Models.ViewModels;
 using AcademicAIAssistant.Services;
@@ -137,6 +138,23 @@ public class OCRController : Controller
 
         ViewData["FileExists"] = System.IO.File.Exists(GetPhysicalPath(scan.StoredFileName));
         return View(scan);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ExportText(int id)
+    {
+        OCRScan? scan = await FindOwnedScanAsync(id);
+        if (scan == null)
+        {
+            return Forbid();
+        }
+
+        if (string.IsNullOrWhiteSpace(scan.ExtractedText))
+        {
+            return NotFound();
+        }
+
+        return this.TxtFile("ocr-result", scan.ExtractedText, scan.CreatedAt);
     }
 
     [HttpPost]

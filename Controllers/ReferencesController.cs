@@ -1,5 +1,7 @@
 using System.Security.Claims;
+using System.Text;
 using AcademicAIAssistant.Data;
+using AcademicAIAssistant.Helpers;
 using AcademicAIAssistant.Models;
 using AcademicAIAssistant.Models.ViewModels;
 using AcademicAIAssistant.Services;
@@ -93,6 +95,35 @@ public class ReferencesController : Controller
         }
 
         return View(reference);
+    }
+
+    [HttpGet("/References/ExportText/{id:int}")]
+    public async Task<IActionResult> ExportText(int id)
+    {
+        ReferenceItem? reference = await FindOwnedReferenceAsync(id);
+        if (reference == null)
+        {
+            return Forbid();
+        }
+
+        var content = new StringBuilder()
+            .AppendLine(reference.Title)
+            .AppendLine()
+            .AppendLine("APA In-text Citation")
+            .AppendLine(reference.ApaInTextCitation)
+            .AppendLine()
+            .AppendLine("APA Reference")
+            .AppendLine(reference.ApaReference)
+            .AppendLine()
+            .AppendLine("MLA In-text Citation")
+            .AppendLine(reference.MlaInTextCitation)
+            .AppendLine()
+            .AppendLine("MLA Reference")
+            .AppendLine(reference.MlaReference)
+            .ToString();
+
+        DateTime createdAt = reference.UpdatedAt ?? reference.CreatedAt;
+        return this.TxtFile("reference", content, createdAt);
     }
 
     [HttpGet("/References/Edit/{id:int}")]

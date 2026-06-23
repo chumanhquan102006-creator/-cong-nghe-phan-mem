@@ -512,7 +512,7 @@
     <value>Tiếng Việt</value>
   </data>
   <data name="Characters" xml:space="preserve">
-    <value>ký tự</value>
+    <value>Số ký tự</value>
   </data>
   <data name="Delete OCR Scan Confirm" xml:space="preserve">
     <value>Xóa bản quét OCR này?</value>
@@ -533,7 +533,7 @@
     <value>Quét văn bản</value>
   </data>
   <data name="Words" xml:space="preserve">
-    <value>Từ</value>
+    <value>Số từ</value>
   </data>
   <data name="Score" xml:space="preserve">
     <value>Điểm</value>
@@ -722,7 +722,7 @@
     <value>Không có văn bản để sao chép.</value>
   </data>
   <data name="Copied" xml:space="preserve">
-    <value>Đã sao chép</value>
+    <value>Đã sao chép!</value>
   </data>
   <data name="Text Similarity Scan" xml:space="preserve">
     <value>Quét độ tương đồng văn bản</value>
@@ -1191,5 +1191,53 @@
   </data>
   <data name="EssayAnalyzeFallback" xml:space="preserve">
     <value>Phản hồi từ AI hiện không khả dụng. Đã tạo phản hồi dựa trên quy tắc mặc định.</value>
+  </data>
+  <data name="CopyFailed" xml:space="preserve">
+    <value>Không thể sao chép</value>
+  </data>
+  <data name="ExportTxt" xml:space="preserve">
+    <value>Xuất TXT</value>
+  </data>
+  <data name="ConfirmDeleteMessage" xml:space="preserve">
+    <value>Bạn có chắc chắn muốn xóa mục này không? Hành động này không thể hoàn tác.</value>
+  </data>
+  <data name="Error404Title" xml:space="preserve">
+    <value>Không tìm thấy trang</value>
+  </data>
+  <data name="Error404Message" xml:space="preserve">
+    <value>Trang bạn yêu cầu không tồn tại hoặc đã được di chuyển.</value>
+  </data>
+  <data name="Error500Title" xml:space="preserve">
+    <value>Đã xảy ra lỗi</value>
+  </data>
+  <data name="Error500Message" xml:space="preserve">
+    <value>Hệ thống không thể xử lý yêu cầu. Vui lòng thử lại sau.</value>
+  </data>
+  <data name="AccessDeniedTitle" xml:space="preserve">
+    <value>Truy cập bị từ chối</value>
+  </data>
+  <data name="AccessDeniedMessage" xml:space="preserve">
+    <value>Bạn không có quyền truy cập trang này.</value>
+  </data>
+  <data name="BackToDashboard" xml:space="preserve">
+    <value>Quay lại Bảng điều khiển</value>
+  </data>
+  <data name="BackToHome" xml:space="preserve">
+    <value>Quay lại Trang chủ</value>
+  </data>
+  <data name="References_ExportTitle" xml:space="preserve">
+    <value>Xuất tài liệu tham khảo</value>
+  </data>
+  <data name="References_ExportSubtitle" xml:space="preserve">
+    <value>Sao chép danh sách APA hoặc MLA vào bài viết.</value>
+  </data>
+  <data name="References_ExportEmpty" xml:space="preserve">
+    <value>Chưa có tài liệu tham khảo để xuất.</value>
+  </data>
+  <data name="APA References" xml:space="preserve">
+    <value>Tài liệu tham khảo APA</value>
+  </data>
+  <data name="MLA References" xml:space="preserve">
+    <value>Tài liệu tham khảo MLA</value>
   </data>
 </root>

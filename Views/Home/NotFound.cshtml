@@ -1,22 +1,15 @@
-@model ErrorViewModel
 @inject IStringLocalizer<SharedResource> Localizer
 
 @{
-    ViewData["Title"] = Localizer["Error500Title"];
+    ViewData["Title"] = Localizer["Error404Title"];
 }
 
 <section class="py-5">
     <div class="empty-state section-card mx-auto text-center">
-        <i class="bi bi-exclamation-triangle display-4 text-danger" aria-hidden="true"></i>
-        <p class="text-uppercase text-muted fw-semibold mt-3 mb-1">500</p>
-        <h1 class="page-title">@Localizer["Error500Title"]</h1>
-        <p class="page-subtitle">@Localizer["Error500Message"]</p>
-
-        @if (Model.ShowRequestId)
-        {
-            <p class="small text-muted">Request ID: <code>@Model.RequestId</code></p>
-        }
-
+        <i class="bi bi-search display-4 text-primary" aria-hidden="true"></i>
+        <p class="text-uppercase text-muted fw-semibold mt-3 mb-1">404</p>
+        <h1 class="page-title">@Localizer["Error404Title"]</h1>
+        <p class="page-subtitle">@Localizer["Error404Message"]</p>
         <div class="d-flex flex-wrap justify-content-center gap-2">
             <a class="btn btn-primary" asp-controller="Home" asp-action="Index">@Localizer["BackToHome"]</a>
             @if (User.Identity?.IsAuthenticated == true)

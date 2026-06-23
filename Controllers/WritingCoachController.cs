@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using AcademicAIAssistant.Data;
+using AcademicAIAssistant.Helpers;
 using AcademicAIAssistant.Models;
 using AcademicAIAssistant.Models.ViewModels;
 using AcademicAIAssistant.Services;
@@ -136,6 +137,23 @@ public class WritingCoachController : Controller
         }
 
         return View(session);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ExportResponse(int id)
+    {
+        WritingCoachSession? session = await FindOwnedSessionAsync(id);
+        if (session == null)
+        {
+            return Forbid();
+        }
+
+        if (string.IsNullOrWhiteSpace(session.AIResponse))
+        {
+            return NotFound();
+        }
+
+        return this.TxtFile("writing-coach-response", session.AIResponse, session.CreatedAt);
     }
 
     [HttpPost]

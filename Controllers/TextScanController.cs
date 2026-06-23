@@ -1,6 +1,8 @@
 using System.Security.Claims;
+using System.Text;
 using System.Text.RegularExpressions;
 using AcademicAIAssistant.Data;
+using AcademicAIAssistant.Helpers;
 using AcademicAIAssistant.Models;
 using AcademicAIAssistant.Models.ViewModels;
 using AcademicAIAssistant.Services;
@@ -136,6 +138,41 @@ public class TextScanController : Controller
         }
 
         return View(scan);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ExportResult(int id)
+    {
+        TextScan? scan = await _context.TextScans
+            .Include(item => item.Matches.OrderByDescending(match => match.SimilarityScore))
+            .FirstOrDefaultAsync(item => item.Id == id && item.UserId == GetCurrentUserId());
+
+        if (scan == null)
+        {
+            return Forbid();
+        }
+
+        var content = new StringBuilder()
+            .AppendLine($"Title: {scan.Title}")
+            .AppendLine($"Word count: {scan.WordCount}")
+            .AppendLine($"Similarity score: {scan.OverallSimilarityScore:0.##}%")
+            .AppendLine($"Risk level: {scan.RiskLevel}")
+            .AppendLine()
+            .AppendLine("Input Text")
+            .AppendLine(scan.InputText);
+
+        foreach (TextScanMatch match in scan.Matches.OrderByDescending(item => item.SimilarityScore))
+        {
+            content
+                .AppendLine()
+                .AppendLine($"Match: {match.SourceType} - {match.SourceTitle} ({match.SimilarityScore:0.##}%)")
+                .AppendLine("Input Segment")
+                .AppendLine(match.InputSegment)
+                .AppendLine("Matched Source Segment")
+                .AppendLine(match.MatchedSegment);
+        }
+
+        return this.TxtFile("text-scan-result", content.ToString(), scan.CreatedAt);
     }
 
     [HttpPost]

@@ -1,6 +1,8 @@
 using System.Security.Claims;
+using System.Text;
 using System.Text.Json;
 using AcademicAIAssistant.Data;
+using AcademicAIAssistant.Helpers;
 using AcademicAIAssistant.Models;
 using AcademicAIAssistant.Models.ViewModels;
 using AcademicAIAssistant.Services;
@@ -194,6 +196,58 @@ public class WritingController : Controller
         };
 
         return View(viewModel);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ExportFeedback(int id)
+    {
+        int userId = GetCurrentUserId();
+        Essay? essay = await _context.Essays
+            .Include(item => item.FeedbackReports)
+            .FirstOrDefaultAsync(item => item.Id == id && item.UserId == userId);
+
+        if (essay == null)
+        {
+            return NotFound();
+        }
+
+        FeedbackReport? report = essay.FeedbackReports
+            .OrderByDescending(item => item.CreatedAt)
+            .FirstOrDefault();
+
+        if (report == null)
+        {
+            return NotFound();
+        }
+
+        var content = new StringBuilder()
+            .AppendLine($"Title: {essay.Title}")
+            .AppendLine($"Essay type: {essay.EssayType}")
+            .AppendLine($"Overall score: {report.OverallScore}")
+            .AppendLine()
+            .AppendLine("Grammar / Wording")
+            .AppendLine(report.GrammarFeedback)
+            .AppendLine()
+            .AppendLine("Academic Tone")
+            .AppendLine(report.AcademicToneFeedback)
+            .AppendLine()
+            .AppendLine("Thesis Statement")
+            .AppendLine(report.ThesisFeedback)
+            .AppendLine()
+            .AppendLine("Structure")
+            .AppendLine(report.StructureFeedback)
+            .AppendLine()
+            .AppendLine("Logic")
+            .AppendLine(report.LogicFeedback)
+            .AppendLine()
+            .AppendLine("Citation")
+            .AppendLine(report.CitationFeedback)
+            .AppendLine()
+            .AppendLine("General Suggestions")
+            .AppendLine(report.GeneralSuggestions)
+            .ToString();
+
+        return this.TxtFile("writing-feedback", content, report.CreatedAt);
     }
 
     private int GetCurrentUserId()

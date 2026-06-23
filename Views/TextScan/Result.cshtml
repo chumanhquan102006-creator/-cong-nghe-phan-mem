@@ -13,11 +13,17 @@
             <p class="page-subtitle">@Localizer["Text Scan Result subtitle"]</p>
         </div>
         <div class="d-flex flex-wrap gap-2">
+            <button type="button" class="btn btn-outline-primary"
+                    data-copy-target="textScanResultContent"
+                    data-copied-text="@Localizer["Copied"]"
+                    data-copy-error-text="@Localizer["CopyFailed"]">@Localizer["Copy"]</button>
+            <a class="btn btn-outline-secondary" asp-action="ExportResult" asp-route-id="@Model.Id">@Localizer["ExportTxt"]</a>
             <a class="btn btn-primary" asp-action="Index">@Localizer["New Scan"]</a>
             <a class="btn btn-outline-secondary" asp-action="History">@Localizer["History"]</a>
         </div>
     </div>
 
+    <div id="textScanResultContent">
     <div class="alert alert-info">
         @Localizer["Text Scan Result Notice"]
     </div>
@@ -101,6 +107,7 @@
                 }
             </div>
         }
+    </div>
     </div>
 </section>
 
