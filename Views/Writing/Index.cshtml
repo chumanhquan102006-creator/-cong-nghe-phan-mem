@@ -42,8 +42,8 @@
                 <span asp-validation-for="Content" class="text-danger"></span>
                 <div class="d-flex flex-wrap justify-content-between gap-2 form-text">
                     <span>@Localizer["Writing_ContentHelp"]</span>
-                    <span id="writingContentCounter">
-                        <span data-word-count>0</span> @Localizer["Words"] ·
+                    <span id="writingContentCounter" aria-live="polite">
+                        <span data-word-count>0</span> @Localizer["Words"] -
                         <span data-character-count>0</span> @Localizer["Characters"]
                     </span>
                 </div>

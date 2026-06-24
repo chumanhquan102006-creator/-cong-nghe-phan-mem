@@ -514,6 +514,9 @@
   <data name="Characters" xml:space="preserve">
     <value>Characters</value>
   </data>
+  <data name="CharacterCount" xml:space="preserve">
+    <value>Character count</value>
+  </data>
   <data name="Delete OCR Scan Confirm" xml:space="preserve">
     <value>Delete this OCR scan?</value>
   </data>
@@ -534,6 +537,12 @@
   </data>
   <data name="Words" xml:space="preserve">
     <value>Words</value>
+  </data>
+  <data name="WordCount" xml:space="preserve">
+    <value>Word count</value>
+  </data>
+  <data name="TextCounter" xml:space="preserve">
+    <value>Text counter</value>
   </data>
   <data name="Score" xml:space="preserve">
     <value>Score</value>

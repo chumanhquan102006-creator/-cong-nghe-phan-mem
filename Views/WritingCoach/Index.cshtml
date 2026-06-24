@@ -61,8 +61,8 @@
                     <textarea asp-for="ThesisStatement" class="form-control" rows="3"
                               data-text-counter data-counter-target="thesisCounter"></textarea>
                     <span asp-validation-for="ThesisStatement" class="text-danger"></span>
-                    <div id="thesisCounter" class="form-text text-end">
-                        <span data-word-count>0</span> @Localizer["Words"] ·
+                    <div id="thesisCounter" class="form-text text-end" aria-live="polite">
+                        <span data-word-count>0</span> @Localizer["Words"] -
                         <span data-character-count>0</span> @Localizer["Characters"]
                     </div>
                 </div>
@@ -72,8 +72,8 @@
                     <textarea asp-for="UserInput" class="form-control" rows="5"
                               placeholder="@Localizer["Additional Instructions Placeholder"]"
                               data-text-counter data-counter-target="coachInputCounter"></textarea>
-                    <div id="coachInputCounter" class="form-text text-end">
-                        <span data-word-count>0</span> @Localizer["Words"] ·
+                    <div id="coachInputCounter" class="form-text text-end" aria-live="polite">
+                        <span data-word-count>0</span> @Localizer["Words"] -
                         <span data-character-count>0</span> @Localizer["Characters"]
                     </div>
                 </div>

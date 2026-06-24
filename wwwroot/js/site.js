@@ -52,16 +52,17 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("[data-text-counter]").forEach(textArea => {
         const targetId = textArea.dataset.counterTarget;
         const counter = targetId ? document.getElementById(targetId) : null;
-        if (!counter) {
+
+        const wordCount = getCounterElement(textArea.dataset.wordCountTarget, counter, "[data-word-count]");
+        const characterCount = getCounterElement(textArea.dataset.charCountTarget, counter, "[data-character-count]");
+
+        if (!wordCount && !characterCount) {
             return;
         }
 
-        const wordCount = counter.querySelector("[data-word-count]");
-        const characterCount = counter.querySelector("[data-character-count]");
-
         const updateCounter = () => {
             const text = textArea.value || "";
-            const words = text.trim() ? text.trim().split(/\s+/u).length : 0;
+            const words = text.trim() ? (text.trim().match(/\S+/gu) || []).length : 0;
 
             if (wordCount) {
                 wordCount.textContent = words.toString();
@@ -166,6 +167,14 @@ function showCopyToast(message, type) {
     if (typeof window.showToast === "function") {
         window.showToast(message, type);
     }
+}
+
+function getCounterElement(targetId, container, selector) {
+    if (targetId) {
+        return document.getElementById(targetId);
+    }
+
+    return container ? container.querySelector(selector) : null;
 }
 
 function isFormSubmittable(form) {

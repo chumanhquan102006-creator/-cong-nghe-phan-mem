@@ -75,6 +75,11 @@
 
     <div class="col-12">
         <label asp-for="Notes" class="form-label"></label>
-        <textarea asp-for="Notes" class="form-control" rows="4"></textarea>
+        <textarea asp-for="Notes" class="form-control" rows="4"
+                  data-text-counter data-counter-target="referenceNotesCounter"></textarea>
+        <div id="referenceNotesCounter" class="form-text text-end" aria-live="polite">
+            <span data-word-count>0</span> @Localizer["Words"] -
+            <span data-character-count>0</span> @Localizer["Characters"]
+        </div>
     </div>
 </div>

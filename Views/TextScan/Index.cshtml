@@ -35,8 +35,8 @@
             <span asp-validation-for="InputText" class="text-danger"></span>
             <div class="d-flex flex-wrap justify-content-between gap-2 form-text">
                 <span>@Localizer["Text Scan Minimum Words Help"]</span>
-                <span id="textScanCounter">
-                    <span data-word-count>0</span> @Localizer["Words"] ·
+                <span id="textScanCounter" aria-live="polite">
+                    <span data-word-count>0</span> @Localizer["Words"] -
                     <span data-character-count>0</span> @Localizer["Characters"]
                 </span>
             </div>

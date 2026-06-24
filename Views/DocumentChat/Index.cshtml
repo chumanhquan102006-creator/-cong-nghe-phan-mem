@@ -115,7 +115,13 @@
 
             <form asp-controller="DocumentChat" asp-action="Ask" asp-route-documentId="@Model.Document.Id" method="post" class="section-card">
                 <label for="question" class="form-label">@Localizer["Ask a question"]</label>
-                <textarea id="question" name="question" class="form-control" rows="3" placeholder="Example: What is the methodology of this paper?"></textarea>
+                <textarea id="question" name="question" class="form-control" rows="3"
+                          placeholder="Example: What is the methodology of this paper?"
+                          data-text-counter data-counter-target="chatQuestionCounter"></textarea>
+                <div id="chatQuestionCounter" class="form-text text-end" aria-live="polite">
+                    <span data-word-count>0</span> @Localizer["Words"] -
+                    <span data-character-count>0</span> @Localizer["Characters"]
+                </div>
                 <button type="submit" class="btn btn-primary mt-3" @(string.IsNullOrWhiteSpace(Model.Document.ExtractedText) ? "disabled" : "")>@Localizer["Ask"]</button>
             </form>
         </div>
