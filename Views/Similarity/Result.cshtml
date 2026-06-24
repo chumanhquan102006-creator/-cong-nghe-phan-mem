@@ -50,6 +50,9 @@
         <div class="row g-3">
             @foreach (var match in Model.Matches.OrderByDescending(item => item.SimilarityScore))
             {
+                var essaySegmentId = $"similarityEssaySegment_{match.Id}";
+                var matchedTextId = $"similarityMatchedText_{match.Id}";
+
                 <div class="col-12">
                     <div class="section-card">
                         <div class="d-flex justify-content-between gap-3 mb-2">
@@ -58,12 +61,32 @@
                         </div>
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <strong>Essay Segment</strong>
-                                <blockquote class="text-preview mt-2 mb-0">@match.EssaySegment</blockquote>
+                                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+                                    <strong>Essay Segment</strong>
+                                    <button type="button" class="btn btn-sm btn-outline-primary"
+                                            data-copy-target="@essaySegmentId"
+                                            data-copied-text="@Localizer["Copied"]"
+                                            data-copy-success-text="@Localizer["CopiedToClipboard"]"
+                                            data-copy-error-text="@Localizer["CopyFailed"]"
+                                            aria-label="@Localizer["CopyToClipboard"]">
+                                        @Localizer["Copy"]
+                                    </button>
+                                </div>
+                                <blockquote id="@essaySegmentId" class="text-preview mt-2 mb-0">@match.EssaySegment</blockquote>
                             </div>
                             <div class="col-md-6">
-                                <strong>Matched Text</strong>
-                                <blockquote class="text-preview mt-2 mb-0">@match.MatchedText</blockquote>
+                                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+                                    <strong>Matched Text</strong>
+                                    <button type="button" class="btn btn-sm btn-outline-primary"
+                                            data-copy-target="@matchedTextId"
+                                            data-copied-text="@Localizer["Copied"]"
+                                            data-copy-success-text="@Localizer["CopiedToClipboard"]"
+                                            data-copy-error-text="@Localizer["CopyFailed"]"
+                                            aria-label="@Localizer["CopyToClipboard"]">
+                                        @Localizer["Copy"]
+                                    </button>
+                                </div>
+                                <blockquote id="@matchedTextId" class="text-preview mt-2 mb-0">@match.MatchedText</blockquote>
                             </div>
                         </div>
                     </div>

@@ -68,20 +68,43 @@
                 {
                     @foreach (var message in Model.Messages)
                     {
+                        var answerId = $"chatAnswer_{message.Id}";
+                        var snippetId = $"chatSnippet_{message.Id}";
+
                         <div class="mb-3">
                             <div class="chat-question rounded p-3 mb-2">
                                 <strong>You:</strong>
                                 <p class="mb-1">@message.Question</p>
                             </div>
                             <div class="chat-answer rounded p-3 mb-2">
-                                <strong>System:</strong>
-                                <p class="mb-1">@message.Answer</p>
+                                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                                    <strong>System:</strong>
+                                    <button type="button" class="btn btn-sm btn-outline-primary"
+                                            data-copy-target="@answerId"
+                                            data-copied-text="@Localizer["Copied"]"
+                                            data-copy-success-text="@Localizer["CopiedToClipboard"]"
+                                            data-copy-error-text="@Localizer["CopyFailed"]"
+                                            aria-label="@Localizer["CopyToClipboard"]">
+                                        @Localizer["Copy"]
+                                    </button>
+                                </div>
+                                <p id="@answerId" class="mb-1">@message.Answer</p>
                             </div>
                             @if (!string.IsNullOrWhiteSpace(message.SourceSnippet))
                             {
                                 <div class="source-snippet">
-                                    <small class="text-muted">Source snippet</small>
-                                    <p class="mb-0">@message.SourceSnippet</p>
+                                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-1">
+                                        <small class="text-muted">Source snippet</small>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"
+                                                data-copy-target="@snippetId"
+                                                data-copied-text="@Localizer["Copied"]"
+                                                data-copy-success-text="@Localizer["CopiedToClipboard"]"
+                                                data-copy-error-text="@Localizer["CopyFailed"]"
+                                                aria-label="@Localizer["CopyToClipboard"]">
+                                            @Localizer["Copy"]
+                                        </button>
+                                    </div>
+                                    <p id="@snippetId" class="mb-0">@message.SourceSnippet</p>
                                 </div>
                             }
                             <small class="text-muted">@message.CreatedAt.ToDisplayDateTime()</small>

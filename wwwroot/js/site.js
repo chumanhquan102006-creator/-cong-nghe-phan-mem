@@ -17,24 +17,34 @@ document.addEventListener("DOMContentLoaded", () => {
             const targetId = button.dataset.copyTarget;
             const target = targetId ? document.getElementById(targetId) : null;
             if (!target) {
+                showCopyToast(button.dataset.copyErrorText || "Could not copy content.", "error");
                 return;
             }
 
-            const text = "value" in target ? target.value : target.innerText;
+            const text = "value" in target
+                ? target.value
+                : (target.innerText || target.textContent || "");
             if (!text || !text.trim()) {
+                showCopyToast(button.dataset.copyErrorText || "Could not copy content.", "error");
                 return;
             }
 
             const originalHtml = button.innerHTML;
+            button.disabled = true;
+
             try {
                 await navigator.clipboard.writeText(text);
                 button.textContent = button.dataset.copiedText || "Copied!";
+                showCopyToast(button.dataset.copySuccessText || button.dataset.copiedText || "Copied!", "success");
             } catch {
-                button.textContent = button.dataset.copyErrorText || "Copy failed";
+                const errorText = button.dataset.copyErrorText || "Could not copy content.";
+                button.textContent = errorText;
+                showCopyToast(errorText, "error");
             }
 
             window.setTimeout(() => {
                 button.innerHTML = originalHtml;
+                button.disabled = false;
             }, 1500);
         });
     });
@@ -151,6 +161,12 @@ window.showToast = function showToast(message, type = "info", options = {}) {
     toast.show();
     return toast;
 };
+
+function showCopyToast(message, type) {
+    if (typeof window.showToast === "function") {
+        window.showToast(message, type);
+    }
+}
 
 function isFormSubmittable(form) {
     if (typeof form.checkValidity === "function" && !form.checkValidity()) {
