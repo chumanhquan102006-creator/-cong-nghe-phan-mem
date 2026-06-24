@@ -1235,25 +1235,28 @@
     <value>Không tìm thấy trang</value>
   </data>
   <data name="Error404Message" xml:space="preserve">
-    <value>Trang bạn yêu cầu không tồn tại hoặc đã được di chuyển.</value>
+    <value>Trang bạn đang tìm kiếm không tồn tại hoặc đã được di chuyển.</value>
   </data>
   <data name="Error500Title" xml:space="preserve">
     <value>Đã xảy ra lỗi</value>
   </data>
   <data name="Error500Message" xml:space="preserve">
-    <value>Hệ thống không thể xử lý yêu cầu. Vui lòng thử lại sau.</value>
+    <value>Hệ thống gặp lỗi không mong muốn. Vui lòng thử lại sau.</value>
   </data>
   <data name="AccessDeniedTitle" xml:space="preserve">
-    <value>Truy cập bị từ chối</value>
+    <value>Không có quyền truy cập</value>
   </data>
   <data name="AccessDeniedMessage" xml:space="preserve">
     <value>Bạn không có quyền truy cập trang này.</value>
   </data>
   <data name="BackToDashboard" xml:space="preserve">
-    <value>Quay lại Bảng điều khiển</value>
+    <value>Quay về bảng điều khiển</value>
   </data>
   <data name="BackToHome" xml:space="preserve">
-    <value>Quay lại Trang chủ</value>
+    <value>Quay về trang chủ</value>
+  </data>
+  <data name="GoBack" xml:space="preserve">
+    <value>Quay lại</value>
   </data>
   <data name="References_ExportTitle" xml:space="preserve">
     <value>Xuất tài liệu tham khảo</value>

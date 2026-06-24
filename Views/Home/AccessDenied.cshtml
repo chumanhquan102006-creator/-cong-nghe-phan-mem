@@ -12,6 +12,7 @@
         <p class="page-subtitle">@Localizer["AccessDeniedMessage"]</p>
         <div class="d-flex flex-wrap justify-content-center gap-2">
             <a class="btn btn-primary" asp-controller="Home" asp-action="Index">@Localizer["BackToHome"]</a>
+            <button type="button" class="btn btn-outline-secondary" onclick="history.back()">@Localizer["GoBack"]</button>
             <a class="btn btn-outline-secondary" asp-controller="Dashboard" asp-action="Index">@Localizer["BackToDashboard"]</a>
         </div>
     </div>
