@@ -1225,6 +1225,12 @@
   <data name="ConfirmDeleteMessage" xml:space="preserve">
     <value>Bạn có chắc chắn muốn xóa mục này không? Hành động này không thể hoàn tác.</value>
   </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Xác nhận xóa</value>
+  </data>
+  <data name="DeleteConfirmationTitle" xml:space="preserve">
+    <value>Xác nhận xóa</value>
+  </data>
   <data name="Error404Title" xml:space="preserve">
     <value>Không tìm thấy trang</value>
   </data>

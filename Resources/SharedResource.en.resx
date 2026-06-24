@@ -1225,6 +1225,12 @@
   <data name="ConfirmDeleteMessage" xml:space="preserve">
     <value>Are you sure you want to delete this item? This action cannot be undone.</value>
   </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Confirm delete</value>
+  </data>
+  <data name="DeleteConfirmationTitle" xml:space="preserve">
+    <value>Delete confirmation</value>
+  </data>
   <data name="Error404Title" xml:space="preserve">
     <value>Page not found</value>
   </data>

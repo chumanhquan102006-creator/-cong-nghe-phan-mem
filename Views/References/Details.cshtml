@@ -67,7 +67,9 @@
                     <button type="submit" class="btn btn-primary">@Localizer["Send to Writing Studio"]</button>
                 </form>
                 <form asp-action="Delete" asp-route-id="@Model.Id" method="post"
-                      class="js-confirm-form" data-confirm-message="@Localizer["ConfirmDeleteMessage"]">
+                      class="js-confirm-form"
+                      data-confirm-delete
+                      data-confirm-message="@Localizer["ConfirmDeleteMessage"]">
                     <button type="submit" class="btn btn-danger">@Localizer["Delete"]</button>
                 </form>
             </div>

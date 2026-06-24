@@ -3,11 +3,16 @@ document.addEventListener("DOMContentLoaded", () => {
         bootstrap.Toast.getOrCreateInstance(toastElement).show();
     });
 
-    document.querySelectorAll(".js-confirm-form").forEach(form => {
-        form.addEventListener("submit", event => {
-            const message = form.dataset.confirmMessage || "Are you sure?";
+    document.querySelectorAll("[data-confirm-delete], .js-confirm-form").forEach(element => {
+        const eventName = element instanceof HTMLFormElement ? "submit" : "click";
+        element.addEventListener(eventName, event => {
+            const message = element.dataset.confirmMessage
+                || element.dataset.confirmDelete
+                || "Are you sure you want to delete this item? This action cannot be undone.";
+
             if (!window.confirm(message)) {
                 event.preventDefault();
+                event.stopPropagation();
             }
         });
     });

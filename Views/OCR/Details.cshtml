@@ -93,7 +93,9 @@
             <div class="d-flex flex-wrap gap-2 mt-3">
                 <a class="btn btn-outline-secondary" asp-action="History">@Localizer["Back to OCR History"]</a>
                 <form asp-action="Delete" asp-route-id="@Model.Id" method="post"
-                      class="js-confirm-form" data-confirm-message="@Localizer["ConfirmDeleteMessage"]">
+                      class="js-confirm-form"
+                      data-confirm-delete
+                      data-confirm-message="@Localizer["ConfirmDeleteMessage"]">
                     <button type="submit" class="btn btn-danger">@Localizer["Delete"]</button>
                 </form>
             </div>
