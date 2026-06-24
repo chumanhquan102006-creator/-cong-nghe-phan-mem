@@ -87,6 +87,14 @@
                                             aria-label="@Localizer["CopyToClipboard"]">
                                         @Localizer["Copy"]
                                     </button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                                            data-export-target="@answerId"
+                                            data-export-filename="chat-answer"
+                                            data-export-success-text="@Localizer["ExportedTxt"]"
+                                            data-export-error-text="@Localizer["ExportFailed"]"
+                                            aria-label="@Localizer["DownloadTxt"]">
+                                        @Localizer["ExportTxt"]
+                                    </button>
                                 </div>
                                 <p id="@answerId" class="mb-1">@message.Answer</p>
                             </div>

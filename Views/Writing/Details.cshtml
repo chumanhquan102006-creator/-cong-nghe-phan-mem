@@ -31,8 +31,12 @@
                     data-copy-target="writingFeedbackContent"
                     data-copied-text="@Localizer["Copied"]"
                     data-copy-error-text="@Localizer["CopyFailed"]">@Localizer["Copy"]</button>
-            <a class="btn btn-outline-secondary"
-               asp-action="ExportFeedback" asp-route-id="@Model.Essay.Id">@Localizer["ExportTxt"]</a>
+            <button type="button" class="btn btn-outline-secondary"
+                    data-export-target="writingFeedbackContent"
+                    data-export-filename="writing-feedback"
+                    data-export-success-text="@Localizer["ExportedTxt"]"
+                    data-export-error-text="@Localizer["ExportFailed"]"
+                    aria-label="@Localizer["DownloadTxt"]">@Localizer["ExportTxt"]</button>
         </div>
 
         <div id="writingFeedbackContent">

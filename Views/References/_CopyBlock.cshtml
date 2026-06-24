@@ -4,10 +4,18 @@
 <div>
     <div class="d-flex justify-content-between align-items-center gap-2 mb-1">
         <h3 class="h6 mb-0">@Model.Label</h3>
-        <button type="button" class="btn btn-sm btn-outline-primary"
-                data-copy-target="@Model.Id"
-                data-copied-text="@Localizer["Copied"]"
-                data-copy-error-text="@Localizer["CopyFailed"]">@Localizer["Copy"]</button>
+        <div class="d-flex flex-wrap gap-2">
+            <button type="button" class="btn btn-sm btn-outline-primary"
+                    data-copy-target="@Model.Id"
+                    data-copied-text="@Localizer["Copied"]"
+                    data-copy-error-text="@Localizer["CopyFailed"]">@Localizer["Copy"]</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary"
+                    data-export-target="@Model.Id"
+                    data-export-filename="reference-result"
+                    data-export-success-text="@Localizer["ExportedTxt"]"
+                    data-export-error-text="@Localizer["ExportFailed"]"
+                    aria-label="@Localizer["DownloadTxt"]">@Localizer["ExportTxt"]</button>
+        </div>
     </div>
     <textarea id="@Model.Id" class="form-control text-preview" rows="3" readonly>@Model.Value</textarea>
 </div>

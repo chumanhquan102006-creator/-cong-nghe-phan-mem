@@ -67,9 +67,15 @@
                                 @(hasResponse ? "" : "disabled")>
                             @Localizer["Copy"]
                         </button>
-                        <a class="btn btn-outline-secondary btn-sm @(hasResponse ? "" : "disabled")"
-                           asp-action="ExportResponse"
-                           asp-route-id="@Model.Id">@Localizer["ExportTxt"]</a>
+                        <button type="button" class="btn btn-outline-secondary btn-sm"
+                                data-export-target="coachResponse"
+                                data-export-filename="writing-coach"
+                                data-export-success-text="@Localizer["ExportedTxt"]"
+                                data-export-error-text="@Localizer["ExportFailed"]"
+                                aria-label="@Localizer["DownloadTxt"]"
+                                @(hasResponse ? "" : "disabled")>
+                            @Localizer["ExportTxt"]
+                        </button>
                         <form asp-action="SendToWriting" asp-route-id="@Model.Id" method="post">
                             <button type="submit" class="btn btn-primary btn-sm" @(hasResponse ? "" : "disabled")>
                                 @Localizer["Send to Writing Studio"]

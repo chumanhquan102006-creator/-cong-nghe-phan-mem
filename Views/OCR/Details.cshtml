@@ -57,9 +57,15 @@
                                 @(hasText ? "" : "disabled")>
                             @Localizer["Copy"]
                         </button>
-                        <a class="btn btn-outline-secondary btn-sm @(hasText ? "" : "disabled")"
-                           asp-action="ExportText"
-                           asp-route-id="@Model.Id">@Localizer["ExportTxt"]</a>
+                        <button type="button" class="btn btn-outline-secondary btn-sm"
+                                data-export-target="ocrText"
+                                data-export-filename="ocr-result"
+                                data-export-success-text="@Localizer["ExportedTxt"]"
+                                data-export-error-text="@Localizer["ExportFailed"]"
+                                aria-label="@Localizer["DownloadTxt"]"
+                                @(hasText ? "" : "disabled")>
+                            @Localizer["ExportTxt"]
+                        </button>
                         <a class="btn btn-primary btn-sm @(hasText ? "" : "disabled")"
                            asp-controller="Writing"
                            asp-action="Index"

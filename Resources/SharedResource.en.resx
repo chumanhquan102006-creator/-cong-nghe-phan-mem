@@ -1213,6 +1213,15 @@
   <data name="ExportTxt" xml:space="preserve">
     <value>Export TXT</value>
   </data>
+  <data name="DownloadTxt" xml:space="preserve">
+    <value>Download TXT</value>
+  </data>
+  <data name="ExportedTxt" xml:space="preserve">
+    <value>TXT file created.</value>
+  </data>
+  <data name="ExportFailed" xml:space="preserve">
+    <value>Could not create TXT file.</value>
+  </data>
   <data name="ConfirmDeleteMessage" xml:space="preserve">
     <value>Are you sure you want to delete this item? This action cannot be undone.</value>
   </data>

@@ -21,9 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            const text = "value" in target
-                ? target.value
-                : (target.innerText || target.textContent || "");
+            const text = getExportText(target);
             if (!text || !text.trim()) {
                 showCopyToast(button.dataset.copyErrorText || "Could not copy content.", "error");
                 return;
@@ -46,6 +44,46 @@ document.addEventListener("DOMContentLoaded", () => {
                 button.innerHTML = originalHtml;
                 button.disabled = false;
             }, 1500);
+        });
+    });
+
+    document.querySelectorAll("[data-export-target]").forEach(button => {
+        button.addEventListener("click", () => {
+            const targetId = button.dataset.exportTarget;
+            const target = targetId ? document.getElementById(targetId) : null;
+            const errorText = button.dataset.exportErrorText || "Could not create TXT file.";
+
+            if (!target) {
+                showExportToast(errorText, "error");
+                return;
+            }
+
+            const text = "value" in target
+                ? target.value
+                : (target.innerText || target.textContent || "");
+
+            if (!text || !text.trim()) {
+                showExportToast(errorText, "error");
+                return;
+            }
+
+            try {
+                const fileName = buildExportFileName(button.dataset.exportFilename || "export-result");
+                const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+
+                link.href = url;
+                link.download = fileName;
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+
+                window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+                showExportToast(button.dataset.exportSuccessText || "TXT file created.", "success");
+            } catch {
+                showExportToast(errorText, "error");
+            }
         });
     });
 
@@ -167,6 +205,37 @@ function showCopyToast(message, type) {
     if (typeof window.showToast === "function") {
         window.showToast(message, type);
     }
+}
+
+function showExportToast(message, type) {
+    if (typeof window.showToast === "function") {
+        window.showToast(message, type);
+    }
+}
+
+function getExportText(target) {
+    if ("value" in target) {
+        return target.value;
+    }
+
+    const clone = target.cloneNode(true);
+    clone.querySelectorAll("button, a, [data-export-ignore]").forEach(element => element.remove());
+    return clone.innerText || clone.textContent || "";
+}
+
+function buildExportFileName(baseName) {
+    const timestamp = new Date()
+        .toISOString()
+        .slice(0, 16)
+        .replace(/[-:T]/g, "");
+    const safeBaseName = (baseName || "export-result")
+        .toLowerCase()
+        .replace(/\.txt$/i, "")
+        .replace(/[^a-z0-9-_]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        || "export-result";
+
+    return `${safeBaseName}-${timestamp}.txt`;
 }
 
 function getCounterElement(targetId, container, selector) {

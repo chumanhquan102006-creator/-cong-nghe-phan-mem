@@ -1213,6 +1213,15 @@
   <data name="ExportTxt" xml:space="preserve">
     <value>Xuất TXT</value>
   </data>
+  <data name="DownloadTxt" xml:space="preserve">
+    <value>Tải TXT</value>
+  </data>
+  <data name="ExportedTxt" xml:space="preserve">
+    <value>Đã tạo file TXT.</value>
+  </data>
+  <data name="ExportFailed" xml:space="preserve">
+    <value>Không thể tạo file TXT.</value>
+  </data>
   <data name="ConfirmDeleteMessage" xml:space="preserve">
     <value>Bạn có chắc chắn muốn xóa mục này không? Hành động này không thể hoàn tác.</value>
   </data>

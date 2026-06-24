@@ -17,7 +17,12 @@
                     data-copy-target="textScanResultContent"
                     data-copied-text="@Localizer["Copied"]"
                     data-copy-error-text="@Localizer["CopyFailed"]">@Localizer["Copy"]</button>
-            <a class="btn btn-outline-secondary" asp-action="ExportResult" asp-route-id="@Model.Id">@Localizer["ExportTxt"]</a>
+            <button type="button" class="btn btn-outline-secondary"
+                    data-export-target="textScanResultContent"
+                    data-export-filename="text-scan-result"
+                    data-export-success-text="@Localizer["ExportedTxt"]"
+                    data-export-error-text="@Localizer["ExportFailed"]"
+                    aria-label="@Localizer["DownloadTxt"]">@Localizer["ExportTxt"]</button>
             <a class="btn btn-primary" asp-action="Index">@Localizer["New Scan"]</a>
             <a class="btn btn-outline-secondary" asp-action="History">@Localizer["History"]</a>
         </div>
