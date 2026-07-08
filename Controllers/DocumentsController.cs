@@ -109,7 +109,7 @@ public class DocumentsController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Details(int id)
+    public async Task<IActionResult> Details(int id, string? tab)
     {
         int userId = GetCurrentUserId();
 
@@ -121,8 +121,18 @@ public class DocumentsController : Controller
             return NotFound();
         }
 
-        ViewData["FileExists"] = System.IO.File.Exists(GetPhysicalPath(document.StoredFileName));
-        return View(document);
+        var messages = await _context.DocumentChatMessages
+            .Where(message => message.DocumentId == id && message.UserId == userId)
+            .OrderBy(message => message.CreatedAt)
+            .ToListAsync();
+
+        return View(new DocumentWorkspaceViewModel
+        {
+            Document = document,
+            Messages = messages,
+            ActiveTab = DocumentWorkspaceViewModel.NormalizeTab(tab),
+            FileExists = System.IO.File.Exists(GetPhysicalPath(document.StoredFileName))
+        });
     }
 
     [HttpGet]
@@ -193,7 +203,7 @@ public class DocumentsController : Controller
         if (string.IsNullOrWhiteSpace(document.ExtractedText))
         {
             TempData["ErrorMessage"] = _localizer["Documents_ExtractBeforeSummary"].Value;
-            return RedirectToAction(nameof(Details), new { id });
+            return RedirectToAction(nameof(Details), new { id, tab = DocumentWorkspaceViewModel.SummaryTab });
         }
 
         string summary;
@@ -243,7 +253,7 @@ public class DocumentsController : Controller
             }
         }
 
-        return RedirectToAction(nameof(Details), new { id });
+        return RedirectToAction(nameof(Details), new { id, tab = DocumentWorkspaceViewModel.SummaryTab });
     }
 
     [HttpPost]

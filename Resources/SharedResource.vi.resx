@@ -1351,4 +1351,106 @@
   <data name="NavSettings" xml:space="preserve">
     <value>Cài đặt</value>
   </data>
+  <data name="DocumentWorkspace" xml:space="preserve">
+    <value>Không gian tài liệu</value>
+  </data>
+  <data name="DocumentWorkspaceSubtitle" xml:space="preserve">
+    <value>Đọc, tóm tắt và hỏi AI trong một không gian tập trung.</value>
+  </data>
+  <data name="DocumentWorkspaceTabs" xml:space="preserve">
+    <value>Các phần của không gian tài liệu</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Tổng quan</value>
+  </data>
+  <data name="AskAI" xml:space="preserve">
+    <value>Hỏi AI</value>
+  </data>
+  <data name="NotExtracted" xml:space="preserve">
+    <value>Chưa trích xuất</value>
+  </data>
+  <data name="UploadedAtValue" xml:space="preserve">
+    <value>Tải lên {0}</value>
+  </data>
+  <data name="ProcessingStatus" xml:space="preserve">
+    <value>Trạng thái xử lý</value>
+  </data>
+  <data name="TextReady" xml:space="preserve">
+    <value>Văn bản đã sẵn sàng</value>
+  </data>
+  <data name="SummaryReady" xml:space="preserve">
+    <value>Tóm tắt đã sẵn sàng</value>
+  </data>
+  <data name="NeedsTextExtraction" xml:space="preserve">
+    <value>Cần trích xuất văn bản</value>
+  </data>
+  <data name="ReadyForSummary" xml:space="preserve">
+    <value>Sẵn sàng tóm tắt</value>
+  </data>
+  <data name="NoSummaryYet" xml:space="preserve">
+    <value>Chưa có tóm tắt.</value>
+  </data>
+  <data name="MoreActions" xml:space="preserve">
+    <value>Thao tác khác</value>
+  </data>
+  <data name="AboutThisDocument" xml:space="preserve">
+    <value>Về tài liệu này</value>
+  </data>
+  <data name="DocumentUploaded" xml:space="preserve">
+    <value>Tài liệu đã tải lên</value>
+  </data>
+  <data name="QuickOverview" xml:space="preserve">
+    <value>Tổng quan nhanh</value>
+  </data>
+  <data name="GenerateSummaryHint" xml:space="preserve">
+    <value>Tạo tóm tắt để hiểu tài liệu nhanh hơn.</value>
+  </data>
+  <data name="DocumentNotProcessedYet" xml:space="preserve">
+    <value>Tài liệu này chưa được xử lý.</value>
+  </data>
+  <data name="ExtractBeforeSummary" xml:space="preserve">
+    <value>Trích xuất văn bản trước khi tạo tóm tắt.</value>
+  </data>
+  <data name="ExtractBeforeSummaryTitle" xml:space="preserve">
+    <value>Trích xuất văn bản trước</value>
+  </data>
+  <data name="NextStep" xml:space="preserve">
+    <value>Bước tiếp theo</value>
+  </data>
+  <data name="ExtractBeforeChat" xml:space="preserve">
+    <value>Trích xuất văn bản trước khi hỏi AI về tài liệu này.</value>
+  </data>
+  <data name="ReadyForSummaryHint" xml:space="preserve">
+    <value>Văn bản đã sẵn sàng. Hãy tạo tóm tắt hoặc bắt đầu hỏi AI về tài liệu.</value>
+  </data>
+  <data name="ReadyToAskAIHint" xml:space="preserve">
+    <value>Tài liệu đã sẵn sàng. Hãy hỏi AI để giải thích, so sánh hoặc tìm chi tiết trong văn bản.</value>
+  </data>
+  <data name="AskAIAboutDocument" xml:space="preserve">
+    <value>Hỏi AI về tài liệu này</value>
+  </data>
+  <data name="RegenerateSummary" xml:space="preserve">
+    <value>Tạo lại tóm tắt</value>
+  </data>
+  <data name="FullSummary" xml:space="preserve">
+    <value>Tóm tắt đầy đủ</value>
+  </data>
+  <data name="SummaryTabHint" xml:space="preserve">
+    <value>Xem, sao chép hoặc xuất bản tóm tắt đã tạo.</value>
+  </data>
+  <data name="BackToWorkspace" xml:space="preserve">
+    <value>Quay lại không gian tài liệu</value>
+  </data>
+  <data name="Documents_ExtractBeforeChat" xml:space="preserve">
+    <value>Trích xuất văn bản trước khi hỏi AI.</value>
+  </data>
+  <data name="Documents_ChatHistoryHint" xml:space="preserve">
+    <value>Cuộc trò chuyện bám theo văn bản đã trích xuất của tài liệu.</value>
+  </data>
+  <data name="Documents_AskQuestionPlaceholder" xml:space="preserve">
+    <value>Ví dụ: Phương pháp nghiên cứu của bài này là gì?</value>
+  </data>
+  <data name="SourceSnippet" xml:space="preserve">
+    <value>Đoạn nguồn</value>
+  </data>
 </root>

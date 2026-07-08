@@ -9,4 +9,6 @@ public class DocumentChatViewModel
     public string? Question { get; set; }
 
     public string? ErrorMessage { get; set; }
+
+    public string? ReturnTo { get; set; }
 }

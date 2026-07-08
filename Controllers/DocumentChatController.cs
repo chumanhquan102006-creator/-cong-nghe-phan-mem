@@ -44,7 +44,7 @@ public class DocumentChatController : Controller
 
     [HttpPost("DocumentChat/Ask/{documentId:int}")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Ask(int documentId, string question)
+    public async Task<IActionResult> Ask(int documentId, string question, string? returnTo)
     {
         var document = await FindOwnedDocumentAsync(documentId);
         if (document == null)
@@ -56,12 +56,22 @@ public class DocumentChatController : Controller
         if (string.IsNullOrWhiteSpace(document.ExtractedText))
         {
             TempData["WarningMessage"] = "Please extract text first before chatting with this PDF.";
+            if (ShouldReturnToWorkspace(returnTo))
+            {
+                return RedirectToWorkspaceChat(documentId);
+            }
+
             return await ReturnChatWithError(document, "Please extract text first before chatting with this PDF.");
         }
 
         if (string.IsNullOrWhiteSpace(question))
         {
             TempData["ErrorMessage"] = "Question cannot be empty.";
+            if (ShouldReturnToWorkspace(returnTo))
+            {
+                return RedirectToWorkspaceChat(documentId);
+            }
+
             return await ReturnChatWithError(document, "Question cannot be empty.");
         }
 
@@ -85,7 +95,22 @@ public class DocumentChatController : Controller
         await _context.SaveChangesAsync();
 
         TempData["SuccessMessage"] = "Question answered.";
+        if (ShouldReturnToWorkspace(returnTo))
+        {
+            return RedirectToWorkspaceChat(documentId);
+        }
+
         return RedirectToAction(nameof(Index), new { documentId });
+    }
+
+    private IActionResult RedirectToWorkspaceChat(int documentId)
+    {
+        return RedirectToAction("Details", "Documents", new { id = documentId, tab = DocumentWorkspaceViewModel.ChatTab });
+    }
+
+    private static bool ShouldReturnToWorkspace(string? returnTo)
+    {
+        return string.Equals(returnTo, "workspace", StringComparison.OrdinalIgnoreCase);
     }
 
     private async Task<IActionResult> ReturnChatWithError(Document document, string errorMessage)

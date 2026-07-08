@@ -1,0 +1,103 @@
+@model AcademicAIAssistant.Models.ViewModels.DocumentChatViewModel
+@inject IStringLocalizer<SharedResource> Localizer
+
+@if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">@Localizer[Model.ErrorMessage]</div>
+}
+
+@if (string.IsNullOrWhiteSpace(Model.Document.ExtractedText))
+{
+    <div class="alert alert-warning">@Localizer["Documents_ExtractBeforeChat"]</div>
+}
+
+<div class="document-chat-panel">
+    <div class="section-card mb-3">
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+            <div>
+                <h2 class="h5 mb-1">@Localizer["Chat History"]</h2>
+                <p class="text-muted mb-0">@Localizer["Documents_ChatHistoryHint"]</p>
+            </div>
+        </div>
+
+        @if (!Model.Messages.Any())
+        {
+            <div class="empty-state">@Localizer["No questions asked yet."]</div>
+        }
+        else
+        {
+            <div class="document-chat-thread">
+                @foreach (var message in Model.Messages)
+                {
+                    var answerId = $"chatAnswer_{message.Id}";
+                    var snippetId = $"chatSnippet_{message.Id}";
+
+                    <div class="document-chat-message">
+                        <div class="chat-question rounded p-3 mb-2">
+                            <strong>@Localizer["ChatRoleUser"]</strong>
+                            <p class="mb-1">@message.Question</p>
+                        </div>
+                        <div class="chat-answer rounded p-3 mb-2">
+                            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                                <strong>@Localizer["ChatRoleAI"]</strong>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <button type="button" class="btn btn-sm btn-outline-primary"
+                                            data-copy-target="@answerId"
+                                            data-copied-text="@Localizer["Copied"]"
+                                            data-copy-success-text="@Localizer["CopiedToClipboard"]"
+                                            data-copy-error-text="@Localizer["CopyFailed"]"
+                                            aria-label="@Localizer["CopyToClipboard"]">
+                                        @Localizer["Copy"]
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                                            data-export-target="@answerId"
+                                            data-export-filename="chat-answer"
+                                            data-export-success-text="@Localizer["ExportedTxt"]"
+                                            data-export-error-text="@Localizer["ExportFailed"]"
+                                            aria-label="@Localizer["DownloadTxt"]">
+                                        @Localizer["ExportTxt"]
+                                    </button>
+                                </div>
+                            </div>
+                            <p id="@answerId" class="mb-1">@message.Answer</p>
+                        </div>
+                        @if (!string.IsNullOrWhiteSpace(message.SourceSnippet))
+                        {
+                            <div class="source-snippet">
+                                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-1">
+                                    <small class="text-muted">@Localizer["SourceSnippet"]</small>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                                            data-copy-target="@snippetId"
+                                            data-copied-text="@Localizer["Copied"]"
+                                            data-copy-success-text="@Localizer["CopiedToClipboard"]"
+                                            data-copy-error-text="@Localizer["CopyFailed"]"
+                                            aria-label="@Localizer["CopyToClipboard"]">
+                                        @Localizer["Copy"]
+                                    </button>
+                                </div>
+                                <p id="@snippetId" class="mb-0">@message.SourceSnippet</p>
+                            </div>
+                        }
+                        <small class="text-muted">@message.CreatedAt.ToDisplayDateTime()</small>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+    <form asp-controller="DocumentChat" asp-action="Ask" asp-route-documentId="@Model.Document.Id" method="post" class="section-card">
+        @if (!string.IsNullOrWhiteSpace(Model.ReturnTo))
+        {
+            <input type="hidden" name="returnTo" value="@Model.ReturnTo" />
+        }
+        <label for="question" class="form-label">@Localizer["Ask a question"]</label>
+        <textarea id="question" name="question" class="form-control" rows="3"
+                  placeholder="@Localizer["Documents_AskQuestionPlaceholder"]"
+                  data-text-counter data-counter-target="chatQuestionCounter"></textarea>
+        <div id="chatQuestionCounter" class="form-text text-end" aria-live="polite">
+            <span data-word-count>0</span> @Localizer["Words"] -
+            <span data-character-count>0</span> @Localizer["Characters"]
+        </div>
+        <button type="submit" class="btn btn-primary mt-3" @(string.IsNullOrWhiteSpace(Model.Document.ExtractedText) ? "disabled" : "")>@Localizer["Ask"]</button>
+    </form>
+</div>

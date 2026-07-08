@@ -1351,4 +1351,106 @@
   <data name="NavSettings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="DocumentWorkspace" xml:space="preserve">
+    <value>Document Workspace</value>
+  </data>
+  <data name="DocumentWorkspaceSubtitle" xml:space="preserve">
+    <value>Read, summarize, and ask questions from one focused workspace.</value>
+  </data>
+  <data name="DocumentWorkspaceTabs" xml:space="preserve">
+    <value>Document workspace sections</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Overview</value>
+  </data>
+  <data name="AskAI" xml:space="preserve">
+    <value>Ask AI</value>
+  </data>
+  <data name="NotExtracted" xml:space="preserve">
+    <value>Not extracted</value>
+  </data>
+  <data name="UploadedAtValue" xml:space="preserve">
+    <value>Uploaded {0}</value>
+  </data>
+  <data name="ProcessingStatus" xml:space="preserve">
+    <value>Processing status</value>
+  </data>
+  <data name="TextReady" xml:space="preserve">
+    <value>Text ready</value>
+  </data>
+  <data name="SummaryReady" xml:space="preserve">
+    <value>Summary ready</value>
+  </data>
+  <data name="NeedsTextExtraction" xml:space="preserve">
+    <value>Needs text extraction</value>
+  </data>
+  <data name="ReadyForSummary" xml:space="preserve">
+    <value>Ready for summary</value>
+  </data>
+  <data name="NoSummaryYet" xml:space="preserve">
+    <value>No summary yet.</value>
+  </data>
+  <data name="MoreActions" xml:space="preserve">
+    <value>More actions</value>
+  </data>
+  <data name="AboutThisDocument" xml:space="preserve">
+    <value>About this document</value>
+  </data>
+  <data name="DocumentUploaded" xml:space="preserve">
+    <value>Document uploaded</value>
+  </data>
+  <data name="QuickOverview" xml:space="preserve">
+    <value>Quick overview</value>
+  </data>
+  <data name="GenerateSummaryHint" xml:space="preserve">
+    <value>Generate a summary to understand the document faster.</value>
+  </data>
+  <data name="DocumentNotProcessedYet" xml:space="preserve">
+    <value>This document has not been processed yet.</value>
+  </data>
+  <data name="ExtractBeforeSummary" xml:space="preserve">
+    <value>Extract the document text before generating a summary.</value>
+  </data>
+  <data name="ExtractBeforeSummaryTitle" xml:space="preserve">
+    <value>Extract text first</value>
+  </data>
+  <data name="NextStep" xml:space="preserve">
+    <value>Next step</value>
+  </data>
+  <data name="ExtractBeforeChat" xml:space="preserve">
+    <value>Extract the text before asking AI questions about this document.</value>
+  </data>
+  <data name="ReadyForSummaryHint" xml:space="preserve">
+    <value>The text is ready. Generate a summary or start asking AI about the document.</value>
+  </data>
+  <data name="ReadyToAskAIHint" xml:space="preserve">
+    <value>The document is ready. Ask AI to explain, compare, or locate details in the text.</value>
+  </data>
+  <data name="AskAIAboutDocument" xml:space="preserve">
+    <value>Ask AI about this document</value>
+  </data>
+  <data name="RegenerateSummary" xml:space="preserve">
+    <value>Regenerate Summary</value>
+  </data>
+  <data name="FullSummary" xml:space="preserve">
+    <value>Full summary</value>
+  </data>
+  <data name="SummaryTabHint" xml:space="preserve">
+    <value>Review, copy, or export the generated summary.</value>
+  </data>
+  <data name="BackToWorkspace" xml:space="preserve">
+    <value>Back to Workspace</value>
+  </data>
+  <data name="Documents_ExtractBeforeChat" xml:space="preserve">
+    <value>Extract the document text before asking AI questions.</value>
+  </data>
+  <data name="Documents_ChatHistoryHint" xml:space="preserve">
+    <value>Conversation stays grounded in the extracted document text.</value>
+  </data>
+  <data name="Documents_AskQuestionPlaceholder" xml:space="preserve">
+    <value>Example: What is the methodology of this paper?</value>
+  </data>
+  <data name="SourceSnippet" xml:space="preserve">
+    <value>Source snippet</value>
+  </data>
 </root>
