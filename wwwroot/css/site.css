@@ -27,6 +27,35 @@ body {
   box-shadow: 0 6px 24px rgba(15, 23, 42, 0.06);
 }
 
+.app-main-nav,
+.app-account-nav {
+  align-items: center;
+  gap: .25rem;
+}
+
+.app-navbar .nav-link {
+  border-radius: .5rem;
+  white-space: nowrap;
+}
+
+.app-navbar .nav-link.active,
+.app-navbar .nav-link.show {
+  background: #eef5ff;
+  color: #0b5ed7;
+  font-weight: 600;
+}
+
+.app-navbar .dropdown-item.active,
+.app-navbar .dropdown-item:active {
+  background: #eef5ff;
+  color: #0b5ed7;
+}
+
+.app-navbar .dropdown-menu {
+  border-color: #e5e7eb;
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.12);
+}
+
 .app-shell {
   padding-top: 1.5rem;
 }
@@ -207,6 +236,12 @@ body {
 }
 
 @media (max-width: 767.98px) {
+  .app-main-nav,
+  .app-account-nav {
+    align-items: stretch;
+    gap: 0;
+  }
+
   .page-header {
     flex-direction: column;
   }

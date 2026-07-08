@@ -1318,4 +1318,37 @@
   <data name="ChooseAnotherImage" xml:space="preserve">
     <value>Chọn ảnh khác</value>
   </data>
+  <data name="NavWriting" xml:space="preserve">
+    <value>Viết bài</value>
+  </data>
+  <data name="NavAnalyzeEssay" xml:space="preserve">
+    <value>Phân tích bài viết</value>
+  </data>
+  <data name="NavWritingCoach" xml:space="preserve">
+    <value>Trợ lý viết AI</value>
+  </data>
+  <data name="NavWritingHistory" xml:space="preserve">
+    <value>Lịch sử viết</value>
+  </data>
+  <data name="NavReferenceManager" xml:space="preserve">
+    <value>Quản lý tài liệu tham khảo</value>
+  </data>
+  <data name="NavReferenceExport" xml:space="preserve">
+    <value>Xuất tài liệu tham khảo</value>
+  </data>
+  <data name="NavTools" xml:space="preserve">
+    <value>Công cụ</value>
+  </data>
+  <data name="NavOCR" xml:space="preserve">
+    <value>Quét OCR</value>
+  </data>
+  <data name="NavTextSimilarity" xml:space="preserve">
+    <value>Kiểm tra tương đồng</value>
+  </data>
+  <data name="NavKnowledgeGraph" xml:space="preserve">
+    <value>Sơ đồ tri thức</value>
+  </data>
+  <data name="NavSettings" xml:space="preserve">
+    <value>Cài đặt</value>
+  </data>
 </root>

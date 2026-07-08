@@ -1318,4 +1318,37 @@
   <data name="ChooseAnotherImage" xml:space="preserve">
     <value>Choose Another Image</value>
   </data>
+  <data name="NavWriting" xml:space="preserve">
+    <value>Writing</value>
+  </data>
+  <data name="NavAnalyzeEssay" xml:space="preserve">
+    <value>Analyze Essay</value>
+  </data>
+  <data name="NavWritingCoach" xml:space="preserve">
+    <value>AI Writing Coach</value>
+  </data>
+  <data name="NavWritingHistory" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="NavReferenceManager" xml:space="preserve">
+    <value>Reference Manager</value>
+  </data>
+  <data name="NavReferenceExport" xml:space="preserve">
+    <value>Export References</value>
+  </data>
+  <data name="NavTools" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="NavOCR" xml:space="preserve">
+    <value>OCR Scanner</value>
+  </data>
+  <data name="NavTextSimilarity" xml:space="preserve">
+    <value>Text Similarity</value>
+  </data>
+  <data name="NavKnowledgeGraph" xml:space="preserve">
+    <value>Knowledge Graph</value>
+  </data>
+  <data name="NavSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
 </root>
