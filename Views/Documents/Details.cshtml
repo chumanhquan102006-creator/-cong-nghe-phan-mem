@@ -9,10 +9,10 @@
     bool fileExists = Model.FileExists;
 
     string pageCount = document.PageCount > 0
-        ? $"{document.PageCount} {Localizer["Pages"]}"
+        ? Localizer[document.PageCount == 1 ? "PageCountSingular" : "PageCountPlural", document.PageCount].Value
         : Localizer["NotExtracted"].Value;
     string wordCount = document.WordCount > 0
-        ? $"{document.WordCount} {Localizer["Words"]}"
+        ? Localizer[document.WordCount == 1 ? "WordCountSingular" : "WordCountPlural", document.WordCount].Value
         : Localizer["NotExtracted"].Value;
 
     var chatModel = new DocumentChatViewModel
@@ -151,21 +151,39 @@
             </div>
 
             <div class="section-card">
-                <h2 class="h5">@Localizer["ProcessingStatus"]</h2>
-                <div class="processing-list">
-                    <div class="processing-row is-complete">
-                        <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
-                        <span>@Localizer["DocumentUploaded"]</span>
-                    </div>
-                    <div class="processing-row @(hasText ? "is-complete" : "is-pending")">
-                        <i class="bi @(hasText ? "bi-check-circle-fill" : "bi-circle")" aria-hidden="true"></i>
-                        <span>@(hasText ? Localizer["TextReady"] : Localizer["NeedsTextExtraction"])</span>
-                    </div>
-                    <div class="processing-row @(hasSummary ? "is-complete" : "is-pending")">
-                        <i class="bi @(hasSummary ? "bi-check-circle-fill" : "bi-circle")" aria-hidden="true"></i>
-                        <span>@(hasSummary ? Localizer["SummaryReady"] : Localizer["ReadyForSummary"])</span>
-                    </div>
-                </div>
+                <h2 class="h5">
+                    @if (!hasText)
+                    {
+                        @Localizer["NeedsProcessing"]
+                    }
+                    else if (!hasSummary)
+                    {
+                        @Localizer["ReadyToExplore"]
+                    }
+                    else
+                    {
+                        @Localizer["ReadyToUse"]
+                    }
+                </h2>
+                <ul class="capability-list mb-0">
+                    @if (!hasText)
+                    {
+                        <li><i class="bi bi-arrow-right-circle" aria-hidden="true"></i><span>@Localizer["CapabilityExtractText"]</span></li>
+                        <li><i class="bi bi-lock" aria-hidden="true"></i><span>@Localizer["CapabilitySummaryAfterText"]</span></li>
+                        <li><i class="bi bi-lock" aria-hidden="true"></i><span>@Localizer["CapabilityChatAfterText"]</span></li>
+                    }
+                    else if (!hasSummary)
+                    {
+                        <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span>@Localizer["CapabilityAskQuestions"]</span></li>
+                        <li><i class="bi bi-arrow-right-circle" aria-hidden="true"></i><span>@Localizer["CapabilityGenerateSummary"]</span></li>
+                    }
+                    else
+                    {
+                        <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span>@Localizer["CapabilityReadSummary"]</span></li>
+                        <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span>@Localizer["CapabilityAskQuestions"]</span></li>
+                        <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span>@Localizer["CapabilityExportResults"]</span></li>
+                    }
+                </ul>
             </div>
 
             <div class="section-card document-workspace-wide">

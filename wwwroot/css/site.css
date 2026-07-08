@@ -354,9 +354,34 @@ body {
   overflow-wrap: anywhere;
 }
 
+.capability-list,
 .processing-list {
   display: grid;
   gap: .75rem;
+}
+
+.capability-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.capability-list li {
+  align-items: flex-start;
+  color: #475569;
+  display: flex;
+  gap: .5rem;
+}
+
+.capability-list .bi-check-circle-fill {
+  color: #146c43;
+}
+
+.capability-list .bi-arrow-right-circle {
+  color: #0b5ed7;
+}
+
+.capability-list .bi-lock {
+  color: #64748b;
 }
 
 .processing-row {
@@ -386,6 +411,8 @@ body {
 .document-chat-message {
   border-bottom: 1px solid #eef2f7;
   padding-bottom: 1rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .document-chat-message:last-child {

@@ -1453,4 +1453,49 @@
   <data name="SourceSnippet" xml:space="preserve">
     <value>Source snippet</value>
   </data>
+  <data name="DocumentNotFoundOrForbidden" xml:space="preserve">
+    <value>Document not found or you do not have permission to access it.</value>
+  </data>
+  <data name="WordCountSingular" xml:space="preserve">
+    <value>{0} Word</value>
+  </data>
+  <data name="WordCountPlural" xml:space="preserve">
+    <value>{0} Words</value>
+  </data>
+  <data name="PageCountSingular" xml:space="preserve">
+    <value>{0} Page</value>
+  </data>
+  <data name="PageCountPlural" xml:space="preserve">
+    <value>{0} Pages</value>
+  </data>
+  <data name="NeedsProcessing" xml:space="preserve">
+    <value>Needs processing</value>
+  </data>
+  <data name="ReadyToExplore" xml:space="preserve">
+    <value>Ready to explore</value>
+  </data>
+  <data name="ReadyToUse" xml:space="preserve">
+    <value>Ready to use</value>
+  </data>
+  <data name="CapabilityExtractText" xml:space="preserve">
+    <value>Extract text from the uploaded PDF</value>
+  </data>
+  <data name="CapabilitySummaryAfterText" xml:space="preserve">
+    <value>Generate a summary after text extraction</value>
+  </data>
+  <data name="CapabilityChatAfterText" xml:space="preserve">
+    <value>Ask AI after the document text is ready</value>
+  </data>
+  <data name="CapabilityAskQuestions" xml:space="preserve">
+    <value>Ask questions about the document</value>
+  </data>
+  <data name="CapabilityGenerateSummary" xml:space="preserve">
+    <value>Generate a summary when you need a faster read</value>
+  </data>
+  <data name="CapabilityReadSummary" xml:space="preserve">
+    <value>Read the summary</value>
+  </data>
+  <data name="CapabilityExportResults" xml:space="preserve">
+    <value>Export generated results</value>
+  </data>
 </root>

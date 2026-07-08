@@ -6,6 +6,7 @@ using AcademicAIAssistant.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace AcademicAIAssistant.Controllers;
 
@@ -14,11 +15,16 @@ public class DocumentChatController : Controller
 {
     private readonly AppDbContext _context;
     private readonly DocumentChatService _documentChatService;
+    private readonly IStringLocalizer<SharedResource> _localizer;
 
-    public DocumentChatController(AppDbContext context, DocumentChatService documentChatService)
+    public DocumentChatController(
+        AppDbContext context,
+        DocumentChatService documentChatService,
+        IStringLocalizer<SharedResource> localizer)
     {
         _context = context;
         _documentChatService = documentChatService;
+        _localizer = localizer;
     }
 
     [HttpGet("DocumentChat/{documentId:int}")]
@@ -49,13 +55,13 @@ public class DocumentChatController : Controller
         var document = await FindOwnedDocumentAsync(documentId);
         if (document == null)
         {
-            TempData["ErrorMessage"] = "Document not found or you do not have permission to access it.";
+            TempData["ErrorMessage"] = _localizer["DocumentNotFoundOrForbidden"].Value;
             return NotFound();
         }
 
         if (string.IsNullOrWhiteSpace(document.ExtractedText))
         {
-            TempData["WarningMessage"] = "Please extract text first before chatting with this PDF.";
+            TempData["WarningMessage"] = _localizer["Please extract text first before chatting with this PDF."].Value;
             if (ShouldReturnToWorkspace(returnTo))
             {
                 return RedirectToWorkspaceChat(documentId);
@@ -66,7 +72,7 @@ public class DocumentChatController : Controller
 
         if (string.IsNullOrWhiteSpace(question))
         {
-            TempData["ErrorMessage"] = "Question cannot be empty.";
+            TempData["ErrorMessage"] = _localizer["Question cannot be empty."].Value;
             if (ShouldReturnToWorkspace(returnTo))
             {
                 return RedirectToWorkspaceChat(documentId);
@@ -94,7 +100,7 @@ public class DocumentChatController : Controller
         _context.DocumentChatMessages.Add(message);
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = "Question answered.";
+        TempData["SuccessMessage"] = _localizer["Question answered."].Value;
         if (ShouldReturnToWorkspace(returnTo))
         {
             return RedirectToWorkspaceChat(documentId);

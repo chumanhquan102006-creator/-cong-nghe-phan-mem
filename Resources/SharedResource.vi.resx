@@ -1453,4 +1453,49 @@
   <data name="SourceSnippet" xml:space="preserve">
     <value>Đoạn nguồn</value>
   </data>
+  <data name="DocumentNotFoundOrForbidden" xml:space="preserve">
+    <value>Không tìm thấy tài liệu hoặc bạn không có quyền truy cập.</value>
+  </data>
+  <data name="WordCountSingular" xml:space="preserve">
+    <value>{0} từ</value>
+  </data>
+  <data name="WordCountPlural" xml:space="preserve">
+    <value>{0} từ</value>
+  </data>
+  <data name="PageCountSingular" xml:space="preserve">
+    <value>{0} trang</value>
+  </data>
+  <data name="PageCountPlural" xml:space="preserve">
+    <value>{0} trang</value>
+  </data>
+  <data name="NeedsProcessing" xml:space="preserve">
+    <value>Cần xử lý</value>
+  </data>
+  <data name="ReadyToExplore" xml:space="preserve">
+    <value>Sẵn sàng khám phá</value>
+  </data>
+  <data name="ReadyToUse" xml:space="preserve">
+    <value>Sẵn sàng sử dụng</value>
+  </data>
+  <data name="CapabilityExtractText" xml:space="preserve">
+    <value>Trích xuất văn bản từ PDF đã tải lên</value>
+  </data>
+  <data name="CapabilitySummaryAfterText" xml:space="preserve">
+    <value>Tạo tóm tắt sau khi trích xuất văn bản</value>
+  </data>
+  <data name="CapabilityChatAfterText" xml:space="preserve">
+    <value>Hỏi AI sau khi văn bản đã sẵn sàng</value>
+  </data>
+  <data name="CapabilityAskQuestions" xml:space="preserve">
+    <value>Đặt câu hỏi về tài liệu</value>
+  </data>
+  <data name="CapabilityGenerateSummary" xml:space="preserve">
+    <value>Tạo tóm tắt khi bạn cần đọc nhanh hơn</value>
+  </data>
+  <data name="CapabilityReadSummary" xml:space="preserve">
+    <value>Đọc bản tóm tắt</value>
+  </data>
+  <data name="CapabilityExportResults" xml:space="preserve">
+    <value>Xuất kết quả đã tạo</value>
+  </data>
 </root>
