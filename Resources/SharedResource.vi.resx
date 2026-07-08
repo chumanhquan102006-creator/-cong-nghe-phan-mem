@@ -512,7 +512,10 @@
     <value>Tiếng Việt</value>
   </data>
   <data name="Characters" xml:space="preserve">
-    <value>ký tự</value>
+    <value>Số ký tự</value>
+  </data>
+  <data name="CharacterCount" xml:space="preserve">
+    <value>Số ký tự</value>
   </data>
   <data name="Delete OCR Scan Confirm" xml:space="preserve">
     <value>Xóa bản quét OCR này?</value>
@@ -533,7 +536,13 @@
     <value>Quét văn bản</value>
   </data>
   <data name="Words" xml:space="preserve">
-    <value>Từ</value>
+    <value>Số từ</value>
+  </data>
+  <data name="WordCount" xml:space="preserve">
+    <value>Số từ</value>
+  </data>
+  <data name="TextCounter" xml:space="preserve">
+    <value>Bộ đếm văn bản</value>
   </data>
   <data name="Score" xml:space="preserve">
     <value>Điểm</value>
@@ -722,7 +731,7 @@
     <value>Không có văn bản để sao chép.</value>
   </data>
   <data name="Copied" xml:space="preserve">
-    <value>Đã sao chép</value>
+    <value>Đã sao chép!</value>
   </data>
   <data name="Text Similarity Scan" xml:space="preserve">
     <value>Quét độ tương đồng văn bản</value>
@@ -1191,5 +1200,302 @@
   </data>
   <data name="EssayAnalyzeFallback" xml:space="preserve">
     <value>Phản hồi từ AI hiện không khả dụng. Đã tạo phản hồi dựa trên quy tắc mặc định.</value>
+  </data>
+  <data name="CopyFailed" xml:space="preserve">
+    <value>Không thể sao chép nội dung.</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Sao chép vào clipboard</value>
+  </data>
+  <data name="CopiedToClipboard" xml:space="preserve">
+    <value>Đã sao chép vào clipboard!</value>
+  </data>
+  <data name="ExportTxt" xml:space="preserve">
+    <value>Xuất TXT</value>
+  </data>
+  <data name="DownloadTxt" xml:space="preserve">
+    <value>Tải TXT</value>
+  </data>
+  <data name="ExportedTxt" xml:space="preserve">
+    <value>Đã tạo file TXT.</value>
+  </data>
+  <data name="ExportFailed" xml:space="preserve">
+    <value>Không thể tạo file TXT.</value>
+  </data>
+  <data name="ConfirmDeleteMessage" xml:space="preserve">
+    <value>Bạn có chắc chắn muốn xóa mục này không? Hành động này không thể hoàn tác.</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Xác nhận xóa</value>
+  </data>
+  <data name="DeleteConfirmationTitle" xml:space="preserve">
+    <value>Xác nhận xóa</value>
+  </data>
+  <data name="Error404Title" xml:space="preserve">
+    <value>Không tìm thấy trang</value>
+  </data>
+  <data name="Error404Message" xml:space="preserve">
+    <value>Trang bạn đang tìm kiếm không tồn tại hoặc đã được di chuyển.</value>
+  </data>
+  <data name="Error500Title" xml:space="preserve">
+    <value>Đã xảy ra lỗi</value>
+  </data>
+  <data name="Error500Message" xml:space="preserve">
+    <value>Hệ thống gặp lỗi không mong muốn. Vui lòng thử lại sau.</value>
+  </data>
+  <data name="AccessDeniedTitle" xml:space="preserve">
+    <value>Không có quyền truy cập</value>
+  </data>
+  <data name="AccessDeniedMessage" xml:space="preserve">
+    <value>Bạn không có quyền truy cập trang này.</value>
+  </data>
+  <data name="BackToDashboard" xml:space="preserve">
+    <value>Quay về bảng điều khiển</value>
+  </data>
+  <data name="BackToHome" xml:space="preserve">
+    <value>Quay về trang chủ</value>
+  </data>
+  <data name="GoBack" xml:space="preserve">
+    <value>Quay lại</value>
+  </data>
+  <data name="References_ExportTitle" xml:space="preserve">
+    <value>Xuất tài liệu tham khảo</value>
+  </data>
+  <data name="References_ExportSubtitle" xml:space="preserve">
+    <value>Sao chép danh sách APA hoặc MLA vào bài viết.</value>
+  </data>
+  <data name="References_ExportEmpty" xml:space="preserve">
+    <value>Chưa có tài liệu tham khảo để xuất.</value>
+  </data>
+  <data name="APA References" xml:space="preserve">
+    <value>Tài liệu tham khảo APA</value>
+  </data>
+  <data name="MLA References" xml:space="preserve">
+    <value>Tài liệu tham khảo MLA</value>
+  </data>
+  <data name="Toast_Success" xml:space="preserve">
+    <value>Thành công</value>
+  </data>
+  <data name="Toast_Error" xml:space="preserve">
+    <value>Lỗi</value>
+  </data>
+  <data name="Toast_Warning" xml:space="preserve">
+    <value>Cảnh báo</value>
+  </data>
+  <data name="Toast_Info" xml:space="preserve">
+    <value>Thông tin</value>
+  </data>
+  <data name="Toast_Close" xml:space="preserve">
+    <value>Đóng</value>
+  </data>
+  <data name="Toast_Notifications" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
+  <data name="ChatRoleUser" xml:space="preserve">
+    <value>Bạn:</value>
+  </data>
+  <data name="ChatRoleAI" xml:space="preserve">
+    <value>AI:</value>
+  </data>
+  <data name="OCRNoTextTitle" xml:space="preserve">
+    <value>Không phát hiện được văn bản có thể đọc trong ảnh.</value>
+  </data>
+  <data name="OCRNoTextMessage" xml:space="preserve">
+    <value>Hãy thử:</value>
+  </data>
+  <data name="OCRNoTextTipLanguage" xml:space="preserve">
+    <value>Kiểm tra ngôn ngữ OCR đã chọn.</value>
+  </data>
+  <data name="OCRNoTextTipQuality" xml:space="preserve">
+    <value>Sử dụng ảnh rõ hoặc có độ phân giải cao hơn.</value>
+  </data>
+  <data name="OCRNoTextTipBlur" xml:space="preserve">
+    <value>Đảm bảo chữ không bị mờ hoặc nghiêng quá nhiều.</value>
+  </data>
+  <data name="OCRNoTextTipContrast" xml:space="preserve">
+    <value>Thử ảnh có độ tương phản tốt hơn.</value>
+  </data>
+  <data name="ChooseAnotherImage" xml:space="preserve">
+    <value>Chọn ảnh khác</value>
+  </data>
+  <data name="NavWriting" xml:space="preserve">
+    <value>Viết bài</value>
+  </data>
+  <data name="NavAnalyzeEssay" xml:space="preserve">
+    <value>Phân tích bài viết</value>
+  </data>
+  <data name="NavWritingCoach" xml:space="preserve">
+    <value>Trợ lý viết AI</value>
+  </data>
+  <data name="NavWritingHistory" xml:space="preserve">
+    <value>Lịch sử viết</value>
+  </data>
+  <data name="NavReferenceManager" xml:space="preserve">
+    <value>Quản lý tài liệu tham khảo</value>
+  </data>
+  <data name="NavReferenceExport" xml:space="preserve">
+    <value>Xuất tài liệu tham khảo</value>
+  </data>
+  <data name="NavTools" xml:space="preserve">
+    <value>Công cụ</value>
+  </data>
+  <data name="NavOCR" xml:space="preserve">
+    <value>Quét OCR</value>
+  </data>
+  <data name="NavTextSimilarity" xml:space="preserve">
+    <value>Kiểm tra tương đồng</value>
+  </data>
+  <data name="NavKnowledgeGraph" xml:space="preserve">
+    <value>Sơ đồ tri thức</value>
+  </data>
+  <data name="NavSettings" xml:space="preserve">
+    <value>Cài đặt</value>
+  </data>
+  <data name="DocumentWorkspace" xml:space="preserve">
+    <value>Không gian tài liệu</value>
+  </data>
+  <data name="DocumentWorkspaceSubtitle" xml:space="preserve">
+    <value>Đọc, tóm tắt và hỏi AI trong một không gian tập trung.</value>
+  </data>
+  <data name="DocumentWorkspaceTabs" xml:space="preserve">
+    <value>Các phần của không gian tài liệu</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Tổng quan</value>
+  </data>
+  <data name="AskAI" xml:space="preserve">
+    <value>Hỏi AI</value>
+  </data>
+  <data name="NotExtracted" xml:space="preserve">
+    <value>Chưa trích xuất</value>
+  </data>
+  <data name="UploadedAtValue" xml:space="preserve">
+    <value>Tải lên {0}</value>
+  </data>
+  <data name="ProcessingStatus" xml:space="preserve">
+    <value>Trạng thái xử lý</value>
+  </data>
+  <data name="TextReady" xml:space="preserve">
+    <value>Văn bản đã sẵn sàng</value>
+  </data>
+  <data name="SummaryReady" xml:space="preserve">
+    <value>Tóm tắt đã sẵn sàng</value>
+  </data>
+  <data name="NeedsTextExtraction" xml:space="preserve">
+    <value>Cần trích xuất văn bản</value>
+  </data>
+  <data name="ReadyForSummary" xml:space="preserve">
+    <value>Sẵn sàng tóm tắt</value>
+  </data>
+  <data name="NoSummaryYet" xml:space="preserve">
+    <value>Chưa có tóm tắt.</value>
+  </data>
+  <data name="MoreActions" xml:space="preserve">
+    <value>Thao tác khác</value>
+  </data>
+  <data name="AboutThisDocument" xml:space="preserve">
+    <value>Về tài liệu này</value>
+  </data>
+  <data name="DocumentUploaded" xml:space="preserve">
+    <value>Tài liệu đã tải lên</value>
+  </data>
+  <data name="QuickOverview" xml:space="preserve">
+    <value>Tổng quan nhanh</value>
+  </data>
+  <data name="GenerateSummaryHint" xml:space="preserve">
+    <value>Tạo tóm tắt để hiểu tài liệu nhanh hơn.</value>
+  </data>
+  <data name="DocumentNotProcessedYet" xml:space="preserve">
+    <value>Tài liệu này chưa được xử lý.</value>
+  </data>
+  <data name="ExtractBeforeSummary" xml:space="preserve">
+    <value>Trích xuất văn bản trước khi tạo tóm tắt.</value>
+  </data>
+  <data name="ExtractBeforeSummaryTitle" xml:space="preserve">
+    <value>Trích xuất văn bản trước</value>
+  </data>
+  <data name="NextStep" xml:space="preserve">
+    <value>Bước tiếp theo</value>
+  </data>
+  <data name="ExtractBeforeChat" xml:space="preserve">
+    <value>Trích xuất văn bản trước khi hỏi AI về tài liệu này.</value>
+  </data>
+  <data name="ReadyForSummaryHint" xml:space="preserve">
+    <value>Văn bản đã sẵn sàng. Hãy tạo tóm tắt hoặc bắt đầu hỏi AI về tài liệu.</value>
+  </data>
+  <data name="ReadyToAskAIHint" xml:space="preserve">
+    <value>Tài liệu đã sẵn sàng. Hãy hỏi AI để giải thích, so sánh hoặc tìm chi tiết trong văn bản.</value>
+  </data>
+  <data name="AskAIAboutDocument" xml:space="preserve">
+    <value>Hỏi AI về tài liệu này</value>
+  </data>
+  <data name="RegenerateSummary" xml:space="preserve">
+    <value>Tạo lại tóm tắt</value>
+  </data>
+  <data name="FullSummary" xml:space="preserve">
+    <value>Tóm tắt đầy đủ</value>
+  </data>
+  <data name="SummaryTabHint" xml:space="preserve">
+    <value>Xem, sao chép hoặc xuất bản tóm tắt đã tạo.</value>
+  </data>
+  <data name="BackToWorkspace" xml:space="preserve">
+    <value>Quay lại không gian tài liệu</value>
+  </data>
+  <data name="Documents_ExtractBeforeChat" xml:space="preserve">
+    <value>Trích xuất văn bản trước khi hỏi AI.</value>
+  </data>
+  <data name="Documents_ChatHistoryHint" xml:space="preserve">
+    <value>Cuộc trò chuyện bám theo văn bản đã trích xuất của tài liệu.</value>
+  </data>
+  <data name="Documents_AskQuestionPlaceholder" xml:space="preserve">
+    <value>Ví dụ: Phương pháp nghiên cứu của bài này là gì?</value>
+  </data>
+  <data name="SourceSnippet" xml:space="preserve">
+    <value>Đoạn nguồn</value>
+  </data>
+  <data name="DocumentNotFoundOrForbidden" xml:space="preserve">
+    <value>Không tìm thấy tài liệu hoặc bạn không có quyền truy cập.</value>
+  </data>
+  <data name="WordCountSingular" xml:space="preserve">
+    <value>{0} từ</value>
+  </data>
+  <data name="WordCountPlural" xml:space="preserve">
+    <value>{0} từ</value>
+  </data>
+  <data name="PageCountSingular" xml:space="preserve">
+    <value>{0} trang</value>
+  </data>
+  <data name="PageCountPlural" xml:space="preserve">
+    <value>{0} trang</value>
+  </data>
+  <data name="NeedsProcessing" xml:space="preserve">
+    <value>Cần xử lý</value>
+  </data>
+  <data name="ReadyToExplore" xml:space="preserve">
+    <value>Sẵn sàng khám phá</value>
+  </data>
+  <data name="ReadyToUse" xml:space="preserve">
+    <value>Sẵn sàng sử dụng</value>
+  </data>
+  <data name="CapabilityExtractText" xml:space="preserve">
+    <value>Trích xuất văn bản từ PDF đã tải lên</value>
+  </data>
+  <data name="CapabilitySummaryAfterText" xml:space="preserve">
+    <value>Tạo tóm tắt sau khi trích xuất văn bản</value>
+  </data>
+  <data name="CapabilityChatAfterText" xml:space="preserve">
+    <value>Hỏi AI sau khi văn bản đã sẵn sàng</value>
+  </data>
+  <data name="CapabilityAskQuestions" xml:space="preserve">
+    <value>Đặt câu hỏi về tài liệu</value>
+  </data>
+  <data name="CapabilityGenerateSummary" xml:space="preserve">
+    <value>Tạo tóm tắt khi bạn cần đọc nhanh hơn</value>
+  </data>
+  <data name="CapabilityReadSummary" xml:space="preserve">
+    <value>Đọc bản tóm tắt</value>
+  </data>
+  <data name="CapabilityExportResults" xml:space="preserve">
+    <value>Xuất kết quả đã tạo</value>
   </data>
 </root>

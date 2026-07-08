@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using AcademicAIAssistant.Data;
+using AcademicAIAssistant.Helpers;
 using AcademicAIAssistant.Models;
 using AcademicAIAssistant.Models.ViewModels;
 using AcademicAIAssistant.Services;
@@ -79,7 +80,7 @@ public class OCRController : Controller
             if (string.IsNullOrWhiteSpace(extractedText))
             {
                 ocrSucceeded = false;
-                TempData["WarningMessage"] = _localizer["No readable text was detected."];
+                TempData["WarningMessage"] = _localizer["No readable text was detected."].Value;
             }
         }
         catch (Exception ex)
@@ -107,7 +108,7 @@ public class OCRController : Controller
 
         if (ocrSucceeded)
         {
-            TempData["SuccessMessage"] = _localizer["OCR_ImageScannedSuccessfully"];
+            TempData["SuccessMessage"] = _localizer["OCR_ImageScannedSuccessfully"].Value;
         }
 
         return RedirectToAction(nameof(Details), new { id = scan.Id });
@@ -139,6 +140,23 @@ public class OCRController : Controller
         return View(scan);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> ExportText(int id)
+    {
+        OCRScan? scan = await FindOwnedScanAsync(id);
+        if (scan == null)
+        {
+            return Forbid();
+        }
+
+        if (string.IsNullOrWhiteSpace(scan.ExtractedText))
+        {
+            return NotFound();
+        }
+
+        return this.TxtFile("ocr-result", scan.ExtractedText, scan.CreatedAt);
+    }
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Delete(int id)
@@ -158,7 +176,7 @@ public class OCRController : Controller
         _context.OCRScans.Remove(scan);
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = _localizer["OCR_DeleteSuccess"];
+        TempData["SuccessMessage"] = _localizer["OCR_DeleteSuccess"].Value;
         return RedirectToAction(nameof(History));
     }
 

@@ -1,6 +1,8 @@
 using System.Security.Claims;
+using System.Text;
 using System.Text.RegularExpressions;
 using AcademicAIAssistant.Data;
+using AcademicAIAssistant.Helpers;
 using AcademicAIAssistant.Models;
 using AcademicAIAssistant.Models.ViewModels;
 using AcademicAIAssistant.Services;
@@ -41,13 +43,13 @@ public class TextScanController : Controller
 
             if (scan == null)
             {
-                TempData["ErrorMessage"] = _localizer["TextScan_OcrNotFoundOrForbidden"];
+                TempData["ErrorMessage"] = _localizer["TextScan_OcrNotFoundOrForbidden"].Value;
                 return View(new TextScanInputViewModel());
             }
 
             if (string.IsNullOrWhiteSpace(scan.ExtractedText))
             {
-                TempData["WarningMessage"] = _localizer["TextScan_NoOcrTextAvailable"];
+                TempData["WarningMessage"] = _localizer["TextScan_NoOcrTextAvailable"].Value;
                 return View(new TextScanInputViewModel());
             }
 
@@ -66,7 +68,7 @@ public class TextScanController : Controller
 
             if (essay == null)
             {
-                TempData["ErrorMessage"] = _localizer["TextScan_EssayNotFoundOrForbidden"];
+                TempData["ErrorMessage"] = _localizer["TextScan_EssayNotFoundOrForbidden"].Value;
                 return View(new TextScanInputViewModel());
             }
 
@@ -100,7 +102,7 @@ public class TextScanController : Controller
         try
         {
             TextScan scan = await _textScanService.ScanTextAsync(GetCurrentUserId(), model.Title, model.InputText);
-            TempData["SuccessMessage"] = _localizer["TextScan_Success"];
+            TempData["SuccessMessage"] = _localizer["TextScan_Success"].Value;
             return RedirectToAction(nameof(Result), new { id = scan.Id });
         }
         catch (Exception ex)
@@ -138,6 +140,41 @@ public class TextScanController : Controller
         return View(scan);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> ExportResult(int id)
+    {
+        TextScan? scan = await _context.TextScans
+            .Include(item => item.Matches.OrderByDescending(match => match.SimilarityScore))
+            .FirstOrDefaultAsync(item => item.Id == id && item.UserId == GetCurrentUserId());
+
+        if (scan == null)
+        {
+            return Forbid();
+        }
+
+        var content = new StringBuilder()
+            .AppendLine($"Title: {scan.Title}")
+            .AppendLine($"Word count: {scan.WordCount}")
+            .AppendLine($"Similarity score: {scan.OverallSimilarityScore:0.##}%")
+            .AppendLine($"Risk level: {scan.RiskLevel}")
+            .AppendLine()
+            .AppendLine("Input Text")
+            .AppendLine(scan.InputText);
+
+        foreach (TextScanMatch match in scan.Matches.OrderByDescending(item => item.SimilarityScore))
+        {
+            content
+                .AppendLine()
+                .AppendLine($"Match: {match.SourceType} - {match.SourceTitle} ({match.SimilarityScore:0.##}%)")
+                .AppendLine("Input Segment")
+                .AppendLine(match.InputSegment)
+                .AppendLine("Matched Source Segment")
+                .AppendLine(match.MatchedSegment);
+        }
+
+        return this.TxtFile("text-scan-result", content.ToString(), scan.CreatedAt);
+    }
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Delete(int id)
@@ -153,7 +190,7 @@ public class TextScanController : Controller
         _context.TextScans.Remove(scan);
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = _localizer["TextScan_DeleteSuccess"];
+        TempData["SuccessMessage"] = _localizer["TextScan_DeleteSuccess"].Value;
         return RedirectToAction(nameof(History));
     }
 

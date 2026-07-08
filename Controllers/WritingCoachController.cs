@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using AcademicAIAssistant.Data;
+using AcademicAIAssistant.Helpers;
 using AcademicAIAssistant.Models;
 using AcademicAIAssistant.Models.ViewModels;
 using AcademicAIAssistant.Services;
@@ -138,6 +139,23 @@ public class WritingCoachController : Controller
         return View(session);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> ExportResponse(int id)
+    {
+        WritingCoachSession? session = await FindOwnedSessionAsync(id);
+        if (session == null)
+        {
+            return Forbid();
+        }
+
+        if (string.IsNullOrWhiteSpace(session.AIResponse))
+        {
+            return NotFound();
+        }
+
+        return this.TxtFile("writing-coach-response", session.AIResponse, session.CreatedAt);
+    }
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> SendToWriting(int id)
@@ -150,7 +168,7 @@ public class WritingCoachController : Controller
 
         if (string.IsNullOrWhiteSpace(session.AIResponse))
         {
-            TempData["WarningMessage"] = _localizer["Writing_NoCoachResponseAvailable"];
+            TempData["WarningMessage"] = _localizer["Writing_NoCoachResponseAvailable"].Value;
             return RedirectToAction(nameof(Details), new { id });
         }
 
@@ -170,7 +188,7 @@ public class WritingCoachController : Controller
         _context.WritingCoachSessions.Remove(session);
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = _localizer["WritingCoach_DeleteSuccess"];
+        TempData["SuccessMessage"] = _localizer["WritingCoach_DeleteSuccess"].Value;
 
         return RedirectToAction(nameof(History));
     }

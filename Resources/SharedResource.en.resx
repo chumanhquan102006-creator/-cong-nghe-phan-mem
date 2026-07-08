@@ -512,7 +512,10 @@
     <value>Vietnamese</value>
   </data>
   <data name="Characters" xml:space="preserve">
-    <value>characters</value>
+    <value>Characters</value>
+  </data>
+  <data name="CharacterCount" xml:space="preserve">
+    <value>Character count</value>
   </data>
   <data name="Delete OCR Scan Confirm" xml:space="preserve">
     <value>Delete this OCR scan?</value>
@@ -534,6 +537,12 @@
   </data>
   <data name="Words" xml:space="preserve">
     <value>Words</value>
+  </data>
+  <data name="WordCount" xml:space="preserve">
+    <value>Word count</value>
+  </data>
+  <data name="TextCounter" xml:space="preserve">
+    <value>Text counter</value>
   </data>
   <data name="Score" xml:space="preserve">
     <value>Score</value>
@@ -722,7 +731,7 @@
     <value>No text available to copy.</value>
   </data>
   <data name="Copied" xml:space="preserve">
-    <value>Copied</value>
+    <value>Copied!</value>
   </data>
   <data name="Text Similarity Scan" xml:space="preserve">
     <value>Text Similarity Scan</value>
@@ -1191,5 +1200,302 @@
   </data>
   <data name="EssayAnalyzeFallback" xml:space="preserve">
     <value>AI feedback unavailable. Rule-based feedback generated.</value>
+  </data>
+  <data name="CopyFailed" xml:space="preserve">
+    <value>Could not copy content.</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Copy to clipboard</value>
+  </data>
+  <data name="CopiedToClipboard" xml:space="preserve">
+    <value>Copied to clipboard!</value>
+  </data>
+  <data name="ExportTxt" xml:space="preserve">
+    <value>Export TXT</value>
+  </data>
+  <data name="DownloadTxt" xml:space="preserve">
+    <value>Download TXT</value>
+  </data>
+  <data name="ExportedTxt" xml:space="preserve">
+    <value>TXT file created.</value>
+  </data>
+  <data name="ExportFailed" xml:space="preserve">
+    <value>Could not create TXT file.</value>
+  </data>
+  <data name="ConfirmDeleteMessage" xml:space="preserve">
+    <value>Are you sure you want to delete this item? This action cannot be undone.</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Confirm delete</value>
+  </data>
+  <data name="DeleteConfirmationTitle" xml:space="preserve">
+    <value>Delete confirmation</value>
+  </data>
+  <data name="Error404Title" xml:space="preserve">
+    <value>Page not found</value>
+  </data>
+  <data name="Error404Message" xml:space="preserve">
+    <value>The page you are looking for does not exist or may have been moved.</value>
+  </data>
+  <data name="Error500Title" xml:space="preserve">
+    <value>Something went wrong</value>
+  </data>
+  <data name="Error500Message" xml:space="preserve">
+    <value>An unexpected error occurred. Please try again later.</value>
+  </data>
+  <data name="AccessDeniedTitle" xml:space="preserve">
+    <value>Access denied</value>
+  </data>
+  <data name="AccessDeniedMessage" xml:space="preserve">
+    <value>You do not have permission to access this page.</value>
+  </data>
+  <data name="BackToDashboard" xml:space="preserve">
+    <value>Back to Dashboard</value>
+  </data>
+  <data name="BackToHome" xml:space="preserve">
+    <value>Back to Home</value>
+  </data>
+  <data name="GoBack" xml:space="preserve">
+    <value>Go back</value>
+  </data>
+  <data name="References_ExportTitle" xml:space="preserve">
+    <value>Export References</value>
+  </data>
+  <data name="References_ExportSubtitle" xml:space="preserve">
+    <value>Copy APA or MLA reference lists into your writing.</value>
+  </data>
+  <data name="References_ExportEmpty" xml:space="preserve">
+    <value>No references available to export.</value>
+  </data>
+  <data name="APA References" xml:space="preserve">
+    <value>APA References</value>
+  </data>
+  <data name="MLA References" xml:space="preserve">
+    <value>MLA References</value>
+  </data>
+  <data name="Toast_Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="Toast_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Toast_Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="Toast_Info" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Toast_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Toast_Notifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="ChatRoleUser" xml:space="preserve">
+    <value>You:</value>
+  </data>
+  <data name="ChatRoleAI" xml:space="preserve">
+    <value>AI:</value>
+  </data>
+  <data name="OCRNoTextTitle" xml:space="preserve">
+    <value>We couldn't detect readable text in this image.</value>
+  </data>
+  <data name="OCRNoTextMessage" xml:space="preserve">
+    <value>Try:</value>
+  </data>
+  <data name="OCRNoTextTipLanguage" xml:space="preserve">
+    <value>Check the selected OCR language.</value>
+  </data>
+  <data name="OCRNoTextTipQuality" xml:space="preserve">
+    <value>Use a clearer or higher-resolution image.</value>
+  </data>
+  <data name="OCRNoTextTipBlur" xml:space="preserve">
+    <value>Make sure the text is not blurred or heavily tilted.</value>
+  </data>
+  <data name="OCRNoTextTipContrast" xml:space="preserve">
+    <value>Try an image with stronger contrast.</value>
+  </data>
+  <data name="ChooseAnotherImage" xml:space="preserve">
+    <value>Choose Another Image</value>
+  </data>
+  <data name="NavWriting" xml:space="preserve">
+    <value>Writing</value>
+  </data>
+  <data name="NavAnalyzeEssay" xml:space="preserve">
+    <value>Analyze Essay</value>
+  </data>
+  <data name="NavWritingCoach" xml:space="preserve">
+    <value>AI Writing Coach</value>
+  </data>
+  <data name="NavWritingHistory" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="NavReferenceManager" xml:space="preserve">
+    <value>Reference Manager</value>
+  </data>
+  <data name="NavReferenceExport" xml:space="preserve">
+    <value>Export References</value>
+  </data>
+  <data name="NavTools" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="NavOCR" xml:space="preserve">
+    <value>OCR Scanner</value>
+  </data>
+  <data name="NavTextSimilarity" xml:space="preserve">
+    <value>Text Similarity</value>
+  </data>
+  <data name="NavKnowledgeGraph" xml:space="preserve">
+    <value>Knowledge Graph</value>
+  </data>
+  <data name="NavSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="DocumentWorkspace" xml:space="preserve">
+    <value>Document Workspace</value>
+  </data>
+  <data name="DocumentWorkspaceSubtitle" xml:space="preserve">
+    <value>Read, summarize, and ask questions from one focused workspace.</value>
+  </data>
+  <data name="DocumentWorkspaceTabs" xml:space="preserve">
+    <value>Document workspace sections</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Overview</value>
+  </data>
+  <data name="AskAI" xml:space="preserve">
+    <value>Ask AI</value>
+  </data>
+  <data name="NotExtracted" xml:space="preserve">
+    <value>Not extracted</value>
+  </data>
+  <data name="UploadedAtValue" xml:space="preserve">
+    <value>Uploaded {0}</value>
+  </data>
+  <data name="ProcessingStatus" xml:space="preserve">
+    <value>Processing status</value>
+  </data>
+  <data name="TextReady" xml:space="preserve">
+    <value>Text ready</value>
+  </data>
+  <data name="SummaryReady" xml:space="preserve">
+    <value>Summary ready</value>
+  </data>
+  <data name="NeedsTextExtraction" xml:space="preserve">
+    <value>Needs text extraction</value>
+  </data>
+  <data name="ReadyForSummary" xml:space="preserve">
+    <value>Ready for summary</value>
+  </data>
+  <data name="NoSummaryYet" xml:space="preserve">
+    <value>No summary yet.</value>
+  </data>
+  <data name="MoreActions" xml:space="preserve">
+    <value>More actions</value>
+  </data>
+  <data name="AboutThisDocument" xml:space="preserve">
+    <value>About this document</value>
+  </data>
+  <data name="DocumentUploaded" xml:space="preserve">
+    <value>Document uploaded</value>
+  </data>
+  <data name="QuickOverview" xml:space="preserve">
+    <value>Quick overview</value>
+  </data>
+  <data name="GenerateSummaryHint" xml:space="preserve">
+    <value>Generate a summary to understand the document faster.</value>
+  </data>
+  <data name="DocumentNotProcessedYet" xml:space="preserve">
+    <value>This document has not been processed yet.</value>
+  </data>
+  <data name="ExtractBeforeSummary" xml:space="preserve">
+    <value>Extract the document text before generating a summary.</value>
+  </data>
+  <data name="ExtractBeforeSummaryTitle" xml:space="preserve">
+    <value>Extract text first</value>
+  </data>
+  <data name="NextStep" xml:space="preserve">
+    <value>Next step</value>
+  </data>
+  <data name="ExtractBeforeChat" xml:space="preserve">
+    <value>Extract the text before asking AI questions about this document.</value>
+  </data>
+  <data name="ReadyForSummaryHint" xml:space="preserve">
+    <value>The text is ready. Generate a summary or start asking AI about the document.</value>
+  </data>
+  <data name="ReadyToAskAIHint" xml:space="preserve">
+    <value>The document is ready. Ask AI to explain, compare, or locate details in the text.</value>
+  </data>
+  <data name="AskAIAboutDocument" xml:space="preserve">
+    <value>Ask AI about this document</value>
+  </data>
+  <data name="RegenerateSummary" xml:space="preserve">
+    <value>Regenerate Summary</value>
+  </data>
+  <data name="FullSummary" xml:space="preserve">
+    <value>Full summary</value>
+  </data>
+  <data name="SummaryTabHint" xml:space="preserve">
+    <value>Review, copy, or export the generated summary.</value>
+  </data>
+  <data name="BackToWorkspace" xml:space="preserve">
+    <value>Back to Workspace</value>
+  </data>
+  <data name="Documents_ExtractBeforeChat" xml:space="preserve">
+    <value>Extract the document text before asking AI questions.</value>
+  </data>
+  <data name="Documents_ChatHistoryHint" xml:space="preserve">
+    <value>Conversation stays grounded in the extracted document text.</value>
+  </data>
+  <data name="Documents_AskQuestionPlaceholder" xml:space="preserve">
+    <value>Example: What is the methodology of this paper?</value>
+  </data>
+  <data name="SourceSnippet" xml:space="preserve">
+    <value>Source snippet</value>
+  </data>
+  <data name="DocumentNotFoundOrForbidden" xml:space="preserve">
+    <value>Document not found or you do not have permission to access it.</value>
+  </data>
+  <data name="WordCountSingular" xml:space="preserve">
+    <value>{0} Word</value>
+  </data>
+  <data name="WordCountPlural" xml:space="preserve">
+    <value>{0} Words</value>
+  </data>
+  <data name="PageCountSingular" xml:space="preserve">
+    <value>{0} Page</value>
+  </data>
+  <data name="PageCountPlural" xml:space="preserve">
+    <value>{0} Pages</value>
+  </data>
+  <data name="NeedsProcessing" xml:space="preserve">
+    <value>Needs processing</value>
+  </data>
+  <data name="ReadyToExplore" xml:space="preserve">
+    <value>Ready to explore</value>
+  </data>
+  <data name="ReadyToUse" xml:space="preserve">
+    <value>Ready to use</value>
+  </data>
+  <data name="CapabilityExtractText" xml:space="preserve">
+    <value>Extract text from the uploaded PDF</value>
+  </data>
+  <data name="CapabilitySummaryAfterText" xml:space="preserve">
+    <value>Generate a summary after text extraction</value>
+  </data>
+  <data name="CapabilityChatAfterText" xml:space="preserve">
+    <value>Ask AI after the document text is ready</value>
+  </data>
+  <data name="CapabilityAskQuestions" xml:space="preserve">
+    <value>Ask questions about the document</value>
+  </data>
+  <data name="CapabilityGenerateSummary" xml:space="preserve">
+    <value>Generate a summary when you need a faster read</value>
+  </data>
+  <data name="CapabilityReadSummary" xml:space="preserve">
+    <value>Read the summary</value>
+  </data>
+  <data name="CapabilityExportResults" xml:space="preserve">
+    <value>Export generated results</value>
   </data>
 </root>

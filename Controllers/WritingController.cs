@@ -1,6 +1,8 @@
 using System.Security.Claims;
+using System.Text;
 using System.Text.Json;
 using AcademicAIAssistant.Data;
+using AcademicAIAssistant.Helpers;
 using AcademicAIAssistant.Models;
 using AcademicAIAssistant.Models.ViewModels;
 using AcademicAIAssistant.Services;
@@ -43,7 +45,7 @@ public class WritingController : Controller
 
             if (reference == null)
             {
-                TempData["ErrorMessage"] = _localizer["Writing_ReferenceNotFoundOrForbidden"];
+                TempData["ErrorMessage"] = _localizer["Writing_ReferenceNotFoundOrForbidden"].Value;
                 return View(new EssayAnalyzeViewModel());
             }
 
@@ -69,13 +71,13 @@ public class WritingController : Controller
 
             if (session == null)
             {
-                TempData["ErrorMessage"] = _localizer["Writing_CoachSessionNotFoundOrForbidden"];
+                TempData["ErrorMessage"] = _localizer["Writing_CoachSessionNotFoundOrForbidden"].Value;
                 return View(new EssayAnalyzeViewModel());
             }
 
             if (string.IsNullOrWhiteSpace(session.AIResponse))
             {
-                TempData["WarningMessage"] = _localizer["Writing_NoCoachResponseAvailable"];
+                TempData["WarningMessage"] = _localizer["Writing_NoCoachResponseAvailable"].Value;
                 return View(new EssayAnalyzeViewModel());
             }
 
@@ -96,13 +98,13 @@ public class WritingController : Controller
 
             if (scan == null)
             {
-                TempData["ErrorMessage"] = _localizer["Writing_OcrNotFoundOrForbidden"];
+                TempData["ErrorMessage"] = _localizer["Writing_OcrNotFoundOrForbidden"].Value;
                 return View(new EssayAnalyzeViewModel());
             }
 
             if (string.IsNullOrWhiteSpace(scan.ExtractedText))
             {
-                TempData["WarningMessage"] = _localizer["Writing_NoExtractedTextAvailable"];
+                TempData["WarningMessage"] = _localizer["Writing_NoExtractedTextAvailable"].Value;
                 return View(new EssayAnalyzeViewModel());
             }
 
@@ -130,7 +132,7 @@ public class WritingController : Controller
     {
         if (!ModelState.IsValid)
         {
-            TempData["ErrorMessage"] = _localizer["Writing_CompleteRequiredFields"];
+            TempData["ErrorMessage"] = _localizer["Writing_CompleteRequiredFields"].Value;
             return View("Index", model);
         }
 
@@ -152,7 +154,7 @@ public class WritingController : Controller
 
         if (!TempData.ContainsKey("SuccessMessage") && !TempData.ContainsKey("WarningMessage"))
         {
-            TempData["SuccessMessage"] = _localizer["Essay analyzed successfully."];
+            TempData["SuccessMessage"] = _localizer["Essay analyzed successfully."].Value;
         }
 
         return RedirectToAction(nameof(Details), new { id = essay.Id });
@@ -196,6 +198,58 @@ public class WritingController : Controller
         return View(viewModel);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> ExportFeedback(int id)
+    {
+        int userId = GetCurrentUserId();
+        Essay? essay = await _context.Essays
+            .Include(item => item.FeedbackReports)
+            .FirstOrDefaultAsync(item => item.Id == id && item.UserId == userId);
+
+        if (essay == null)
+        {
+            return NotFound();
+        }
+
+        FeedbackReport? report = essay.FeedbackReports
+            .OrderByDescending(item => item.CreatedAt)
+            .FirstOrDefault();
+
+        if (report == null)
+        {
+            return NotFound();
+        }
+
+        var content = new StringBuilder()
+            .AppendLine($"Title: {essay.Title}")
+            .AppendLine($"Essay type: {essay.EssayType}")
+            .AppendLine($"Overall score: {report.OverallScore}")
+            .AppendLine()
+            .AppendLine("Grammar / Wording")
+            .AppendLine(report.GrammarFeedback)
+            .AppendLine()
+            .AppendLine("Academic Tone")
+            .AppendLine(report.AcademicToneFeedback)
+            .AppendLine()
+            .AppendLine("Thesis Statement")
+            .AppendLine(report.ThesisFeedback)
+            .AppendLine()
+            .AppendLine("Structure")
+            .AppendLine(report.StructureFeedback)
+            .AppendLine()
+            .AppendLine("Logic")
+            .AppendLine(report.LogicFeedback)
+            .AppendLine()
+            .AppendLine("Citation")
+            .AppendLine(report.CitationFeedback)
+            .AppendLine()
+            .AppendLine("General Suggestions")
+            .AppendLine(report.GeneralSuggestions)
+            .ToString();
+
+        return this.TxtFile("writing-feedback", content, report.CreatedAt);
+    }
+
     private int GetCurrentUserId()
     {
         string? userIdValue = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -217,12 +271,12 @@ public class WritingController : Controller
         try
         {
             string aiFeedback = await _aiService.GenerateWritingFeedbackAsync(model.EssayType, model.Content, aiSetting);
-            TempData["SuccessMessage"] = _localizer["Writing_AiFeedbackSuccess"];
+            TempData["SuccessMessage"] = _localizer["Writing_AiFeedbackSuccess"].Value;
             return ParseAiFeedbackReport(aiFeedback);
         }
         catch
         {
-            TempData["WarningMessage"] = _localizer["Writing_AiFeedbackFallback"];
+            TempData["WarningMessage"] = _localizer["Writing_AiFeedbackFallback"].Value;
             return _writingFeedbackService.AnalyzeEssay(model.Title, model.EssayType, model.Content);
         }
     }

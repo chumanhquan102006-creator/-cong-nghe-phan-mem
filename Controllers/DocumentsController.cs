@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using AcademicAIAssistant.Data;
+using AcademicAIAssistant.Helpers;
 using AcademicAIAssistant.Models;
 using AcademicAIAssistant.Models.ViewModels;
 using AcademicAIAssistant.Services;
@@ -103,12 +104,12 @@ public class DocumentsController : Controller
         _context.Documents.Add(document);
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = _localizer["PDF uploaded successfully."];
+        TempData["SuccessMessage"] = _localizer["PDF uploaded successfully."].Value;
         return RedirectToAction(nameof(Index));
     }
 
     [HttpGet]
-    public async Task<IActionResult> Details(int id)
+    public async Task<IActionResult> Details(int id, string? tab)
     {
         int userId = GetCurrentUserId();
 
@@ -120,8 +121,36 @@ public class DocumentsController : Controller
             return NotFound();
         }
 
-        ViewData["FileExists"] = System.IO.File.Exists(GetPhysicalPath(document.StoredFileName));
-        return View(document);
+        var messages = await _context.DocumentChatMessages
+            .Where(message => message.DocumentId == id && message.UserId == userId)
+            .OrderBy(message => message.CreatedAt)
+            .ToListAsync();
+
+        return View(new DocumentWorkspaceViewModel
+        {
+            Document = document,
+            Messages = messages,
+            ActiveTab = DocumentWorkspaceViewModel.NormalizeTab(tab),
+            FileExists = System.IO.File.Exists(GetPhysicalPath(document.StoredFileName))
+        });
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ExportSummary(int id)
+    {
+        Document? document = await FindOwnedDocumentAsync(id);
+        if (document == null)
+        {
+            return NotFound();
+        }
+
+        if (string.IsNullOrWhiteSpace(document.Summary))
+        {
+            return NotFound();
+        }
+
+        DateTime createdAt = document.SummaryGeneratedAt ?? document.UploadedAt;
+        return this.TxtFile("document-summary", document.Summary, createdAt);
     }
 
     [HttpPost]
@@ -137,7 +166,7 @@ public class DocumentsController : Controller
         string fullPath = GetPhysicalPath(document.StoredFileName);
         if (!System.IO.File.Exists(fullPath))
         {
-            TempData["ErrorMessage"] = _localizer["Documents_PdfMissingOnServer"];
+            TempData["ErrorMessage"] = _localizer["Documents_PdfMissingOnServer"].Value;
             return RedirectToAction(nameof(Details), new { id });
         }
 
@@ -151,7 +180,7 @@ public class DocumentsController : Controller
             document.PageCount = result.PageCount;
 
             await _context.SaveChangesAsync();
-            TempData["SuccessMessage"] = _localizer["Text extracted successfully."];
+            TempData["SuccessMessage"] = _localizer["Text extracted successfully."].Value;
         }
         catch (Exception ex)
         {
@@ -173,8 +202,8 @@ public class DocumentsController : Controller
 
         if (string.IsNullOrWhiteSpace(document.ExtractedText))
         {
-            TempData["ErrorMessage"] = _localizer["Documents_ExtractBeforeSummary"];
-            return RedirectToAction(nameof(Details), new { id });
+            TempData["ErrorMessage"] = _localizer["Documents_ExtractBeforeSummary"].Value;
+            return RedirectToAction(nameof(Details), new { id, tab = DocumentWorkspaceViewModel.SummaryTab });
         }
 
         string summary;
@@ -216,15 +245,15 @@ public class DocumentsController : Controller
         {
             if (usedAi)
             {
-                TempData["SuccessMessage"] = _localizer["Documents_SummaryGeneratedByAi"];
+                TempData["SuccessMessage"] = _localizer["Documents_SummaryGeneratedByAi"].Value;
             }
             else
             {
-                TempData["WarningMessage"] = _localizer["Documents_SummaryGeneratedFallback"];
+                TempData["WarningMessage"] = _localizer["Documents_SummaryGeneratedFallback"].Value;
             }
         }
 
-        return RedirectToAction(nameof(Details), new { id });
+        return RedirectToAction(nameof(Details), new { id, tab = DocumentWorkspaceViewModel.SummaryTab });
     }
 
     [HttpPost]
@@ -250,7 +279,7 @@ public class DocumentsController : Controller
         _context.Documents.Remove(document);
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = _localizer["Document deleted successfully."];
+        TempData["SuccessMessage"] = _localizer["Document deleted successfully."].Value;
         return RedirectToAction(nameof(Index));
     }
 

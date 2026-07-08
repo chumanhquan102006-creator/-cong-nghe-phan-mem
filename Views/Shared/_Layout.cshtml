@@ -2,6 +2,18 @@
 @inject IStringLocalizer<SharedResource> Localizer
 @inject IWebHostEnvironment Environment
 
+@{
+    string? currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    string? currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+    bool isAuthenticated = User.Identity?.IsAuthenticated == true;
+    bool isDashboardActive = currentController == "Dashboard";
+    bool isDocumentsActive = currentController is "Documents" or "DocumentChat";
+    bool isWritingActive = currentController is "Writing" or "WritingCoach" or "WritingStudio";
+    bool isReferencesActive = currentController == "References";
+    bool isToolsActive = currentController is "OCR" or "TextScan" or "Citation" or "Similarity" or "Graph";
+    bool isUserActive = currentController is "Account" or "Settings" or "DevTools";
+}
+
 <!DOCTYPE html>
 <html lang="@CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
 <head>
@@ -24,69 +36,76 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Home"]</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Dashboard" asp-action="Index">@Localizer["Dashboard"]</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Documents" asp-action="Index">@Localizer["Documents"]</a>
-                        </li>
-                        @if (User.Identity?.IsAuthenticated == true)
+                    <ul class="navbar-nav app-main-nav">
+                        @if (isAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="OCR" asp-action="Index">OCR Scanner</a>
+                                <a class="nav-link @(isDashboardActive ? "active" : "")" asp-area="" asp-controller="Dashboard" asp-action="Index" aria-current="@(isDashboardActive ? "page" : null)">@Localizer["Dashboard"]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="TextScan" asp-action="Index">Text Scan</a>
+                                <a class="nav-link @(isDocumentsActive ? "active" : "")" asp-area="" asp-controller="Documents" asp-action="Index" aria-current="@(isDocumentsActive ? "page" : null)">@Localizer["Documents"]</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="References" asp-action="Index">References</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(isWritingActive ? "active" : "")" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    @Localizer["NavWriting"]
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item @(currentController == "Writing" && currentAction == "Index" ? "active" : "")" asp-controller="Writing" asp-action="Index">@Localizer["NavAnalyzeEssay"]</a></li>
+                                    <li><a class="dropdown-item @(currentController == "WritingCoach" ? "active" : "")" asp-controller="WritingCoach" asp-action="Index">@Localizer["NavWritingCoach"]</a></li>
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li><a class="dropdown-item @(currentController == "Writing" && currentAction == "History" ? "active" : "")" asp-controller="Writing" asp-action="History">@Localizer["NavWritingHistory"]</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(isReferencesActive ? "active" : "")" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    @Localizer["References"]
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item @(currentController == "References" && currentAction == "Index" ? "active" : "")" asp-controller="References" asp-action="Index">@Localizer["NavReferenceManager"]</a></li>
+                                    <li><a class="dropdown-item @(currentController == "References" && currentAction == "Export" ? "active" : "")" asp-controller="References" asp-action="Export">@Localizer["NavReferenceExport"]</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(isToolsActive ? "active" : "")" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    @Localizer["NavTools"]
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item @(currentController == "OCR" ? "active" : "")" asp-controller="OCR" asp-action="Index">@Localizer["NavOCR"]</a></li>
+                                    <li><a class="dropdown-item @(currentController == "TextScan" ? "active" : "")" asp-controller="TextScan" asp-action="Index">@Localizer["NavTextSimilarity"]</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Graph" ? "active" : "")" asp-controller="Graph" asp-action="Index">@Localizer["NavKnowledgeGraph"]</a></li>
+                                </ul>
                             </li>
                         }
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Writing" asp-action="Index">@Localizer["Writing Studio"]</a>
-                        </li>
-                        @if (User.Identity?.IsAuthenticated == true)
+                        else
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="WritingCoach" asp-action="Index">AI Writing Coach</a>
+                                <a class="nav-link @(currentController == "Home" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Home"]</a>
                             </li>
                         }
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Writing" asp-action="History">@Localizer["Writing History"]</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Graph" asp-action="Index">@Localizer["Knowledge Graph"]</a>
-                        </li>
                     </ul>
-                    <ul class="navbar-nav">
-                        @if (User.Identity?.IsAuthenticated == true)
+                    <ul class="navbar-nav app-account-nav">
+                        @if (isAuthenticated)
                         {
-                            <li class="nav-item">
-                                <span class="nav-link text-muted">@Localizer["Hello"], @User.Identity.Name</span>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Settings" asp-action="Index">Settings</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Account" asp-action="Profile">@Localizer["Profile"]</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Account" asp-action="ChangePassword">@Localizer["Change Password"]</a>
-                            </li>
-                            @if (Environment.IsDevelopment())
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-controller="DevTools" asp-action="Index">@Localizer["DevTools_Nav"]</a>
-                                </li>
-                            }
-                            <li class="nav-item">
-                                <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
-                                    <button type="submit" class="btn btn-link nav-link">@Localizer["Logout"]</button>
-                                </form>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(isUserActive ? "active" : "")" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    @User.Identity?.Name
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item @(currentController == "Account" && currentAction == "Profile" ? "active" : "")" asp-controller="Account" asp-action="Profile">@Localizer["Profile"]</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Settings" ? "active" : "")" asp-controller="Settings" asp-action="Index">@Localizer["NavSettings"]</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Account" && currentAction == "ChangePassword" ? "active" : "")" asp-controller="Account" asp-action="ChangePassword">@Localizer["Change Password"]</a></li>
+                                    @if (Environment.IsDevelopment())
+                                    {
+                                        <li><hr class="dropdown-divider" /></li>
+                                        <li><a class="dropdown-item @(currentController == "DevTools" ? "active" : "")" asp-controller="DevTools" asp-action="Index">@Localizer["DevTools_Nav"]</a></li>
+                                    }
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li>
+                                        <form asp-controller="Account" asp-action="Logout" method="post">
+                                            <button type="submit" class="dropdown-item">@Localizer["Logout"]</button>
+                                        </form>
+                                    </li>
+                                </ul>
                             </li>
                         }
                         else

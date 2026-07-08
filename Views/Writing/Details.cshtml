@@ -26,6 +26,20 @@
     }
     else
     {
+        <div class="d-flex flex-wrap justify-content-end gap-2 mb-3">
+            <button type="button" class="btn btn-outline-primary"
+                    data-copy-target="writingFeedbackContent"
+                    data-copied-text="@Localizer["Copied"]"
+                    data-copy-error-text="@Localizer["CopyFailed"]">@Localizer["Copy"]</button>
+            <button type="button" class="btn btn-outline-secondary"
+                    data-export-target="writingFeedbackContent"
+                    data-export-filename="writing-feedback"
+                    data-export-success-text="@Localizer["ExportedTxt"]"
+                    data-export-error-text="@Localizer["ExportFailed"]"
+                    aria-label="@Localizer["DownloadTxt"]">@Localizer["ExportTxt"]</button>
+        </div>
+
+        <div id="writingFeedbackContent">
         <div class="row g-3 mb-3">
             <div class="col-md-4">
                 <div class="stat-card">
@@ -79,6 +93,7 @@
                     <p class="mb-0">@report.CitationFeedback</p>
                 </div>
             </div>
+        </div>
         </div>
     }
 

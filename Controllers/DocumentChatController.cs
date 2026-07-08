@@ -6,6 +6,7 @@ using AcademicAIAssistant.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace AcademicAIAssistant.Controllers;
 
@@ -14,11 +15,16 @@ public class DocumentChatController : Controller
 {
     private readonly AppDbContext _context;
     private readonly DocumentChatService _documentChatService;
+    private readonly IStringLocalizer<SharedResource> _localizer;
 
-    public DocumentChatController(AppDbContext context, DocumentChatService documentChatService)
+    public DocumentChatController(
+        AppDbContext context,
+        DocumentChatService documentChatService,
+        IStringLocalizer<SharedResource> localizer)
     {
         _context = context;
         _documentChatService = documentChatService;
+        _localizer = localizer;
     }
 
     [HttpGet("DocumentChat/{documentId:int}")]
@@ -44,24 +50,34 @@ public class DocumentChatController : Controller
 
     [HttpPost("DocumentChat/Ask/{documentId:int}")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Ask(int documentId, string question)
+    public async Task<IActionResult> Ask(int documentId, string question, string? returnTo)
     {
         var document = await FindOwnedDocumentAsync(documentId);
         if (document == null)
         {
-            TempData["ErrorMessage"] = "Document not found or you do not have permission to access it.";
+            TempData["ErrorMessage"] = _localizer["DocumentNotFoundOrForbidden"].Value;
             return NotFound();
         }
 
         if (string.IsNullOrWhiteSpace(document.ExtractedText))
         {
-            TempData["WarningMessage"] = "Please extract text first before chatting with this PDF.";
+            TempData["WarningMessage"] = _localizer["Please extract text first before chatting with this PDF."].Value;
+            if (ShouldReturnToWorkspace(returnTo))
+            {
+                return RedirectToWorkspaceChat(documentId);
+            }
+
             return await ReturnChatWithError(document, "Please extract text first before chatting with this PDF.");
         }
 
         if (string.IsNullOrWhiteSpace(question))
         {
-            TempData["ErrorMessage"] = "Question cannot be empty.";
+            TempData["ErrorMessage"] = _localizer["Question cannot be empty."].Value;
+            if (ShouldReturnToWorkspace(returnTo))
+            {
+                return RedirectToWorkspaceChat(documentId);
+            }
+
             return await ReturnChatWithError(document, "Question cannot be empty.");
         }
 
@@ -84,8 +100,23 @@ public class DocumentChatController : Controller
         _context.DocumentChatMessages.Add(message);
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = "Question answered.";
+        TempData["SuccessMessage"] = _localizer["Question answered."].Value;
+        if (ShouldReturnToWorkspace(returnTo))
+        {
+            return RedirectToWorkspaceChat(documentId);
+        }
+
         return RedirectToAction(nameof(Index), new { documentId });
+    }
+
+    private IActionResult RedirectToWorkspaceChat(int documentId)
+    {
+        return RedirectToAction("Details", "Documents", new { id = documentId, tab = DocumentWorkspaceViewModel.ChatTab });
+    }
+
+    private static bool ShouldReturnToWorkspace(string? returnTo)
+    {
+        return string.Equals(returnTo, "workspace", StringComparison.OrdinalIgnoreCase);
     }
 
     private async Task<IActionResult> ReturnChatWithError(Document document, string errorMessage)

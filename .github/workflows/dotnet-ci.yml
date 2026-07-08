@@ -44,7 +44,7 @@ jobs:
       - name: Upload publish artifact
         uses: actions/upload-artifact@v4
         with:
-          name: academic-ai-assistant-v0.1.0
+          name: academic-ai-assistant-release
           path: ./publish
           if-no-files-found: error
           retention-days: 14

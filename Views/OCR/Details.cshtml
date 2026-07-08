@@ -50,15 +50,38 @@
                 <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
                     <h2 class="h5 mb-0">@Localizer["Extracted Text"]</h2>
                     <div class="d-flex flex-wrap gap-2">
-                        <button type="button" id="copyTextButton" class="btn btn-outline-primary btn-sm" @(hasText ? "" : "disabled")>@Localizer["Copy Text"]</button>
-                        <a class="btn btn-primary btn-sm @(hasText ? "" : "disabled")"
-                           asp-controller="Writing"
-                           asp-action="Index"
-                           asp-route-prefillFromOcrId="@Model.Id">@Localizer["Send to Writing Studio"]</a>
-                        <a class="btn btn-outline-warning btn-sm @(hasText ? "" : "disabled")"
-                           asp-controller="TextScan"
-                           asp-action="Index"
-                           asp-route-prefillFromOcrId="@Model.Id">@Localizer["Run Text Scan"]</a>
+                        <button type="button" class="btn btn-outline-primary btn-sm"
+                                data-copy-target="ocrText"
+                                data-copied-text="@Localizer["Copied"]"
+                                data-copy-error-text="@Localizer["CopyFailed"]"
+                                @(hasText ? "" : "disabled")>
+                            @Localizer["Copy"]
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm"
+                                data-export-target="ocrText"
+                                data-export-filename="ocr-result"
+                                data-export-success-text="@Localizer["ExportedTxt"]"
+                                data-export-error-text="@Localizer["ExportFailed"]"
+                                aria-label="@Localizer["DownloadTxt"]"
+                                @(hasText ? "" : "disabled")>
+                            @Localizer["ExportTxt"]
+                        </button>
+                        @if (hasText)
+                        {
+                            <a class="btn btn-primary btn-sm"
+                               asp-controller="Writing"
+                               asp-action="Index"
+                               asp-route-prefillFromOcrId="@Model.Id">@Localizer["Send to Writing Studio"]</a>
+                            <a class="btn btn-outline-warning btn-sm"
+                               asp-controller="TextScan"
+                               asp-action="Index"
+                               asp-route-prefillFromOcrId="@Model.Id">@Localizer["Run Text Scan"]</a>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-primary btn-sm" disabled>@Localizer["Send to Writing Studio"]</button>
+                            <button type="button" class="btn btn-outline-warning btn-sm" disabled>@Localizer["Run Text Scan"]</button>
+                        }
                     </div>
                 </div>
 
@@ -68,8 +91,16 @@
                 }
                 else
                 {
-                    <div class="empty-state">
-                        <p>@Localizer["No readable text was detected."]</p>
+                    <div class="empty-state text-start">
+                        <p class="fw-semibold mb-2">@Localizer["OCRNoTextTitle"]</p>
+                        <p class="mb-2">@Localizer["OCRNoTextMessage"]</p>
+                        <ul class="mb-3">
+                            <li>@Localizer["OCRNoTextTipLanguage"]</li>
+                            <li>@Localizer["OCRNoTextTipQuality"]</li>
+                            <li>@Localizer["OCRNoTextTipBlur"]</li>
+                            <li>@Localizer["OCRNoTextTipContrast"]</li>
+                        </ul>
+                        <a class="btn btn-outline-primary btn-sm" asp-action="Index">@Localizer["ChooseAnotherImage"]</a>
                     </div>
                     <textarea id="ocrText" class="d-none"></textarea>
                 }
@@ -77,31 +108,13 @@
 
             <div class="d-flex flex-wrap gap-2 mt-3">
                 <a class="btn btn-outline-secondary" asp-action="History">@Localizer["Back to OCR History"]</a>
-                <form asp-action="Delete" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('@Localizer["Delete OCR Scan Confirm"]');">
+                <form asp-action="Delete" asp-route-id="@Model.Id" method="post"
+                      class="js-confirm-form"
+                      data-confirm-delete
+                      data-confirm-message="@Localizer["ConfirmDeleteMessage"]">
                     <button type="submit" class="btn btn-danger">@Localizer["Delete"]</button>
                 </form>
             </div>
         </div>
     </div>
 </section>
-
-@section Scripts {
-    <script>
-        const copyButton = document.getElementById('copyTextButton');
-        const textArea = document.getElementById('ocrText');
-
-        if (copyButton && textArea) {
-            copyButton.addEventListener('click', async () => {
-                const text = textArea.value;
-                if (!text.trim()) {
-                    alert('@Localizer["No text available to copy."]');
-                    return;
-                }
-
-                await navigator.clipboard.writeText(text);
-                copyButton.textContent = '@Localizer["Copied"]';
-                setTimeout(() => copyButton.textContent = '@Localizer["Copy Text"]', 1500);
-            });
-        }
-    </script>
-}

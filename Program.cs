@@ -42,7 +42,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.LoginPath = "/Account/Login";
         options.LogoutPath = "/Account/Logout";
-        options.AccessDeniedPath = "/Account/Login";
+        options.AccessDeniedPath = "/Home/AccessDenied";
         options.ExpireTimeSpan = TimeSpan.FromDays(7);
     });
 
@@ -65,6 +65,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseStatusCodePagesWithReExecute("/Home/HttpStatus", "?code={0}");
 app.UseHttpsRedirection();
 app.UseRequestLocalization(localizationOptions);
 app.UseRouting();
@@ -93,21 +94,4 @@ if (app.Environment.IsDevelopment())
         logger.LogError(ex, "An error occurred while seeding demo data.");
     }
 }
-
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    try
-    {
-        var context = services.GetRequiredService<AppDbContext>();
-        // Gọi hàm Seed dữ liệu mẫu
-        DbInitializer.Seed(context);
-    }
-    catch (Exception ex)
-    {
-        var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "Đã xảy ra lỗi trong quá trình tự động tạo dữ liệu demo.");
-    }
-}
-
 app.Run();

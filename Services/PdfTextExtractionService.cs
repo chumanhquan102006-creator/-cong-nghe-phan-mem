@@ -20,7 +20,11 @@ public class PdfTextExtractionService
 
             foreach (var page in pdf.GetPages())
             {
-                textBuilder.AppendLine(page.Text);
+                var words = page.GetWords()
+                    .Select(word => word.Text)
+                    .Where(text => !string.IsNullOrWhiteSpace(text));
+
+                textBuilder.AppendLine(string.Join(" ", words));
                 textBuilder.AppendLine();
             }
 
@@ -47,19 +51,15 @@ public class PdfTextExtractionService
         }
     }
 
-    private static string NormalizeText(string value)
+    internal static string NormalizeText(string value)
     {
         string text = value.Replace("\r\n", "\n").Replace("\r", "\n");
 
-        // Keep a space when PDF line breaks join two words together.
-        text = Regex.Replace(text, @"(?<=[\p{Ll}\p{N}])\n(?=[\p{Lu}])", " ");
-        text = Regex.Replace(text, @"(?<=[\p{L}\p{N}])\n(?=[\p{L}\p{N}])", " ");
+        // Keep a word boundary when PDF line breaks split ordinary reading flow.
+        text = Regex.Replace(text, @"(?<=[\p{L}\p{N}])\n+(?=[\p{L}\p{N}])", " ");
 
         // Add missing spaces after punctuation, for example "word.Next" or "word,Next".
         text = Regex.Replace(text, @"([.,;:!?])(?=[\p{L}\p{N}])", "$1 ");
-
-        // Add spaces in common PDF extraction joins like "UniversityAbstract".
-        text = Regex.Replace(text, @"(?<=[\p{Ll}])(?=[\p{Lu}])", " ");
 
         return Regex.Replace(text, @"\s+", " ").Trim();
     }

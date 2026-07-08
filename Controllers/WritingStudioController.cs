@@ -8,6 +8,6 @@ public class WritingStudioController : Controller
 {
     public IActionResult Index()
     {
-        return View();
+        return RedirectToAction("Index", "Writing");
     }
 }

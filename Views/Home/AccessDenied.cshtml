@@ -1,0 +1,19 @@
+@inject IStringLocalizer<SharedResource> Localizer
+
+@{
+    ViewData["Title"] = Localizer["AccessDeniedTitle"];
+}
+
+<section class="py-5">
+    <div class="empty-state section-card mx-auto text-center">
+        <i class="bi bi-shield-lock display-4 text-warning" aria-hidden="true"></i>
+        <p class="text-uppercase text-muted fw-semibold mt-3 mb-1">403</p>
+        <h1 class="page-title">@Localizer["AccessDeniedTitle"]</h1>
+        <p class="page-subtitle">@Localizer["AccessDeniedMessage"]</p>
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+            <a class="btn btn-primary" asp-controller="Home" asp-action="Index">@Localizer["BackToHome"]</a>
+            <button type="button" class="btn btn-outline-secondary" onclick="history.back()">@Localizer["GoBack"]</button>
+            <a class="btn btn-outline-secondary" asp-controller="Dashboard" asp-action="Index">@Localizer["BackToDashboard"]</a>
+        </div>
+    </div>
+</section>

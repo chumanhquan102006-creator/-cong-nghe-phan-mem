@@ -27,7 +27,7 @@ public class DocumentChatService
 
     public async Task<DocumentChatResponse> AnswerQuestionAsync(string question, string documentText, string? summary = null, int? userId = null)
     {
-        if (string.IsNullOrWhiteSpace(question) || ExtractQuestionKeywords(question).Count < 2)
+        if (string.IsNullOrWhiteSpace(question))
         {
             return new DocumentChatResponse
             {
@@ -37,7 +37,9 @@ public class DocumentChatService
 
         string normalizedQuestion = question.ToLowerInvariant();
 
-        if (normalizedQuestion.Contains("summary") || normalizedQuestion.Contains("summarize"))
+        if (normalizedQuestion.Contains("summary")
+            || normalizedQuestion.Contains("summarize")
+            || normalizedQuestion.Contains("paper about"))
         {
             if (!string.IsNullOrWhiteSpace(summary))
             {
@@ -125,7 +127,7 @@ public class DocumentChatService
         {
             return new DocumentChatResponse
             {
-                Answer = "I could not find a clearly relevant section in this document. Please try asking a more specific question."
+                Answer = "I could not find enough information in this document to answer that question."
             };
         }
 
@@ -221,7 +223,7 @@ public class DocumentChatService
     {
         return Regex.Matches(question.ToLowerInvariant(), @"\b[\p{L}\p{N}']+\b")
             .Select(match => match.Value)
-            .Where(word => word.Length > 2 && !StopWords.Contains(word))
+            .Where(word => word.Length > 1 && !StopWords.Contains(word))
             .Distinct()
             .ToList();
     }

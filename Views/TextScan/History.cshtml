@@ -52,7 +52,10 @@
                                 <td>@scan.CreatedAt.ToDisplayDateTime()</td>
                                 <td class="text-end">
                                     <a class="btn btn-sm btn-outline-primary" asp-action="Result" asp-route-id="@scan.Id">@Localizer["View Result"]</a>
-                                    <form asp-action="Delete" asp-route-id="@scan.Id" method="post" class="d-inline" onsubmit="return confirm('@Localizer["Delete Text Scan Confirm"]');">
+                                    <form asp-action="Delete" asp-route-id="@scan.Id" method="post"
+                                          class="d-inline js-confirm-form"
+                                          data-confirm-delete
+                                          data-confirm-message="@Localizer["ConfirmDeleteMessage"]">
                                         <button type="submit" class="btn btn-sm btn-outline-danger">@Localizer["Delete"]</button>
                                     </form>
                                 </td>

@@ -1,5 +1,7 @@
 using System.Security.Claims;
+using System.Text;
 using AcademicAIAssistant.Data;
+using AcademicAIAssistant.Helpers;
 using AcademicAIAssistant.Models;
 using AcademicAIAssistant.Models.ViewModels;
 using AcademicAIAssistant.Services;
@@ -79,7 +81,7 @@ public class ReferencesController : Controller
         _context.ReferenceItems.Add(reference);
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = _localizer["References_CreateSuccess"];
+        TempData["SuccessMessage"] = _localizer["References_CreateSuccess"].Value;
         return RedirectToAction(nameof(Details), new { id = reference.Id });
     }
 
@@ -93,6 +95,35 @@ public class ReferencesController : Controller
         }
 
         return View(reference);
+    }
+
+    [HttpGet("/References/ExportText/{id:int}")]
+    public async Task<IActionResult> ExportText(int id)
+    {
+        ReferenceItem? reference = await FindOwnedReferenceAsync(id);
+        if (reference == null)
+        {
+            return Forbid();
+        }
+
+        var content = new StringBuilder()
+            .AppendLine(reference.Title)
+            .AppendLine()
+            .AppendLine("APA In-text Citation")
+            .AppendLine(reference.ApaInTextCitation)
+            .AppendLine()
+            .AppendLine("APA Reference")
+            .AppendLine(reference.ApaReference)
+            .AppendLine()
+            .AppendLine("MLA In-text Citation")
+            .AppendLine(reference.MlaInTextCitation)
+            .AppendLine()
+            .AppendLine("MLA Reference")
+            .AppendLine(reference.MlaReference)
+            .ToString();
+
+        DateTime createdAt = reference.UpdatedAt ?? reference.CreatedAt;
+        return this.TxtFile("reference", content, createdAt);
     }
 
     [HttpGet("/References/Edit/{id:int}")]
@@ -128,7 +159,7 @@ public class ReferencesController : Controller
 
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = _localizer["References_UpdateSuccess"];
+        TempData["SuccessMessage"] = _localizer["References_UpdateSuccess"].Value;
         return RedirectToAction(nameof(Details), new { id = reference.Id });
     }
 
@@ -145,7 +176,7 @@ public class ReferencesController : Controller
         _context.ReferenceItems.Remove(reference);
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = _localizer["References_DeleteSuccess"];
+        TempData["SuccessMessage"] = _localizer["References_DeleteSuccess"].Value;
         return RedirectToAction(nameof(Index));
     }
 
