@@ -1291,4 +1291,31 @@
   <data name="Toast_Notifications" xml:space="preserve">
     <value>Notifications</value>
   </data>
+  <data name="ChatRoleUser" xml:space="preserve">
+    <value>You:</value>
+  </data>
+  <data name="ChatRoleAI" xml:space="preserve">
+    <value>AI:</value>
+  </data>
+  <data name="OCRNoTextTitle" xml:space="preserve">
+    <value>We couldn't detect readable text in this image.</value>
+  </data>
+  <data name="OCRNoTextMessage" xml:space="preserve">
+    <value>Try:</value>
+  </data>
+  <data name="OCRNoTextTipLanguage" xml:space="preserve">
+    <value>Check the selected OCR language.</value>
+  </data>
+  <data name="OCRNoTextTipQuality" xml:space="preserve">
+    <value>Use a clearer or higher-resolution image.</value>
+  </data>
+  <data name="OCRNoTextTipBlur" xml:space="preserve">
+    <value>Make sure the text is not blurred or heavily tilted.</value>
+  </data>
+  <data name="OCRNoTextTipContrast" xml:space="preserve">
+    <value>Try an image with stronger contrast.</value>
+  </data>
+  <data name="ChooseAnotherImage" xml:space="preserve">
+    <value>Choose Another Image</value>
+  </data>
 </root>

@@ -1291,4 +1291,31 @@
   <data name="Toast_Notifications" xml:space="preserve">
     <value>Thông báo</value>
   </data>
+  <data name="ChatRoleUser" xml:space="preserve">
+    <value>Bạn:</value>
+  </data>
+  <data name="ChatRoleAI" xml:space="preserve">
+    <value>AI:</value>
+  </data>
+  <data name="OCRNoTextTitle" xml:space="preserve">
+    <value>Không phát hiện được văn bản có thể đọc trong ảnh.</value>
+  </data>
+  <data name="OCRNoTextMessage" xml:space="preserve">
+    <value>Hãy thử:</value>
+  </data>
+  <data name="OCRNoTextTipLanguage" xml:space="preserve">
+    <value>Kiểm tra ngôn ngữ OCR đã chọn.</value>
+  </data>
+  <data name="OCRNoTextTipQuality" xml:space="preserve">
+    <value>Sử dụng ảnh rõ hoặc có độ phân giải cao hơn.</value>
+  </data>
+  <data name="OCRNoTextTipBlur" xml:space="preserve">
+    <value>Đảm bảo chữ không bị mờ hoặc nghiêng quá nhiều.</value>
+  </data>
+  <data name="OCRNoTextTipContrast" xml:space="preserve">
+    <value>Thử ảnh có độ tương phản tốt hơn.</value>
+  </data>
+  <data name="ChooseAnotherImage" xml:space="preserve">
+    <value>Chọn ảnh khác</value>
+  </data>
 </root>

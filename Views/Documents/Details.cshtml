@@ -28,14 +28,8 @@
                     <dt class="col-sm-4">@Localizer["Original File"]</dt>
                     <dd class="col-sm-8">@Model.OriginalFileName</dd>
 
-                    <dt class="col-sm-4">Stored file</dt>
-                    <dd class="col-sm-8">@Model.StoredFileName</dd>
-
                     <dt class="col-sm-4">@Localizer["File Size"]</dt>
                     <dd class="col-sm-8">@((Model.FileSize / 1024.0 / 1024.0).ToString("0.00")) MB</dd>
-
-                    <dt class="col-sm-4">Content type</dt>
-                    <dd class="col-sm-8">@Model.ContentType</dd>
 
                     <dt class="col-sm-4">@Localizer["Uploaded At"]</dt>
                     <dd class="col-sm-8">@Model.UploadedAt.ToDisplayDateTime()</dd>

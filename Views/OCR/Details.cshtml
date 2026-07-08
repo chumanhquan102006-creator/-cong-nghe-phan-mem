@@ -66,14 +66,22 @@
                                 @(hasText ? "" : "disabled")>
                             @Localizer["ExportTxt"]
                         </button>
-                        <a class="btn btn-primary btn-sm @(hasText ? "" : "disabled")"
-                           asp-controller="Writing"
-                           asp-action="Index"
-                           asp-route-prefillFromOcrId="@Model.Id">@Localizer["Send to Writing Studio"]</a>
-                        <a class="btn btn-outline-warning btn-sm @(hasText ? "" : "disabled")"
-                           asp-controller="TextScan"
-                           asp-action="Index"
-                           asp-route-prefillFromOcrId="@Model.Id">@Localizer["Run Text Scan"]</a>
+                        @if (hasText)
+                        {
+                            <a class="btn btn-primary btn-sm"
+                               asp-controller="Writing"
+                               asp-action="Index"
+                               asp-route-prefillFromOcrId="@Model.Id">@Localizer["Send to Writing Studio"]</a>
+                            <a class="btn btn-outline-warning btn-sm"
+                               asp-controller="TextScan"
+                               asp-action="Index"
+                               asp-route-prefillFromOcrId="@Model.Id">@Localizer["Run Text Scan"]</a>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-primary btn-sm" disabled>@Localizer["Send to Writing Studio"]</button>
+                            <button type="button" class="btn btn-outline-warning btn-sm" disabled>@Localizer["Run Text Scan"]</button>
+                        }
                     </div>
                 </div>
 
@@ -83,8 +91,16 @@
                 }
                 else
                 {
-                    <div class="empty-state">
-                        <p>@Localizer["No readable text was detected."]</p>
+                    <div class="empty-state text-start">
+                        <p class="fw-semibold mb-2">@Localizer["OCRNoTextTitle"]</p>
+                        <p class="mb-2">@Localizer["OCRNoTextMessage"]</p>
+                        <ul class="mb-3">
+                            <li>@Localizer["OCRNoTextTipLanguage"]</li>
+                            <li>@Localizer["OCRNoTextTipQuality"]</li>
+                            <li>@Localizer["OCRNoTextTipBlur"]</li>
+                            <li>@Localizer["OCRNoTextTipContrast"]</li>
+                        </ul>
+                        <a class="btn btn-outline-primary btn-sm" asp-action="Index">@Localizer["ChooseAnotherImage"]</a>
                     </div>
                     <textarea id="ocrText" class="d-none"></textarea>
                 }
