@@ -246,5 +246,8 @@ Project documents are in the `Documentation` folder:
 - `SECURITY_AND_PRIVACY.md`
 - `TEAM_CONTRIBUTIONS_v0.2.0.md`
 - `RELEASE_CHECKLIST_v0.2.0.md`
+- `EVIDENCE_INDEX_v0.2.0.md`
+
+Also see [`SELF_ASSESSMENT.md`](SELF_ASSESSMENT.md) for the evidence-based rubric proposal.
 
 Release history is documented in [`CHANGELOG.md`](CHANGELOG.md). The project is distributed under the [MIT License](LICENSE).

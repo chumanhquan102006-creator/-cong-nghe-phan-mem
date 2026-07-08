@@ -71,14 +71,17 @@ Local commits present in this clone:
 - `45de67a Profile Page #18 (Issue 18)`
 - `8a632db Feat: Chinh sua thong bao loi da ngon ngu cho ViewModels va Controllers`
 
+Release-brief named commit:
+
+- `ff9b114`
+
 Merge/PR evidence present in this clone:
 
 - PR #19: merged through `0d26a0f Merge pull request #19 from .../bit240268-nguyen-ngoc-son`
 - PR #26: merged through `735f82a Merge pull request #26 from .../week-4.1`
+- PR #40: merged, with merge evidence `87ab919`
 
-The task brief also names PR #40 and commit `ff9b114`, but `ff9b114` is not present in the local clone during this audit. This document does not claim code ownership from missing local evidence.
-
-Assessment: verified feature contributor with profile and validation-localization implementation evidence.
+Assessment: verified feature contributor with profile, validation-localization, and demo seed data evidence.
 
 ## Member 3 - phuonganhlethi404-prog
 

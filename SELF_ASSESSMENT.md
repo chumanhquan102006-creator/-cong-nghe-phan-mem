@@ -28,7 +28,7 @@ Result -> broad feature set with improved document value in `v0.2.0`.
 
 Limitation -> AI retrieval/source mapping remains basic.
 
-Proposed score: 9/10.
+Proposed score: 13/14.
 
 ## 3. Architecture and Design Rationale
 
@@ -42,7 +42,7 @@ Result -> understandable architecture with release-specific rationale.
 
 Limitation -> production deployment architecture is not implemented.
 
-Proposed score: 9/10.
+Proposed score: 10/12.
 
 ## 4. Code Quality and Reliable Programming
 
@@ -56,7 +56,7 @@ Result -> fewer demo-breaking states and clearer user feedback.
 
 Limitation -> some end-to-end behavior is still manually tested.
 
-Proposed score: 8/10.
+Proposed score: 9/10.
 
 ## 5. Testing and Verification
 
@@ -70,7 +70,7 @@ Result -> 46 automated tests verified locally; manual matrix records Document Wo
 
 Limitation -> no committed screenshots and no automated browser test suite.
 
-Proposed score: 8/10.
+Proposed score: 8/9.
 
 ## 6. Security and Privacy
 
@@ -84,7 +84,7 @@ Result -> appropriate academic-demo safeguards are documented.
 
 Limitation -> LocalDB, local uploads, no production monitoring, limited file scanning.
 
-Proposed score: 8/10.
+Proposed score: 7/8.
 
 ## 7. DevOps and Reproducibility
 
@@ -98,7 +98,9 @@ Result -> CI pipeline remains restore/build/test/publish/artifact capable.
 
 Limitation -> local bare `dotnet build` failed silently during baseline; remote CI must pass before merge/release.
 
-Proposed score: 7/10.
+Proposed score: 8/9.
+
+If the v0.2.0 PR CI, publish artifact, squash merge, tag, and GitHub Release are all verified successfully, this DevOps proposal may be reassessed from 8/9 to 9/9, giving 73/80.
 
 ## 8. Documentation and Theory-to-Practice Traceability
 
@@ -112,11 +114,11 @@ Result -> strong rubric evidence without fabricating screenshots, ownership, or 
 
 Limitation -> individual non-code contributions would be stronger with linked issue comments or PR reviews.
 
-Proposed score: 9/10.
+Proposed score: 8/8.
 
 ## Proposed Group Total
 
-Proposed evidence-based group score: 67/80.
+Proposed evidence-based group score: 72/80.
 
 # Individual Self-Assessment - /20 Each
 
@@ -146,7 +148,7 @@ Proposed total: 20/20.
 
 ## Windy
 
-Evidence: issue #18, #25, #36; commits `45de67a`, `8a632db`; PR #19 and PR #26 merge evidence. The task brief also names PR #40 and `ff9b114`, but that commit is not present in the local clone.
+Evidence: issue #18, #25, #36; commits `45de67a`, `8a632db`, `ff9b114`; PR #19, PR #26, and PR #40 merge evidence, including merge commit `87ab919`.
 
 Suggested evidence-based range: 11-12/20.
 

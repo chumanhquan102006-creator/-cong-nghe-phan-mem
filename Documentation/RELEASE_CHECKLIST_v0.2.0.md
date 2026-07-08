@@ -1,7 +1,7 @@
 # Release Checklist v0.2.0
 
 - [x] Working tree clean at baseline
-- [ ] Working tree clean after release-prep commit
+- [x] Working tree clean after release-prep commit
 - [x] Build pass
 - [x] 46/46 tests pass
 - [x] No secrets found in audited config/docs
