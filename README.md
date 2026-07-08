@@ -2,12 +2,32 @@
 
 [![.NET CI](https://github.com/chumanhquan102006-creator/-cong-nghe-phan-mem/actions/workflows/dotnet-ci.yml/badge.svg)](https://github.com/chumanhquan102006-creator/-cong-nghe-phan-mem/actions/workflows/dotnet-ci.yml)
 
-## Release v0.1.0
+## Current Release
 
-This is the initial academic demo release of Academic AI Assistant.  
-It includes the main reading, writing, OCR, citation, similarity, knowledge graph, reference, and UI/UX polish features.
+v0.2.0 - Document Workspace & Product UX
 
 This release is intended for course demonstration and is not production-ready.
+
+## Product Evolution
+
+Academic AI Assistant started as a feature-rich academic toolbox in `v0.1.0`: reading, writing, OCR, citation, similarity, references, and knowledge graph tools were available as separate capabilities.
+
+In `v0.2.0`, the product direction moves toward a workflow-oriented academic product. The main document flow now guides a student from upload, to extraction, to summary, to grounded document questions in one Document Workspace.
+
+## Major v0.2.0 Improvements
+
+- Simplified navigation and information architecture.
+- Document Workspace for document-centered reading work.
+- Overview, Summary, and Ask AI tabs.
+- State-aware document workflow for uploaded, extracted, and fully processed documents.
+- Better Chat with PDF short-question handling.
+- OCR empty/failure UX.
+- Disabled invalid OCR actions when no readable text exists.
+- Friendlier error and status messages.
+- Copy, export, counters, and toast feedback.
+- PDF text normalization improvements.
+- Vietnamese and English product polish.
+- Automated tests increased to 46.
 
 ## Short Description
 
@@ -22,6 +42,7 @@ Students often need to read many research papers and write academic essays, but 
 - User registration, login, logout
 - Dashboard with statistics and recent activities
 - PDF upload and document library
+- Document Workspace with Overview / Summary / Ask AI tabs
 - PDF text extraction
 - Rule-based or AI-ready summary generation
 - Writing Studio and academic feedback
@@ -111,8 +132,8 @@ dotnet test AcademicAIAssistant.sln
 
 Current verified local result:
 
-- Release build: passed
-- Automated tests: 30/30 passed
+- Debug test-project build: passed with 0 warnings and 0 errors
+- Automated tests: 46/46 passed, 0 failed, 0 skipped
 
 Automated coverage includes:
 
@@ -219,5 +240,11 @@ Project documents are in the `Documentation` folder:
 - `INSTALLATION_GUIDE.md`
 - `PRODUCT_ENGINEERING.md`
 - `RELEASE_NOTES_v0.1.0.md`
+- `RELEASE_NOTES_v0.2.0.md`
+- `TEST_REPORT_v0.2.0.md`
+- `ARCHITECTURE.md`
+- `SECURITY_AND_PRIVACY.md`
+- `TEAM_CONTRIBUTIONS_v0.2.0.md`
+- `RELEASE_CHECKLIST_v0.2.0.md`
 
 Release history is documented in [`CHANGELOG.md`](CHANGELOG.md). The project is distributed under the [MIT License](LICENSE).

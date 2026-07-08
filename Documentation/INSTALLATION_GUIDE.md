@@ -151,8 +151,8 @@ dotnet test AcademicAIAssistant.sln
 
 Current verified local result:
 
-- Build: passed
-- Tests: 30/30 passed
+- Test-project build: passed
+- Tests: 46/46 passed, 0 failed, 0 skipped
 
 ## Continuous Integration
 
