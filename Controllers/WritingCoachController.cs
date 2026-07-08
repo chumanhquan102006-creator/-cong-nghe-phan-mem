@@ -168,7 +168,7 @@ public class WritingCoachController : Controller
 
         if (string.IsNullOrWhiteSpace(session.AIResponse))
         {
-            TempData["WarningMessage"] = _localizer["Writing_NoCoachResponseAvailable"];
+            TempData["WarningMessage"] = _localizer["Writing_NoCoachResponseAvailable"].Value;
             return RedirectToAction(nameof(Details), new { id });
         }
 
@@ -188,7 +188,7 @@ public class WritingCoachController : Controller
         _context.WritingCoachSessions.Remove(session);
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = _localizer["WritingCoach_DeleteSuccess"];
+        TempData["SuccessMessage"] = _localizer["WritingCoach_DeleteSuccess"].Value;
 
         return RedirectToAction(nameof(History));
     }

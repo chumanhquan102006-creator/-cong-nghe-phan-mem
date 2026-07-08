@@ -43,13 +43,13 @@ public class TextScanController : Controller
 
             if (scan == null)
             {
-                TempData["ErrorMessage"] = _localizer["TextScan_OcrNotFoundOrForbidden"];
+                TempData["ErrorMessage"] = _localizer["TextScan_OcrNotFoundOrForbidden"].Value;
                 return View(new TextScanInputViewModel());
             }
 
             if (string.IsNullOrWhiteSpace(scan.ExtractedText))
             {
-                TempData["WarningMessage"] = _localizer["TextScan_NoOcrTextAvailable"];
+                TempData["WarningMessage"] = _localizer["TextScan_NoOcrTextAvailable"].Value;
                 return View(new TextScanInputViewModel());
             }
 
@@ -68,7 +68,7 @@ public class TextScanController : Controller
 
             if (essay == null)
             {
-                TempData["ErrorMessage"] = _localizer["TextScan_EssayNotFoundOrForbidden"];
+                TempData["ErrorMessage"] = _localizer["TextScan_EssayNotFoundOrForbidden"].Value;
                 return View(new TextScanInputViewModel());
             }
 
@@ -102,7 +102,7 @@ public class TextScanController : Controller
         try
         {
             TextScan scan = await _textScanService.ScanTextAsync(GetCurrentUserId(), model.Title, model.InputText);
-            TempData["SuccessMessage"] = _localizer["TextScan_Success"];
+            TempData["SuccessMessage"] = _localizer["TextScan_Success"].Value;
             return RedirectToAction(nameof(Result), new { id = scan.Id });
         }
         catch (Exception ex)
@@ -190,7 +190,7 @@ public class TextScanController : Controller
         _context.TextScans.Remove(scan);
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = _localizer["TextScan_DeleteSuccess"];
+        TempData["SuccessMessage"] = _localizer["TextScan_DeleteSuccess"].Value;
         return RedirectToAction(nameof(History));
     }
 

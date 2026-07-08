@@ -80,7 +80,7 @@ public class OCRController : Controller
             if (string.IsNullOrWhiteSpace(extractedText))
             {
                 ocrSucceeded = false;
-                TempData["WarningMessage"] = _localizer["No readable text was detected."];
+                TempData["WarningMessage"] = _localizer["No readable text was detected."].Value;
             }
         }
         catch (Exception ex)
@@ -108,7 +108,7 @@ public class OCRController : Controller
 
         if (ocrSucceeded)
         {
-            TempData["SuccessMessage"] = _localizer["OCR_ImageScannedSuccessfully"];
+            TempData["SuccessMessage"] = _localizer["OCR_ImageScannedSuccessfully"].Value;
         }
 
         return RedirectToAction(nameof(Details), new { id = scan.Id });
@@ -176,7 +176,7 @@ public class OCRController : Controller
         _context.OCRScans.Remove(scan);
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = _localizer["OCR_DeleteSuccess"];
+        TempData["SuccessMessage"] = _localizer["OCR_DeleteSuccess"].Value;
         return RedirectToAction(nameof(History));
     }
 
